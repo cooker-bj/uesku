@@ -1,0 +1,47 @@
+ <div id='advertisement'></div>
+<div id='main_page'>
+<div id='recommendation'>
+     <div id="recommendation_title">优异思库－最优课徎列表</div>
+     <% i=1 %>
+     <% Recommendation.get_list('F1',2).each do |item|%>
+
+      <%=tag('div',{:id=>"recommend_#{i}",:class=>'recommend_items',:'data-id'=>item.lesson.id},true) %>
+         <div class="recommend_item_top"><%="0#{i}"%></div>
+         <div class="recommend_item_title"><%= item.lesson.title%></div>
+         <div class="recommend_item_image"><%=image_tag item.image_url, :width=>278,:height=>156 %></div>
+         <div class="recommend_item_description"><%=item.description%></div>
+      <% i+=1%>
+      <%=tag('/div',nil,true)%>
+     <% end %>
+</div>
+
+<div id="hot_lessons">
+  <div id='hot_title'><b>最热课程</b><%=link_to '更多课程','#'%></div>
+  <div >
+    <table width="600" border="1">
+      <tr>
+        <th width="14" scope="col">序号</th>
+        <th width="186" scope="col">课程名称</th>
+        <th width="296" scope="col">教育机构</th>
+        <th width="41" scope="col">评分</th>
+
+      </tr><% i=1 %>
+      <% Lesson.local_lessons(get_city).order("rank desc").limit(10).each do |course| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= link_to display_string(course.title,23),lesson_path(course) %></td>
+            <td><%=  display_string(course.company_name,23) %></td>
+            <td><%= course.rank %></td>
+
+
+            <% i+=1 %> </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+  <div id='side_menu' class="float_right">
+  <%=render 'category_list'%>
+  </div>
+
+
+ </div>

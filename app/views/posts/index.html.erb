@@ -1,0 +1,46 @@
+
+
+<% @posts.each do |post|%>
+ <ul class="posts_title_list" >
+   <li class="reply_count">
+    <div class="small_box">
+         <%=post.comment_count%>
+    </div>
+   </li>
+   <li class="wrap_post_title ">
+     <div class="post_titles">
+       <%=link_to post.title,post_path(post) %>
+       <%if post.distillate %>
+           <div class="box bred"> 精华</div>
+       <% end %>
+       <% if post.is_at_top? %>
+            <div class='box bblue'> 置顶</div>
+       <% end %>
+     </div>
+     <%  if post.group.manager?(current_user) %>
+       <div id="utility">
+        <%if (post.distillate)%>
+             <%= link_to '取消精华',withdraw_distillate_post_path(post),:remote=>true %>
+        <% else %>
+             <%=link_to '设为精华',set_to_distillate_post_path(post),:remote=>true%>
+        <% end %>
+        <% if post.is_at_top? %>
+             <%=link_to "取消置顶",withdraw_to_top_post_path(post),:remote=>true%>
+        <% else %>
+             <%=link_to '置顶',set_to_top_post_path(post),:remote=>true%>
+        <% end %>
+        <%=link_to '删除',post, method: :delete,data:{confirm: "你确定要删除#{post.title}"},:remote=>true   %>
+       </div>
+      <% end %>
+   </li>
+   <li>
+      <div class="user_messages">
+        <%=post.poster.name %>
+        <%=format_time(post.posted_time) %>
+      </div>
+   </li>
+ </ul>
+<% end %>
+<div id="paginate_area">  <%=will_paginate @posts,:previous_label=>'上一页',:next_label=>'下一页' %> </div>
+
+

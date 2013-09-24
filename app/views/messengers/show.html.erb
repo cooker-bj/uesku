@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sender:</b>
+  <%= @messenger.sender_id %>
+</p>
+
+<p>
+  <b>Receiver:</b>
+  <%= @messenger.receiver_id %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @messenger.message %>
+</p>
+
+<p>
+  <b>Read status:</b>
+  <%= @messenger.read_status %>
+</p>
+
+<p>
+  <b>Create time:</b>
+  <%= @messenger.create_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_messenger_path(@messenger) %> |
+<%= link_to 'Back', messengers_path %>

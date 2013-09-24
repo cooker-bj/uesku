@@ -1,0 +1,3 @@
+<h1>已审核课程</h1>
+<%= render :partial=>'lessons_list',:locals=>{:lesson=>@lesson }%>
+<%=will_paginate @lesson,:prev_label=>'前一页',:next_label=>'下一页'%>

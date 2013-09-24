@@ -1,0 +1,27 @@
+<%= form_for @company do |com| %>
+    <%=com.fields_for :course do |f| %>
+        <%= f.label :title,"课程名称" %>  <br/>
+        <%= f.text_field :title %>   <br/>
+        <%= f.label :category_id,"类别" %> <br/>
+        <% @course.category=Category.roots.first if @course.category.nil?%>
+        <div id="course_category"> <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>@course.category.get_tree} %></div>
+        <%= f.label :price,"价格" %>  <br/>
+        <%= f.text_field :price %> <br/>
+        <%= f.label :age_range,"适合年龄" %>
+        <% age_select=Course::AGE_RANGE %>
+        <%= f.select :age_range, options_for_select(age_select.collect {|v| [v,age_select.index(v)]}) %>  <br/>
+        <%=f.label :special, '特色'%>
+        <%=f.text_field :special %>  <br/>
+        <%=f.label :free_try, "试听" %>
+        <%=f.select :free_try,[['无',false],['有',true]] %>  <br/>
+        <%= f.label :website %><br/>
+        <%= f.text_field :website %> <br/>
+        <%= f.label :tags,'标签' %>   <br/>
+        <%= f.text_field :tags %> <br/>
+        <%= f.label :description,"课程描述" %> <br/>
+        <%= f.kindeditor :description %> <br/>
+        <% end %>
+    <%= f.hidden_field :company_id,:value=>@course.company_id %>
+    教育机构名称 <br>
+    <%= text_field_tag "company",@course.company.name %>   <br>
+<% end %>

@@ -1,0 +1,8 @@
+<h1>课程列表</h1>
+<h2>未审核课程列表</h2>
+
+  <%= render :partial=>'lessons_list',:locals=>{:lessons=>@lessons['unaudited']} %>
+
+<h2>已审核课程列表</h2>
+<%= render :partial=>'lessons_list',:locals=>{:lessons=>@lessons['audited']} %>
+<%=link_to "更多", list_admin_lessons_path %>

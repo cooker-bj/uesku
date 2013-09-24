@@ -1,0 +1,11 @@
+<h1>用户信息</h1>
+姓名：<%=@user.name %><br/>
+email:<%=@user.email %> <br/>
+角色：<br/>
+<% @user.roles.each do |role| %>
+    <%=role %>
+<% end %>
+
+
+<%=link_to '修改',edit_admin_admin_path(@user) %>
+<%=link_to '返回',admin_admins_path %>

@@ -1,0 +1,18 @@
+<h1>推荐管理</h1>
+课程： <%=@lesson.course.title %>
+<table>
+  <tr>
+    <th> 位置</th>
+    <th>推荐时间</th>
+  </tr>
+  <% @rec.each do |re| %>
+  <tr>
+  <td> <%=Recommendation::POSITION[re.position]  %></td>
+   <td><%=re.recommend_date %></td>
+    <td><%=link_to '取消推荐', [:admin,@lesson,re],method: :delete, data:{confirm: '你确定？'}%></td>
+
+  </tr>
+     <% end %>
+</table>
+<%=link_to '推荐本课程',new_admin_lesson_recommendation_path(@lesson) %>
+<%=link_to '返回',admin_lessons_path %>

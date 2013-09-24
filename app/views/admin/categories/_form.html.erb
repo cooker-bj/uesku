@@ -1,0 +1,16 @@
+<div id="select_level">
+<%= radio_button_tag 'levels','root',@option[:select][:roots] %> 一级分类 <%= radio_button_tag 'levels','medium',@option[:select][:medium] %> 二级分类
+  <%= radio_button_tag 'levels','leaves',@option[:select][:leaves]%> 基本类别
+</div>
+<%=form_for [:admin,@category] do |f|  %>
+    <div id="category_options"> <div id="add_options"></div>
+    <%= f.label :name, '名称' %><%= f.text_field :name %>   <br/>
+    </div>
+    <%= f.submit '提交' %>
+<% end %>
+  <div class="undisplay">
+
+
+    <div id="root_content"><%= options_for_select(Category.roots.collect {|p| [p.name,p.id]},@option[:cur]) %></div>
+    <div id="second_content"><%= options_for_select(@option[:second].collect {|p| [p.name,p.id]}) %></div>
+  </div>

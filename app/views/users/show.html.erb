@@ -1,0 +1,63 @@
+<div id="left_bar"><h1><%=current_user.name %> </h1><%=image_tag current_user.avatar_url.to_s,:width=>150,:height=>150 %>你有<%=@user.received_messages.unread_messages.count()%>新消息   </div>
+<div id="content">
+<div id='mytabs'>
+  <ul>
+    <li><a href="#myfront">我的主页</a></li>
+    <li><a href="#friends">我的朋友</a></li>
+    <li><a href="#groups">我的班级</a></li>
+    <li><a href='#messenger'>我的短信</a></li>
+  </ul>
+<div id="myfront">
+<div>
+  <div>
+    <b>推荐课程</b>
+    <%=render :partial=>"/main/lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',get_city).collect{|rec| rec.lesson}} %>
+  </div>
+  <div>
+    <b>最佳课程</b>
+    <%=render :partial=>"/main/lessons_list",:locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank desc").limit(10)} %>
+  </div>
+  <div>
+    <b>最热课程</b>
+    <%=render :partial=>"/main/lessons_list", :locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank_counter desc").limit(10)} %>
+  </div>
+</div>
+<%@user.friends_recent_posts.each do |post| %>
+<div><%=image_tag post.poster.avatar_url.to_s %><%=post.poster.name %></div><div> <%=link_to post.title,group_path(post.group) %>   <%=format_time(post.posted_time) %></div>
+ <% end %>
+<%@user.friends_recent_post_comments.each do |comment| %>
+ <div> <div> <%=image_tag comment.user.avatar_url.to_s %> <%=comment.user.name %></div><%=comment.message %><%=format_time(comment.comment_time)%></div>
+<%end %>
+<%@user.friends_recent_comments.each do |comment| %>
+        <div> <div> <%=image_tag comment.user.avatar_url.to_s %> <%=comment.user.name %></div><%=comment.message %><%=format_time(comment.comment_time)%></div>
+   <% end %>
+</div>
+<div id="friends">
+  <div >
+  <% @user.friends.each do |friend|%>
+   <div>  <%=check_box_tag 'friends[]',friend.id %>   <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,'#' %> <%=link_to '发送短信','#' %><%=link_to '修改类别','#'%></div>
+  <% end %>
+  </div>
+  <div>
+   <% @user.pending_friends.each do |friend|%>
+        <div>     <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,'#' %> <%=link_to '同意',agree_friendship_path(friend),:remote=>true %> <%=link_to '拒绝',friendship_path(friend),method: :delete,data: {confirmation: '确定拒绝?'},:remote=>true%>
+        </div>
+    <% end %>
+</div>
+    </div>
+<div id="groups">
+  <%@user.members.each do |g| %>
+   <div> <%=image_tag(g.group.logo_url.to_s,:class=>'logo')%><%=link_to g.group.title,group_path(g.group) %> <%='待批准' if g.status=='pending'%></div>
+<% end %>
+</div>
+  <div id="messenger">
+    你有<%=@user.received_messages.unread_messages.count()%>新消息
+    <% @user.conversations.each do |conv|%>
+        <%=image_tag(conv.other(@user).avatar_url.to_s)%> <%=link_to conv.other(@user).name,conversation_path(conv) %> <%= 'new' if conv.has_unread? %><br/>
+        <%=conv.messages.last.message %><br/>
+    <% end %>
+  </div>
+
+</div>
+</div>
+

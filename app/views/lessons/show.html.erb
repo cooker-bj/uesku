@@ -1,0 +1,95 @@
+<div id='bar'></div>
+<div id='main_page'>
+  <div id='adv_category'><%=image_tag "/assets/image02.jpg"%></div>
+  <div class="float_left">
+    <div id='side_menu'>
+      <%=render "/main/category_list" %>
+    </div>
+    <div id='tools_menu'>
+     <h1> 相关班级列表</h1>
+     <ul>
+      <%@lesson.groups.each do |g| %>
+        <li><%=link_to g.title, group_path(g) %></li>
+      <% end %>
+     </ul>
+      <%=link_to '创建班级',new_group_path(:lesson_id=>@lesson.id) %>
+    </div>
+  </div>
+  <div id='main_content' class="float_right">
+    <div id="lesson_title"><%=@lesson.title %> </div>
+    <div class='details'><b><%=@lesson.address %></b></div>
+    <div id="lesson_left">
+        <div id= 'lesson_map'   data-positionx=<%=@lesson.geolng %> data-positiony= <%=@lesson.geolat %> ></div>
+
+
+    </div>
+    <div class='details'>
+        <div id="show_scores_and_comment">
+            <div id="lesson_score">
+                 <% (1..20).each do |v| %><%=radio_button_tag 'rank',v*0.25,(@lesson.rank>=v*0.25 && @lesson.rank <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %>  <% end %>
+                总分: <%=@lesson.rank %> <br/>
+                 <% (1..20).each do |v| %><%=radio_button_tag 'course',v*0.25,(@lesson.course_score>=v*0.25 && @lesson.course_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+                 课程效果:<%=@lesson.course_score %> <br/>
+                 <% (1..20).each do |v| %><%=radio_button_tag 'teacher',v*0.25,(@lesson.teacher_score>=v*0.25 && @lesson.teacher_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+                教师:<%=@lesson.teacher_score %>   <br/>
+                <% (1..20).each do |v| %><%=radio_button_tag 'security',v*0.25,(@lesson.security_score>=v*0.25 && @lesson.security_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+                安全: <%=@lesson.security_score %>  <br/>
+                <% (1..20).each do |v| %><%=radio_button_tag 'environment',v*0.25,(@lesson.environment_score>=v*0.25 && @lesson.environment_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+                环境:<%=@lesson.environment_score %> <br/>
+            </div>
+            <div id="last_comment">
+              <% if @lesson.comments.empty? %>
+                  <%="现在还没有人评价，来评价吧 "%>
+               <% else %>
+                  <%=@lesson.comments.last_comment_user_name %>说:<%=@lesson.comments.last_comment %>
+              <% end %>
+            </div>
+        </div>
+
+
+        <p>课程类别： <%=@lesson.course.category.name %> </p>
+        <p>价格: <%=@lesson.price %>    </p>
+        <p>适合年龄: <%=@lesson.age_range %> </p>
+        <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
+        <p>特色：<%=@lesson.special %>  </p>
+        <p>网址：<%=@lesson.course.website %> </p>
+        <p> 校区：<%=@lesson.name%>    </p>
+        <p> 电话:<%=@lesson.phone%> </p>
+        <p> 教育机构：<%=@lesson.course.company.name %>  </p>
+        <p> 分支网址<%=@lesson.branch.website%> </p>
+        <p>标签： <%=@lesson.tags %> </p>
+    </div>
+    <div class="detail_bar"><div class='detail_head'>课程详情</div></div>
+    <div class="details" >
+
+        <%=raw(@lesson.description)%>
+    </div>
+    <div class='detail_bar'><div class='detail_head'>课程评价</div></div>
+    <div id='comment_list' class="details" data-lesson_id= <%=@lesson.id %>></div>
+    <% unless current_user.nil? %>
+         <div id='comment'>
+           <%=form_for [@lesson,@score], html:{name:'comment'} do |f| %>
+               <div id="star_rating">
+                    <div> 课程效果 <% (1..5).each do |v| %><%= f.radio_button :course,v, :class=>'star' %> <% end %></div>
+                    <div>教师 <% (1..5).each do |v| %><%= f.radio_button :teacher,v, :class=>'star' %> <% end %></div>
+                    <div>安全 <% (1..5).each do |v| %><%= f.radio_button :security,v, :class=>'star' %> <% end %> </div>
+                    <div>环境 <% (1..5).each do |v| %><%= f.radio_button :environment,v, :class=>'star' %> <% end %>  </div>
+               </div>
+                <%=f.hidden_field :lesson_id,:value=>@lesson.id %>
+                <%=f.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
+                <div id="comment_label" >评价:</div>
+                <div id="input_comment" class=float_right>
+                    <%=f.fields_for (@score.comment || Comment.new) do |comm| %>
+                       <%=comm.text_area :comment %>
+                       <%=comm.hidden_field :lesson_id,:value=>@lesson.id %>
+                       <%=comm.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
+                    <% end %> <br/>
+                     <%=f.submit '提交'%>
+                </div>
+           <% end %>
+           <div class='noad'></div>
+         </div>
+    <% end %>
+
+  </div>
+</div>

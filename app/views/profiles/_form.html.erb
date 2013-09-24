@@ -1,0 +1,11 @@
+
+<%=form_for @profile do |f|%>
+ <%=f.label :resume,"自我介绍,让大家了解您"%><br/>
+ <%=f.kindeditor :resume %> <br/>
+ <%=f.label :address,"地址：" %>
+  <%=f.text_field :address %><br/>
+  <%=f.label :phone,"电话"%>
+  <%=f.phone_field :phone %><br/>
+
+
+<% end %>

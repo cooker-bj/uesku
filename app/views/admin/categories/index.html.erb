@@ -1,0 +1,25 @@
+<h1>类别管理</h1>
+
+<ul>
+  <li>
+    <% @categories.each do |mcategory| %>
+        <%= mcategory.name %> <%= link_to '编辑',edit_admin_category_path(mcategory) %> <%= link_to "删除",[:admin,mcategory],:method=>:delete,:confirm=>"你确定要#{mcategory.name}吗？" %>
+        <ul>
+          <li>
+            <% mcategory.children.each do |scategory| %>
+                <%= scategory.name %>  <%= link_to '编辑',edit_admin_category_path(scategory) %> <%= link_to "删除",[:admin,scategory],:method=>:delete,:confirm=>"你确定要#{scategory.name}吗？" %>
+                <ul>
+                  <li>
+                    <% scategory.children.each do |category| %>
+                        <%= category.name %>   <%= link_to '编辑',edit_admin_category_path(category) %> <%= link_to "删除",[:admin,category],:method=>:delete,:confirm=>"你确定要#{category.name}吗？" %>
+                    <% end %>
+                  </li>
+                </ul>
+            <%end%>
+          </li>
+        </ul>
+    <%end %>
+
+  </li>
+</ul>
+<%= link_to '新建类别',new_admin_category_path %>

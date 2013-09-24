@@ -1,0 +1,9 @@
+<%="没有待审核的用户" if @group.members.pending.empty? %>
+<% @group.members.pending.each do |member|%>
+    <ul class="lists">
+      <li><%=member.user.name %></li>
+      <li><%=member.user.email %></li>
+      <li><%=link_to '批准',approval_member_group_path(@group,:member=>member),:remote=>true %>
+      <%=link_to '拒绝',reject_member_group_path(@group,:member=>member),:remote=>true %></li>
+    </ul>
+<% end %>

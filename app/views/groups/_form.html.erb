@@ -1,0 +1,44 @@
+<%= form_for(@group,:html=>{:multipart=>true}) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title,"名称" %>
+    <%= f.text_field :title %>
+  </div>
+    <div class="field">
+  <%= f.label :logo %>
+  <%= f.file_field :logo %>
+</div>
+    <div class='field'>
+      <%=f.label :locked %>
+      <%=f.select :locked, [['否',false],['是',true]]%>
+    </div>
+     <div class='field'>
+       <%=f.label :description,'简介'%>
+       <%=f.text_area :description %>
+     </div>
+    <div class="actions">
+      <%= f.submit '提交' %>
+    </div>
+  <div class="field">
+
+    <%= f.hidden_field :owner_id %>
+
+    <%=f.fields_for @group.lessons do |lesson| %>
+
+    <%=check_box_tag 'group[lessons][]',lesson.object.id,true %> <%=lesson.text_field :title,:disabled=>'disabled' %>
+    <% end %>
+
+    </div>
+
+<% end %>

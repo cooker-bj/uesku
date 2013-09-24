@@ -1,0 +1,27 @@
+<h1>课程管理</h1>
+公司：<%=@company.name %>
+
+<table>
+  <tr>
+    <th> 课程名称</th>
+    <th>类别</th>
+    <th>价格</th>
+    <th>标签</th>
+
+  </tr>
+  <% @courses.each do |course|%>
+  <tr>
+    <td> <%=course.title%>  </td>
+    <td> <%=course.category.name %></td>
+    <td> <%=course.price %></td>
+    <td> <%=course.tags %></td>
+    <td> <%=link_to '显示',admin_company_course_path(@company,course)%></td>
+    <td> <%=link_to '修改',edit_admin_company_course_path(@company,course)%></td>
+    <td> <%=link_to '删除',[:admin,@company,course], method: :delete, data:{confirm:"你确定要删除吗？"} %></td>
+
+  </tr>
+      <%end%>
+</table>
+<%=will_paginate @course %>
+  <%=link_to '新建课程', new_admin_company_course_path(@company) %>
+  <%=link_to '返回',admin_company_path(@company) %>

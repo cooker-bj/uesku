@@ -1,0 +1,69 @@
+<%= form_for(@my_lesson) do |f| %>
+  <% if @my_lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@my_lesson.errors.count, "error") %> prohibited this my_lesson from being saved:</h2>
+
+      <ul>
+      <% @my_lesson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title,"名称：" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :price,"价格：" %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :age_range,"适合年龄:" %><br />
+
+    <%= f.select :age_range, options_for_select(Course::AGE_RANGE.collect {|v| [v,Course::AGE_RANGE.index(v)]}) %>
+
+  </div>
+  <div class="field">
+    <%= f.label :special,"特色" %><br />
+    <%= f.text_field :special %>
+  </div>
+  <div class="field">
+    <%= f.label :free_try,"试听" %><br />
+    <%= f.check_box :free_try %>
+  </div>
+  <div class="field">
+    <%= f.label :company,"培训机构：" %><br />
+    <%= f.text_field :company %>
+  </div>
+  <div class="field">
+    <%= f.label :address,"地址" %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :description,"课程简介" %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :phone,"联系电话:" %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :create_time %><br />
+    <%= f.datetime_select :create_time %>
+  </div>
+  <div class="field">
+
+    <%= f.hidden_field :creator_id,:value=>current_user.id %>
+  </div>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "提交" %>
+  </div>
+<% end %>

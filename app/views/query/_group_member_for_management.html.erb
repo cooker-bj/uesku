@@ -1,0 +1,10 @@
+<%='没有这个用户' if @members.nil? ||@members.empty?%>
+
+<% @members.each do |member| %>
+    <ul class="lists">
+     <li> <%=member.name%> </li>
+     <li><%=member.email%> </li>
+      <li><%=link_to '设为管理员',set_manager_group_path(member.group,:member=>member),:remote=>true unless member.is_manager? %>   </li>
+    </ul>
+
+<% end %>

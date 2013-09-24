@@ -1,0 +1,183 @@
+#lesson_content{
+    width: 1000px;
+    background: whitesmoke;
+}
+#lesson_left{
+    float:left;
+    margin: 5px;
+
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    padding: 0px;
+}
+
+#lesson_main{
+    margin: 0px;
+}
+
+#comment_list,#post_comments_list{
+
+
+    margin: 0px;
+
+}
+
+#post_comments_list{
+    border-top: 1px solid #cccccc;
+}
+
+#comment_list ul,#dylist ul,#post_comments_list ul{
+    list-style-type:none;
+    margin: 0px;
+    padding: 0px;
+
+}
+.user{
+
+    float:left;
+    position:relative;
+    width:130px;
+    text-align: center;
+    min-height:145px;
+    font-size: 14px;
+}
+
+.comment_item{
+    background:url(comment_bar.png);
+    position:relative;
+    overflow:hidden;
+    position:relative;
+    width:100%;
+    border-bottom: 1px solid grey;
+}
+
+.comment{
+    position:relative;
+    float:left;
+
+    height:auto;
+    width:550px;
+    min-height:145px;
+}
+#lesson_comments{
+    border-style:none;
+    border-collapse:separate;
+    border-spaceing: 1px;
+}
+div.comment_content{
+    margin: 10px;
+    min-height: 80px;
+}
+
+.comment_reply{
+    background: rgb(240,240,240);
+    width: 500px;
+    float:right;
+
+    margin:2px;
+}
+
+.reply{
+    margin:2px;
+    padding: 2px;
+    float:right;
+
+}
+
+.reply_content{
+    margin-left:10px;
+    width: 450px;
+    float:right;
+}
+
+.move_right{
+   text-align:right;
+}
+
+div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable{
+    background:ghostwhite;
+    margin: 5px;
+    border: 1px solid #555555;
+    font-size: 14px;
+}
+
+#star_rating{
+    font-size:14px;
+}
+
+#input_comment{
+    width: 560px;
+    height: 150px;
+    margin: 10px 0px;
+    float:right;
+}
+
+#score_comment_comment{
+    width: 540px;
+    height: 100px;
+
+}
+
+#show_scores_and_comment{
+    border: 1px solid #cccccc;
+   padding:4px;
+    float:right;
+    width: 200px;
+    font-size:14px;
+}
+
+#comment_label{
+    margin:10px;
+    width:80px;
+    height:100px;
+    font-size:14px;
+    font-weight:bold;
+    text-align:right;
+    float:left;
+}
+#comment{
+    padding: 10px;
+    overflow:hidden;
+    border-top: 1px solid #cccccc;
+}
+#lesson_title{
+    font-size:16px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#lesson_detail_head{
+    background: url(detail.png) no-repeat;
+    height:61px;
+}
+.detail_bar{
+    border-top: 1px solid rgb(223,223,223);
+    border-bottom: 1px solid rgb(223,223,223);
+    height: 40px;
+    margin:0px 0px 6px 0px;
+    padding: 0px;
+    background: rgb(250,250,251);
+}
+
+.details{
+    margin: 5px;
+}
+
+.detail_head{
+    /*background-color:rgb(60,190,232); */
+    background: url(arrow-bar.png);
+    height:48px;
+    line-height:40px;
+    font-size: 18px;
+    width:160px;
+    text-align:center;
+    color:white;
+}
+
+.thumb_avatar{
+    margin: 10px auto;
+    width: 80px;
+    height: 80px;
+}
+
+

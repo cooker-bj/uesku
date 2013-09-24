@@ -1,0 +1,21 @@
+<h1>课程明细</h1>
+
+课程名称：<%=@lesson.course.title %> <br/>
+评分: <%=@lesson.rank %> <br/>
+公司：<%=@lesson.course.company.name %>        <br/>
+课程类别： <%=@lesson.course.category.name %>  <br/>
+价格: <%=@lesson.course.price %>      <br/>
+适合年龄: <%=@lesson.course.age_range %>   <br/>
+试听:<%=@lesson.course.free_try? ? '有': '无'%>    <br/>
+特色：<%=@lesson.course.special %>        <br/>
+网址：<%=@lesson.course.website %>         <br/>
+标签： <%=@lesson.course.tags %> <br/>
+课程描述： <br/>
+<%=raw(@lesson.course.description)%>  <br/>
+<fieldset> <div> <p><b>名称</b><%=@lesson.branch.name%></p>
+  <p><b>电话</b><%=@lesson.branch.phone%></p>
+  <p><b>地址</b><%=@lesson.branch.address %></p>
+  <p><b>分支网址</b><%=@lesson.branch.website%></p></div>
+  <div id= 'mymap'  class="course_map small_map" data-positionx=<%=@lesson.branch.geolng %> data-positiony= <%=@lesson.branch.geolat %> >
+  </div>  </fieldset>
+<%=link_to '返回',:back %>

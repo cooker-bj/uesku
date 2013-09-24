@@ -1,0 +1,24 @@
+<h1>用户管理</h1>
+<table>
+  <tr>
+    <th>email</th>
+    <th>姓名</th>
+    <th>权限</th>
+    <th>状态</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td> <%=user.email %></td>
+    <td> <%=user.name %></td>
+    <td> <% user.roles.each do |role| %>
+          <%=role %> <% end %></td>
+    <td><%=user.in_active? ? '正常': '已删除'%></td>
+    <td> <%=link_to '显示',admin_admin_path(user)%></td>
+    <td><%=link_to '修改',edit_admin_admin_path(user)%></td>
+    <td><%=link_to '删除',[:admin,user], method: :delete, data: {confirm: '你确定删除该用户吗？'}%></td>
+  </tr>
+      <% end %>
+</table>
+<%=link_to '新建用户',new_admin_admin_path %>

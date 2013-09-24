@@ -1,0 +1,5 @@
+你有<%=@user.received_messages.unread_messages.count()%>新消息
+<% @user.conversations.each do |conv|%>
+   <%=image_tag(conv.other(@user).avatar_url.to_s)%> <%=link_to conv.other(@user).name,conversation_path(conv) %> <%= 'new' if conv.has_unread? %><br/>
+    <%=conv.messages.last.message %><br/>
+<% end %>

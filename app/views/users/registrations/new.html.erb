@@ -1,0 +1,29 @@
+<h2>注册</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html=>{:multipart=>true}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email, :autofocus => true %></div>
+  <% if resource.password.nil? %>
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div>
+   <% end %>
+  <div> <%=f.label :real_name,'姓名'%><%=f.text_field :real_name %></div>
+  <div><%=f.label :nickname,"呢称" %><%=f.text_field :nickname %></div>
+  <div><%=f.label :gender,"性别"%><%=f.select :gender,options_for_select([['男'],['女']]) %></div>
+  <div><%=f.label :birthday, '出生日期'%><%=f.date_select :birthday,:start_year=>1940,:end_year=>Date.current.year-13,:use_two_digit_numbers=>true %></div>
+ <div>头像:<%=image_tag  resource.avatar_url unless resource.avatar? %> </div>
+
+  <div><%=f.file_field :avatar %><%=f.hidden_field :avatar_cache %></div>
+
+  <%=f.fields_for :authenticated_tokens,resource.authenticated_tokens do |token| %>
+  <%=token.hidden_field :provider %> <%=token.hidden_field :uid %> <%=token.hidden_field :access_token %>
+        <% end %>
+  <div><%= f.submit "注册" %></div>
+<% end %>
+
+<%= render "users/shared/links" %>

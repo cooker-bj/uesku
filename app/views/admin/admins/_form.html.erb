@@ -1,0 +1,31 @@
+<%=form_for [:admin,@user] do |f| %>
+
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%=f.label :name, '姓名'%>    <br/>
+    <%=f.text_field :name %>      <br/>
+  <%=f.label :email, '邮箱'%>     <br/>
+  <%=f.text_field :email %>      <br/>
+   <%=f.label :password,"密码"%>      <br/>
+    <%=f.password_field :password %>      <br/>
+    <%=f.label :password_confirmation,"确认密码"  %>  <br/>
+    <%=f.password_field :password_confirmation %> <br>
+    <%=f.fields_for :roles do |r|%>
+    <% Admin::ROLES.each do |key,role|%>
+        <%=check_box_tag 'admin[roles][]',key,@user.roles.include?(role) %>  <%=role %>
+            <% end %>
+     <% end %>
+    <br/>
+    <%=f.submit '提交'%>
+
+<% end %>

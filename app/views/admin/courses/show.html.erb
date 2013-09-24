@@ -1,0 +1,24 @@
+<h1>课程明细</h1>
+公司：<%=@course.company.name %>        <br/>
+课程名称：<%=@course.title %> <br/>
+课程类别： <%=@course.category.name %>  <br/>
+价格: <%=@course.price %>      <br/>
+适合年龄: <%=@course.age_range %>   <br/>
+试听:<%=@course.free_try? ? '有': '无'%>    <br/>
+特色：<%=@course.special %>        <br/>
+网址：<%=@course.website %>         <br/>
+标签： <%=@course.tags %> <br/>
+课程描述： <br/>
+<%=raw(@course.description)%>  <br/>
+所在地址：   <br/>
+<% @course.branches.each do |branch| %>
+    <div>
+      分支名称:<%=branch.name %>   <br/>
+      分支电话：<%=branch.phone %>     <br/>
+      分支网址: <%=branch.website %>   <br/>
+      分支地址 <%=branch.address %>  <br/>
+    </div>
+<% end %>
+<%=link_to '编辑',edit_admin_company_course_path(@course.company,@course) %>
+<%=link_to '返回',admin_company_courses_path(@course.company) %>
+

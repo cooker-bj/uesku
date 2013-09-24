@@ -1,0 +1,4 @@
+
+<% @group.members.managers.each do |manager| %>
+      <ul class="lists"> <li> <%=manager.name %></li> <li> <%=link_to '改为组员',withdraw_manager_group_path(@group,:member=>manager),:remote=>true %></li></ul>
+<% end %>

@@ -1,0 +1,17 @@
+
+<h1>课程分类</h1>
+
+  <% Category.roots.each do |item| %>
+    <ul >   <li>   <%= item.name %>
+        <ul><% item.children.each do |second| %>
+
+              <li> <%=link_to second.name,main_category_path(second.id) %>
+
+              </li>
+
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+

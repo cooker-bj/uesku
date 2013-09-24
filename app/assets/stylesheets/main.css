@@ -1,0 +1,410 @@
+@charset "utf-8";
+/* CSS Document */
+#head {
+	  position:relative;
+      margin:0px auto;
+	  height: auto;
+	  width:100%;
+      background-color: white;
+      overflow:hidden;
+}
+
+#query{
+    width: 150px;
+}
+#query_box{
+    display:inline;
+    position:relative;
+    top: -15px;
+}
+#head form{
+    margin: 0px;
+    display:inline;
+}
+#top_head {
+     background-color: #f9f9f9;
+      height:32px;
+      position:relative;
+      font-size: 12px;
+      vertical-align:middle;
+}
+#top_text{
+
+    text-align:right;
+    vertical-align:middle;
+    height:32px;
+    line-height:32px;
+}
+
+#top_head a{
+    text-decoration:none;
+}
+#main{
+	position: relative;
+
+
+
+}
+
+#left_bar {
+	position:inherit;
+	left: 1px;
+	width: 150px;
+	padding: 0px;
+	background-color: #F5f7f7;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font: small Verdana,sans-serif;
+}
+
+#content {
+	position: relative;
+
+}
+
+#login_area {
+	left:870px;
+	top:5px;
+	position: absolute;
+}
+
+#right_bar {
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:200px;
+}
+
+
+
+#wrap{
+   margin-left: auto;
+   margin-right: auto;
+   width: 1008px;
+   position:relative;
+}
+
+table{
+    border-collapse:collapse;
+    border: 1px;
+}
+
+body{
+    position:relative;
+    background-color: #EBF4F9;
+    width:100%;
+
+}
+
+#menu_bar{
+    position:relative;
+    background-color: #1792e2;
+    background: url(menu_bar.png);
+    width:100%;
+    height:38px;
+
+
+}
+
+ul.menu{
+    width:70%;
+    list-style-type: none;
+    position:relative;
+    left:15px;
+    margin:0;
+    padding:0;
+}
+
+.menu li{
+    width: 100px;
+    float: left;
+    line-height: 36px;
+    text-align: center;
+    font-weight:900;
+
+}
+
+.menu li a {
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.menu li+li{
+      background: url(separator.png) no-repeat top left;
+      padding-left: 10px;
+}
+
+#foot{
+    background-color: #133447;
+    width:100%;
+    height:100px;
+    text-align:center;
+    clear:both;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    line-height:32px;
+}
+
+#foot_content{
+    padding: 15px;
+}
+
+#advertisement{
+    background: url(adv.png);
+    height:353px;
+    width:100%;
+    position:relative;
+}
+
+#main_page{
+    width:920px;
+    position:relative;
+    top:-50px;
+
+    margin: 0 auto;
+}
+#recommendation{
+
+    height:500px;
+    border: 1px  solid #c0c7cf; border-bottom: 2px solid #c0c7cf;
+    background-color:#ffffff;
+}
+
+#recommendation_title{
+    height: 50px;
+    border-bottom: 1px solid #efefef;
+    font-size: 20px;
+    line-height:50px;
+    font-weight: 900;
+    text-align:center;
+}
+
+.recommend_items{
+    width:300px;
+    float:left;
+    border-left: 1px solid #efefef;
+    text-align: center;
+    cursor:pointer;
+}
+
+.recommend_item_top{
+
+    font-size: 30px;
+    font-family: microsoft yahei;
+}
+
+.recommend_item_title{
+
+    font-size: 18px;
+    font-family: microsoft yahei;
+}
+.recommend_item_description{
+    text-align:left;
+    width:90%;
+    font-size:14px;
+    text-indent:2em;
+    margin: 5px auto;
+}
+
+#hot_lessons{
+    width:688px;
+    background-color:#ffffff;
+    border: 1px solid #c0c7cf;
+    margin:10px 0px 10px 0px;
+    float:left;
+}
+
+#hot_title{
+    background: url(mark.png);
+    height:61px;
+}
+
+#hot_title b{
+    font-size: 20px;
+    font-family: microsoft yahei;
+    left: 60px;
+    line-height: 61px;
+    width: 200px;
+    position: relative;
+    font-weight: 700;
+}
+
+#hot_title a{
+    position: relative;
+    left: 520px;
+    font-size: 14px;
+    line-height: 32px;
+    top: -4px;
+    text-decoration: none;
+    color: rgb(10,97,150);
+}
+
+#hot_lessons table{
+    border-collapse: collapse;
+    border: 1px solid rgb(10,97,150);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+table a{
+    text-decoration: none;
+    color:black;
+}
+#hot_lessons table th{
+    background-color:rgb(233,248,253);
+    border: 1px solid rgb(186,212,227);
+}
+
+#hot_lessons table td{
+    border: 1px solid rgb(186,212,227);
+    font-size: 14px;
+    height:28px;
+}
+
+#side_menu,#tools_menu{
+    width: 210px;
+    font-size:14px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #c0c7cf;
+    padding-bottom:2px;
+    background-color:#ffffff;
+}
+
+#side_menu h1,#tools_menu h1{
+    background: url("blue-bar.png") ;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    height: 47px;
+    line-height: 47px;
+    margin: 2px;
+    border: 1px solid #c0c7cf;
+    text-indent: 1em;
+}
+
+#side_menu ul{
+    list-style-image: url("black-arrow.png");
+    margin: 2px 0px;
+    border-top: 1px solid #c0c7cf;
+
+
+}
+#side_menu ul li{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+#side_menu ul li ul{
+    border:none;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    margin-top:4px;
+    margin-bottom:4px;
+}
+#side_menu ul li ul li{
+    list-style-type:none;
+    width:68px;
+    display: inline;
+    border:none;
+    margin:0px;
+    padding:0px;
+}
+
+#side_menu a,#tools_menu a {
+    text-decoration:none;
+    font-size: 14px;
+    color:black;
+}
+
+#tools_menu ul{
+    margin: 10px,0px;
+    padding-left:10px;
+}
+
+#tools_menu ul li{
+    margin-left: 10px;
+    list-style-type:none;
+}
+
+.float_right{
+    float: right;
+}
+.float_left{
+    float:left;
+}
+
+#main_content{
+    width: 696px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #c0c7cf;
+    padding:0px;
+    background-color:#ffffff;
+    font-size:12px;
+}
+.list .list_item{
+    padding:10px;
+    border-bottom: 1px rgb(186,212,227) dashed;
+}
+.list ul {
+    list-style-type:none;
+    margin: 0px;
+    padding:0px;
+}
+
+.list strong{
+    font-size:14px;
+}
+.list a {
+    text-decoration:none;
+
+    color:black;
+}
+
+.list .cell_detail{
+
+    width: 70%;
+}
+
+.list .cell_price{
+    width: 10%;
+    text-align: center;
+}
+
+.list .cell_rank{
+  width:  20%;
+  text-align: center;
+}
+
+.noad{
+    clear: left;
+}
+
+#bar{
+    height: 90px;
+    background-color: rgb(161,216,247);
+}
+
+#paginate_area{
+    height:30px;
+}
+
+#category_filter{
+    height: 40px;
+    border: 1px solid rgb(186,212,227);
+    line-height: 40px;
+    padding: 2px 10px;
+}
+.form_list{
+    margin: 10px;
+}
+
+#loading{
+    disply: none;
+    background: url('spinner.gif') no-repeat;
+    position:absolute;
+    margin:0px;
+    width: 50px;
+    height:54px;
+    padding:0px;
+}

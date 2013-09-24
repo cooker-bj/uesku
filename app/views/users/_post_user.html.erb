@@ -1,0 +1,11 @@
+<div class='pop_show_right '>
+  <div class='thumb_avatar'> <%=image_tag user.avatar_url.to_s,:height=>80, :width=>80 %></div>
+
+  <%= user.name %>
+
+
+  <%=render :partial=>'/users/details',:locals=>{:user=>user,:position=>'right'} %>
+
+
+
+</div>

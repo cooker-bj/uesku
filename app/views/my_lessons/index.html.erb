@@ -1,0 +1,47 @@
+<h1>Listing my_lessons</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Age range</th>
+    <th>Special</th>
+    <th>Free try</th>
+    <th>Company</th>
+    <th>Address</th>
+    <th>Description</th>
+    <th>Website</th>
+    <th>Phone</th>
+    <th>Create time</th>
+    <th>Creator</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @my_lessons.each do |my_lesson| %>
+  <tr>
+    <td><%= my_lesson.title %></td>
+    <td><%= my_lesson.price %></td>
+    <td><%= my_lesson.age_range %></td>
+    <td><%= my_lesson.special %></td>
+    <td><%= my_lesson.free_try %></td>
+    <td><%= my_lesson.company %></td>
+    <td><%= my_lesson.address %></td>
+    <td><%= my_lesson.description %></td>
+    <td><%= my_lesson.website %></td>
+    <td><%= my_lesson.phone %></td>
+    <td><%= my_lesson.create_time %></td>
+    <td><%= my_lesson.creator_id %></td>
+    <td><%= my_lesson.status %></td>
+    <td><%= link_to 'Show', my_lesson %></td>
+    <td><%= link_to 'Edit', edit_my_lesson_path(my_lesson) %></td>
+    <td><%= link_to 'Destroy', my_lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New My lesson', new_my_lesson_path %>

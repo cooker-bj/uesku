@@ -1,0 +1,19 @@
+.set_point{
+    height: 600px;
+    width: 800px;
+}
+
+.small_map{
+     height: 300px;
+     width: 400px;
+}
+
+.course_map {
+    float:right;
+}
+#lesson_map{
+      height:250px;
+      width: 250px;
+      margin: 5px;
+      padding: 5px;
+}

@@ -1,0 +1,40 @@
+
+
+
+
+<%=render :partial=>'head',:locals=>{:group=>@group}%>
+   <div class="float_right">
+    <div id="tools_menu">
+        <h1>班级信息</h1>
+        <%=render 'group_info'%>
+    </div>
+     <%=link_to '修改班级信息',edit_group_path(@group)%>
+   </div>
+   <div id="main_content">
+    <div class='detail_bar'><div class="detail_head">班级描述：</div> </div>
+     <div class="details">
+        <div id='description'><%=@group.description %> </div>
+     </div>
+
+
+     <div class='detail_bar'><div class='detail_head'>管理者列表</div></div>
+    <div id='details'>
+         <%=render 'managers'%>
+
+
+        <div id="query_member" class="form_list">
+            <b>添加管理员</b> <br/>
+            <%=form_tag query_group_member_for_management_path,:remote=>true,:id=>'query_name' do %>
+              <%= label_tag '用户名称'%>
+             <%= text_field_tag :user_name %>
+              <%=hidden_field_tag :group_id,@group.id %>
+              <%=submit_tag '搜索' %>
+             <% end %>
+             <div id="query_result"></div>
+        </div>
+   </div>
+     <div class='detail_bar'><div class='detail_head'>审请加入用户列表</div></div>
+  <div id="details">
+   <div class="form_list"><%=render 'pending_members'%> </div>
+  </div>
+ </div>

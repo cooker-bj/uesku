@@ -1,0 +1,16 @@
+
+<div class="reply">
+  <div class='float_left pop_show_top'>
+  <%=image_tag reply.user.avatar.thumb.url,:height=>32,:width=>32 %>
+    <%=render :partial=>'users/details',:locals=>{:user=>reply.user,:position=>'top'} %>
+  </div>
+  <div class='reply_content'>
+    <div>
+      <%=reply.user.name %>:<%= reply.message %>
+    </div>
+    <div class="move_right">
+      <%=format_time(reply.reply_time)%>  <%=link_to '删除',reply_path(reply),method: :delete, data: {confirm: "确定要删除吗?"},:remote=>true,:class=>'delete_reply' if current_user==reply.user %>
+    </div>
+  </div>
+</div>
+<div class='noad'></div>

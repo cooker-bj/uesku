@@ -1,0 +1,16 @@
+<div id="select_area">
+  <%= radio_button_tag 'levels','root',@option[:select][:roots] %> 省 <%= radio_button_tag 'levels','medium',@option[:select][:medium] %>市
+  <%= radio_button_tag 'levels','leaves',@option[:select][:leaves]%> 区/县
+</div>
+<%=form_for [:admin,@location] do |f|  %>
+    <div id="category_options"> <div id="add_options"></div>
+      <%= f.label :name, '名称' %><%= f.text_field :name %>
+    </div>
+    <%= f.submit '提交' %>
+<% end %>
+<div class="undisplay">
+
+
+  <div id="root_content"><%= options_for_select(Location.roots.collect {|p| [p.name,p.id]},@option[:cur]) %></div>
+  <div id="second_content"><%= options_for_select(@option[:second].collect {|p| [p.name,p.id]}) %></div>
+</div>

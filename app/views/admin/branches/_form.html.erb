@@ -1,0 +1,30 @@
+
+<%= form_for [:admin,@branch] do |br|  %>
+    <div class="field">
+      <%=br.label :name,"分支名称"%><br/>
+      <%=br.text_field :name %>
+    </div>
+    <div class='field'>
+      <%=br.label :phone,"电话"%> <br/>
+      <%=br.text_field :phone %>
+    </div>
+    <div class='field'>
+      <%=br.label :website, "分支网址"%><br/>
+      <%=br.text_field :website %>
+    </div>
+    <div class='field'>
+      地址：<%=br.select :province_id,options_for_select(Location.roots.collect {|p| [p.name,p.id]}) %> 省
+      <%=br.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]})  %> 市
+      <%=br.collection_select :district_id,Location.first_districts,:id,:name %> 区/县 <%=br.text_field :street %>
+    </div>
+    <div class='field'>
+      地理坐标：<br/>
+      经度：<%=br.text_field :geolng,:id=>'positionx' %>  <br/>
+      纬度:<%=br.text_field :geolat,:id=>'positiony' %>
+    </div>
+    <div><%=br.hidden_field :company_id %></div>
+    <div class='action' >
+      <%=br.submit '提交' %>
+    </div>
+    <div id='mmap' class='set_point'></div>
+<%end %>

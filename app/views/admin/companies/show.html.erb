@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+ <%=link_to '课程管理',admin_company_courses_path(@company)  %>
+<p>
+  <b>名称:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>网址:</b>
+  <%= @company.website %>
+</p>
+
+<p>
+  <b>标签:</b>
+  <%= @company.tags %>
+</p>
+
+<p>
+  <b>公司简介:</b>
+  <%= raw(@company.description) %>
+</p>
+ <div>
+   <b>地点</b> <br/>
+   <%=link_to '新建地点', new_admin_company_branch_path(@company) %>   <br/>
+    <% n=0 %>
+   <%@company.branches.each do |branch| %>
+
+       <fieldset> <div><div> <p><b>名称</b><%=branch.name%></p>
+       <p><b>电话</b><%=branch.phone%></p>
+       <p><b>地址</b><%=branch.address %></p>
+       <p><b>分支网址</b><%=branch.website%></p></div>
+         <%= tag "div", :id=>"mymap#{n}", :class=>"course_map small_map","data-positionx"=>branch.geolng,"data-positiony"=>branch.geolat %> <%=tag '/div',nil,true %>
+       <p><%=link_to '编辑',edit_admin_branch_path(branch)%><%=link_to '删除',[:admin,branch],method: :delete, data:{confirm:'确定删除？'}%> </p></div></fieldset>
+       <% n+=1 %>
+     <% end %>
+ </div>
+
+
+
+<%= link_to '编辑', edit_admin_company_path(@company) %> |
+<%= link_to '返回', admin_companies_path %>

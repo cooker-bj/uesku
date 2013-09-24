@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th>课程名称</th>
+    <th>类别</th>
+    <th>公司</th>
+    <th>分支名称</th>
+    <th>地址：</th>
+    <th>价格</th>
+    <th>评分</th>
+    <th>推荐状态</th>
+
+  </tr>
+  <% lessons.each do |lesson| %>
+      <tr>
+        <td><%=lesson.course.title%></td>
+        <td><%=lesson.course.category.name%></td>
+        <td><%=lesson.course.company.name%></td>
+        <td><%=lesson.branch.name%></td>
+        <td><%=lesson.branch.address %></td>
+        <td><%=lesson.course.price %></td>
+        <td><%=lesson.rank %></td>
+        <td><%=lesson.recommendations.empty? ? '无':'有'%></td>
+        <td><%=link_to '显示',admin_lesson_path(lesson)  %> </td>
+        <% if lesson.audit %>
+        <td><%=link_to '撤消审核',withdraw_audit_admin_lesson_path(lesson) %></td>
+        <td><%=link_to '推荐管理', admin_lesson_recommendations_path(lesson)%></td>
+        <td><%=link_to '推荐',new_admin_lesson_recommendation_path(lesson) if lesson.recommendations.empty? %></td>
+        <% else %>
+            <td><%=link_to '审核',set_audit_admin_lesson_path(lesson) unless lesson.audit%></td>
+         <% end%>
+      </tr>
+  <% end %>
+</table>

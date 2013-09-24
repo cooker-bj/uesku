@@ -1,0 +1,42 @@
+
+<%=render :partial=>'/groups/head',:locals=>{:group=>@post.group}%>
+<div id="main_content">
+
+
+        <div id="post_title">
+
+            <%= @post.title %>
+        </div>
+
+
+    <div id="post_comments_list">
+
+        <%@comments.each do |comment|%>
+             <ul class='comment_item'>
+                <li class="user">
+                  <%=render :partial=>'/users/post_user',:locals=>{:user=>comment.user}%>
+
+
+
+                </li>
+                <li class="comment">
+                    <%=render :partial=>'/post_comments/comment',:locals=>{:comment=>comment}%>
+
+                </li>
+             </ul>
+         <% end %>
+
+     </div>
+    <div id="paginate_area"><%=will_paginate @comments,:previous_label=>'上一页',:next_label=>'下一页'%></div>
+    <div id='comment_area'>
+
+         <%=form_for PostComment.new do |f|%>
+             <%=f.hidden_field :user_id,:value=>current_user.id %>
+             <%=f.hidden_field :post_id,:value=>@post.id %>
+             <%=f.kindeditor :message %>
+             <%=f.submit '发布'%>
+         <% end %>
+    </div>
+
+    <%= link_to '返回', group_path(@post.group) %>
+</div>

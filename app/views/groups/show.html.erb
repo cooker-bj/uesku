@@ -1,0 +1,49 @@
+
+  <%=render :partial=>'head',:locals=>{:group=>@group}%>
+  <div class='float_right'>
+    <div id='tools_menu' >
+        <h1>班级信息</h1>
+
+        <div id='group_info'>
+         <%=render 'group_info'%>
+          <ul>
+            <li><b>管理者:</b> </li>
+            <li><ul>
+                <% @group.members.managers.each do |manager| %>
+                     <li> <div>   <%=manager.name %>  </div></li>
+                <% end %>
+            </ul></li>
+          </ul>
+        </div>
+
+    </div>
+    <%= link_to '管理', administration_group_path(@group) if @group.owner==current_user%>
+   </div>
+    <div id='main_content'>
+      <div class="detail_bar"><div class='detail_head'>最新话题</div></div>
+
+    <div id="dylist" class='details'>
+        <div id="post_list" data-group-id=<%=@group.id %>></div>
+
+    </div>
+    <div id="comment">
+      <fieldst>
+        <% post=Post.new %>
+        <% post.post_comments.build %>
+        <%=form_for post  do |f| %>
+            <p>  <%=f.label :title,"标题:"%><%=f.text_field :title,:size=>70 %></p>
+            <%= f.hidden_field :poster_id,:value=>current_user.id %>
+            <%= f.hidden_field :group_id,:value=>@group.id %>
+            <%= f.fields_for :post_comments do |p| %>
+
+                <div class="comment_area"><%=p.kindeditor :message %></div>
+                <%=p.hidden_field :user_id,:value=>current_user.id %>
+            <% end %>
+             <%=f.submit '发布' %>
+            <span id="errmsgs"></span>
+        <% end %>
+      </fieldst>
+    </div>
+    </div>
+
+

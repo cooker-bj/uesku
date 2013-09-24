@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<div id="wrap">
+  <div>
+    <%=render :partial=>'head',:locals=>{:group=>@group}%>
+    <p>
+
+
+    <div id='group_info'>
+      <%=render 'group_info'%>
+      <b>管理者:</b>   <br/>
+      <% @group.members.managers.each do |manager| %>
+          <%=manager.name %>    <br/>
+      <% end %>
+    </div>
+    </p>
+  </div>
+
+      <div id='description'><%=@group.description %><%=button_to '加入',add_member_group_path(@group) %></div>
+
+  <div id="post_list" data-group-id=<%=@group.id %>>
+
+  </div>
+
+</div>
+

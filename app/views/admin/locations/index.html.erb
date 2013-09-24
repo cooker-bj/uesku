@@ -1,0 +1,24 @@
+<h1>城市区县列表</h1>
+<ul>
+  <li>
+    <% @locations.each do |province| %>
+    <%= province.name %> <%= link_to "编辑",edit_admin_location_path(province) %>  <%= link_to "删除",[:admin,province],:method=>:delete,:confirm=>"你确定要#{province.name}吗？" %>
+        <ul>
+          <li>
+            <% province.children.each do |city| %>
+            <%= city.name %> <%= link_to "编辑",edit_admin_location_path(city) %>  <%= link_to "删除",[:admin,city],:method=>:delete,:confirm=>"你确定要#{city.name}吗？" %>
+                <ul>
+                  <li>
+                    <% city.children.each do |district| %>
+                    <%= district.name %> <%= link_to "编辑",edit_admin_location_path(district) %>    <%= link_to "删除",[:admin,district],:method=>:delete,:confirm=>"你确定要#{district.name}吗？" %>
+                    <% end %>
+                  </li>
+                </ul>
+            <%end%>
+          </li>
+        </ul>
+    <%end %>
+
+  </li>
+</ul>
+<%= link_to '新建位置',new_admin_location_path %>

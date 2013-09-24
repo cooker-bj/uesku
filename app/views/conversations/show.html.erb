@@ -1,0 +1,17 @@
+<%=@conversation.other(current_user).name %>
+<% @conversation.messages.each do |msg| %>
+  <% if msg.sender==current_user %>
+  <div class='me'> <%=image_tag current_user.avatar_url.to_s %><%='我'%><%=msg.message %><%=format_time(msg.create_time) %></div>
+  <% else %>
+  <div class='you'><%=image_tag msg.sender.avatar_url.to_s %><%=msg.sender.name %>
+    <%=msg.message %><%=format_time(msg.create_time) %><%=link_to '删除',messenger_path(msg),:method=>:delete %></div>
+  <% end %>
+<% end %>
+<div>
+<%=form_for Messenger.new do |f|%>
+    <%=f.hidden_field :sender_id,:value=>current_user.id %>
+    <%=f.hidden_field :receiver_id,:value=>@conversation.other(current_user).id %>
+    <%=f.text_area :message %>
+    <%=f.submit '发送'%>
+<% end %>
+</div>

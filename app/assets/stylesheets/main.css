@@ -408,3 +408,10 @@ table a{
     height:54px;
     padding:0px;
 }
+
+.tip {
+     font-size:10px;
+     color: red;
+     font-style: italic;
+    vertical-align: super;
+}

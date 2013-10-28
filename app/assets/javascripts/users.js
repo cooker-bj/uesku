@@ -28,5 +28,7 @@ $(function(){
 
         });
 
-
+     $('#friends').on("ajax:success",'.friends_option',function(evt,data,status,xhr){
+         $('#friends').html(xhr);
+     })
 })

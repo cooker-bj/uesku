@@ -1,0 +1,17 @@
+<div>
+<div><%=image_tag @user.avatar_url %>   </div>
+<div>姓名：<%=@user.name %>
+性别：<%=@user.gender %>
+出生日期<%=@user.birthday.strftime('%Y')%>年</div></div>
+<div>
+发表文章：
+<% @user.posts.each do |post| %>
+    <%=post.title %><%=post.posted_time %>
+<% end %>
+</div>
+<div>
+发表回复：
+<%=@user.post_comments.each do |comment|  %>
+<%=display_string(comment.message, 50) %>
+<% end %>
+</div>

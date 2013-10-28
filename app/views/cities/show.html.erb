@@ -1,9 +1,0 @@
-
-    <%=render "lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',@city.id)} %>
-
-      <% unless @lessons.nil? %>
-       <%=render :locals=>{:lessons=>@lessons} %>
-            <%=will_paginate @comments,:previous_label=>'前页',:next_label=>'下页' %>
-    <% end %>
-
-

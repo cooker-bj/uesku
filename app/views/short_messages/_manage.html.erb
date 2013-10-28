@@ -1,0 +1,15 @@
+<% if @group.creator==current_user %>
+<div id='remove_users'>
+  <%=button_tag '减少用户',:type=>'button',"data-id"=>@group.id%>
+  <%@group.users.each do |user|%>
+     <%=check_box_tag "users[]",user.id %><%=user.name %>
+  <% end %>
+</div>
+<% end %>
+
+<div id="add_friends">
+    <%=button_tag '增加对话人员',:type=>'button',"data-id"=>@group.id%>
+  <% current_user.friends.each do |fr| %>
+      <%=check_box_tag "friends[]",fr.id %><%=fr.name %>
+   <% end %>
+</div>

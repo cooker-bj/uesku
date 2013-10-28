@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes
   # attr_accessible :title, :body
-  has_one :profile
+
   has_many :comments
   has_many :scores
   has_many :replies
@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   has_many :owned_groups,:class_name=>'Group',:foreign_key => :owner_id
   has_many :groups,:through=>:members
   has_many :authenticated_tokens
-  has_many :sent_messages,:class_name=>'Messenger',:foreign_key=>:sender_id
+  has_many :sent_messages,:class_name=>'ShortMessage',:foreign_key=>:sender_id
+  has_many :message_group_users
+  has_many :message_groups,:through=>:message_group_users
   has_many :received_messages,:class_name=>'Messenger',:foreign_key=>:receiver_id
   has_many :friendships
   has_many :friends, :through=>:friendships
@@ -59,6 +61,7 @@ class User < ActiveRecord::Base
     user
   end
 
+
   def my_friends
     self.friends.where("friendships.status=?",true).concat(self.inverse_friends.where("friendships.status=?",true))
   end
@@ -90,6 +93,11 @@ class User < ActiveRecord::Base
 
   def friends_recent_comments
     self.my_friends.empty? ? [] :self.my_friends.collect{|user| user.comments.where("comment_time>?",2.days.ago)}.flatten
+  end
+
+
+  def has_new_message?
+    self.message_group_users.new_messages.count>0
   end
 
 end

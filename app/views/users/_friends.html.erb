@@ -1,11 +1,11 @@
-<div >
+<div id="messages_list" ><%=link_to '发送短信','#',:remote=>true,:class=>'new_message' %><%=link_to '修改类别','#'%>
   <% user.my_friends.each do |friend|%>
-      <div>  <%=check_box_tag 'friends[]',friend.id %>   <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,profile_path(friend) %> <%=link_to '发送短信','#' %><%=link_to '修改类别','#'%></div>
+      <div>  <%=check_box_tag 'friends[]',friend.id %>   <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,profile_user_path(friend) %> </div>
   <% end %>
 </div>
 <div>
   <% user.pending_friends.each do |friend|%>
-      <div>     <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,'#' %> <%=link_to '同意',agree_friendship_path(friend),:remote=>true,:class=>'friends_option' %> <%=link_to '拒绝',friendship_path(friend),method: :delete,data: {confirmation: '确定拒绝?'},:remote=>true,:class=>'friends_option'%>
+      <div>     <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,profile_user_path(friend) %> <%=link_to '同意',agree_friendship_path(friend),:remote=>true,:class=>'friends_option' %> <%=link_to '拒绝',friendship_path(friend),method: :delete,data: {confirmation: '确定拒绝?'},:remote=>true,:class=>'friends_option'%>
       </div>
   <% end %>
 </div>

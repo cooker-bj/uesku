@@ -1,0 +1,8 @@
+<ul class='list'>
+  <% message_groups.each do |group|%>
+
+      <li class='message_item'>  <%=link_to group.title,short_message_path(group),:remote=>true,:class=>'message',:id=>"message_group_#{group.id}" %>
+        <% if group.has_new_messages(current_user) %><span class="tip">新</span><% end %>
+        <%=link_to '管理',manage_short_message_path(group),:class=>'message_manage',"data-id"=>"manage_#{group.id}","data-title"=>"#{group.title}",:remote=>true %></li>
+  <% end %>
+</ul>

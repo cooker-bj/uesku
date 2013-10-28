@@ -1,9 +1,19 @@
 Uesku::Application.routes.draw do
 
+
+
   resources :my_lessons
 
+  resources :short_messages do
+    get 'manage',:on=>:member
+    get 'reply', :on=>:member
+    post 'new_message',:on=>:collection
+    get 'show_messages',:on=>:member
+    post 'add_users',:on=>:collection
+    post 'remove_users',:on=>:collection
+  end
 
-  resources :messengers
+ # resources :messengers
 
   resources :friendships  do
     get  'agree',:on=>:member
@@ -13,6 +23,7 @@ Uesku::Application.routes.draw do
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
   resources :post_comments
+
   resources :posts  do
     get 'set_to_top',:on=>:member
     get 'set_to_distillate',:on=>:member
@@ -42,6 +53,7 @@ Uesku::Application.routes.draw do
   resources :users,:only=>[:show] do
     get 'groups',:on=>:member
     get 'messenger',:on=>:member
+    get 'profile',:on=>:member
   end
 
   resources :companies ,:only=>[:index,:show]

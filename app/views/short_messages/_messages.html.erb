@@ -1,0 +1,13 @@
+<ul class='list'>
+  <%messages.each do |message|%>
+      <li>
+        <%=image_tag message.sender.avatar_url,:height=>30,:width=>30 %><%=message.sender.name%>&nbsp<%=message.message %>
+        <% if message.category==1 %>
+            <%=image_tag message.media_url,:height=>60,:width=>80 %>
+        <%else if message.category==2 %>
+                <%=link_to "voice", message.media_url %>
+            <% end %>
+        <%end %>
+      </li>
+  <% end %>
+</ul>

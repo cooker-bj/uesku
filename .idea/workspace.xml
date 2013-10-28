@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="" />
+    <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/short_messages/_manage.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_message_groups.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/short_messages/_messages.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/message.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/cities_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/profiles_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/helpers/profiles_helper.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/profile.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/cities/_lessons_list.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/cities/show.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/profiles/_form.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/profiles/edit.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/profiles/new.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/profiles/show.html.erb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/_details.html.erb" afterPath="$PROJECT_DIR$/app/views/users/_details.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/_friends.html.erb" afterPath="$PROJECT_DIR$/app/views/users/_friends.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin/companies_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/companies_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/friendships_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/friendships_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/main.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/my_lessons_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/my_lessons_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/short_message.rb" afterPath="$PROJECT_DIR$/app/models/short_message.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ueske.iml" afterPath="$PROJECT_DIR$/.idea/ueske.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/users.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="log/" />
-    <file path="/Gemfile" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378124663430" ignored="false" />
-    <file path="/routes.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379856551819" ignored="false" />
+    <file path="/Gemfile" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382173158813" ignored="false" />
+    <file path="/routes.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382945304713" ignored="false" />
     <file path="/categories_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368768936585" ignored="false" />
     <file path="/locations.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368770407294" ignored="false" />
     <file path="/companies_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373518251278" ignored="false" />
@@ -17,20 +57,20 @@
     <file path="/secret_token.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368776413547" ignored="false" />
     <file path="/session_store.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368776437258" ignored="false" />
     <file path="/config.ru" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368776706101" ignored="false" />
-    <file path="/index.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378731729943" ignored="false" />
-    <file path="/Dummy.txt" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1380028177158" ignored="false" />
-    <file path="/_form.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376562061016" ignored="false" />
+    <file path="/index.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381751846019" ignored="false" />
+    <file path="/Dummy.txt" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382940901313" ignored="false" />
+    <file path="/_form.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382451098666" ignored="false" />
     <file path="/new.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376551943079" ignored="false" />
     <file path="/edit.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379087674464" ignored="false" />
-    <file path="/show.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379903662385" ignored="false" />
+    <file path="/show.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381889173157" ignored="false" />
     <file path="/company.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376561695709" ignored="false" />
     <file path="/20130516155444_create_companies.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368789687106" ignored="false" />
-    <file path="/Ruby Console" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379858008831" ignored="false" />
+    <file path="/Ruby Console" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381905153053" ignored="false" />
     <file path="/20130517130543_create_branches.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368796009833" ignored="false" />
     <file path="/branch.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369017636473" ignored="false" />
     <file path="/branches_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373463868400" ignored="false" />
     <file path="/location.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369065121706" ignored="false" />
-    <file path="/application.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378888613595" ignored="false" />
+    <file path="/application.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382173919618" ignored="false" />
     <file path="/map.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373253550758" ignored="false" />
     <file path="/map.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373524296208" ignored="false" />
     <file path="/20130315084206_create_courses.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368982941471" ignored="false" />
@@ -43,11 +83,11 @@
     <file path="/admin.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369232801360" ignored="false" />
     <file path="/session_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369125683549" ignored="false" />
     <file path="/sessions_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369490257890" ignored="false" />
-    <file path="/users_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375336461650" ignored="false" />
+    <file path="/users_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382945871323" ignored="false" />
     <file path="/show.html .erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369215724526" ignored="false" />
     <file path="/20130522011020_add_in_active_and_name_roles_to_admin.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369187659700" ignored="false" />
     <file path="/admins_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369285306787" ignored="false" />
-    <file path="/registrations_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375973438380" ignored="false" />
+    <file path="/registrations_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382450862864" ignored="false" />
     <file path="/admin_base_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369489991621" ignored="false" />
     <file path="/admin_ability.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372991280016" ignored="false" />
     <file path="/lessions_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369301941545" ignored="false" />
@@ -62,7 +102,7 @@
     <file path="/20130526072653_create_scores.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369553273507" ignored="false" />
     <file path="/score.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1371820627168" ignored="false" />
     <file path="/comment.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375621610005" ignored="false" />
-    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379941845787" ignored="false" />
+    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381846414182" ignored="false" />
     <file path="/reply.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372077030224" ignored="false" />
     <file path="/_comment_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369578660150" ignored="false" />
     <file path="/comments.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369635771904" ignored="false" />
@@ -73,7 +113,7 @@
     <file path="/replies_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379494463212" ignored="false" />
     <file path="/replies.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379496654142" ignored="false" />
     <file path="/hidden.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369742396683" ignored="false" />
-    <file path="/_show.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379496524118" ignored="false" />
+    <file path="/_show.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382182606422" ignored="false" />
     <file path="/20130603011434_add_course_score_environment_score_security_score_teacher_score_to_lesson.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372599050055" ignored="false" />
     <file path="/main.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378278997604" ignored="false" />
     <file path="/dcverticalmegamenu.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1371873353638" ignored="false" />
@@ -101,7 +141,7 @@
     <file path="/post_comments.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379492718824" ignored="false" />
     <file path="/post.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378785535118" ignored="false" />
     <file path="/20130623130926_add_distillate_and_set_to_top_and_comment_count_and_last_replier_and_last_replied_time_to_post.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372000688286" ignored="false" />
-    <file path="/main.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378909980899" ignored="false" />
+    <file path="/main.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381908497778" ignored="false" />
     <file path="/lessons.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379497008279" ignored="false" />
     <file path="/lessons.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378189795251" ignored="false" />
     <file path="$USER_HOME$/RubymineProjects/nested/config/initializers/devise.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372388010230" ignored="false" />
@@ -128,8 +168,8 @@
     <file path="/messengers_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375180968662" ignored="false" />
     <file path="/20130706050010_create_messengers.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373198311200" ignored="false" />
     <file path="/messenger.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373202066757" ignored="false" />
-    <file path="/20130707114536_create_conversations.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373198238457" ignored="false" />
-    <file path="/conversation.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373201221490" ignored="false" />
+    <file path="/20130707114536_create_conversations.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381637720250" ignored="false" />
+    <file path="/conversation.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381638046146" ignored="false" />
     <file path="/conversations_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373534120299" ignored="false" />
     <file path="/new_lessons.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373436727778" ignored="false" />
     <file path="/_branch.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376561895779" ignored="false" />
@@ -141,12 +181,12 @@
     <file path="/ability.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373537909131" ignored="false" />
     <file path="/friendship.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379518005830" ignored="false" />
     <file path="/20130712083535_create_friendships.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373618551122" ignored="false" />
-    <file path="/friendships_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379941380860" ignored="false" />
+    <file path="/friendships_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381481903557" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/rubymine.jar!/resources/html5-schema/html5.rnc" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1374716533505" ignored="false" />
     <file path="/20130730101036_add_tag_to_friendship.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375179093749" ignored="false" />
     <file path="/profile.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375449650788" ignored="false" />
     <file path="/child.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375449632371" ignored="false" />
-    <file path="/profiles_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375542943230" ignored="false" />
+    <file path="/profiles_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382450331390" ignored="false" />
     <file path="/edit.html" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375535407785" ignored="false" />
     <file path="/group_lesson.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375760955835" ignored="false" />
     <file path="/menu.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376386712965" ignored="false" />
@@ -154,7 +194,7 @@
     <file path="/seeds.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376558297068" ignored="false" />
     <file path="/avatar_uploader.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378124721151" ignored="false" />
     <file path="/users.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376310552592" ignored="false" />
-    <file path="/users.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379511933953" ignored="false" />
+    <file path="/users.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381492918521" ignored="false" />
     <file path="/jquery.ui.theme.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376229703508" ignored="false" />
     <file path="/_category_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1377846200060" ignored="false" />
     <file path="/recommendation.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378284035506" ignored="false" />
@@ -164,13 +204,29 @@
     <file path="/popbox.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378440458304" ignored="false" />
     <file path="/popbox.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378688142599" ignored="false" />
     <file path="/test.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378463430363" ignored="false" />
-    <file path="/_details.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379505451078" ignored="false" />
+    <file path="/_details.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381388918362" ignored="false" />
     <file path="/preview.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378710436432" ignored="false" />
     <file path="/posts.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378713346219" ignored="false" />
     <file path="/_group_info.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378739012493" ignored="false" />
     <file path="/_head.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378782126713" ignored="false" />
     <file path="/post_comments.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378894340853" ignored="false" />
     <file path="/_comment.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1379089588168" ignored="false" />
+    <file path="/_friends.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382947258715" ignored="false" />
+    <file path="/sms.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381637947370" ignored="false" />
+    <file path="/20131013043510_create_short_messages.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381641751244" ignored="false" />
+    <file path="/short_message.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382169915447" ignored="false" />
+    <file path="/20131013043834_create_message_groups.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381640258354" ignored="false" />
+    <file path="/message_group.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382239461281" ignored="false" />
+    <file path="/20131013045913_create_message_group_users.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381721670775" ignored="false" />
+    <file path="/message_group_user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381933813337" ignored="false" />
+    <file path="/short_message_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381742801022" ignored="false" />
+    <file path="/20131014125538_add_category_to_short_message.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381755879371" ignored="false" />
+    <file path="/short_messages_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382322772835" ignored="false" />
+    <file path="/message.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382325450911" ignored="false" />
+    <file path="/_message_groups.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382200015071" ignored="false" />
+    <file path="/_messages.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382170235051" ignored="false" />
+    <file path="/_manage.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382252526258" ignored="false" />
+    <file path="/profile.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1382947099981" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,64 +251,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="post_comments.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/post_comments.js">
+      <file leaf-file-name="users_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="31" selection-start="2286" selection-end="3111" vertical-scroll-proportion="0.0">
+            <state line="22" column="31" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="friendships_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/friendships_controller.rb">
+      <file leaf-file-name="profile.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="2" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="36" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_comments_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/post_comments_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="friendship.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/friendship.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="54" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/post.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="61" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="2" selection-start="3194" selection-end="3194" vertical-scroll-proportion="0.0">
+            <state line="13" column="47" selection-start="313" selection-end="313" vertical-scroll-proportion="-8.125">
               <folding />
             </state>
           </provider>
@@ -267,10 +278,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application_helper.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/post.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="8" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.2647059">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_friends.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/users/_friends.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="88" selection-start="727" selection-end="727" vertical-scroll-proportion="0.3030303">
               <folding />
             </state>
           </provider>
@@ -299,22 +346,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/post_comments/_comment.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/lessons_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/lessons/comment.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/post_comments.js" />
-        <option value="$PROJECT_DIR$/app/models/post_comment.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/replies_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/replies/_show.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/replies.js" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/lessons.css" />
-        <option value="$PROJECT_DIR$/app/views/users/_details.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/users.js" />
-        <option value="$PROJECT_DIR$/app/models/friendship.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/app/views/short_messages/_show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/_message_groups.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/short_messages/_manage.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/short_messages_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/message.js" />
+        <option value="$PROJECT_DIR$/app/controllers/profiles_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/profiles/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/profiles/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/message_group.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/friendships_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/_friends.html.erb" />
       </list>
     </option>
   </component>
@@ -328,8 +375,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="64" />
     <option name="y" value="-4" />
-    <option name="width" value="1306" />
-    <option name="height" value="899" />
+    <option name="width" value="1857" />
+    <option name="height" value="1098" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -357,6 +404,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -386,26 +434,133 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Confirmation" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -443,34 +598,6 @@
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="db:migrate" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-      <RunnerSettings RunnerId="RubyRunner" />
-      <ConfigurationWrapper RunnerId="RubyRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="db:drop" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
-      <module name="ueske" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="development" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="db:drop" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
@@ -524,6 +651,34 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="routes" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="db:rollback" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
+      <module name="ueske" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="development" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="db:rollback" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="2" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
@@ -702,6 +857,13 @@
       <IRB_RUN_CONFIG NAME="IS_RAILS_CONSOLE" VALUE="false" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -735,13 +897,6 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
@@ -863,24 +1018,24 @@
       <method />
     </configuration>
     <list size="10">
-      <item index="0" class="java.lang.String" itemvalue="Rake.db:migrate" />
-      <item index="1" class="java.lang.String" itemvalue="Rake.db:drop" />
-      <item index="2" class="java.lang.String" itemvalue="Rake.db:seed" />
-      <item index="3" class="java.lang.String" itemvalue="Rake.routes" />
-      <item index="4" class="java.lang.String" itemvalue="IRB console.Rails console: ueske" />
-      <item index="5" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="6" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="7" class="java.lang.String" itemvalue="Rails.Production: ueske" />
-      <item index="8" class="java.lang.String" itemvalue="Rails.Development: ueske" />
-      <item index="9" class="java.lang.String" itemvalue="JavaScript Debug.show.html .erb" />
+      <item index="0" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: ueske" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: ueske" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.show.html .erb" />
+      <item index="5" class="java.lang.String" itemvalue="Rake.db:migrate" />
+      <item index="6" class="java.lang.String" itemvalue="Rake.db:seed" />
+      <item index="7" class="java.lang.String" itemvalue="Rake.routes" />
+      <item index="8" class="java.lang.String" itemvalue="Rake.db:rollback" />
+      <item index="9" class="java.lang.String" itemvalue="IRB console.Rails console: ueske" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Rake.routes" />
         <item index="1" class="java.lang.String" itemvalue="IRB console.Rails console: ueske" />
-        <item index="2" class="java.lang.String" itemvalue="Rake.db:seed" />
-        <item index="3" class="java.lang.String" itemvalue="Rake.db:migrate" />
-        <item index="4" class="java.lang.String" itemvalue="Rake.db:drop" />
+        <item index="2" class="java.lang.String" itemvalue="Rake.db:migrate" />
+        <item index="3" class="java.lang.String" itemvalue="Rake.db:rollback" />
+        <item index="4" class="java.lang.String" itemvalue="IRB console.Rails console: ueske" />
       </list>
     </recent_temporary>
   </component>
@@ -929,7 +1084,19 @@
       <created>1373003281026</created>
       <updated>1373003281026</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="2013-07-05">
+      <created>1381479671106</created>
+      <updated>1381479671106</updated>
+    </task>
+    <task id="LOCAL-00007" summary="2013-07-05-01">
+      <created>1381501092295</created>
+      <updated>1381501092295</updated>
+    </task>
+    <task id="LOCAL-00008" summary="2013-10-14">
+      <created>1381719471905</created>
+      <updated>1381719471905</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -953,18 +1120,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1306" height="899" extended-state="6" />
-    <editor active="false" />
+    <frame x="64" y="-4" width="1857" height="1098" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41298702" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32376397" sideWeight="0.67402595" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24487534" sideWeight="0.6037152" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.291889" sideWeight="0.28612718" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.98039216" sideWeight="0.33541667" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39839035" sideWeight="0.6635417" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39628482" sideWeight="0.6635417" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32597402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1018,7 +1185,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="2013-07-05" />
+    <option name="LAST_COMMIT_MESSAGE" value="2013-10-14" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1037,6 +1204,8 @@
     <MESSAGE value="2013-06-03" />
     <MESSAGE value="2013-06-25" />
     <MESSAGE value="2013-07-05" />
+    <MESSAGE value="2013-07-05-01" />
+    <MESSAGE value="2013-10-14" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1044,37 +1213,70 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/lessons.css">
+    <entry file="file://$PROJECT_DIR$/app/views/users/_message_groups.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="16" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0" />
+        <state line="5" column="91" selection-start="387" selection-end="387" vertical-scroll-proportion="0.08187773">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/replies/_show.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/short_messages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="157" selection-start="514" selection-end="514" vertical-scroll-proportion="-6.875" />
+        <state line="46" column="61" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.7340425">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/_details.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/short_message.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="251" selection-end="251" vertical-scroll-proportion="-3.75" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/replies.js">
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="46" selection-start="2186" selection-end="2186" vertical-scroll-proportion="0.0" />
+        <state line="55" column="27" selection-start="1460" selection-end="1460" vertical-scroll-proportion="0.7340425">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/popshow.js">
+    <entry file="file://$PROJECT_DIR$/app/models/admin_ability.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/comments.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/users/registrations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="15" column="0" selection-start="298" selection-end="298" vertical-scroll-proportion="0.2393617">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/post_comments_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/message_group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="23" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.6648936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="31" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -1088,56 +1290,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/post.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="61" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/friendship.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="54" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="36" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/friendships_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="2" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="49" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.52401745" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/post_comments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="31" selection-start="2286" selection-end="3111" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="2" selection-start="3194" selection-end="3194" vertical-scroll-proportion="0.0">
+        <state line="11" column="0" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/post.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="47" selection-start="313" selection-end="313" vertical-scroll-proportion="-8.125">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="8" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.2647059">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/_friends.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="88" selection-start="727" selection-end="727" vertical-scroll-proportion="0.3030303">
           <folding />
         </state>
       </provider>

@@ -16,7 +16,7 @@ class MyLessonsController < ApplicationController
     @my_lesson = MyLesson.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # _show.html.erb
       format.json { render json: @my_lesson }
     end
   end

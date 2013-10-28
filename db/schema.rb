@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815061136) do
+ActiveRecord::Schema.define(:version => 20131014125538) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -178,6 +178,22 @@ ActiveRecord::Schema.define(:version => 20130815061136) do
     t.string   "role",       :default => "member",  :null => false
   end
 
+  create_table "message_group_users", :force => true do |t|
+    t.integer  "message_group_id"
+    t.integer  "user_id"
+    t.boolean  "has_new_messages", :default => true, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "message_groups", :force => true do |t|
+    t.integer  "creator_id"
+    t.datetime "create_time"
+    t.datetime "update_time"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "messengers", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
@@ -269,6 +285,18 @@ ActiveRecord::Schema.define(:version => 20130815061136) do
     t.integer  "lesson_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "short_messages", :force => true do |t|
+    t.datetime "create_time"
+    t.string   "message"
+    t.string   "media"
+    t.boolean  "read_status"
+    t.integer  "sender_id"
+    t.integer  "message_group_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "category",         :default => 0, :null => false
   end
 
   create_table "users", :force => true do |t|

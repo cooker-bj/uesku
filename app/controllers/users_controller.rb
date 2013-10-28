@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @profile=User.find(params[:id]).profile
-    respond_with @profile
+    @user=User.find(params[:id])
+    respond_with @user
   end
 end

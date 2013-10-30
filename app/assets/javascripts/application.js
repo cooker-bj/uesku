@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery-ui
+//= require jquery-ui.all
 //= require kindeditor
 //= require_tree .

@@ -26,7 +26,7 @@ end
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
-gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'carrierwave'
 gem 'ancestry'
 gem 'rails_kindeditor'

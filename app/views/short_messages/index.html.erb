@@ -1,0 +1,8 @@
+<ul class='list'>
+<% @groups.each do |group|%>
+
+  <li>  <%=link_to group.title,message_group_path(group)%>
+    <% if group.has_new_messages %><span class="tip">新</span><% end %>
+    <%=link_to '管理',manage_message_group_path(group) if group.creater==current_user%></li>
+<% end %>
+</ul>

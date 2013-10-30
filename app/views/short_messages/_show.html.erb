@@ -1,0 +1,21 @@
+<div class="message_box">
+<%=form_for ShortMessage.new,:remote=>true,:html=>{:multipart=>true} do |f|%>
+      <%=button_tag '+', :type=>'button', :id=>'add'%>
+      <%=f.text_field :message%><%=f.submit "发送" %>
+
+      <div id="choose" class="undisplay">
+        <button type='button' data-type=1 id='add_img'>添加图片</button>
+        <button type='button' data-type=2 id='add_audio'>添加音频</button>
+      </div>
+      <%=f.text_field :category,:class=>'undisplay category' %>
+     <span id="input_file" class='undisplay'>
+       <%=f.file_field :media,:class=>'media'%>
+       <%=button_tag "取消",:type=>'button',:id=>'cancel'%>
+     </span>
+    <%=f.hidden_field :message_group_id,:value=>@group.id %>
+    <%=f.hidden_field :sender_id,:value=>current_user.id %>
+<% end %>
+  <div class='messages_area'>
+      <%=render :partial=>'messages',:locals=>{:messages=>@messages} %>
+  </div>
+</div>

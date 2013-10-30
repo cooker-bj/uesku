@@ -9,6 +9,9 @@
   </ul>
 <div id="myfront">
 <div>
+  <div id='side_menu' class="float_right">
+  <%=render 'main/category_list'%>
+</div>
   <div>
     <b>推荐课程</b>
     <%=render :partial=>"/main/lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',get_city).collect{|rec| rec.lesson}} %>

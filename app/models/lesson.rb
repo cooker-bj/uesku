@@ -35,7 +35,7 @@ class Lesson < ActiveRecord::Base
 
   def self.filter_with_district(dist)
     if dist.nil?||dist.empty?
-       self.where(true)
+       self
     else
       where("branches.district_id"=>dist).joins(:branch).order("rank desc")
     end

@@ -3,7 +3,7 @@ class ShortMessage < ActiveRecord::Base
   belongs_to :message_group
 
   belongs_to :sender,:class_name=>'User',:foreign_key=>:sender_id
-  mount_uploader :media, ImageUploader
+  mount_uploader :media, MessageUploader
   before_create :add_create_time
   after_save :update_status
   CATEGORY={'文字'=>0,'图片'=>1,'声音'=>2}

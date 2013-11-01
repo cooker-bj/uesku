@@ -5,7 +5,7 @@
     <ul >   <li>   <%= item.name %>
         <ul><% item.children.each do |second| %>
 
-              <li> <%=link_to second.name,main_category_path(second.id) %>
+              <li> <%=link_to second.name,category_lesson_path(second.id) %>
 
               </li>
 

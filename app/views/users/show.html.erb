@@ -10,19 +10,19 @@
 <div id="myfront">
 <div>
   <div id='side_menu' class="float_right">
-  <%=render 'main/category_list'%>
+  <%=render 'lessons/category_list'%>
 </div>
   <div>
     <b>推荐课程</b>
-    <%=render :partial=>"/main/lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',get_city).collect{|rec| rec.lesson}} %>
+    <%=render :partial=>"/lessons/lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',get_city).collect{|rec| rec.lesson}} %>
   </div>
   <div>
     <b>最佳课程</b>
-    <%=render :partial=>"/main/lessons_list",:locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank desc").limit(10)} %>
+    <%=render :partial=>"/lessons/lessons_list",:locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank desc").limit(10)} %>
   </div>
   <div>
     <b>最热课程</b>
-    <%=render :partial=>"/main/lessons_list", :locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank_counter desc").limit(10)} %>
+    <%=render :partial=>"/lessons/lessons_list", :locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank_counter desc").limit(10)} %>
   </div>
 </div>
 <%@user.friends_recent_posts.each do |post| %>

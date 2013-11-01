@@ -1,0 +1,26 @@
+ <div class="list">
+  <% lessons.each do |course| %>
+  <ul class='list_item'>
+    <li class='float_left cell_detail'>
+      <ul>
+        <li><strong><%= link_to course.title,lesson_path(course) %></strong></li>
+        <li>教育机构: <%=link_to course.company_name,company_path(course.company)%></li>
+        <li>地址:<%=course.address %></li>
+        <li>电话:<%=course.phone %></li>
+        <li>试听:<%= course.free_try ? '有' : '无' %></li>
+        <li>标签:<%=course.tags %></li>
+      </ul>
+    </li>
+    <li class='float_left cell_price'>
+      ￥<%=course.price %>
+    </li>
+    <li class='float_left cell_rank'>
+      <ul>
+        <li><%= course.rank %></li>
+        <li>共有<%= course.rank_counter %>人点评</li>
+      </ul>
+    </li>
+    <div class='noad'></div>
+   </ul>
+  <% end %>
+ </div>

@@ -33,7 +33,7 @@ $(function(){
 
     function initMap_without_tools(handler,options){
         var opt = $.extend({
-            level:14,//初始地图视野级别
+            level:10,//初始地图视野级别
             //center:new MMap.LngLat(116.397428,39.90923),//设置地图中心点
             doubleClickZoom:true,//双击放大地图
             scrollWheel:true//鼠标滚轮缩放地图
@@ -44,6 +44,7 @@ $(function(){
         handler.data('mapObj',mapObj);
         return handler ;
     };
+
     function clickPoint(handler,objx,objy){
         var mapObj=handler.data('mapObj');
         var marker=handler.data("marker");
@@ -122,7 +123,7 @@ $(function(){
         })
     })
 
-         $('#mmap').each(function(){
+        $('#mmap').each(function(){
           var handler=initMap($(this));
           handler=clickPoint(handler,$('#positionx'),$('#positiony'));
          });

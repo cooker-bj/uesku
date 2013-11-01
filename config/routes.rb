@@ -2,6 +2,10 @@ Uesku::Application.routes.draw do
 
 
 
+  get "courses/index"
+
+  get "courses/category"
+
   resources :my_lessons
 
   resources :short_messages do
@@ -22,6 +26,7 @@ Uesku::Application.routes.draw do
   get "main/index"
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
+
   resources :post_comments
 
   resources :posts  do
@@ -57,13 +62,17 @@ Uesku::Application.routes.draw do
   end
 
   resources :companies ,:only=>[:index,:show]
-  resources :lessons, :only=>[:show] do
+  resources :lessons, :only=>[:index,:show] do
     get 'comment', :on=>:member
     delete 'remove',:on=>:member
+    match 'category',:on=>:member,:via=>[:post,:get]
+    match 'location',:on=>:member,:via=>[:post,:get]
+
     resources :scores
   end
+  post 'lessons' =>'lessons#index'
   resources :replies
-  resources :conversations
+
 
   post 'query/group_member_for_management'=>'query#group_member_for_management'
 

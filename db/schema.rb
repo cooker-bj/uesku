@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014125538) do
+ActiveRecord::Schema.define(:version => 20131115081529) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -89,15 +89,6 @@ ActiveRecord::Schema.define(:version => 20131014125538) do
     t.boolean  "audit",       :default => false, :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-  end
-
-  create_table "conversations", :force => true do |t|
-    t.integer  "low_user_id"
-    t.integer  "high_user_id"
-    t.integer  "unread_messages_number", :default => 0, :null => false
-    t.datetime "new_message_time"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
   end
 
   create_table "courses", :force => true do |t|
@@ -195,14 +186,12 @@ ActiveRecord::Schema.define(:version => 20131014125538) do
   end
 
   create_table "messengers", :force => true do |t|
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "conversation_id"
-    t.string   "message"
-    t.boolean  "read_status",     :default => false, :null => false
-    t.datetime "create_time"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.integer  "user_id"
+    t.integer  "message_group_id"
+    t.integer  "short_message_id"
+    t.boolean  "read_status",      :default => false, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "my_lessons", :force => true do |t|
@@ -291,12 +280,12 @@ ActiveRecord::Schema.define(:version => 20131014125538) do
     t.datetime "create_time"
     t.string   "message"
     t.string   "media"
-    t.boolean  "read_status"
+    t.boolean  "read_status",      :default => false, :null => false
     t.integer  "sender_id"
     t.integer  "message_group_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "category",         :default => 0, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "category",         :default => 0,     :null => false
   end
 
   create_table "users", :force => true do |t|

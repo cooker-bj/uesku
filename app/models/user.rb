@@ -22,7 +22,12 @@ class User < ActiveRecord::Base
   has_many :sent_messages,:class_name=>'ShortMessage',:foreign_key=>:sender_id
   has_many :message_group_users
   has_many :message_groups,:through=>:message_group_users
-
+  has_many :received_messages,:class_name=>'ShortMessage',:through=>:messengers  do
+    def unread_messages(group)
+      where('messengers.read_status=? and message_group_id=?',false.group.id)
+    end
+  end
+  has_many :messengers
   has_many :friendships
   has_many :friends, :through=>:friendships
   has_many :inverse_friendships,:class_name=>'Friendship',:foreign_key=>:friend_id
@@ -99,5 +104,6 @@ class User < ActiveRecord::Base
   def has_new_message?
     self.message_group_users.new_messages.count>0
   end
+
 
 end

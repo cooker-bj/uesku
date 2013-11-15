@@ -11,6 +11,11 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'rmagick'
 gem 'remotipart','~>1.2'
+# Gems for search
+
+gem 'sunspot_rails','~>1.3'
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.

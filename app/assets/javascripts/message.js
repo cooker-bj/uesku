@@ -3,9 +3,11 @@ $(function(){
     var dialogs=[];
      function repeat(){
         var id= $('#short_message_message_group_id').val();
-        $('.messages_area').load('short_messages/'+id+'/show_messages',function(){
-            timeout=setTimeout(repeat,3000);
-        }) ;
+         $.get('short_messages/'+id+'/new_messages',function(respond,status,xhr){
+             $('.messages_area ul.list li:first').prepend(xhr.responseText);
+             timeout=setTimeout(repeat,3000);
+         })
+
     };
     $('#messages_list .new_message').click(function(evt){
          var users=$('#messages_list input:checkbox:checked').map(function(){ return $(this).val()}).get();
@@ -44,6 +46,10 @@ $(function(){
 
         })
        }
+    })
+
+    $('body').on("ajax:success",".message_box",function(evt,data,status,xhr){
+        $(this).find('.messages_area ul li:first').prepend(xhr.responseText);
     })
     $('body').on("ajax:complete",function(evt,xhr,status){
           $(this).siblings('.messages_area').html(xhr.responseText);

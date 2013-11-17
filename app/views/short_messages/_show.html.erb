@@ -16,6 +16,6 @@
     <%=f.hidden_field :sender_id,:value=>current_user.id %>
 <% end %>
   <div class='messages_area'>
-      <%=render :partial=>'messages',:locals=>{:messages=>@messages} %>
+    <ul class='list'>   <%=render :partial=>'messages',:locals=>{:messages=>@messages} %>   </ul>
   </div>
 </div>

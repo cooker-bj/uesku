@@ -15,6 +15,7 @@ Uesku::Application.routes.draw do
     get 'show_messages',:on=>:member
     post 'add_users',:on=>:collection
     post 'remove_users',:on=>:collection
+    get 'new_messages',:on=>:member
   end
 
  # resources :messengers

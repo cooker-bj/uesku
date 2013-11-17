@@ -1,4 +1,4 @@
-<ul class='list'>
+
   <%messages.each do |message|%>
       <li>
         <%=image_tag message.sender.avatar_url,:height=>30,:width=>30 %><%=message.sender.name%>&nbsp<%=message.message %>
@@ -10,4 +10,3 @@
         <%end %>
       </li>
   <% end %>
-</ul>

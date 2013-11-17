@@ -3,6 +3,10 @@ class Messenger < ActiveRecord::Base
   belongs_to :user
   belongs_to :message_group
   belongs_to :short_message
-  scope :unread,->{where(:read_status=>false)}
+
+  def self.unread(group)
+   where("messengers.read_status=? and short_messages.message_group_id=?",false,group.id).joins(:short_message)
+  end
+
 
 end

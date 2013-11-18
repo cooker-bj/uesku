@@ -17,7 +17,7 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
     google_oauth2
   end
 
-  def qq
+  def qq_connect
     google_oauth2
   end
 

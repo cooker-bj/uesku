@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,7 +120,7 @@
     <file path="/authentication.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373003966720" ignored="false" />
     <file path="/20130705055732_create_authentications.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373009871620" ignored="false" />
     <file path="$USER_HOME$/RubymineProjects/nested/app/controllers/users/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373007688850" ignored="false" />
-    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384783183994" ignored="false" />
+    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384786331424" ignored="false" />
     <file path="/authencated_token.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010280520" ignored="false" />
     <file path="/20130705074000_create_authencated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010272855" ignored="false" />
     <file path="/authenticated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010411507" ignored="false" />
@@ -272,19 +271,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devise.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="devise.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="98" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.540393">
+            <state line="34" column="54" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="17" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.0">
+            <state line="20" column="32" selection-start="645" selection-end="645" vertical-scroll-proportion="0.32751092">
               <folding />
             </state>
           </provider>
@@ -334,10 +333,10 @@
         <option value="$PROJECT_DIR$/app/controllers/short_messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/message.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
       </list>
     </option>
   </component>
@@ -1225,13 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="17" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="132" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
@@ -1241,7 +1233,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="98" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.540393">
+        <state line="34" column="54" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="32" selection-start="645" selection-end="645" vertical-scroll-proportion="0.32751092">
           <folding />
         </state>
       </provider>

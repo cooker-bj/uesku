@@ -120,7 +120,7 @@
     <file path="/authentication.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373003966720" ignored="false" />
     <file path="/20130705055732_create_authentications.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373009871620" ignored="false" />
     <file path="$USER_HOME$/RubymineProjects/nested/app/controllers/users/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373007688850" ignored="false" />
-    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384786941350" ignored="false" />
+    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384787491648" ignored="false" />
     <file path="/authencated_token.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010280520" ignored="false" />
     <file path="/20130705074000_create_authencated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010272855" ignored="false" />
     <file path="/authenticated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010411507" ignored="false" />
@@ -283,9 +283,9 @@
       <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="34" selection-start="740" selection-end="740" vertical-scroll-proportion="0.360262">
+            <state line="30" column="45" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.49126637">
               <folding>
-                <element signature="e#788#849#0" expanded="true" />
+                <element signature="e#798#855#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1242,9 +1242,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="34" selection-start="740" selection-end="740" vertical-scroll-proportion="0.360262">
+        <state line="30" column="45" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.49126637">
           <folding>
-            <element signature="e#788#849#0" expanded="true" />
+            <element signature="e#798#855#0" expanded="true" />
           </folding>
         </state>
       </provider>

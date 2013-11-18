@@ -13,6 +13,14 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
     end
   end
 
+  def weibo
+    google_oauth2
+  end
+
+  def qq
+    google_oauth2
+  end
+
   private
   def user_hash(access_token)
     data=access_token.extra.raw_info

@@ -16,6 +16,8 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
   require 'omniauth-google-oauth2'
   config.omniauth :google_oauth2,'10873509038.apps.googleusercontent.com','9X56kwg4Xu4nhlS9OixQyj2V',{access_type: 'offline',approval_prompt:'force'}
+  config.omniauth :weibo,'3484078830','079bcac974004b6f55d7ddc19a7c0d38',{access_type: 'offline',approval_prompt:'force'}
+  config.omniauth :qq, '100558572','d7ce92c57d7ad256da10f3c9f6d8df9c ' ,{access_type: 'offline',approval_prompt:'force'}
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/046569/qq.git
+  revision: 69d5ebb4e92c491e3f44e93c73b67d51b924d919
+  specs:
+    qq (0.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -95,6 +101,9 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    omniauth-weibo-oauth2 (0.3.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.17.0)
     polyglot (0.3.3)
@@ -184,7 +193,9 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   omniauth-google-oauth2
+  omniauth-weibo-oauth2
   pg
+  qq!
   rails (= 3.2.13)
   rails_12factor
   rails_kindeditor

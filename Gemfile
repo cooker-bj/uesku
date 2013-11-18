@@ -39,7 +39,7 @@ gem 'will_paginate'
 
 gem 'omniauth-google-oauth2'
 gem 'omniauth-weibo-oauth2'
-gem 'qq', :git => 'git://github.com/046569/qq.git'
+gem 'omniauth-qq-oauth2'
 gem 'certified'
 gem 'rails_12factor',group: :production
 ruby '2.0.0'

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,7 +65,7 @@
     <file path="/20130526072653_create_scores.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369553273507" ignored="false" />
     <file path="/score.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1371820627168" ignored="false" />
     <file path="/comment.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375621610005" ignored="false" />
-    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384783141032" ignored="false" />
+    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384786130365" ignored="false" />
     <file path="/reply.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372077030224" ignored="false" />
     <file path="/_comment_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369578660150" ignored="false" />
     <file path="/comments.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369635771904" ignored="false" />
@@ -220,7 +221,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="109" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0">
+            <state line="16" column="132" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -274,7 +275,7 @@
       <file leaf-file-name="devise.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="26" selection-start="808" selection-end="808" vertical-scroll-proportion="0.26200873">
+            <state line="33" column="98" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.540393">
               <folding />
             </state>
           </provider>
@@ -333,10 +334,10 @@
         <option value="$PROJECT_DIR$/app/controllers/short_messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/message.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
       </list>
     </option>
   </component>
@@ -1217,9 +1218,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="109" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0">
+        <state line="41" column="24" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1231,16 +1232,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="24" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
+        <state line="16" column="132" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="808" selection-end="808" vertical-scroll-proportion="0.26200873">
+        <state line="33" column="98" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.540393">
           <folding />
         </state>
       </provider>

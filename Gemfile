@@ -39,7 +39,8 @@ gem 'will_paginate'
 
 gem 'omniauth-google-oauth2'
 gem 'omniauth-weibo-oauth2'
-gem 'omniauth-qq'
+gem 'omniauth-qq-connect'
+gem 'omniauth-tqq-oauth2'
 gem 'certified'
 gem 'rails_12factor',group: :production
 ruby '2.0.0'

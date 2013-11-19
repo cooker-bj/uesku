@@ -31,6 +31,10 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
     end
   end
 
+  def tqq
+    qq_connect
+  end
+
   private
   def user_hash(access_token)
     data=access_token.extra.raw_info

@@ -18,6 +18,7 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
   end
 
   def qq_connect
+    logger.info "qq_connect is called"
     logger.info request.env["omniauth.auth"]
     @user = User.find_for_oauth2(request.env["omniauth.auth"], current_user)
 

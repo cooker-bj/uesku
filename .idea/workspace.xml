@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/omniauth.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ueske.iml" afterPath="$PROJECT_DIR$/.idea/ueske.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/devise.rb" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/omniauth.rb" afterPath="$PROJECT_DIR$/config/initializers/omniauth.rb" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -195,7 +194,7 @@
     <file path="/production.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1383052078837" ignored="false" />
     <file path="/application.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1383097356417" ignored="false" />
     <file path="/20131115081529_create_messengers.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384503470804" ignored="false" />
-    <file path="/omniauth.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384826310665" ignored="false" />
+    <file path="/omniauth.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384829446029" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +267,7 @@
       <file leaf-file-name="devise.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="90" selection-start="1865" selection-end="1865" vertical-scroll-proportion="0.0">
+            <state line="19" column="76" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -277,7 +276,7 @@
       <file leaf-file-name="omniauth.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/initializers/omniauth.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="19" selection-start="137" selection-end="137" vertical-scroll-proportion="0.049126636">
+            <state line="1" column="3" selection-start="64" selection-end="64" vertical-scroll-proportion="0.016375545">
               <folding />
             </state>
           </provider>
@@ -348,8 +347,8 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
+        <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/config/initializers/omniauth.rb" />
       </list>
     </option>
@@ -1289,14 +1288,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="90" selection-start="1865" selection-end="1865" vertical-scroll-proportion="0.0">
+        <state line="19" column="76" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/omniauth.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="19" selection-start="137" selection-end="137" vertical-scroll-proportion="0.049126636">
+        <state line="1" column="3" selection-start="64" selection-end="64" vertical-scroll-proportion="0.016375545">
           <folding />
         </state>
       </provider>

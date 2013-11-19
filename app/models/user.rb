@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth2(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid).first
+    authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid.to_s).first
     user=authentication.nil? ? nil : authentication.user
     if authentication.nil? && signed_in_resource.nil?
           user = User.create(real_name: data["name"],
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
           user=signed_in_resource
           user.authenticated_tokens.create(
                               provider:access_token.provider,
-                              uid: data['id'],
+                              uid: access_token.uid.to_s,
                               access_token: access_token.credentials.token
 
           )

@@ -50,7 +50,7 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
     data=access_token.extra.raw_info
     {
         :authenticated_tokens_attributes=>[{  provider:access_token.provider,
-                                      uid: data['id'],
+                                      uid: access_token.uid.to_s,
                                       access_token: access_token.credentials.token}],
 
         :real_name=>data['name'],

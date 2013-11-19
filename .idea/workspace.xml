@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/devise.rb" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,7 +120,7 @@
     <file path="/authentication.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373003966720" ignored="false" />
     <file path="/20130705055732_create_authentications.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373009871620" ignored="false" />
     <file path="$USER_HOME$/RubymineProjects/nested/app/controllers/users/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373007688850" ignored="false" />
-    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384832811179" ignored="false" />
+    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1384837565202" ignored="false" />
     <file path="/authencated_token.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010280520" ignored="false" />
     <file path="/20130705074000_create_authencated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010272855" ignored="false" />
     <file path="/authenticated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010411507" ignored="false" />
@@ -304,9 +302,10 @@
       <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="17" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.540393">
+            <state line="31" column="78" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.5076419">
               <folding>
-                <element signature="e#837#894#0" expanded="true" />
+                <element signature="e#837#902#0" expanded="true" />
+                <element signature="e#1325#1383#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1310,9 +1309,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="17" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.540393">
+        <state line="31" column="78" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.5076419">
           <folding>
-            <element signature="e#837#894#0" expanded="true" />
+            <element signature="e#837#902#0" expanded="true" />
+            <element signature="e#1325#1383#0" expanded="true" />
           </folding>
         </state>
       </provider>

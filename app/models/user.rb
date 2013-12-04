@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect,:tqq2]
+         :recoverable, :rememberable, :trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect,:tqq2]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id
   # attr_accessible :title, :body
 
   has_many :comments
@@ -33,26 +33,27 @@ class User < ActiveRecord::Base
   has_many :friends, :through=>:friendships
   has_many :inverse_friendships,:class_name=>'Friendship',:foreign_key=>:friend_id
   has_many :inverse_friends,:through=>:inverse_friendships,:source=>:user
-  validates_presence_of :email,:real_name,:gender
-  validates_uniqueness_of :nickname ,:allow_nil=>true
+
+
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens
-
+   before_create :add_random_nickname
   def self.find_for_oauth2(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid.to_s).first
     user=authentication.nil? ? nil : authentication.user
     if authentication.nil? && signed_in_resource.nil?
           user = User.create(real_name: data["name"],
-                         email: data["email"],
-                         password: Devise.friendly_token[0,20],
-                         gender:  data['gender'],
-                         birthday: data['birthday'],
-                         remote_avatar_url: data['picture'],
-                         authenticated_tokens_attributes:[ {
-                             provider:access_token.provider,
-                             uid: access_token.uid,
-                             access_token: access_token.credentials.token
+                             nickname: data['nickname'],
+                             email: data["email"],
+                             password: Devise.friendly_token[0,20],
+                             gender:  get_gender(data['gender']),
+                             birthday: date_format(data['birthday']),
+                             remote_avatar_url: data['picture']||data['image']||data['figureurl_qq-1'],
+                             authenticated_tokens_attributes:[ {
+                                  provider:access_token.provider,
+                                  uid: access_token.uid,
+                                  access_token: access_token.credentials.token
                              } ]
                          )
     elsif authentication.nil?
@@ -114,5 +115,45 @@ class User < ActiveRecord::Base
     messages
   end
 
+
+  def self.date_format(date)
+
+    match_year=/^([1|2]\d\d\d)-\d\d?-\d\d?$/
+    begin
+      mydate=DateTime.parse(date)
+    rescue =>e
+      if (year=match_year.match(date) )
+          date=year[1]+"-01-01"
+      else
+        date="1970-01-01"
+      end
+       retry
+    end
+     mydate.strftime("%Y-%m-%d")
+  end
+
+  def self.get_gender(gender)
+    gender=gender.chomp
+    unless gender=='女' || gender=='男'
+        gender=case gender
+                 when 'male' then '男'
+                 when 'female' then '女'
+                 else
+                   '男'
+               end
+    end
+    gender
+  end
+
+  private
+  def add_random_nickname
+
+    candidate_nickname=nil
+       begin
+        candidate_nickname=authenticated_tokens.first.nil? ? 'user'+Random.rand(100000000).to_s : authenticated_tokens.first.provider.to_s+Random(100000000).to_s
+        found=User.where(:nickname=>candidate_nickname).first
+       end while found
+       self.nickname||=candidate_nickname
+  end
 
 end

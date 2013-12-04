@@ -15,7 +15,13 @@ gem 'remotipart','~>1.2'
 
 gem 'sunspot_rails','~>1.3'
 
-
+group :development,:test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

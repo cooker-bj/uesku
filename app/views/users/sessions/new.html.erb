@@ -1,4 +1,4 @@
-<h2>Sign in</h2>
+<div class='float_left'>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -15,3 +15,11 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+</div>
+<div class="list">
+  <ul>
+  <li><%=link_to image_tag("google_login.png"), '/users/auth/google_oauth2' %> </li>
+  <li><%=link_to image_tag("QQ_login.png"),'/users/auth/qq_connect' %>  </li>
+  <li><%=link_to image_tag("weibo_login.png",:width=>230),'/users/auth/weibo'  %> </li>
+  </ul>
+</div>

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <ignored path="ueske.iws" />
@@ -120,7 +123,7 @@
     <file path="/authentication.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373003966720" ignored="false" />
     <file path="/20130705055732_create_authentications.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373009871620" ignored="false" />
     <file path="$USER_HOME$/RubymineProjects/nested/app/controllers/users/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373007688850" ignored="false" />
-    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386213687637" ignored="false" />
+    <file path="/omniauth_callbacks_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386222156535" ignored="false" />
     <file path="/authencated_token.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010280520" ignored="false" />
     <file path="/20130705074000_create_authencated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010272855" ignored="false" />
     <file path="/authenticated_tokens.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373010411507" ignored="false" />
@@ -198,6 +201,7 @@
     <file path="/test.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385536349704" ignored="false" />
     <file path="$PROJECT_DIR$/../locations/city/tran.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385706969166" ignored="false" />
     <file path="/tran.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385706945377" ignored="false" />
+    <file path="/omniauth_callbacks_helper.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386222048979" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +229,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="55" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.33222592">
+            <state line="2" column="40" selection-start="89" selection-end="89" vertical-scroll-proportion="0.03322259">
               <folding />
             </state>
           </provider>
@@ -273,19 +277,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devise.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
+      <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="96" selection-start="2693" selection-end="2693" vertical-scroll-proportion="0.0">
+            <state line="1" column="31" selection-start="80" selection-end="119" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
+      <file leaf-file-name="admin_base_help.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/admin/admin_base_help.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="1" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="omniauth_callbacks_helper.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="30" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -294,7 +307,7 @@
       <file leaf-file-name="application_helper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="4" selection-start="1195" selection-end="1195" vertical-scroll-proportion="0.0">
+            <state line="30" column="0" selection-start="532" selection-end="532" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -304,15 +317,6 @@
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="47" column="93" selection-start="1929" selection-end="1929" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="349" column="19" selection-start="5371" selection-end="5386" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -341,7 +345,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/short_messages/_show.html.erb" />
         <option value="$PROJECT_DIR$/app/models/messenger.rb" />
         <option value="$PROJECT_DIR$/app/controllers/short_messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/message.js" />
@@ -354,8 +357,9 @@
         <option value="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/spec/models/user_spec.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+        <option value="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
       </list>
     </option>
@@ -488,6 +492,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1161,18 +1227,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="19" selection-start="388" selection-end="405" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20131127104404_add_location_id_to_user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1243,13 +1297,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="1" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20130521081420_devise_create_users.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="41" selection-start="898" selection-end="898" vertical-scroll-proportion="0.0">
@@ -1257,16 +1304,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/admin/admin_base_help.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="4" selection-start="1195" selection-end="1195" vertical-scroll-proportion="0.0">
+        <state line="30" column="0" selection-start="532" selection-end="532" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="30" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="31" selection-start="80" selection-end="119" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="55" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.33222592">
+        <state line="2" column="40" selection-start="89" selection-end="89" vertical-scroll-proportion="0.03322259">
           <folding />
         </state>
       </provider>

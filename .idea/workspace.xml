@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <ignored path="ueske.iws" />
@@ -65,7 +64,7 @@
     <file path="/20130526072653_create_scores.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369553273507" ignored="false" />
     <file path="/score.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1371820627168" ignored="false" />
     <file path="/comment.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1375621610005" ignored="false" />
-    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386219480288" ignored="false" />
+    <file path="/user.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386224079636" ignored="false" />
     <file path="/reply.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1372077030224" ignored="false" />
     <file path="/_comment_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369578660150" ignored="false" />
     <file path="/comments.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369635771904" ignored="false" />
@@ -227,7 +226,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="21" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.8850227">
+            <state line="12" column="13" selection-start="737" selection-end="737" vertical-scroll-proportion="0.27231467">
               <folding />
             </state>
           </provider>
@@ -1334,7 +1333,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="21" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.8850227">
+        <state line="12" column="13" selection-start="737" selection-end="737" vertical-scroll-proportion="0.27231467">
           <folding />
         </state>
       </provider>

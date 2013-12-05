@@ -1,6 +1,6 @@
 #encoding: UTF-8
 class User < ActiveRecord::Base
-  include Users::OmniauthCallbacksHelper
+  extend Users::OmniauthCallbacksHelper
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authenticated_tokens
    before_create :add_random_nickname
   def self.find_for_oauth2(access_token, signed_in_resource=nil)
-    user_attributes=user_hash(access_token)
+    user_attributes= user_hash(access_token)
     logger.info "raw_info:#{access_token.raw_info}"
     authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid.to_s).first
     user=authentication.nil? ? nil : authentication.user

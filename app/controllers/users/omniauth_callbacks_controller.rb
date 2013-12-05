@@ -1,5 +1,6 @@
 class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
    include Users::OmniauthCallbacksHelper
+
   def google_oauth2
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.find_for_oauth2(request.env["omniauth.auth"], current_user)

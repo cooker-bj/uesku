@@ -23,22 +23,6 @@ class Users::OmniauthCallbacksController <Devise::OmniauthCallbacksController
 
 
 
-  private
-  def user_hash(access_token)
-    data=access_token.extra.raw_info
-    {
-        :authenticated_tokens_attributes=>[{  provider:access_token.provider,
-                                      uid: access_token.uid.to_s,
-                                      access_token: access_token.credentials.token}],
 
-        :real_name=>data['name'],
-        :email=> data["email"],
-        :gender=>  data['gender'],
-        :birthday=> data['birthday'],
-        :remote_avatar_url=> data['picture'],
-        :password=>Devise.friendly_token[0,20]
-
-    }
-  end
 
 end

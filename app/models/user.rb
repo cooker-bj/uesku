@@ -39,24 +39,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authenticated_tokens
    before_create :add_random_nickname
   def self.find_for_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.extra.raw_info
-    logger.info "raw_info:#{data}"
+    user_attributes=ActionController::Base.user_hash(access_token)
+    logger.info "raw_info:#{access_token.raw_info}"
     authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid.to_s).first
     user=authentication.nil? ? nil : authentication.user
     if authentication.nil? && signed_in_resource.nil?
-          user = User.create(real_name: data["name"],
-                             nickname: data['nickname'],
-                             email: data["email"],
-                             password: Devise.friendly_token[0,20],
-                             gender:  get_gender(data['gender']),
-                             birthday: date_format(data['birthday']),
-                             remote_avatar_url: data['picture']||data['image']||data['figureurl_qq-1'],
-                             authenticated_tokens_attributes:[ {
-                                  provider:access_token.provider,
-                                  uid: access_token.uid,
-                                  access_token: access_token.credentials.token
-                             } ]
-                         )
+          user = User.create(user_attributes  )
     elsif authentication.nil?
           user=signed_in_resource
           user.authenticated_tokens.create(

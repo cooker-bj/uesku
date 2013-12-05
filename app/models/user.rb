@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
 
     candidate_nickname=nil
        begin
-        candidate_nickname=authenticated_tokens.first.nil? ? 'user'+Random.rand(100000000).to_s : authenticated_tokens.first.provider.to_s+Random(100000000).to_s
+        candidate_nickname=authenticated_tokens.first.nil? ? 'user'+Random.rand(100000000).to_s : authenticated_tokens.first.provider.to_s+Random.rand(100000000).to_s
         found=User.where(:nickname=>candidate_nickname).first
        end while found
        self.nickname||=candidate_nickname

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect,:tqq2]
+         :recoverable, :rememberable, :validatable,:trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect,:tqq2]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id

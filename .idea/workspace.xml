@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/avatar_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/avatar_uploader.rb" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -155,7 +154,7 @@
     <file path="/menu.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376386712965" ignored="false" />
     <file path="/companies.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376310794263" ignored="false" />
     <file path="/seeds.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376558297068" ignored="false" />
-    <file path="/avatar_uploader.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378124721151" ignored="false" />
+    <file path="/avatar_uploader.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386309931538" ignored="false" />
     <file path="/users.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376310552592" ignored="false" />
     <file path="/users.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381492918521" ignored="false" />
     <file path="/jquery.ui.theme.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376229703508" ignored="false" />
@@ -251,15 +250,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/models/user_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="40" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="omniauth_callbacks_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -278,10 +268,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="omniauth_callbacks_helper.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="omniauth_callbacks_helper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.40059346">
+            <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="avatar_uploader.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/uploaders/avatar_uploader.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="3" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.6661721">
               <folding />
             </state>
           </provider>
@@ -337,7 +336,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/messenger.rb" />
         <option value="$PROJECT_DIR$/app/controllers/short_messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/message.js" />
         <option value="$PROJECT_DIR$/config/initializers/omniauth.rb" />
@@ -353,6 +351,7 @@
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
         <option value="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
+        <option value="$PROJECT_DIR$/app/uploaders/avatar_uploader.rb" />
       </list>
     </option>
   </component>
@@ -500,6 +499,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ueske" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uesku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploaders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1227,13 +1244,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="96" selection-start="2693" selection-end="2693" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/post.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="199" column="19" selection-start="2930" selection-end="2945" vertical-scroll-proportion="0.79548025" />
@@ -1338,7 +1348,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.40059346">
+        <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/uploaders/avatar_uploader.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="3" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.6661721">
           <folding />
         </state>
       </provider>

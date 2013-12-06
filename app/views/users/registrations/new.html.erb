@@ -1,6 +1,7 @@
-<h2>注册</h2>
+<b>请完善您的客户资料</b>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html=>{:multipart=>true}) do |f| %>
+
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %>
@@ -18,9 +19,10 @@
   <div><%=f.label :nickname,"呢称" %><%=f.text_field :nickname %></div>
   <div><%=f.label :gender,"性别"%><%=f.select :gender,options_for_select([['男'],['女']]) %></div>
   <div><%=f.label :birthday, '出生日期'%><%=f.date_select :birthday,:start_year=>1940,:end_year=>Date.current.year-13,:use_two_digit_numbers=>true %></div>
- <div>头像:<%=image_tag  resource.avatar_url unless resource.avatar? %> </div>
+ <div>头像:<%=image_tag  resource.remote_avatar_url if resource.remote_avatar_url %> </div>
 
-  <div><%=f.file_field :avatar %><%=f.hidden_field :avatar_cache %></div>
+  <div><%=f.file_field :avatar %><%=f.hidden_field :avatar_cache %><%=f.hidden_field :remote_avatar_url %></div>
+
 
   <%=f.fields_for :authenticated_tokens,resource.authenticated_tokens do |token| %>
   <%=token.hidden_field :provider %> <%=token.hidden_field :uid %> <%=token.hidden_field :access_token %>

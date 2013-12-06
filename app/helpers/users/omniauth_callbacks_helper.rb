@@ -11,7 +11,7 @@ module Users::OmniauthCallbacksHelper
         :email=> data["email"],
         :gender=>  User.get_gender(data['gender']),
         :birthday=> User.date_format(data['birthday']),
-        :remote_avatar_url=> data['picture']||data['image']||data['figureurl_qq-1'],
+        :remote_avatar_url=> data['picture']||data['image']||data['figureurl_qq_1'],
         :password=>Devise.friendly_token[0,20]
 
     }

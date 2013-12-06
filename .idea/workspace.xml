@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +28,7 @@
     <file path="/show.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1383278870767" ignored="false" />
     <file path="/company.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376561695709" ignored="false" />
     <file path="/20130516155444_create_companies.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368789687106" ignored="false" />
-    <file path="/Ruby Console" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386223059144" ignored="false" />
+    <file path="/Ruby Console" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386305616572" ignored="false" />
     <file path="/20130517130543_create_branches.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1368796009833" ignored="false" />
     <file path="/branch.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1369017636473" ignored="false" />
     <file path="/branches_controller.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1373463868400" ignored="false" />
@@ -198,7 +199,7 @@
     <file path="/test.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385536349704" ignored="false" />
     <file path="$PROJECT_DIR$/../locations/city/tran.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385706969166" ignored="false" />
     <file path="/tran.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1385706945377" ignored="false" />
-    <file path="/omniauth_callbacks_helper.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386222048979" ignored="false" />
+    <file path="/omniauth_callbacks_helper.rb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1386305980924" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,19 +278,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="omniauth_callbacks_helper.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="omniauth_callbacks_helper.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="73" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0">
+            <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.40059346">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/registrations/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="25" selection-start="17" selection-end="17" vertical-scroll-proportion="0.023076924">
+            <state line="1" column="25" selection-start="17" selection-end="17" vertical-scroll-proportion="-0.625">
               <folding />
             </state>
           </provider>
@@ -350,8 +351,8 @@
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb" />
       </list>
     </option>
   </component>
@@ -1321,6 +1322,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/registrations/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="25" selection-start="17" selection-end="17" vertical-scroll-proportion="-0.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="53" selection-start="1910" selection-end="1910" vertical-scroll-proportion="0.0">
@@ -1330,14 +1338,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/users/omniauth_callbacks_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="73" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/registrations/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="25" selection-start="17" selection-end="17" vertical-scroll-proportion="0.023076924">
+        <state line="18" column="66" selection-start="717" selection-end="717" vertical-scroll-proportion="0.40059346">
           <folding />
         </state>
       </provider>

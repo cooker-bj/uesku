@@ -1,0 +1,11 @@
+#user_bar{
+    width:200px;
+    border: 1px solid #cccccc;
+    margin: 2px auto;
+    text-align:center;
+}
+
+#user_main{
+    width:800px;
+    margin-left:2px;
+}

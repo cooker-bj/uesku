@@ -20,4 +20,6 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     respond_with @user
   end
+
+
 end

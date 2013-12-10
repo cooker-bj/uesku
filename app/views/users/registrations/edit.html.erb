@@ -1,29 +1,32 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>修改个人信息 <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
+  <div><%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+<div>
+  <%=f.label :real_name,"姓名" %>  <%=f.text_field :real_name %>
+</div>
+ <div>
+   <%=f.label :gender, "性别" %><%=f.select :gender, ['男','女']%>
+ </div>
+ <div>
+   <%=f.label :birthday, "出生日期"%>
+   <%=f.date_select :birthday,:start_year=>1940,:end_year=>Time.now.year-5 ,:use_month_numbers=>true%>
+ </div>
+ <div>
+   <%=f.label :avatar, "头像"%><br/>
+  <div> <%=image_tag resource.avatar_url.to_s unless resource.avatar_url.nil? %></div>
+   <%=f.file_field :avatar %> <%=f.hidden_field :avatar_cache %>
+ </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "修改" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= link_to "返回", :back %>

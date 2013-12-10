@@ -2,6 +2,12 @@ Uesku::Application.routes.draw do
 
 
 
+  get "profile/show"
+
+  get "profile/edit"
+
+  get "profile/update"
+
   get "courses/index"
 
   get "courses/category"

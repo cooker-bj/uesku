@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,:trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect,:tqq2]
+         :recoverable, :rememberable, :validatable,:trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,
+                  :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:points
   # attr_accessible :title, :body
   scope :online, lambda{ where('update_at <?', 10.minutes.ago)}
   has_many :comments

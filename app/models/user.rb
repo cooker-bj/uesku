@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,:avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id
   # attr_accessible :title, :body
-
+  scope :online, lambda{ where('update_at <?', 10.minutes.ago)}
   has_many :comments
   has_many :scores
   has_many :replies
@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
     end
   end
   has_many :messengers
-
   has_many :friendships
   has_many :friends, :through=>:friendships
   has_many :inverse_friendships,:class_name=>'Friendship',:foreign_key=>:friend_id
@@ -38,7 +37,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens
-   before_create :add_random_nickname
+   before_create :add_random_nickname, :add_registration_date
+
+
+
   def self.find_for_oauth2(access_token, signed_in_resource=nil)
     user_attributes= user_hash(access_token)
     logger.info "raw_info:#{access_token.extra.raw_info}"
@@ -105,6 +107,9 @@ class User < ActiveRecord::Base
     messages
   end
 
+  def online?
+    updated_at < 10.minutes.ago
+  end
 
   def self.date_format(date)
 
@@ -144,6 +149,10 @@ class User < ActiveRecord::Base
         found=User.where(:nickname=>candidate_nickname).first
        end while found
        self.nickname||=candidate_nickname
+  end
+
+  def add_registration_date
+       self.registration_date=Time.now
   end
 
 end

@@ -1,7 +1,7 @@
 
 <h1>课程分类</h1>
 
-  <% Category.roots.each do |item| %>
+  <% Category.roots.order('id').each do |item| %>
     <ul >   <li>   <%= item.name %>
         <ul><% item.children.each do |second| %>
 

@@ -8,7 +8,7 @@
   <div id='category_filter'>
   <%=form_tag do %>
       <%=submit_tag "确定" %>区域：
-    <% Location.find(get_city).children.each do |dist|%>
+    <% Location.find(get_city).children.order('id').each do |dist|%>
 
       <%=check_box_tag 'district[]',dist.id, @district.include?(dist.id.to_s)%>  <%=dist.name%>
     <%end%>

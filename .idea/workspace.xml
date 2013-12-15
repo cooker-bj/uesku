@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f94f42c4-876b-4959-acc5-e8069bb7a6fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/lessons/_category_list.html.erb" afterPath="$PROJECT_DIR$/app/views/lessons/_category_list.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/lessons/category.html.erb" afterPath="$PROJECT_DIR$/app/views/lessons/category.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ueske.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -160,7 +158,7 @@
     <file path="/users.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376310552592" ignored="false" />
     <file path="/users.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1381492918521" ignored="false" />
     <file path="/jquery.ui.theme.css" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1376229703508" ignored="false" />
-    <file path="/_category_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1387079131918" ignored="false" />
+    <file path="/_category_list.html.erb" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1387079660378" ignored="false" />
     <file path="/recommendation.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378284035506" ignored="false" />
     <file path="/popup.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378355680763" ignored="false" />
     <file path="/popshow.js" changelist="f94f42c4-876b-4959-acc5-e8069bb7a6fa" time="1378689947906" ignored="false" />
@@ -237,19 +235,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="category.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="category.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/lessons/category.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="49" selection-start="385" selection-end="385" vertical-scroll-proportion="0.23041475">
+            <state line="18" column="3" selection-start="762" selection-end="762" vertical-scroll-proportion="-11.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_category_list.html.erb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="_category_list.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/lessons/_category_list.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="42" selection-start="284" selection-end="284" vertical-scroll-proportion="-7.5">
+            <state line="11" column="45" selection-start="282" selection-end="282" vertical-scroll-proportion="0.25345623">
               <folding />
             </state>
           </provider>
@@ -355,8 +353,8 @@
         <option value="$PROJECT_DIR$/app/views/users/registrations/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/app/views/lessons/_category_list.html.erb" />
         <option value="$PROJECT_DIR$/app/views/lessons/category.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/lessons/_category_list.html.erb" />
       </list>
     </option>
   </component>
@@ -1264,16 +1262,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/lessons/_category_list.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/lessons/category.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="42" selection-start="284" selection-end="284" vertical-scroll-proportion="-7.5">
+        <state line="18" column="3" selection-start="762" selection-end="762" vertical-scroll-proportion="-11.25">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/lessons/category.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/lessons/_category_list.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="49" selection-start="385" selection-end="385" vertical-scroll-proportion="0.23041475">
+        <state line="11" column="45" selection-start="282" selection-end="282" vertical-scroll-proportion="0.25345623">
           <folding />
         </state>
       </provider>

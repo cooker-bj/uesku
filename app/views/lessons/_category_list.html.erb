@@ -3,7 +3,7 @@
 
   <% Category.roots.order('id').each do |item| %>
     <ul >   <li>   <%= item.name %>
-        <ul><% item.children.each do |second| %>
+        <ul><% item.children.order('id').each do |second| %>
 
               <li> <%=link_to second.name,category_lesson_path(second.id) %>
 

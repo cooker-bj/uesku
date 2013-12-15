@@ -1,17 +1,33 @@
 <div>
-<div><%=image_tag @user.avatar_url %>   </div>
-<div>姓名：<%=@user.name %>
-性别：<%=@user.gender %>
-出生日期<%=@user.birthday.strftime('%Y')%>年</div></div>
-<div>
-发表文章：
-<% @user.posts.each do |post| %>
-    <%=post.title %><%=post.posted_time %>
-<% end %>
+  <div><%=image_tag @user.avatar_url %>   </div>
+  <div>姓名：<%=@user.name %></div>
+  <div>注册时间:<%=format_time(user.registration_date) %></div>
+  <div>积分:<%=user.points %></div>
 </div>
 <div>
-发表回复：
-<%=@user.post_comments.each do |comment|  %>
-<%=display_string(comment.message, 50) %>
-<% end %>
+  <div>
+    发表评论：<br/>
+    <ul>
+    <% @user.comments.each do |comment|%>
+     <li>  <%=comment.comment %><%=comment.comment_time %></li>
+    <% end %>
+  </ul>
+  </div>
+    <div>
+        发表文章：
+      <ul>
+        <% @user.posts.each do |post| %>
+         <li>   <%=post.title %><%=post.posted_time %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+        发表回复：
+      <ul>
+        <%=@user.post_comments.each do |comment|  %>
+          <li>  <%=display_string(comment.message, 50) %></li>
+        <% end %>
+    </ul>
+    </div>
+
 </div>

@@ -1,0 +1,16 @@
+<div class="class_time">
+    <%=fields_for "timetable[class_times_attributes][]",class_time do |ct| %>
+
+        <%=ct.label :start_day,'开始日期'%>
+        <%=ct.text_field :start_day,:class=>'date_picker' %>
+        <%=ct.label :end_day,'结束日期'%>
+        <%=ct.text_field :end_day,:class=>'date_picker' %>
+        <%=ct.select :week,[['周一',1],['周二',2],['周三',3],['周四',4],['周五',5],['周六',6],['周日',0]] %>
+        从<%=ct.select :start_time_hour,hour_array %>:
+        <%=ct.select :start_time_minute,minute_array %>
+        到　<%=ct.select :end_time_hour,hour_array %>:<%=ct.select :end_time_minute,minute_array %>
+    <% end %>
+  <%=link_to "移除","#",:class=>'remove_class_time' unless class_time.persisted? %>
+  <%=link_to "删除", [:lesson,class_time],method: :delete, data: {confirm: "你确定要删除吗？"},
+             :class=>'delete_class_time',:remote=>true if class_time.persisted? %>
+</div>

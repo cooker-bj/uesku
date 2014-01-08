@@ -46,7 +46,7 @@
 
 }
 
-#left_bar {
+#left_bar,#manage_menu {
 	position:inherit;
 	left: 1px;
 	width: 150px;

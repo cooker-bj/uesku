@@ -21,7 +21,11 @@ group :development,:test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 end
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.

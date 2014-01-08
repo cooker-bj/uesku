@@ -1,3 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2764853120">
+    <data-source source="LOCAL" name="Rails ueske: development" uuid="36a95822-d795-4703-9fb6-0f5b10a5c727">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:uesku_development</jdbc-url>
+      <user-password>dfc6dfcfdfcddfcfdfc4dfcedf92df92df93df92</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails ueske: test" uuid="ea38cdb3-2cde-4a15-a339-af0043f8a52e">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:uesku_test</jdbc-url>
+      <user-password>dfc6dfcfdfcddfcfdfc4dfcedf92df92df93df92</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails ueske: production" uuid="572dccbb-635f-4eb5-8db9-2676e3f66f6b">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:uesku_production</jdbc-url>
+      <user-password>dfc6dfcfdfcddfcfdfc4dfcedf92df92df93df92</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
 

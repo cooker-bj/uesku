@@ -2,6 +2,17 @@ Uesku::Application.routes.draw do
 
 
 
+
+
+
+  get "calendar/index"
+
+  get "calendar/new"
+
+  get "calendar/create"
+
+  get "calendar/destroy"
+
   get "profile/show"
 
   get "profile/edit"
@@ -76,6 +87,7 @@ Uesku::Application.routes.draw do
     match 'location',:on=>:member,:via=>[:post,:get]
 
     resources :scores
+    resources :timetables
   end
   post 'lessons' =>'lessons#index'
   resources :replies

@@ -9,8 +9,8 @@ class Admin::CoursesController< Admin::AdminBaseController
   end
 
   def new
-    @course=Course.new
-    @course.company_id=params[:company_id]
+    @course=Course.new(:company_id=>params[:company_id])
+
     respond_with [:admin,@course.company,@course]
   end
 

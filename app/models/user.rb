@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
   has_many :friends, :through=>:friendships
   has_many :inverse_friendships,:class_name=>'Friendship',:foreign_key=>:friend_id
   has_many :inverse_friends,:through=>:inverse_friendships,:source=>:user
-
+  has_many :calendar_events
+  has_many :created_timetables,:class_name=>'Timetable',:foreign_key=>:creator_id
 
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens

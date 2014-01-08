@@ -24,6 +24,6 @@ class Admin::LessonsController <Admin::AdminBaseController
   end
 
   def list
-    @lesson=Lesson.audit_all.paginate(:params=>:page,:per_page=>40)
+    @lessons=Lesson.audit_all.paginate(:page=>params[:page],:per_page=>40)
   end
 end

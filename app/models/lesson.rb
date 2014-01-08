@@ -8,6 +8,7 @@ class Lesson < ActiveRecord::Base
   has_many :comments
   has_many :group_lessons
   has_many :groups,:through=>:group_lessons
+  has_many :timetables
   include(AuditContent)
   scope :published, where('lessons.audit=? ',true)
 

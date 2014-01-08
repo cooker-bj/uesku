@@ -26,5 +26,21 @@ module ApplicationHelper
     end
   end
 
+  def hour_array
+    array=[]
+    (0..23).each do |hour|
+      array<< ("%02d" % hour)
+    end
+    array
+  end
+
+  def minute_array
+    array=[]
+    (0..59).each do |minute|
+      array<<("%02d" % minute)
+    end
+    array
+  end
+
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211071622) do
+ActiveRecord::Schema.define(:version => 20140106121116) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -61,6 +61,21 @@ ActiveRecord::Schema.define(:version => 20131211071622) do
     t.integer  "company_id"
   end
 
+  create_table "calendar_events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title",                              :null => false
+    t.datetime "start_time",                         :null => false
+    t.datetime "end_time",                           :null => false
+    t.string   "location"
+    t.text     "description"
+    t.integer  "notify1",        :default => 60,     :null => false
+    t.integer  "notify2"
+    t.string   "event_group_id"
+    t.string   "source",         :default => "self", :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "ancestry"
@@ -69,6 +84,14 @@ ActiveRecord::Schema.define(:version => 20131211071622) do
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+
+  create_table "class_times", :force => true do |t|
+    t.integer  "timetable_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -212,6 +235,13 @@ ActiveRecord::Schema.define(:version => 20131211071622) do
     t.datetime "updated_at",                         :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "calendar_event_id"
+    t.integer  "alert_before_event", :default => 15, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
   create_table "post_comments", :force => true do |t|
     t.integer  "user_id"
     t.datetime "comment_time"
@@ -286,6 +316,18 @@ ActiveRecord::Schema.define(:version => 20131211071622) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "category",         :default => 0,     :null => false
+  end
+
+  create_table "timetables", :force => true do |t|
+    t.integer  "creator_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "lesson_id"
+    t.date     "start_day"
+    t.date     "end_day"
+    t.datetime "create_time"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

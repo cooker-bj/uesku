@@ -1,0 +1,2 @@
+module ClassTimeHelper
+end

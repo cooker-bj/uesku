@@ -1,4 +1,4 @@
-<%= form_for [:lesson,@timetable] do |f| %>
+<%= form_for @timetable do |f| %>
   <% if @timetable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timetable.errors.count, "error") %> prohibited this timetable from being saved:</h2>
@@ -21,18 +21,11 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description,'介绍' %><br />
+    <%= f.label :description,'课表介绍' %><br />
     <%= f.text_area :description %>
   </div>
 
-  <div class="field">
-    <%= f.label :start_day,'开始日期' %><br />
-    <%= f.text_field :start_day,:class=>'date_picker' %>
-  </div>
-  <div class="field">
-    <%= f.label :end_day,"结束日期" %><br />
-    <%= f.text_field :end_day,:class=>'date_picker' %>
-  </div>
+
  <div >
    <h3>上课时间：</h3>
    <fieldset>
@@ -49,5 +42,5 @@
   </div>
 <% end %>
 <div id=new_class_time class="undisplay" >
-  <%=render :partial=>"class_time",object: ClassTime.new%>
+  <%=render :partial=>"class_time",object: ClassTime.new(:name=>@timetable.lesson_name)%>
 </div>

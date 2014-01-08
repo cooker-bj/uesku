@@ -5,6 +5,8 @@ Uesku::Application.routes.draw do
 
 
 
+
+
   get "calendar/index"
 
   get "calendar/new"
@@ -87,8 +89,11 @@ Uesku::Application.routes.draw do
     match 'location',:on=>:member,:via=>[:post,:get]
 
     resources :scores
-    resources :timetables
+    resources :timetables,:name_prefix=>"lesson_"
   end
+
+  resources :timetables
+  resources :class_time,:only=>[:destroy]
   post 'lessons' =>'lessons#index'
   resources :replies
 

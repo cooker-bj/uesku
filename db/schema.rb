@@ -87,10 +87,16 @@ ActiveRecord::Schema.define(:version => 20140106121116) do
 
   create_table "class_times", :force => true do |t|
     t.integer  "timetable_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "start_day"
+    t.datetime "end_day"
+    t.integer  "week"
+    t.string   "start_time_hour"
+    t.string   "start_time_minute"
+    t.string   "end_time_hour"
+    t.string   "end_time_minute"
+    t.string   "name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "comments", :force => true do |t|

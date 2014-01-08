@@ -25,7 +25,7 @@ class TimetablesController < ApplicationController
   # GET /timetables/new.json
   def new
     @timetable = Timetable.new(:lesson_id=>params[:lesson_id])
-    @timetable.class_times.build
+    @timetable.class_times.build(:name=>@timetable.lesson_name)
     respond_with @timetable
 
   end
@@ -33,6 +33,7 @@ class TimetablesController < ApplicationController
   # GET /timetables/1/edit
   def edit
     @timetable = Timetable.find(params[:id])
+    respond_with @timetable
   end
 
   # POST /timetables

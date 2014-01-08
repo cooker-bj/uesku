@@ -23,9 +23,9 @@
     <td><%= timetable.start_day %></td>
     <td><%= timetable.end_day %></td>
     <td><%= timetable.create_time %></td>
-    <td><%= link_to 'Show', lesson_timetable_path(@lesson,timetable) %></td>
-    <td><%= link_to 'Edit', edit_lesson_timetable_path(@lesson,timetable) %></td>
-    <td><%= link_to 'Destroy', [@lesson,timetable], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', timetable_path(timetable) %></td>
+    <td><%= link_to 'Edit', edit_timetable_path(timetable) %></td>
+    <td><%= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -3,37 +3,28 @@
 
 
 <p>
-  <b>Title:</b>
-  <%= @timetable.title %>
+
+  <h1><%= @timetable.title %></h1>
 </p>
 
+
+
+
+
 <p>
-  <b>Description:</b>
+  <b>创建人:</b><%=@timetable.creator.nickname %><br/>
+  <b>创建时间:</b>
+  <%= format_time(@timetable.create_time) %>
+</p>
+<% events=[] %>
+<% @timetable.class_times.each do |event| %>
+ <% events.concat event.events %>
+<% end %>
+<%=content_tag :div,id: 'calendar', data: {events: events} do  %><% end %>
+<p>
+  <b>课表介绍:</b>
   <%= @timetable.description %>
 
-
 <p>
-  <b>Lesson:</b>
-  <%= @timetable.lesson.name %>
-</p>
 
-<p>
-  <b>Start day:</b>
-  <%= @timetable.start_day %>
-</p>
-
-<p>
-  <b>End day:</b>
-  <%= @timetable.end_day %>
-</p>
-
-<p>
-  <b>Create time:</b>
-  <%= @timetable.create_time %>
-</p>
-
-<% @timetable.class_times.each do |event| %>
-
-<% end %>
-
-<%= link_to 'Back', :back %>
+<%= link_to '返回', lesson_timetables_path(@timetable.lesson) %>

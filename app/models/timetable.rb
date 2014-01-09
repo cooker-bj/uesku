@@ -14,12 +14,12 @@ class Timetable < ActiveRecord::Base
   private
 
   def add_create_time
-    create_time=Time.now
+    self.create_time=Time.now
   end
 
   def add_start_end_day
-    end_day=class_times.maximum('end_day')
-    start_day=class_times.minimum('start_day')
+    self.end_day=self.class_times.maximum('end_day')
+    self.start_day=self.class_times.minimum('start_day')
   end
 
 end

@@ -4,7 +4,7 @@ class Timetable < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :creator,:class_name=>'User',:foreign_key=>:creator_id
   before_create :add_create_time
-  accepts_nested_attributes_for :class_times
+  accepts_nested_attributes_for :class_times,:allow_destroy => true
   before_save :add_start_end_day
   def lesson_name
     lesson.try(:title)

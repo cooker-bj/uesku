@@ -1,4 +1,4 @@
-<%= form_for @timetable do |f| %>
+<%= nested_form_for @timetable,:class=>'timetable' do |f| %>
   <% if @timetable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timetable.errors.count, "error") %> prohibited this timetable from being saved:</h2>
@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.hidden_field :creator_id,:value=>current_user.id %>
     <%= f.hidden_field :lesson_id %>
-    课程名称：<%=@timetable.lesson.name %>
+    课程名称：<span id='title'><%=@timetable.lesson_name %></span>
   </div>
   <div class="field">
     <%= f.label :title,'标题' %><br />
@@ -30,17 +30,15 @@
    <h3>上课时间：</h3>
    <fieldset>
    <div id="class_times">
-     <%=render :partial=>'class_time',:collection=> @timetable.class_times %>
+     <%=f.fields_for :class_times %>
    </div>
    </fieldset>
    <div>
-     <%=link_to '添加新上课时间','#',:id=>'add_new_class_time'%>
+     <%=f.link_to_add '添加新上课时间', :class_times,:data=>{:target=>'#class_times'}%>
    </div>
  </div>
   <div class="actions">
     <%= f.submit '提交' %>
   </div>
 <% end %>
-<div id=new_class_time class="undisplay" >
-  <%=render :partial=>"class_time",object: ClassTime.new(:name=>@timetable.lesson_name)%>
-</div>
+

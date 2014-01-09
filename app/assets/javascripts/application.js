@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require kindeditor
+//= require jquery_nested_form
+//= require fullcalendar
 //= require_tree .

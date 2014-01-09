@@ -4,5 +4,4 @@ class ClassTime < ActiveRecord::Base
   belongs_to :timetable
 
 
-
 end

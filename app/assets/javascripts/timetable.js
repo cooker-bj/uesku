@@ -5,28 +5,29 @@ $(function(){
     $('.date_picker').datepicker({
         dateFormat: $.datepicker.ATOM
     });
+    $('#class_times').on('nested:fieldAdded', function(e){
+        var field= e.field
+        var dateField=field.find('.date_picker');
+        dateField.datepicker({
+            dateFormat: $.datepicker.ATOM
+        });
+        field.find('.class_title').val($('#title').html());
+    })
 
-    $('form#new_timetable').submit(function(e){
-        var start=new Date($(this).find('#timetable_start_day').val());
-        var end_day=new Date($(this).find('#timetable_end_day').val());
+    $('form.new_timetable,form.edit_timetable').submit(function(e){
+
         var validate=true;
         var error_msg='';
-        if(end_day < start) {
-            error_msg=error_msg+"结束日期必须晚于开始日期\n";
-            validate=false;
-        }
+
 
         $('#class_times .class_time').each(function(){
-            class_str=new Date($(this).find('#timetable_class_times_attributes__start_day').val());
-            class_end=new Date($(this).find('#timetable_class_times_attributes__end_day').val());
+            class_str=new Date($(this).find('.start_day').val());
+            class_end=new Date($(this).find('.end_day').val());
             if(class_str>class_end){
                 error_msg=error_msg+"上课开始日期应早于结束日期\n";
                 validate=false;
             }
-            if(class_str<start || class_end>end_day){
-                error_msg=error_msg+"上课开始日期不应早于整体开始时间或晚于整体结束时间\n";
-                validate=false;
-            }
+
 
             start_hour=$(this).find('#timetable_class_times_attributes__start_time_hour').val();
             end_hour=$(this).find('#timetable_class_times_attributes__end_time_hour').val();
@@ -45,14 +46,6 @@ $(function(){
 
     });
 
-    $('#class_times').on('click','.remove_class_time',function(){
-        $(this).parent().remove();
-    })
-    $("#class_times").on('ajax:success',".delete_class_time",function(){
-        $(this).parent().remove();
-    });
-    $("#add_new_class_time").click(function(e){
-        var add_item=$('#new_class_time').children().clone(true);
-        $('#class_times').append(add_item);
-    })
+
+
 })

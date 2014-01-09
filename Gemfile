@@ -14,7 +14,8 @@ gem 'remotipart','~>1.2'
 # Gems for search
 
 gem 'sunspot_rails','~>1.3'
-
+gem 'nested_form'
+gem 'fullcalendar-rails'
 group :development,:test do
   gem 'rspec'
   gem 'rspec-rails'

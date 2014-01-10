@@ -6,13 +6,26 @@
       <%=render "category_list" %>
     </div>
     <div id='tools_menu'>
-     <h1> 相关班级列表</h1>
-     <ul>
-      <%@lesson.groups.each do |g| %>
-        <li><%=link_to g.title, group_path(g) %></li>
-      <% end %>
-     </ul>
-      <%=link_to '创建班级',new_group_path(:lesson_id=>@lesson.id) %>
+      <div id="related_classes">
+        <h1> 相关班级列表</h1>
+        <ul>
+             <%@lesson.groups.each do |g| %>
+              <li><%=link_to g.title, group_path(g) %></li>
+            <% end %>
+        </ul>
+        <%=link_to '创建班级',new_group_path(:lesson_id=>@lesson.id) %>
+      </div>
+      <div id="related_timetables">
+        <h1>相关课表 </h1>
+        <ul>
+          <%@lesson.timetables.each do |table|%>
+          <li><%=link_to table.title,timetable_path(table)%></li>
+           <% end %>
+        </ul>
+        <%=link_to '新建课表',new_lesson_timetable_path(@lesson)%>
+
+
+      </div>
     </div>
   </div>
   <div id='main_content' class="float_right">

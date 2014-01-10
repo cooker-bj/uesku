@@ -7,8 +7,6 @@ class CreateCalendarEvents < ActiveRecord::Migration
       t.datetime :end_time,:null=>false
       t.string :location
       t.text :description
-      t.integer :notify1,:null=>false,:default=>60
-      t.integer :notify2
       t.string :event_group_id
       t.string :source, :null=>false,:default=>'self'
 

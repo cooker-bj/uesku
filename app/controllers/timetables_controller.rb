@@ -66,6 +66,20 @@ class TimetablesController < ApplicationController
     @timetable = Timetable.find(params[:id])
     @timetable.destroy
 
-    respond_with [:lesson,@timetable]
+    respond_with [@timetable.lesson,@timetable]
+  end
+
+  def register_user
+    @timetable=Timetable.find(params[:id])
+    respond_with do |format|
+      if @timetable.register(current_user)
+       format.html {redirect_to current_user }
+        format.json {head :no_content}
+      else
+        format.html {render action: 'show'}
+        format.json {render json:@timetime.errors,status: :unprocessable_entity}
+      end
+    end
+
   end
 end

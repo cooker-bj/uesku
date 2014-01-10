@@ -7,6 +7,18 @@ Uesku::Application.routes.draw do
 
 
 
+  get "calendar_event/index"
+
+  get "calendar_event/new"
+
+  get "calendar_event/edit"
+
+  get "calendar_event/create"
+
+  get "calendar_event/update"
+
+  get "calendar_event/destroy"
+
   get "calendar/index"
 
   get "calendar/new"
@@ -92,8 +104,10 @@ Uesku::Application.routes.draw do
     resources :timetables,:name_prefix=>"lesson_"
   end
 
-  resources :timetables
-  resources :class_time,:only=>[:destroy]
+  resources :timetables do
+    get 'register_user',:on=>:member
+  end
+
   post 'lessons' =>'lessons#index'
   resources :replies
 

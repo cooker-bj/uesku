@@ -15,6 +15,7 @@
     <li><a href="#friends">我的朋友</a></li>
     <li><a href="#groups">我的班级</a></li>
     <li><a href='#messenger'>短信<% if @user.has_new_message? %><span class='tip'>新</span><% end %></a></li>
+    <li><a href="#calendar">日程表</a></li>
   </ul>
 <div id="myfront">
 <div>
@@ -57,6 +58,7 @@
      <%=render :partial=>"message_groups" ,:locals=>{:message_groups=>@user.message_groups}%>
 
   </div>
+  <div id="calendar"></div>
 
 </div>
 

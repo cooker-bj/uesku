@@ -46,13 +46,13 @@ $(function(){
 
     });
 
-    $('#calendar').fullCalendar({
+    $('#timetable').fullCalendar({
         header: {
             left: 'prev, today title',
             center: '',
             right: 'month,agendaWeek,agendaDay next'
         },
-        events: $('#calendar').data('events'),
+        events: $('#timetable').data('events'),
         timeFormat: 'hh:mmt',
         handleWindowResize: true,
         aspectRatio: 2,
@@ -61,7 +61,11 @@ $(function(){
             day: '日',
             week: '周',
             month: '月'
-        }
+        },
+        allDaySlot:false
+
+
+
     });
 
 })

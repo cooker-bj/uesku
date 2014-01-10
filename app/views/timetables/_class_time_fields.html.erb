@@ -7,7 +7,7 @@
         <%=f.text_field :start_day,:class=>'date_picker start_day',:value=>(f.object.start_day.try(:strftime,"%Y-%m-%d")||Time.now.strftime("%Y-%m-%d")) %>
         <%=f.label :end_day,'结束日期'%>
         <%=f.text_field :end_day,:class=>'date_picker end_day',:value=>(f.object.end_day.try(:strftime,"%Y-%m-%d")||Time.now.strftime("%Y-%m-%d"))%>
-        每周:<%=f.select :week,[['周一',1],['周二',2],['周三',3],['周四',4],['周五',5],['周六',6],['周日',0]] %>
+        每周:<%=f.select :week,options_for_select(WEEK.map.with_index{|v,i|[v,i]},(f.object.week||Time.now.wday)) %>
         从<%=f.select :start_time_hour,hour_array %>:
         <%=f.select :start_time_minute,minute_array %>
         到　<%=f.select :end_time_hour,hour_array %>:<%=f.select :end_time_minute,minute_array %>

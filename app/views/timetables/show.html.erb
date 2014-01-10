@@ -1,30 +1,42 @@
 <p id="notice"><%= notice %></p>
-
-
-
 <p>
-
   <h1><%= @timetable.title %></h1>
 </p>
+<div>
+<div id="timetable_detail">
+    <div>
+        <h2>课表介绍:</h2>
+        <div>
+            <%= @timetable.description %>
+        </div>
+    </div>
+    <div>
+        <% events=[] %>
+      <table width="400" border="1">
+        <tr>
+          <th>课名</th><th>开始日期</th><th>结束日期</th><th>每周</th><th>上课时间</th><th>结束时间</th>
+        </tr>
+        <% @timetable.class_times.each do |event| %>
+            <% events.concat event.events %>
+         <tr>
+           <td><%=event.name%></td>
+           <td><%=event.start_day%></td>
+           <td><%=event.end_day%></td>
+           <td><%=WEEK[event.week]%></td>
+           <td><%="#{event.start_time_hour}:#{event.start_time_minute}"%></td>
+           <td><%="#{event.end_time_hour}:#{event.end_time_minute}"%></td>
+         </tr>
+        <% end %>
+      </table>
+    </div>
+    <div>
+        <b>创建人:</b><%=@timetable.creator.nickname %><br/>
+        <b>创建时间:</b><%= format_time(@timetable.create_time) %>
+    </div>
+</div>
 
 
-
-
-
-<p>
-  <b>创建人:</b><%=@timetable.creator.nickname %><br/>
-  <b>创建时间:</b>
-  <%= format_time(@timetable.create_time) %>
-</p>
-<% events=[] %>
-<% @timetable.class_times.each do |event| %>
- <% events.concat event.events %>
-<% end %>
-<%=content_tag :div,id: 'calendar', data: {events: events} do  %><% end %>
-<p>
-  <b>课表介绍:</b>
-  <%= @timetable.description %>
-
-<p>
+    <%=content_tag :div,id: 'timetable', data: {events: events} do  %><% end %>
+</div>
 
 <%= link_to '返回', lesson_timetables_path(@timetable.lesson) %>

@@ -1,0 +1,40 @@
+<%=nested_form_for @event,:remote=>true do |f|%>
+    <%=f.hidden_field :user_id,:value=>current_user.id %>
+    <%=f.hidden_field :start_time,:id=>'start' %>
+    <%=f.hidden_field :end_time,:id=>'end' %>
+    <%=f.label :title,"标题"%>
+    <%=f.text_field :title %><br/>
+    <%=f.label :start_time,'开始时间'%>
+
+    <%= text_field_tag :start_date,@event.start_time.try(:to_date),:class=>'date_picker' %>
+
+    <%= text_field_tag :start_hour,@event.start_time.try(:strftime,"%H:%M"),:class=>'time_picker'%><br/>
+    <%=f.label :end_time ,'结束时间'%>
+    <%=text_field_tag :end_date,@event.end_time.try(:to_date),:class=>'date_picker' %>
+    <%=text_field_tag :end_hour, @event.end_time.try(:strftime,"%H:%M"),:class=>'time_picker'  %><br/>
+    <div>全天事件<%=f.check_box :all_day %>,重复事件<%=check_box_tag :repeat %></div>
+     <div id='repeat_area' class="undisplay">
+        <%=fields_for :repeat_params do |s|%>
+            每<%=s.text_field :repeat_every,:value=>1 %><%=s.select :unit,options_for_select(CalendarEvent::DAY_UNIT) %>重复<br/>
+            重复<%=s.text_field :time %>次<br/>
+            到<%=s.text_field :end_day ,:class=>'date_picker'%>为止
+        <% end %>
+        
+    </div>
+
+    <%=f.label :location ,'地点'%>
+    <%=f.text_field :location %><br/>
+    <%=f.label :description,'简介'%>
+    <%=f.text_area :description %><br/>
+    提醒：
+    <div id="notice">
+        <%=f.fields_for :notifications do |n|%>
+            提前<%=n.select :alert_before_event,ALERTTIME.to_a%>提醒 <%=n.link_to_remove '删除' %>
+        <%end %>
+    </div>
+    <%=f.link_to_add '增加',:notifications,data: {:target=>'#notice'} %><br/>
+
+   
+    <%=f.submit '提交'%>
+
+<% end %>

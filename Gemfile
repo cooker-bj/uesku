@@ -16,6 +16,7 @@ gem 'remotipart','~>1.2'
 gem 'sunspot_rails','~>1.3'
 gem 'nested_form'
 gem 'fullcalendar-rails'
+gem 'jquery-timepicker-addon-rails'
 group :development,:test do
   gem 'rspec'
   gem 'rspec-rails'

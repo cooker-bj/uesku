@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require jquery-ui
 //= require kindeditor
 //= require jquery_nested_form
+//= require jquery-ui-timepicker-addon
 //= require fullcalendar
+
 //= require_tree .

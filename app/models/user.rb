@@ -1,6 +1,8 @@
 #encoding: UTF-8
 class User < ActiveRecord::Base
   extend Users::OmniauthCallbacksHelper
+  
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -142,6 +144,22 @@ class User < ActiveRecord::Base
                end
     end
     gender
+  end
+
+
+  def my_events
+    calendar_events.collect do |event|
+      {
+        id: event.event_group_id||event.id,
+        start: event.start_time,
+        end: event.end_time,
+        title: event.title,
+        url: event.get_url,
+        allDay:event.all_day,
+        realId: event.id
+      }
+      end
+
   end
 
   private

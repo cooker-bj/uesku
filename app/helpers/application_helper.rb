@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-
+ 
   def display_string(content,size)
     (content.length <size ? content : content[0,size-5]+'...' ) unless content.nil?
   end

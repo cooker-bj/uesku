@@ -5,10 +5,10 @@ describe CalendarEvent do
   context 'create events' do
     it 'create one event' do
       event=CalendarEvent.add_events({:title=>'test',
-                                  :start_time=>1.day.from_now,
-                                   :end_time=>(1.day+1.hour).from_now,
-                                   :user_id=>1,
-                                   :notifications_attributes=>[{:alert_before_event=>20}]
+                                  :start_time=>1.day.from_now.to_s,
+                                   :end_time=>(1.day+1.hour).from_now.to_s,
+                                   :user_id=>'1',
+                                   :notifications_attributes=>[{:alert_before_event=>'20'}]
                                   })
       CalendarEvent.all.count.should== 1
     end
@@ -17,13 +17,12 @@ describe CalendarEvent do
       CalendarEvent.add_events({:title=>'test',
                                  :start_time=>1.day.from_now.to_s,
                                  :end_time=>(1.day+1.hour).from_now.to_s,
-                                 :user_id=>1,
-                                 :repeat=>true,
-                                 :unit=>'周',
-                                 :notifications_attributes=>[{:alert_before_event=>20}],
-                                 :repeat_every=>1,
+                                 :user_id=>'1',
 
-                                 :end_period=>{:time=>3}
+                                 :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                 {:repeat_every=>1,
+                                 :unit=>'week',
+                                 :time=>'3'
                                })
       CalendarEvent.all.count.should==3
     end
@@ -32,13 +31,14 @@ describe CalendarEvent do
       CalendarEvent.add_events({:title=>'test',
                                 :start_time=>1.day.from_now.to_s,
                                 :end_time=>(1.day+1.hour).from_now.to_s,
-                                :user_id=>1,
-                                :repeat=>true,
-                                :unit=>'周',
-                                :notifications_attributes=>[{:alert_before_event=>20}],
-                                :repeat_every=>1,
+                                :user_id=>'1',
+                                :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                {
+                                :unit=>'week',
 
-                                :end_period=>{:end_day=>6.week.from_now.strftime("%Y-%m-%d")}
+                                :repeat_every=>'1',
+
+                                :end_day=>6.week.from_now.strftime("%Y-%m-%d")
                                })
       CalendarEvent.all.count.should==6
     end
@@ -49,10 +49,10 @@ describe CalendarEvent do
       events=CalendarEvent.add_events({:title=>'test',
                                             :start_time=>1.day.from_now.to_s,
                                             :end_time=>(1.day+1.hour).from_now.to_s,
-                                            :user_id=>1,
-                                            :notifications_attributes=>[{:alert_before_event=>20}]
+                                            :user_id=>'1',
+                                            :notifications_attributes=>[{:alert_before_event=>'20'}]
                                            })
-      events.first.destroy
+       CalendarEvent.first.destroy
 
       CalendarEvent.all.count.should==0
 
@@ -62,15 +62,17 @@ describe CalendarEvent do
      events= CalendarEvent.add_events({:title=>'test',
                                 :start_time=>1.day.from_now.to_s,
                                 :end_time=>(1.day+1.hour).from_now.to_s,
-                                :user_id=>1,
-                                :repeat=>true,
-                                :unit=>'周',
-                                :notifications_attributes=>[{:alert_before_event=>20}],
+                                :user_id=>'1',
+                                :notifications_attributes=>[{:alert_before_event=>'20'}]},
+
+                                {:unit=>'week',
+
                                 :repeat_every=>1,
 
-                                :end_period=>{:end_day=>6.week.from_now.strftime("%Y-%m-%d")}
+                                :end_day=>6.week.from_now.strftime("%Y-%m-%d")
                                })
-      events[3].destroy(true)
+      event=CalendarEvent.all.slice(3)
+      CalendarEvent.remove_events(event.id,'future')
       CalendarEvent.all.count.should==3
     end
 

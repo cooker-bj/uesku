@@ -17,7 +17,7 @@ class Timetable < ActiveRecord::Base
 
    unless self.users.include?(user)
      self.users<<user
-     #--add class time to user's calendar
+     #--add class time to user's calendar_events
 
       calendar_events=class_times.inject([]){|events,time| events.concat time.events}
       calendar_events.each do |event|

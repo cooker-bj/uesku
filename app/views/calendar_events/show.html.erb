@@ -1,0 +1,16 @@
+标题: <%=@event.title %><br/>
+开始时间:<%=@event.start_time.strftime("%Y-%m-%d %H:%M")%><br/>
+结束时间:<%=@event.end_time.strftime("%Y-%m-%d %H:%M")%><br/>
+全天事件:<%=@event.all_day ? '是' :'否' %><br/>
+地点：<%=@event.location %><br/>
+简介：<%=@event.description %><br/>
+提醒：
+<ul>
+<%@event.notifications.each do |f| %>
+<li>提前<%=ALERTTIME.key(f.alert_before_event)%></li>
+<% end %>
+<%=content_tag :div,:id=>"remove_#{@event.id}" do %>
+<%=link_to '删除',calendar_event_path(@event, :my_scope=>'current'), method: :delete, data: {confirm: '你确定删除该事件吗？'},:remote=>true%>
+<%=link_to '删除当前及未来事件',calendar_event_path(@event, :my_scope=>'future'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
+<%=link_to '删除所有事件',calendar_event_path(@event, :my_scope=>'all'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
+<% end %>

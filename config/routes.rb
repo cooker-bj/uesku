@@ -7,25 +7,7 @@ Uesku::Application.routes.draw do
 
 
 
-  get "calendar_event/index"
-
-  get "calendar_event/new"
-
-  get "calendar_event/edit"
-
-  get "calendar_event/create"
-
-  get "calendar_event/update"
-
-  get "calendar_event/destroy"
-
-  get "calendar/index"
-
-  get "calendar/new"
-
-  get "calendar/create"
-
-  get "calendar/destroy"
+  resources :calendar_events
 
   get "profile/show"
 

@@ -28,6 +28,8 @@ module ApplicationHelper
     end
   end
 
+  
+
   def hour_array
     array=[]
     (0..23).each do |hour|

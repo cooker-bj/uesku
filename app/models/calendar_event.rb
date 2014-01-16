@@ -59,6 +59,17 @@ class CalendarEvent < ActiveRecord::Base
     end
   end
 
+
+  def self.update_events(event_id,attributes,applied_to_all=false)
+    my_event=self.find(event_id)
+    if(applied_to_all&& (!my_event.event_group_id.blank?))
+    else
+      my_event.update_attributes(attributes) ? [my_event] : nil
+    end
+
+    
+  end
+
   
 
   def repeat
@@ -84,7 +95,7 @@ class CalendarEvent < ActiveRecord::Base
 
   private
     def self.create_group_id
-      gid=Random.rand(10)
-      where(:event_group_id=>gid.to_s).blank? ? gid : create_group_id
+      gid=Random.rand(10).to_s
+      where(:event_group_id=>gid).blank? ? gid : create_group_id
     end
 end

@@ -11,6 +11,11 @@ class CalendarEventsController < ApplicationController
     respond_with @event, :layout=>false if request.xhr?
   end
 
+  def edit
+    @event=CalendarEvent.find(params[:id])
+    respond_with @event, :layout=>false if request.xhr?
+  end
+
   def show
     @event=CalendarEvent.find(params[:id])
     respond_with @event,:layout=>false if request.xhr?
@@ -21,6 +26,15 @@ class CalendarEventsController < ApplicationController
     if @events=CalendarEvent.add_events(params[:calendar_event],(params[:repeat].blank? ? nil :params[:repeat_params]))
     
       render :json=>{:success=>true,:events=>@events}
+    else
+      render :json=>{:success=>false,:error=>" wrong arguments",:status=>:unprocessable_entity}
+    end
+
+  end
+
+  def update
+    if @events=CalendarEvent.update_events(params[:id],params[:calendar_event],params[:applied_to_all])
+       render :json=>{:success=>true,:events=>@events}
     else
       render :json=>{:success=>false,:error=>" wrong arguments",:status=>:unprocessable_entity}
     end

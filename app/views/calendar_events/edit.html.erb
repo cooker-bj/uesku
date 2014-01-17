@@ -1,0 +1,16 @@
+<%= nested_form_for @event do |f| %>
+<%=f.label :title,'标题' %><%=f.text_field :title %><br/>
+<%=f.label :start_time ,'开始时间' %><%=f.text_field :start_time,:disabled=>true %><br/>
+<%=f.label :end_time ,'结束时间' %><%=f.text_field :end_time,:disabled=>true %><br/>
+ 提醒：
+    <div id="notice">
+	<%=f.fields_for :notifications do |n| %>
+   		提前<%=n.select :alert_before_event,ALERTTIME.to_a%>提醒 <%=n.link_to_remove '删除' %>
+	<% end %>
+    </div>
+	<%=f.link_to_add '增加',:notifications,data: {:target=>'#notice'} %><br/>
+<%=f.label :locaion,'地点' %><%=f.text_field :location %><br/>
+<%=f.label :description,'简介' %><%=f.text_area :description %><br/>
+<% if @event.repeat %>应用到全部<%=check_box_tag :applied_to_all,true,true %><% end %><br/>
+<%=f.submit '提交'%>
+<% end %>

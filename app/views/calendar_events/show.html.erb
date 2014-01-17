@@ -14,3 +14,4 @@
 <%=link_to '删除当前及未来事件',calendar_event_path(@event, :my_scope=>'future'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
 <%=link_to '删除所有事件',calendar_event_path(@event, :my_scope=>'all'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
 <% end %>
+<%=link_to '修改',edit_calendar_event_path(@event) %>

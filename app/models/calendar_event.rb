@@ -4,6 +4,8 @@ class CalendarEvent < ActiveRecord::Base
                   :all_day
   belongs_to :user
   has_many :notifications
+  validates_presence_of :title,:start_time,:end_time
+  validate :start_less_end
   accepts_nested_attributes_for :notifications,:allow_destroy => true
   DAY_UNIT={'天'=>:day,'周'=>:week,'月'=>:month,'年'=>:year}
   
@@ -60,11 +62,35 @@ class CalendarEvent < ActiveRecord::Base
   end
 
 
-  def self.update_events(event_id,attributes,applied_to_all=false)
+  def self.update_events(event_id,attrs,applied_to_all=false)
     my_event=self.find(event_id)
-    if(applied_to_all&& (!my_event.event_group_id.blank?))
+    if(applied_to_all && (!my_event.event_group_id.blank?))
+      illegal = false
+      illegal=true if attrs.has_key?(:title) && attrs[:title].blank?
+      illegal=true if attrs.has_key?(:start_time) && attrs[:start_time].blank?
+      illegal=true if attrs.has_key?(:end_time) && attrs[:end_time].blank?
+      illegal=true if attrs.has_key?(:start_time)&& attrs.has_key?(:end_time) && Time.parse(attrs[:start_time])>Time.parse(attrs[:end_time])
+      illegal=true if attrs.has_key?(:start_time)&& !attrs.has_key?(:end_time) && Time.parse(attrs[:start_time])>my_event.end_time
+      illegal=true if !attrs.has_key?(:start_time)&& attrs.has_key?(:end_time) && Time.parse(attrs[:end_time])<my_event.start_time
+      unless illegal
+        events=self.where(:event_group_id=>my_event.event_group_id)
+        start_gap=Time.parse(attrs[:start_time])-my_event.start_time if attrs.has_key?(:start_time)
+        end_gap= Time.parse(attrs[:end_time])-my_event.end_time if attrs.has_key?(:end_time)
+
+        events.each do |event|
+          params=attrs
+          params.merge!({:start_time=>event.start_time+start_gap}) if attrs.has_key? :start_time
+          params.merge!({:end_time=>event.end_time+end_gap}) if attrs.has_key? :end_time
+          unless event.update_attributes(params)
+            return nil
+          end
+        end
+      else
+        nil
+      end
     else
-      my_event.update_attributes(attributes) ? [my_event] : nil
+      attrs.merge!({:event_group_id=>nil}) if my_event.repeat
+      my_event.update_attributes(attrs) ? [my_event] : nil
     end
 
     
@@ -94,6 +120,12 @@ class CalendarEvent < ActiveRecord::Base
   end
 
   private
+
+    def start_less_end
+      self.start_time<=self.end_time
+    end
+    
+
     def self.create_group_id
       gid=Random.rand(10).to_s
       where(:event_group_id=>gid).blank? ? gid : create_group_id

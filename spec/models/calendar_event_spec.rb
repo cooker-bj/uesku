@@ -96,8 +96,8 @@ describe CalendarEvent do
      
          before(:each)  do 
           @events= CalendarEvent.add_events({:title=>'test',
-                                :start_time=>1.day.from_now.to_s,
-                                :end_time=>(1.day+1.hour).from_now.to_s,
+                                :start_time=>'2014-01-14 07:30',
+                                :end_time=>'2014-01-14 08:30',
                                 :user_id=>'1',
                                 :notifications_attributes=>[{:alert_before_event=>'20'}]},
 
@@ -107,22 +107,24 @@ describe CalendarEvent do
 
                                 :end_day=>6.week.from_now.strftime("%Y-%m-%d")
                                }) 
-        end
+         end
           it 'update all events' do 
-            CalendarEvent.update_events(@events.first.id,{:title=>'good'},true)
+            CalendarEvent.update_events(@events.first.id,{:title=>'good',:start_time=>'2014-01-14 07:00',:notifications_attributes=>[{:alert_before_event=>'20'}]},true)
             targe_events=CalendarEvent.where(:event_group_id=>@events.first.event_group_id)
             targe_events.each do |event|
-              event.title.should=='good'
+              event.reload.title.should=='good'
+            end
+            targe_events[1].reload.start_time.should== Time.parse('2014-01-21 07:00')
           end
 
           it 'update only one event' do 
             myevents=CalendarEvent.update_events(@events.first.id,{:title=>'bad'},false)
             myevents.first.reload.title.should=='bad'
             @events.last.reload.title.should=='test'
-            myevents.first.reload.event_group_id.should be_nil
+            @events.first.reload.event_group_id.should be_nil
           end
 
-          end 
+    end 
    end
-  end
+ 
 end

@@ -8,7 +8,8 @@ describe CalendarEvent do
                                   :start_time=>1.day.from_now.to_s,
                                    :end_time=>(1.day+1.hour).from_now.to_s,
                                    :user_id=>'1',
-                                   :notifications_attributes=>[{:alert_before_event=>'20'}]
+                                   :notifications_attributes=>[{:alert_before_event=>'20'}],
+                                   :repeat=>false
                                   })
       CalendarEvent.all.count.should== 1
       CalendarEvent.first.notifications.first.alert_before_event.should==20
@@ -20,7 +21,8 @@ describe CalendarEvent do
                                  :end_time=>(1.day+1.hour).from_now.to_s,
                                  :user_id=>'1',
 
-                                 :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                 :notifications_attributes=>[{:alert_before_event=>'20'}],
+                                 :repeat=>true},
                                  {:repeat_every=>1,
                                  :unit=>'week',
                                  :time=>'3'
@@ -34,7 +36,8 @@ describe CalendarEvent do
                                 :start_time=>1.day.from_now.to_s,
                                 :end_time=>(1.day+1.hour).from_now.to_s,
                                 :user_id=>'1',
-                                :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                :notifications_attributes=>[{:alert_before_event=>'20'}],
+                                :repeat=>true},
                                 {
                                 :unit=>'week',
 
@@ -53,6 +56,8 @@ describe CalendarEvent do
                                             :start_time=>1.day.from_now.to_s,
                                             :end_time=>(1.day+1.hour).from_now.to_s,
                                             :user_id=>'1',
+                                            :repeat=>false,
+
                                             :notifications_attributes=>[{:alert_before_event=>'20'}]
                                            })
        CalendarEvent.first.destroy
@@ -66,7 +71,8 @@ describe CalendarEvent do
                                 :start_time=>1.day.from_now.to_s,
                                 :end_time=>(1.day+1.hour).from_now.to_s,
                                 :user_id=>'1',
-                                :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                :notifications_attributes=>[{:alert_before_event=>'20'}],
+                                :repeat=>true},
 
                                 {:unit=>'week',
 
@@ -87,6 +93,7 @@ describe CalendarEvent do
                                   :start_time=>1.day.from_now.to_s,
                                    :end_time=>(1.day+1.hour).from_now.to_s,
                                    :user_id=>'1',
+                                   :repeat=>false,
                                    :notifications_attributes=>[{:alert_before_event=>'20'}]
                                   })
         CalendarEvent.update_events(events.first.id,{
@@ -103,7 +110,8 @@ describe CalendarEvent do
                                 :start_time=>'2014-01-14 07:30',
                                 :end_time=>'2014-01-14 08:30',
                                 :user_id=>'1',
-                                :notifications_attributes=>[{:alert_before_event=>'20'}]},
+                                :notifications_attributes=>[{:alert_before_event=>'20'}],
+                                :repeat=>true},
 
                                 {:unit=>'week',
 
@@ -126,7 +134,7 @@ describe CalendarEvent do
             myevents=CalendarEvent.update_events(@events.first.id,{:title=>'bad'},false)
             myevents.first.reload.title.should=='bad'
             @events.last.reload.title.should=='test'
-            myevents.first.reload.event_group_id.should be_nil
+            myevents.first.reload.repeat.should be_false
             myevents.first.reload.notifications.first.alert_before_event.should==20
           end
 

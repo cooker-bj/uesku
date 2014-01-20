@@ -29,7 +29,7 @@
     提醒：
     <div id="notice">
         <%=f.fields_for :notifications do |n|%>
-            提前<%=n.select :alert_before_event,ALERTTIME.to_a%>提醒 <%=n.link_to_remove '删除' %>
+            提前<%=n.select :alert_before_event,ALERTTIME.to_a%>在<%=n.select :when_to_alert,ALERTEVENT.to_a %>前提醒 <%=n.link_to_remove '删除' %>
         <%end %>
     </div>
     <%=f.link_to_add '增加',:notifications,data: {:target=>'#notice'} %><br/>

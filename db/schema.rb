@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111070242) do
+ActiveRecord::Schema.define(:version => 20140120025047) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20140111070242) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "all_day",        :default => false,  :null => false
+    t.boolean  "repeat",         :default => false,  :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -243,10 +244,11 @@ ActiveRecord::Schema.define(:version => 20140111070242) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer  "calendar_event_id"
-    t.integer  "alert_before_event", :default => 15, :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.string   "calendar_event_id"
+    t.integer  "alert_before_event", :default => 15,      :null => false
+    t.string   "when_to_alert",      :default => "start", :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "post_comments", :force => true do |t|

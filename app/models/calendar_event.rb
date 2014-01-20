@@ -1,12 +1,13 @@
 class CalendarEvent < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   attr_accessible :description, :end_time, :event_group_id, :location, :source, :start_time, :title,:user_id,:notifications_attributes,
-                  :all_day
+                  :all_day,:repeat
   belongs_to :user
-  #has_many :notifications
+  has_many :notifications,:primary_key=>:event_group_id
   validates_presence_of :title,:start_time,:end_time
   validate :start_less_end
-  #accepts_nested_attributes_for :notifications,:allow_destroy => true
+  before_save :add_group_id
+  accepts_nested_attributes_for :notifications,:allow_destroy => true
   DAY_UNIT={'天'=>:day,'周'=>:week,'月'=>:month,'年'=>:year}
   
   def self.remove_events(event_id,events_scope='current') #scope => %W'current' 'future' 'all'
@@ -28,9 +29,10 @@ class CalendarEvent < ActiveRecord::Base
 
     unless params[:start_time].blank? ||params[:end_time].blank? || params[:title].blank? || Time.parse(params[:start_time]) > Time.parse(params[:end_time])
       events=[]
-      myalerts=params.delete :notifications_attributes
-      unless repeat_params.blank?
+     
+      unless !params[:repeat]||repeat_params.blank?
         ntime=repeat_params[:time].to_i
+        group_notification=params.delete(:notifications_attributes)
         end_day=Time.parse(repeat_params[:end_day]) unless repeat_params[:end_day].blank?
         start=Time.parse(params[:start_time])
         during=Time.parse(params[:end_time])-start
@@ -50,6 +52,7 @@ class CalendarEvent < ActiveRecord::Base
           start+=repeat_params[:repeat_every].to_i.send(repeat_params[:unit])
           i+=1
         end
+        events.first.merge!({:notifications_attributes=>group_notification})
 
       else
 
@@ -58,12 +61,7 @@ class CalendarEvent < ActiveRecord::Base
       end
       
       my_calendar_events=create(events)
-      unless my_calendar_events.blank?
-        args=myalerts.collect {|notification| notification.merge({:calendar_event_id=>my_calendar_events.first.event_group_id || my_calendar_events.first.id})}
-        Notification.create(args)
-      end
-      my_calendar_events
-
+      
       
     else
        nil
@@ -74,7 +72,7 @@ class CalendarEvent < ActiveRecord::Base
   def self.update_events(event_id,attrs,applied_to_all=false)
     my_event=self.find(event_id)
     myalerts=attrs.delete :notifications_attributes
-    if(applied_to_all && (!my_event.event_group_id.blank?))
+    if(applied_to_all && (my_event.repeat))
       illegal = false
       illegal=true if attrs.has_key?(:title) && attrs[:title].blank?
       illegal=true if attrs.has_key?(:start_time) && attrs[:start_time].blank?
@@ -95,20 +93,14 @@ class CalendarEvent < ActiveRecord::Base
            
          
         end
-        update_notifications(my_event,myalerts)
-        events
-
+       
       else
         nil
       end
     else
       if my_event.repeat
-        my_event.notifications.each do |alert|
-         my=alert.dup
-         my.calendar_event_id=my_event.id
-         my.save
-        end
-        attrs.merge!({:event_group_id=>nil})
+        
+        attrs.merge!({:event_group_id=>create_group_id,:repeat=>false})
       end 
       if my_event.update_attributes(attrs) 
         update_notifications(my_event,myalerts)
@@ -121,16 +113,10 @@ class CalendarEvent < ActiveRecord::Base
     
   end
 
-  def notifications
-    Notification.where(:calendar_event_id=>event_group_id||id)
-  end
-
+  
  
 
-  def repeat
-    !self.event_group_id.blank?
-  end
-
+  
   def repeat_every
     self.event_group_id.blank? ? 0 : CalendarEvent.where(:event_group_id=>self.event_group_id).count()
   end
@@ -153,7 +139,7 @@ class CalendarEvent < ActiveRecord::Base
     def self.update_notifications(event,params)
       event.notifications
       params.try :each do |pa|
-        if(pa[:_destroy])
+        if(pa['_destroy'])
           event.notifications.find(pa[:id]).destroy 
         elsif pa[:id].blank?
           Notification.create(pa.merge({:calendar_event_id=>event.event_group_id||event.id}))
@@ -163,6 +149,10 @@ class CalendarEvent < ActiveRecord::Base
 
       end
 
+    end
+
+    def add_group_id
+      event_group_id=event_group_id||self.class.create_group_id
     end
 
     def start_less_end

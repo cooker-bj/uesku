@@ -11,6 +11,7 @@ describe CalendarEvent do
                                    :notifications_attributes=>[{:alert_before_event=>'20'}]
                                   })
       CalendarEvent.all.count.should== 1
+      CalendarEvent.first.notifications.first.alert_before_event.should==20
     end
 
     it 'create repeat events on times' do
@@ -25,6 +26,7 @@ describe CalendarEvent do
                                  :time=>'3'
                                })
       CalendarEvent.all.count.should==3
+      CalendarEvent.first.notifications.first.alert_before_event.should==20
     end
 
     it 'create repeat events on end date' do
@@ -41,6 +43,7 @@ describe CalendarEvent do
                                 :end_day=>6.week.from_now.strftime("%Y-%m-%d")
                                })
       CalendarEvent.all.count.should==6
+      CalendarEvent.first.notifications.first.alert_before_event.should==20
     end
   end
 
@@ -87,9 +90,10 @@ describe CalendarEvent do
                                    :notifications_attributes=>[{:alert_before_event=>'20'}]
                                   })
         CalendarEvent.update_events(events.first.id,{
-          :title=>'good'
+          :title=>'good',:notifications_attributes=>[{:id=>events.first.notifications.first.id,:alert_before_event=>'10'}]
           })
         events.first.reload.title.should=='good'
+        events.first.reload.notifications.first.alert_before_event.should==10
     end
 
     describe 'update attributes in repeated events' do
@@ -109,20 +113,29 @@ describe CalendarEvent do
                                }) 
          end
           it 'update all events' do 
-            CalendarEvent.update_events(@events.first.id,{:title=>'good',:start_time=>'2014-01-14 07:00',:notifications_attributes=>[{:alert_before_event=>'20'}]},true)
+            CalendarEvent.update_events(@events.first.id,{:title=>'good',:start_time=>'2014-01-14 07:00',:notifications_attributes=>[{:alert_before_event=>'30'}]},true)
             targe_events=CalendarEvent.where(:event_group_id=>@events.first.event_group_id)
             targe_events.each do |event|
               event.reload.title.should=='good'
             end
             targe_events[1].reload.start_time.should== Time.parse('2014-01-21 07:00')
+            targe_events[1].reload.notifications.last.alert_before_event.should==30
           end
 
           it 'update only one event' do 
             myevents=CalendarEvent.update_events(@events.first.id,{:title=>'bad'},false)
             myevents.first.reload.title.should=='bad'
             @events.last.reload.title.should=='test'
-            @events.first.reload.event_group_id.should be_nil
+            myevents.first.reload.event_group_id.should be_nil
+            myevents.first.reload.notifications.first.alert_before_event.should==20
           end
+
+          it 'delete notifications' do 
+            @events.first.notifications.count.should==1
+           CalendarEvent.update_events(@events.last.id,{:title=>'good',:notifications_attributes=>[{:id=>@events.first.notifications.first.id,:alert_before_event=>'20',:_destroy=>true}]
+          },true)
+           @events.first.reload.notifications.count.should==0
+         end
 
     end 
    end

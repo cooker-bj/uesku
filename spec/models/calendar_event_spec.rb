@@ -97,7 +97,7 @@ describe CalendarEvent do
                                    :notifications_attributes=>[{:alert_before_event=>'20'}]
                                   })
         CalendarEvent.update_events(events.first.id,{
-          :title=>'good',:notifications_attributes=>[{:id=>events.first.notifications.first.id,:alert_before_event=>'10'}]
+          :title=>'good',:notifications_attributes=>{0=>{:id=>events.first.notifications.first.id,:alert_before_event=>'10'}}
           })
         events.first.reload.title.should=='good'
         events.first.reload.notifications.first.alert_before_event.should==10
@@ -131,7 +131,7 @@ describe CalendarEvent do
           end
 
           it 'update only one event' do 
-            myevents=CalendarEvent.update_events(@events.first.id,{:title=>'bad'},false)
+            myevents=CalendarEvent.update_events(@events.first.id,{:title=>'bad',:notifications_attributes=>[{:alert_before_event=>'30'}]},false)
             myevents.first.reload.title.should=='bad'
             @events.last.reload.title.should=='test'
             myevents.first.reload.repeat.should be_false
@@ -140,7 +140,10 @@ describe CalendarEvent do
 
           it 'delete notifications' do 
             @events.first.notifications.count.should==1
-           CalendarEvent.update_events(@events.last.id,{:title=>'good',:notifications_attributes=>[{:id=>@events.first.notifications.first.id,:alert_before_event=>'20',:_destroy=>true}]
+           CalendarEvent.update_events(@events.first.id,{:title=>'good',
+            :notifications_attributes=>[{:id=>@events.first.notifications.first.id,
+              :alert_before_event=>'20',
+              :_destroy=>true}]
           },true)
            @events.first.reload.notifications.count.should==0
          end

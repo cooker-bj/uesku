@@ -89,16 +89,10 @@ ActiveRecord::Schema.define(:version => 20140120025047) do
 
   create_table "class_times", :force => true do |t|
     t.integer  "timetable_id"
-    t.date     "start_day"
-    t.date     "end_day"
-    t.integer  "week"
-    t.string   "start_time_hour"
-    t.string   "start_time_minute"
-    t.string   "end_time_hour"
-    t.string   "end_time_minute"
-    t.string   "name"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -244,11 +238,10 @@ ActiveRecord::Schema.define(:version => 20140120025047) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "calendar_event_id"
-    t.integer  "alert_before_event", :default => 15,      :null => false
-    t.string   "when_to_alert",      :default => "start", :null => false
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.integer  "calendar_event_id"
+    t.integer  "alert_before_event", :default => 15, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "post_comments", :force => true do |t|

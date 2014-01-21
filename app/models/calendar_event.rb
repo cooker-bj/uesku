@@ -15,7 +15,7 @@ class CalendarEvent < ActiveRecord::Base
     case 
         when events_scope=='future' && !event.event_group_id.blank? 
           where('event_group_id=? and start_time >= ?',event.event_group_id,event.start_time).destroy_all
-        when 'all' && !event.event_group_id.blank? 
+        when 'all' && event.repeat
           where(:event_group_id=>event.event_group_id).destroy_all
         else
           [event.destroy]
@@ -71,7 +71,7 @@ class CalendarEvent < ActiveRecord::Base
 
   def self.update_events(event_id,attrs,applied_to_all=false)
     my_event=self.find(event_id)
-    myalerts=attrs.delete :notifications_attributes
+    
     if(applied_to_all && (my_event.repeat))
       illegal = false
       illegal=true if attrs.has_key?(:title) && attrs[:title].blank?
@@ -90,6 +90,7 @@ class CalendarEvent < ActiveRecord::Base
           params.merge!({:start_time=>event.start_time+start_gap}) if attrs.has_key? :start_time
           params.merge!({:end_time=>event.end_time+end_gap}) if attrs.has_key? :end_time
             return nil unless event.update_attributes(params)
+            params.try :delete,:notifications_attributes
            
          
         end
@@ -99,11 +100,18 @@ class CalendarEvent < ActiveRecord::Base
       end
     else
       if my_event.repeat
-        
         attrs.merge!({:event_group_id=>create_group_id,:repeat=>false})
-      end 
+        attrs[:notifications_attributes].delete_if do |key,value| 
+          value.try(:delete,'id')
+          value.try(:silce,'_destroy')
+        end
+
+
+
+      end
+      p attrs
       if my_event.update_attributes(attrs) 
-        update_notifications(my_event,myalerts)
+       
         [my_event]
       else
         nil
@@ -152,7 +160,7 @@ class CalendarEvent < ActiveRecord::Base
     end
 
     def add_group_id
-      event_group_id=event_group_id||self.class.create_group_id
+      self.event_group_id=self.event_group_id||self.class.create_group_id
     end
 
     def start_less_end

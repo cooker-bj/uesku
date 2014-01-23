@@ -90,7 +90,7 @@ $(function() {
                             }
 
                         });
-                        $(mySelector('repeat')).click(function() {
+                        $(mySelector('calendar_event_repeat')).click(function() {
                             $('div#repeat_area').toggle();
                         });
 
@@ -142,7 +142,14 @@ $(function() {
                                 })
                             });
                             show[dialogId].dialog('close');
+                        });
+                        $(this).on('ajax:success',"[id^='edit_']",function(event,data,status,xhr){
+                            var local=$(this).parent(".show_window").html(xhr.responseText);
+                            local.on('ajax:success',"form",function(event,data,status,xhr){
+                                show[dialogId].dialog('close');
+                            })
                         })
+
                     });
                 }
             })

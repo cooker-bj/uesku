@@ -23,7 +23,7 @@ class CalendarEventsController < ApplicationController
 
   def create
 
-    if @events=CalendarEvent.add_events(params[:calendar_event],(params[:repeat].blank? ? nil :params[:repeat_params]))
+    if @events=CalendarEvent.add_events(params[:calendar_event],params[:repeat_params])
     
       render :json=>{:success=>true,:events=>@events}
     else

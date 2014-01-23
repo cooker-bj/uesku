@@ -22,6 +22,8 @@ class CalendarEvent < ActiveRecord::Base
         end
   end
 
+
+
  
 
 
@@ -29,8 +31,8 @@ class CalendarEvent < ActiveRecord::Base
 
     unless params[:start_time].blank? ||params[:end_time].blank? || params[:title].blank? || Time.parse(params[:start_time]) > Time.parse(params[:end_time])
       events=[]
-     
-      unless !params[:repeat]||repeat_params.blank?
+     logger.info "params[:repeat]=#{params[:repeat]}"
+      unless params[:repeat]=='0'||repeat_params.blank?
         ntime=repeat_params[:time].to_i
         group_notification=params.delete(:notifications_attributes)
         end_day=Time.parse(repeat_params[:end_day]) unless repeat_params[:end_day].blank?
@@ -39,6 +41,7 @@ class CalendarEvent < ActiveRecord::Base
         i=0
 
         my_group_id=create_group_id
+        logger.info params[:repeat]==0 ? 'norepeat' : 'repeat'
 
         while ntime.try('>',i) ||end_day.try('>',start)
 
@@ -103,13 +106,13 @@ class CalendarEvent < ActiveRecord::Base
         attrs.merge!({:event_group_id=>create_group_id,:repeat=>false})
         attrs[:notifications_attributes].delete_if do |key,value| 
           value.try(:delete,'id')
-          value.try(:silce,'_destroy')
+          value.try(:fetch,'_destroy')
         end
 
 
 
       end
-      p attrs
+   
       if my_event.update_attributes(attrs) 
        
         [my_event]
@@ -144,27 +147,13 @@ class CalendarEvent < ActiveRecord::Base
 
   private
 
-    def self.update_notifications(event,params)
-      event.notifications
-      params.try :each do |pa|
-        if(pa['_destroy'])
-          event.notifications.find(pa[:id]).destroy 
-        elsif pa[:id].blank?
-          Notification.create(pa.merge({:calendar_event_id=>event.event_group_id||event.id}))
-        else 
-          event.notifications.find(pa[:id]).update_attributes(:alert_before_event=>pa[:alert_before_event])
-        end
-
-      end
-
-    end
-
+    
     def add_group_id
       self.event_group_id=self.event_group_id||self.class.create_group_id
     end
 
     def start_less_end
-      self.start_time<=self.end_time
+      self.start_time.try :<= ,self.end_time
     end
     
 

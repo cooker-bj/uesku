@@ -12,7 +12,7 @@
     <%=f.label :end_time ,'结束时间'%>
     <%=text_field_tag :end_date,@event.end_time.try(:to_date),:class=>'date_picker' %>
     <%=text_field_tag :end_hour, @event.end_time.try(:strftime,"%H:%M"),:class=>'time_picker'  %><br/>
-    <div>全天事件<%=f.check_box :all_day %>,重复事件<%=check_box_tag :repeat %></div>
+    <div>全天事件<%=f.check_box :all_day %>,重复事件<%=f.check_box :repeat %></div>
      <div id='repeat_area' class="undisplay">
         <%=fields_for :repeat_params do |s|%>
             每<%=s.text_field :repeat_every,:value=>1 %><%=s.select :unit,options_for_select(CalendarEvent::DAY_UNIT) %>重复<br/>
@@ -28,9 +28,9 @@
     <%=f.text_area :description %><br/>
     提醒：
     <div id="notice">
-        <%=f.fields_for :notifications do |n|%>
-            提前<%=n.select :alert_before_event,ALERTTIME.to_a%>在<%=n.select :when_to_alert,ALERTEVENT.to_a %>前提醒 <%=n.link_to_remove '删除' %>
-        <%end %>
+        <%=f.fields_for :notifications %>
+           
+       
     </div>
     <%=f.link_to_add '增加',:notifications,data: {:target=>'#notice'} %><br/>
 

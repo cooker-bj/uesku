@@ -162,6 +162,19 @@ class User < ActiveRecord::Base
 
   end
 
+  def add_to_calendar(events)
+    begin
+      self.calendar_events.create!(events)
+    rescue ActiveRecord::RecordInvalid
+      false
+    end
+  end
+
+  def update_class_time(class_time)
+    Calendar_events.where(:event_group_id=>"timetable#{class_time.id}").destroy_all
+    add_to_calenar(class_time.build_calendar_to_user)
+  end
+
   private
   def add_random_nickname
 

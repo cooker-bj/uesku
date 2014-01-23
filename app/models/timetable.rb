@@ -8,6 +8,7 @@ class Timetable < ActiveRecord::Base
   before_create :add_create_time
   accepts_nested_attributes_for :class_times,:allow_destroy => true
   before_save :add_start_end_day
+  after_update :send_message_to_registers
   def lesson_name
     lesson.try(:title)
   end
@@ -19,25 +20,31 @@ class Timetable < ActiveRecord::Base
      self.users<<user
      #--add class time to user's calendar_events
 
-      calendar_events=class_times.inject([]){|events,time| events.concat time.events}
-      calendar_events.each do |event|
-         user.calendar_events.create(
-            title: event[:title],
-            start_time: event[:start],
-            end_time: event[:end],
-            event_group_id: 'timetable'+event[:id],
-            source: 'timetable',
-            location: self.lesson.address,
-            notifications_attributes: [{:alert_before_event=>15},{:alert_before_event=>1200}]
-        )
-      end
-     success=true
+         success=true if user.add_to_calendar(self.build_calendar_for_user)
    end
     success
   end
 
-  private
 
+
+  def build_calendar_for_user
+    calendar_events=self.class_times.inject([]){|events,time| events.concat time.events}
+      calendar_events.inject([]) do |my_array,event|
+         my_array<<{
+            title: event[:title],
+            start_time: event[:start],
+            end_time: event[:end],
+            event_group_id: 'timetable'+event[:id].to_s,
+            source: 'timetable',
+            description: description,
+            location: self.lesson.address,
+            notifications_attributes: [{:alert_before_event=>15,:when_to_alert=>'start'},
+                                      {:alert_before_event=>1200,:when_to_alert=>'start'}],
+            repeat: true
+          }
+       end
+  end
+  private
   def add_create_time
     self.create_time=Time.now
   end
@@ -45,6 +52,14 @@ class Timetable < ActiveRecord::Base
   def add_start_end_day
     self.end_day=self.class_times.maximum('end_day')
     self.start_day=self.class_times.minimum('start_day')
+  end
+
+  def update_class_time_to_registers
+    
+    self.users.each do |person|
+      person.update_class_time(self)
+    end
+
   end
 
 end

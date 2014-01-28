@@ -38,6 +38,7 @@
 
     <%=content_tag :div,id: 'timetable', data: {events: events} do  %><% end %>
 </div>
-
+<%= link_to '注册使用',register_user_timetable_path(@timetable) %>
 <%= link_to '返回', lesson_timetables_path(@timetable.lesson) %>
 <%= link_to '修改', edit_timetable_path(@timetable)%>
+

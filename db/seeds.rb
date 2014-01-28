@@ -26,3 +26,9 @@
          root.children.create({name: item})
        end
     end
+    User.create({
+        email: 'system@uesku.com',
+        real_name: '系统通知',
+        nickname: '系统通知',
+        password: Devise.friendly_token[0,20]
+        })

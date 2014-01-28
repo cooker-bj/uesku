@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120025047) do
+ActiveRecord::Schema.define(:version => 20140127124816) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20140120025047) do
     t.datetime "updated_at",                         :null => false
     t.boolean  "all_day",        :default => false,  :null => false
     t.boolean  "repeat",         :default => false,  :null => false
+    t.string   "timetable_name"
   end
 
   create_table "categories", :force => true do |t|

@@ -7,13 +7,13 @@
     </div>
     <div id='tools_menu'>
       <div id="related_classes">
-        <h1> 相关班级列表</h1>
+        <h1> 相关课吧列表</h1>
         <ul>
              <%@lesson.groups.each do |g| %>
               <li><%=link_to g.title, group_path(g) %></li>
             <% end %>
         </ul>
-        <%=link_to '创建班级',new_group_path(:lesson_id=>@lesson.id) %>
+        <%=link_to '创建课吧',new_group_path(:lesson_id=>@lesson.id) %>
       </div>
       <div id="related_timetables">
         <h1>相关课表 </h1>

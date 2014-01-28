@@ -13,6 +13,24 @@ class ShortMessage < ActiveRecord::Base
   def self.find_by_group(group)
     where(:message_group_id=>group.id)
   end
+
+  def self.send_system_message(user,message)
+    system_user=User.where(:email=>'system@uesku.com').first
+    group=MessageGroup.locate_users([user],system_user)
+    begin
+      self.create!({
+        :message=>message,
+        :message_group_id=>group.id,
+        :sender_id=>system_user.id,
+        :category=>0
+        })
+    rescue ActiveRecord::RecordInvalid
+      logger.info "Error: system cannot send message to #{user.name}"
+      false
+    end
+
+  end
+
   def is_sender?(user)
     self.sender==user
 

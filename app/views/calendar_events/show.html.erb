@@ -1,5 +1,8 @@
 <div class="show_window">
 标题: <%=@event.title %><br/>
+<% unless @event.timetable_name.blank? %>
+课表名称：<%=@event.timetable_name %><br/>
+<% end %>
 开始时间:<%=@event.start_time.strftime("%Y-%m-%d %H:%M")%><br/>
 结束时间:<%=@event.end_time.strftime("%Y-%m-%d %H:%M")%><br/>
 全天事件:<%=@event.all_day ? '是' :'否' %><br/>
@@ -8,7 +11,7 @@
 提醒：
 <ul>
 <%@event.notifications.each do |f| %>
-<li>提前<%=ALERTTIME.key(f.alert_before_event)%></li>
+<li>提前<%=ALERTTIME.key(f.alert_before_event)%>在<%=ALERTEVENT.key(f.when_to_alert)%>前</li>
 <% end %>
 </ul>
 <%='重复事件' if @event.repeat %>

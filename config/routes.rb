@@ -1,12 +1,5 @@
 Uesku::Application.routes.draw do
 
-
-
-
-
-
-
-
   resources :calendar_events
 
   get "profile/show"
@@ -73,6 +66,7 @@ Uesku::Application.routes.draw do
     get 'groups',:on=>:member
     get 'messenger',:on=>:member
     get 'profile',:on=>:member
+
   end
 
   resources :companies ,:only=>[:index,:show]
@@ -88,6 +82,7 @@ Uesku::Application.routes.draw do
 
   resources :timetables do
     get 'register_user',:on=>:member
+    delete 'withdraw_user',:on=>:member
   end
 
   post 'lessons' =>'lessons#index'

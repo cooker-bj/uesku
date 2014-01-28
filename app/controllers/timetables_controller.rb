@@ -82,4 +82,20 @@ class TimetablesController < ApplicationController
     end
 
   end
+
+  def withdraw_user
+    @timetable=Timetable.find(params[:id])
+    respond_with do |format|
+      if @timetable.unregister(current_user)
+        flash[:notice]='已成功删除课表'
+       format.html {redirect_to current_user }
+        format.json {head :no_content}
+      else
+        flash[:notice]='删除课表失败'
+        format.html {redirect_to current_user}
+        format.json {render json:@timetime.errors,status: :unprocessable_entity}
+      end
+    end
+    
+  end
 end

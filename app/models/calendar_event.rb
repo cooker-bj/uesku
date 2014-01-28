@@ -1,9 +1,9 @@
 class CalendarEvent < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   attr_accessible :description, :end_time, :event_group_id, :location, :source, :start_time, :title,:user_id,:notifications_attributes,
-                  :all_day,:repeat
+                  :all_day,:repeat,:timetable_name
   belongs_to :user
-  has_many :notifications,:primary_key=>:event_group_id
+  has_many :notifications,:primary_key=>:event_group_id,:dependent=>:destroy
   validates_presence_of :title,:start_time,:end_time
   validate :start_less_end
   before_save :add_group_id
@@ -12,10 +12,10 @@ class CalendarEvent < ActiveRecord::Base
   
   def self.remove_events(event_id,events_scope='current') #scope => %W'current' 'future' 'all'
     event=find(event_id)
-    case 
-        when events_scope=='future' && !event.event_group_id.blank? 
+      case 
+        when events_scope=='future' && event.repeat
           where('event_group_id=? and start_time >= ?',event.event_group_id,event.start_time).destroy_all
-        when 'all' && event.repeat
+        when events_scope=='all' && event.repeat
           where(:event_group_id=>event.event_group_id).destroy_all
         else
           [event.destroy]
@@ -41,7 +41,7 @@ class CalendarEvent < ActiveRecord::Base
         i=0
 
         my_group_id=create_group_id
-        logger.info params[:repeat]==0 ? 'norepeat' : 'repeat'
+       
 
         while ntime.try('>',i) ||end_day.try('>',start)
 

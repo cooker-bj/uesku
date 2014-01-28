@@ -21,5 +21,6 @@ class UsersController < ApplicationController
     respond_with @user
   end
 
+  
 
 end

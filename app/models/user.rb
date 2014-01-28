@@ -156,7 +156,8 @@ class User < ActiveRecord::Base
         title: event.title,
         url: event.get_url,
         allDay:event.all_day,
-        realId: event.id
+        realId: event.id,
+        timetable_name: event.timetable_name
       }
       end
 
@@ -164,16 +165,24 @@ class User < ActiveRecord::Base
 
   def add_to_calendar(events)
     begin
-      self.calendar_events.create!(events)
+      my_events=self.calendar_events.create!(events)
     rescue ActiveRecord::RecordInvalid
+      logger.info "#{my_events.first.errors.messages}\n"
       false
     end
   end
 
   def update_class_time(class_time)
-    Calendar_events.where(:event_group_id=>"timetable#{class_time.id}").destroy_all
-    add_to_calenar(class_time.build_calendar_to_user)
+    remove_timetable_events(class_time)
+    add_to_calendar(class_time.build_calendar_for_user)
   end
+
+  def remove_timetable_events(timetable)
+    self.calendar_events.where(:event_group_id=>timetable.event_group_id).destroy_all
+  end
+
+
+
 
   private
   def add_random_nickname

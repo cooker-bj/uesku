@@ -5,13 +5,13 @@
 <%=render :partial=>'head',:locals=>{:group=>@group}%>
    <div class="float_right">
     <div id="tools_menu">
-        <h1>班级信息</h1>
+        <h1>课吧信息</h1>
         <%=render 'group_info'%>
     </div>
-     <%=link_to '修改班级信息',edit_group_path(@group)%>
+     <%=link_to '修改课吧信息',edit_group_path(@group)%>
    </div>
    <div id="main_content">
-    <div class='detail_bar'><div class="detail_head">班级描述：</div> </div>
+    <div class='detail_bar'><div class="detail_head">描述：</div> </div>
      <div class="details">
         <div id='description'><%=@group.description %> </div>
      </div>

@@ -26,7 +26,7 @@ class Lesson < ActiveRecord::Base
   def self.filter_with_category(cat)
     if cat.nil?||cat.empty?
 
-      self.where(true)
+      self
       else
        where("courses.category_id"=>cat).joins(:course).order("rank desc")
       end

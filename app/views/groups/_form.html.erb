@@ -16,11 +16,11 @@
     <%= f.text_field :title %>
   </div>
     <div class="field">
-  <%= f.label :logo %>
+  <%= f.label :logo,'标志' %>
   <%= f.file_field :logo %>
 </div>
     <div class='field'>
-      <%=f.label :locked %>
+      <%=f.label :locked，'封闭' %>
       <%=f.select :locked, [['否',false],['是',true]]%>
     </div>
      <div class='field'>

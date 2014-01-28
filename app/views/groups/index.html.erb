@@ -1,0 +1,27 @@
+<h2>课吧列表</h2>
+<div class='float_left'>
+	<ul>
+		<% @groups.limit(20).each do |group| %>
+			<li>
+				<%=image_tag group.logo_url.to_s %>
+				<%=link_to group.title,group_path(group)%>
+				<%='封闭' if group.locked%>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div class='float_right'>
+	<ul>
+		<% @groups.limit(20).offset(20).each do |group| %>
+			<li>
+				<%=image_tag group.logo_url.to_s %>
+				<%=link_to group.title,group_path(group)%>
+				<%='封闭' if group.locked%>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div id="paginate_area">
+	<%=will_paginate @groups,:prev_label=>'上一页',:next_label=>'下一页'%>
+</div>
+

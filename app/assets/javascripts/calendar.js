@@ -121,7 +121,7 @@ $(function() {
                         $(this).on('ajax:success','[id^="remove_"]',function(event,data,status,xhr){
                             $.each(data['events'],function(index,value){
                                 $('#calendar_events').fullCalendar('removeEvents',function(eventObject){
-                                    return eventObject['realId']==value['id'];
+                                    return eventObject['realId']==value['realId'];
                                 })
                             });
                             show[dialogId].dialog('close');

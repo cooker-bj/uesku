@@ -39,7 +39,7 @@ class Timetable < ActiveRecord::Base
             timetable_name: self.title
           }
        end
-       built_events.first.merge!({:notifications_attributes=>[{:alert_before_event=>'10',:when_to_alert=>'start'}]})
+       built_events.first.merge!({:alerts_attributes=>[{:alert_before_event=>'10',:when_to_alert=>'start'}]})
       built_events
 
   end

@@ -96,31 +96,14 @@ $(function() {
 
                         $(this).on('ajax:success',function(event,data,status,xhr){
                             build[dialogId].dialog('close');
-                             var addEvent;
-                            $.each(data['events'],function(index,value){
-                                addEvent={
-                                    
-                                    title : value['title'],
-                                    start : value['start_time'],
-                                    end : value['end_time'],
-                                    allDay : value['all_day'],
-                                    url : value['get_url'],
-                                    realId :value['id']
-                                };
-                                if(value['group_event_id']){
-                                    addEvent['id']=value['group_event_id'];
-                                }else{
-                                    addEvent['id']=value['id'];
-                                }
-                            $('#calendar_events').fullCalendar('renderEvent',addEvent);
-
-                            })
+                            
+                            $('#calendar_events').fullCalendar('addEventSource',data['events']);
 
 
-                        })
+                        });
 
 
-                    })
+                    });
                 }
             });
         }

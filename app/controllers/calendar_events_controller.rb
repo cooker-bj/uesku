@@ -7,7 +7,7 @@ class CalendarEventsController < ApplicationController
 
   def new
     @event=CalendarEvent.new
-    @event.notifications.build
+    @event.alerts.build
     respond_with @event, :layout=>false if request.xhr?
   end
 

@@ -10,7 +10,7 @@
 简介：<%=@event.description %><br/>
 提醒：
 <ul>
-<%@event.notifications.each do |f| %>
+<%@event.alerts.each do |f| %>
 <li>提前<%=ALERTTIME.key(f.alert_before_event)%>在<%=ALERTEVENT.key(f.when_to_alert)%>前</li>
 <% end %>
 </ul>

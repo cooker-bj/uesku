@@ -150,11 +150,11 @@ class User < ActiveRecord::Base
   def my_events
     calendar_events.collect do |event|
       {
-        id: event.event_group_id||event.id,
+        id: event.event_group_id,
         start: event.start_time,
         end: event.end_time,
         title: event.title,
-        url: event.get_url,
+        url: event.url,
         allDay:event.all_day,
         realId: event.id,
         timetable_name: event.timetable_name

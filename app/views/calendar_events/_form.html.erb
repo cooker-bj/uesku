@@ -28,11 +28,11 @@
     <%=f.text_area :description %><br/>
     提醒：
     <div id="notice">
-        <%=f.fields_for :notifications %>
+        <%=f.fields_for :alerts %>
            
        
     </div>
-    <%=f.link_to_add '增加',:notifications,data: {:target=>'#notice'} %><br/>
+    <%=f.link_to_add '增加',:alerts,data: {:target=>'#notice'} %><br/>
 
    
     <%=f.submit '提交'%>

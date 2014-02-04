@@ -1,13 +1,13 @@
 class CalendarEvent < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :description, :end_time, :event_group_id, :location, :source, :start_time, :title,:user_id,:notifications_attributes,
+  attr_accessible :description, :end_time, :event_group_id, :location, :source, :start_time, :title,:user_id,:alerts_attributes,
                   :all_day,:repeat,:timetable_name
   belongs_to :user
-  has_many :notifications,:primary_key=>:event_group_id,:dependent=>:destroy
+  has_many :alerts,:primary_key=>:event_group_id,:dependent=>:destroy
   validates_presence_of :title,:start_time,:end_time
   validate :start_less_end
   before_save :add_group_id
-  accepts_nested_attributes_for :notifications,:allow_destroy => true
+  accepts_nested_attributes_for :alerts,:allow_destroy => true
   DAY_UNIT={'天'=>:day,'周'=>:week,'月'=>:month,'年'=>:year}
   
   def self.remove_events(event_id,events_scope='current') #scope => %W'current' 'future' 'all'
@@ -31,10 +31,10 @@ class CalendarEvent < ActiveRecord::Base
 
     unless params[:start_time].blank? ||params[:end_time].blank? || params[:title].blank? || Time.parse(params[:start_time]) > Time.parse(params[:end_time])
       events=[]
-     logger.info "params[:repeat]=#{params[:repeat]}"
+     
       unless params[:repeat]=='0'||repeat_params.blank?
         ntime=repeat_params[:time].to_i
-        group_notification=params.delete(:notifications_attributes)
+        group_alerts=params.delete(:alerts_attributes)
         end_day=Time.parse(repeat_params[:end_day]) unless repeat_params[:end_day].blank?
         start=Time.parse(params[:start_time])
         during=Time.parse(params[:end_time])-start
@@ -53,9 +53,10 @@ class CalendarEvent < ActiveRecord::Base
 
 
           start+=repeat_params[:repeat_every].to_i.send(repeat_params[:unit])
+          logger.info "events=#{events}\n"
           i+=1
         end
-        events.first.merge!({:notifications_attributes=>group_notification})
+        events.first.merge!({:alerts_attributes=>group_alerts})
 
       else
 
@@ -93,7 +94,7 @@ class CalendarEvent < ActiveRecord::Base
           params.merge!({:start_time=>event.start_time+start_gap}) if attrs.has_key? :start_time
           params.merge!({:end_time=>event.end_time+end_gap}) if attrs.has_key? :end_time
             return nil unless event.update_attributes(params)
-            params.try :delete,:notifications_attributes
+            params.try :delete,:alerts_attributes
            
          
         end
@@ -104,7 +105,7 @@ class CalendarEvent < ActiveRecord::Base
     else
       if my_event.repeat
         attrs.merge!({:event_group_id=>create_group_id,:repeat=>false})
-        attrs[:notifications_attributes].delete_if do |key,value| 
+        attrs[:alerts_attributes].delete_if do |key,value| 
           value.try(:delete,'id')
           value.try(:fetch,'_destroy')
         end
@@ -136,12 +137,24 @@ class CalendarEvent < ActiveRecord::Base
     CalendarEvent.where(:event_group_id=>self.event_group_id).maximun('end_time') unless self.event_group_id.blank?
   end
 
-  def get_url
+  def url
     calendar_event_path(self)
   end
 
   def as_json(option={})
-    super(option.merge(:methods=>[:get_url],:include=>[:notifications=>{:only=>[:alert_before_event]}]))
+   # super(option.merge(:methods=>[:url],:include=>[:alerts=>{:only=>[:alert_before_event,:when_to_alert]}]))
+   json={:title=>title,
+         :start=>start_time,
+         :end=>end_time,
+         :id=>event_group_id,
+         :url=>url,
+         :allDay=>all_day,
+         :realId=>id,
+         :timetable_name=>timetable_name
+        }
+    json[:alerts]=alerts.as_json(option)
+    json
+
 
   end
 
@@ -158,7 +171,7 @@ class CalendarEvent < ActiveRecord::Base
     
 
     def self.create_group_id
-      gid="group#{Random.rand(10).to_s}"
+      gid="group#{Random.rand(100000000).to_s}"
       where(:event_group_id=>gid).blank? ? gid : create_group_id
     end
 end

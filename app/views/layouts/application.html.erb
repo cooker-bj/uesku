@@ -15,17 +15,23 @@
 <body>
 <div id='wrap'>
   <div >
-    <div id="top_head"><div id="top_text">欢迎来到优异思库!  <%=link_to '关于我们',"#"%>|<%=link_to "网站地图",'#'%>&nbsp &nbsp</div>
+    <div id="top_head">
+      <div id="top_text">
+        欢迎来到优异思库!  <%=link_to '关于我们',"#"%>|<%=link_to "网站地图",'#'%>&nbsp &nbsp
+      </div>
     </div>
     <div id="head">
-      <img src="/assets/logo.png" alt="my logo" name="logo"  id="logo" /> <div id="query_box"> <%=text_field_tag 'query'%><%=link_to '检索','#'%></div>
-<span id="login_area"><% if current_user.nil? %>
-<%=link_to '登录',new_user_session_path  %>|
-      <%=link_to '注册',new_user_registration_path %>
-<% else %>
-<%= "欢迎#{current_user.name}" %>|<%=link_to "退出",destroy_user_session_path,:method=>:delete,:id=>'logout' %>
-<% end %>
-</span>
+      <img src="/assets/logo.png" alt="my logo" name="logo"  id="logo" />
+      <div id="query_box"> <%=text_field_tag 'query'%><%=link_to '检索','#'%></div>
+      <span id="login_area">
+        <% if current_user.nil? %>
+          <%=link_to '登录',new_user_session_path  %>|
+          <%=link_to '注册',new_user_registration_path %>
+        <% else %>
+          <%= "欢迎#{current_user.name}" %>|
+          <%=link_to "退出",destroy_user_session_path,:method=>:delete,:id=>'logout' %>
+        <% end %>
+      </span>
     </div>
     <div id='menu_bar'>
       <ul class='menu'>

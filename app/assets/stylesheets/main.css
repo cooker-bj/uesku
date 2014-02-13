@@ -46,15 +46,24 @@
 
 }
 
-#left_bar,#manage_menu {
+#manage_menu {
 	position:inherit;
 	left: 1px;
 	width: 150px;
 	padding: 0px;
+    text-align: center;
+    float:left;
 	background-color: #F5f7f7;
 	border-right: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
-	font: small Verdana,sans-serif;
+	font: medium Verdana,sans-serif;
+}
+
+#back_main{
+    position:relative;
+    width:800px;
+    right:2px;
+    float:right;
 }
 
 #content {

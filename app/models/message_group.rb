@@ -58,6 +58,13 @@ class MessageGroup < ActiveRecord::Base
      end
      my_group
   end
+
+  def as_json(option={})
+    super(option.merge(:methods=>[:title,:messages],:include=>[:users]))
+  end
+
+
+  
  private
   def add_create_time
     self.create_time=Time.now

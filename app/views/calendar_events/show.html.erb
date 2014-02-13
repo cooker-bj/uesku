@@ -17,8 +17,8 @@
 <%='重复事件' if @event.repeat %>
 <%=content_tag :div,:id=>"remove_#{@event.id}" do %>
 <%=link_to '删除',calendar_event_path(@event, :my_scope=>'current'), method: :delete, data: {confirm: '你确定删除该事件吗？'},:remote=>true%>
-<%=link_to '删除当前及未来事件',calendar_event_path(@event, :my_scope=>'future'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
-<%=link_to '删除所有事件',calendar_event_path(@event, :my_scope=>'all'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true unless @event.event_group_id.blank?%>
+<%=link_to '删除当前及未来事件',calendar_event_path(@event, :my_scope=>'future'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true if @event.repeat%>
+<%=link_to '删除所有事件',calendar_event_path(@event, :my_scope=>'all'), method: :delete, data: {confirm: '你确定删除该事件吗？'} ,:remote=>true if @event.repeat%>
 <% end %>
 <%=link_to '修改',edit_calendar_event_path(@event),:id=>"edit_#{@event.id}",:remote=>true %>
 </div>

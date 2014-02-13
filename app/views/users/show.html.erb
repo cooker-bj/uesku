@@ -14,12 +14,14 @@
     <li><a href="#calendar_events">日程表</a></li>
     
     <li><a href="#friends">我的朋友</a></li>
-    <li><a href="#groups">我的课程</a></li>
+    <li><a href="#my_friends">朋友动态</a></li>
+    <li><a href="#groups">我的课吧</a></li>
+    <li><a href="#registered_class">我的课表</a></li>
     <li><a href='#messenger'>短信<% if @user.has_new_message? %><span class='tip'>新</span><% end %></a></li>
     <li><a href="#myfront">课程查找</a></li>
   </ul>
 <div id="myfront">
-<div>
+
     <div id='side_menu' class="float_right">
       <%=render 'lessons/category_list'%>
     </div>
@@ -36,6 +38,7 @@
       <%=render :partial=>"/lessons/lessons_list", :locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank_counter desc").limit(10)} %>
     </div>
   </div>
+<div id='my_friends'>
 <%@user.friends_recent_posts.each do |post| %>
   <div><%=image_tag post.poster.avatar_url.to_s %><%=post.poster.name %></div>
   <div> <%=link_to post.title,group_path(post.group) %>   <%=format_time(post.posted_time) %></div>
@@ -67,6 +70,7 @@
       </div>
     <% end %>
   </div>
+</div>
   <div id="registered_class">
     <ul>
       <% @user.timetables.each do |timetable| %>
@@ -81,7 +85,7 @@
       <% end %>
     </ul>
   </div>
-</div>
+
   <div id="messenger">
      <%=render :partial=>"message_groups" ,:locals=>{:message_groups=>@user.message_groups}%>
 

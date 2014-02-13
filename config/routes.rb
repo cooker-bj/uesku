@@ -4,9 +4,7 @@ Uesku::Application.routes.draw do
 
   get "profile/show"
 
-  get "profile/edit"
-
-  get "profile/update"
+ 
 
   get "courses/index"
 
@@ -171,6 +169,9 @@ Uesku::Application.routes.draw do
 
   authenticated :user do
     root :to=>'users#show'
+  end
+  authenticated :admin do 
+    root :to=>'admin::lessons#index'
   end
   root :to => 'main#index'
   # See how all your routes lay out with "rake routes"

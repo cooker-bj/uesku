@@ -16,8 +16,8 @@
   </div>
   <div id='manage_menu'>
      <%  if current_admin.content_manager?%>
-          <%=link_to '内容管理',admin_companies_path %><br/>
-            <%=link_to '课程管理',admin_lessons_path %><br/>
+          <%=link_to '机构管理',admin_companies_path %><br/>
+          <%=link_to '课程管理',admin_lessons_path %><br/>
       <% end %>
      <% if current_admin.category_manager? %>
         <%=link_to '分类管理',admin_categories_path %>  <br/>
@@ -26,7 +26,7 @@
      <%=link_to '用户管理',admin_admins_path if current_admin.user_manager? %> <br/>
 
   </div>
-  <div id="main">
+  <div id="back_main" >
      <div id='content'>
          <%=flash[:notice]%>
          <%=flash[:alert] %>

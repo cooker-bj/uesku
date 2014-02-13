@@ -1,43 +1,69 @@
 class ShortMessagesController < ApplicationController
+  respond_to :html,:json
   def index
     @groups=current_user.message_groups
+    respond_with @groups
   end
 
   def show
     @group=MessageGroup.get_messages(params[:id],current_user)
     @messages=@group.messages
-    render :partial=> 'show',:layout=>false;
+    respond_with [@group,@messages] do |format|
+      format.html do 
+        render :partial=> 'show',:layout=>false if request.xhr?;
+      end
+    end
   end
 
   def new_message
     @group=MessageGroup.locate_users(params[:users],current_user)
     @messages=[]
-    render :partial=>'show',:layout=>false
+    respond_with [@group,@messages] do |format|
+      format.html do  
+        render :partial=>'show',:layout=>false if request.xhr?
+      end
+    end
   end
 
   def create
     @message=ShortMessage.new(params[:short_message])
-    if @message.save
-      render :partial=>'messages',:layout=>false,:locals=>{:messages=>@message}
-    else
-      render :json=>{:success=>false,:error=>@message.errors}
+    respond_with @message do |format|
+      if @message.save
+        format.html do 
+          render :partial=>'messages',:layout=>false,:locals=>{:messages=>@message} if request.xhr?
+        end
+      else
+        render :json=>{:success=>false,:error=>@message.errors}
+      end
     end
   end
 
   def show_messages
     @group=MessageGroup.find(params[:id])
-    render :partial=>'messages',:locals=>{:messages=>@group.messages},:layout=>false
+    respond_with @group do |format|
+      format.html do 
+        render :partial=>'messages',:locals=>{:messages=>@group.messages},:layout=>false if request.xhr?
+      end
+    end
   end
 
   def new_messages
     group=MessageGroup.find(params[:id])
     @messages=current_user.read_new_messages(group)
-    render :partial=>'messages',:locals=>{:messages=>@messages},:layout=>false
+    respond_with [@group,@messages] do |format|
+      format.html do  
+        render :partial=>'messages',:locals=>{:messages=>@messages},:layout=>false if request.xhr?
+      end
+    end
   end
 
   def manage
     @group=MessageGroup.find(params[:id])
-    render :partial=>'manage',:layout=>false
+    respond_with @group do |format|
+      format.html do 
+        render :partial=>'manage',:layout=>false if request.xhr?
+      end
+    end
   end
 
   def add_users
@@ -54,7 +80,14 @@ class ShortMessagesController < ApplicationController
 
   def destroy
     @group=MessageGroup.find(params[:id])
-    @group.destroy
-    redirect_to 'index'
+    @group.remove_users([current_user.id])
+    respond_with @group do |format|
+      format.html do 
+        redirect_to 'index'
+      end
+      format.json do 
+        render :json=>{:success=>true}
+      end
+    end
   end
 end

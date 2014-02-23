@@ -14,11 +14,8 @@ class TimetablesController < ApplicationController
   # GET /timetables/1.json
   def show
     @timetable = Timetable.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @timetable }
-    end
+     respond_with @timetable
+    
   end
 
   # GET /timetables/new

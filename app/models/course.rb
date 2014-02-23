@@ -20,5 +20,9 @@ class Course < ActiveRecord::Base
        end
   end
 
+  def age_range
+    AGE_RANGE[attribute(:age_range).to_i]
+  end
+
 
 end

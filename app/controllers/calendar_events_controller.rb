@@ -8,17 +8,17 @@ class CalendarEventsController < ApplicationController
   def new
     @event=CalendarEvent.new
     @event.alerts.build
-    respond_with @event, :layout=>false if request.xhr?
+    respond_with @event, :layout=>false 
   end
 
   def edit
     @event=CalendarEvent.find(params[:id])
-    respond_with @event, :layout=>false if request.xhr?
+    respond_with @event, :layout=>false 
   end
 
   def show
     @event=CalendarEvent.find(params[:id])
-    respond_with @event,:layout=>false if request.xhr?
+    respond_with @event,:layout=>false 
   end
 
   def create

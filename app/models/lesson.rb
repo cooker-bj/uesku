@@ -27,9 +27,9 @@ class Lesson < ActiveRecord::Base
     if cat.nil?||cat.empty?
 
       self
-      else
+    else
        where("courses.category_id"=>cat).joins(:course).order("rank desc")
-      end
+    end
   end
 
 
@@ -76,6 +76,24 @@ class Lesson < ActiveRecord::Base
     self.rank_counter=scores.count()
     self.rank=(course_score+environment_score+security_score+teacher_score)/4
     save!
+  end
+
+  def as_json(option={})
+    super(option.merge(:except=>[:audit,:branch_id,:course_id],:methods=>[:company_name],
+      :include=>{:course=>{:only=>[:title, :description, :price, :tags, :website,:free_try,:special,:age_range],
+                           :include=>{:category=>{:only=>[:name]}}
+                           },
+                :branch=>{
+                            :methods=>[:address],
+                            :only=>[:geolat,:geolng,:name,:phone,:website],
+                            :include=>{
+                                        :company=>{:only=>[:description, :name, :tags, :website]}
+                                      }
+                          },
+                :comments=>{},
+                :groups=>{},
+                :timetables=>{}
+                }))
   end
 
 end

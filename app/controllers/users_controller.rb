@@ -3,11 +3,12 @@ class UsersController < ApplicationController
    respond_to :html, :json
   def groups
     @user=User.find(params[:id])
+    respond_with @user
   end
 
   def messenger
     @user=User.find(params[:id])
-
+    respond_with @user
 
   end
 

@@ -35,4 +35,8 @@ class Category < ActiveRecord::Base
      end
      treelist
    end
+
+   def as_json(option={})
+    super(option.merge(:only=>[:name,:id,:ancestry]))
+   end
 end

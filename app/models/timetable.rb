@@ -48,6 +48,18 @@ class Timetable < ActiveRecord::Base
    'timetable'+self.id.to_s 
   end
 
+  def as_json(option={})
+    super(option.merge(:only=>[:create_time, :description, :end_day, :lesson_id, :start_day, :title],
+                        :include=>{
+                                    :lesson=>{:only=>[:id,:title]},
+                                    :creator=>{:only=>[:id,:nickname]},
+                                    :class_times=>{:methods=>[:events]}
+                          }))
+  end
+
+
+
+
   private
   def add_create_time
     self.create_time=Time.now
@@ -64,5 +76,7 @@ class Timetable < ActiveRecord::Base
       ShortMessage.send_system_message(person,"您使用的课表#{title}已被更新， 请查看")
     end
   end
+
+
 
 end

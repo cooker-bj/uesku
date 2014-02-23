@@ -1,5 +1,9 @@
 Uesku::Application.routes.draw do
 
+  get "locations/index"
+
+  get "categories/index"
+
   resources :calendar_events
 
   get "profile/show"

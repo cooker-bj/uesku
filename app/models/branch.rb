@@ -16,4 +16,10 @@ class Branch < ActiveRecord::Base
 
 
       end
+
+
+
+      def as_json(option={})
+       super(option.merge(:only=>[:geolat,:geolng,:name,:phone,:website]))
+      end
 end

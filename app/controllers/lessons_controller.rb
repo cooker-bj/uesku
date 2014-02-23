@@ -11,18 +11,19 @@ class LessonsController <ApplicationController
     @lesson=Lesson.published.find(params[:id])
     @score=@lesson.find_user_score(current_user) unless current_user.nil?
     @score||=Score.new
-    respond_with @lesson
+    respond_with [@lesson,@score]
   end
 
   def category
     @lessons=Category.find(params[:id]).local_lessons(get_city).filter_with_district(params[:district]).paginate(:page=>params[:page],:per_page=>20)
     @district=params[:district]|| []
-    respond_with @lessons
+    respond_with [@lessons,@district]
   end
 
   def location
     @lessons=Location.find(params[:id]).lessons.filter_with_category(params[:category]).paginate(:page=>params[:page],:per_page=>20)
     @category=params[:category]||[]
+    respond_with [@lessons,category]
   end
 
   def comment

@@ -19,6 +19,10 @@ class Score < ActiveRecord::Base
     end
   end
 
+  def as_json(option={})
+    super(option.merge(:except=>[:lesson_id,:user_id,:created_at,:updated_at]))
+  end
+
 
   private
 

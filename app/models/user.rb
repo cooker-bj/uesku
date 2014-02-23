@@ -181,6 +181,9 @@ class User < ActiveRecord::Base
     self.calendar_events.where(:event_group_id=>timetable.event_group_id).destroy_all
   end
 
+  def as_json(option={})
+    super(option.merge(:include=>[:friendships,:groups,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
+  end
 
 
 

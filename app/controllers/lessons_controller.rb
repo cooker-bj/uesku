@@ -23,7 +23,7 @@ class LessonsController <ApplicationController
   def location
     @lessons=Location.find(params[:id]).lessons.filter_with_category(params[:category]).paginate(:page=>params[:page],:per_page=>20)
     @category=params[:category]||[]
-    respond_with [@lessons,category]
+    respond_with [@lessons,@category]
   end
 
   def comment

@@ -76,9 +76,11 @@ class User < ActiveRecord::Base
   end
 
 
-  def friends_applied_list
+  def applied_friends
     self.friends.where("friendships.status=?",false)
   end
+
+
 
   def pending_friends
     self.inverse_friends.where("friendships.status=?",false)
@@ -106,10 +108,13 @@ class User < ActiveRecord::Base
   def read_new_messages(group)
     messengers=self.messengers.unread(group)
     messages=[]
+    logger.info "messenger=#{messengers.first}"
     messengers.each do |messenger|
       messenger.update_attribute(:read_status,true)
+      logger.info "error: messenger.errors"
       messages<< messenger.short_message
     end
+
     messages
   end
 
@@ -182,7 +187,7 @@ class User < ActiveRecord::Base
   end
 
   def as_json(option={})
-    super(option.merge(:include=>[:friendships,:groups,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
+    super(option.merge(:include=>[:friendships,:members,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
   end
 
 

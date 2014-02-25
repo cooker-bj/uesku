@@ -9,3 +9,11 @@
       </div>
   <% end %>
 </div>
+<div>
+	<% user.applied_friends.each do |friend| %>
+	<div>
+		 <%=image_tag friend.avatar_url.to_s %> <%=link_to friend.name,profile_user_path(friend) %>
+		 "未答复"
+	</div>
+	<%end %>
+</div>

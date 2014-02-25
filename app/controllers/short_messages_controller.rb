@@ -10,7 +10,7 @@ class ShortMessagesController < ApplicationController
     @messages=@group.messages
     respond_with [@group,@messages] do |format|
       format.html do 
-        render :partial=> 'show',:layout=>false if request.xhr?;
+        render :partial=> 'show',:layout=>false 
       end
     end
   end
@@ -20,7 +20,7 @@ class ShortMessagesController < ApplicationController
     @messages=[]
     respond_with [@group,@messages] do |format|
       format.html do  
-        render :partial=>'show',:layout=>false if request.xhr?
+        render :partial=>'show',:layout=>false 
       end
     end
   end
@@ -30,7 +30,7 @@ class ShortMessagesController < ApplicationController
     respond_with @message do |format|
       if @message.save
         format.html do 
-          render :partial=>'messages',:layout=>false,:locals=>{:messages=>@message} if request.xhr?
+          render :partial=>'messages',:layout=>false,:locals=>{:messages=>[@message]} 
         end
       else
         render :json=>{:success=>false,:error=>@message.errors}
@@ -42,7 +42,7 @@ class ShortMessagesController < ApplicationController
     @group=MessageGroup.find(params[:id])
     respond_with @group do |format|
       format.html do 
-        render :partial=>'messages',:locals=>{:messages=>@group.messages},:layout=>false if request.xhr?
+        render :partial=>'messages',:locals=>{:messages=>@group.messages},:layout=>false 
       end
     end
   end
@@ -52,7 +52,7 @@ class ShortMessagesController < ApplicationController
     @messages=current_user.read_new_messages(group)
     respond_with [@group,@messages] do |format|
       format.html do  
-        render :partial=>'messages',:locals=>{:messages=>@messages},:layout=>false if request.xhr?
+        render :partial=>'messages',:locals=>{:messages=>@messages},:layout=>false 
       end
     end
   end
@@ -61,7 +61,7 @@ class ShortMessagesController < ApplicationController
     @group=MessageGroup.find(params[:id])
     respond_with @group do |format|
       format.html do 
-        render :partial=>'manage',:layout=>false if request.xhr?
+        render :partial=>'manage',:layout=>false 
       end
     end
   end

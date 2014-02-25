@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments=@post.post_comments.paginate(:page=>params[:page],:per_page=>20)
-   respond_with @post
+   respond_with [@post,@comments]
   end
 
   # GET /posts/new

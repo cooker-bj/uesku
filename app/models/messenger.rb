@@ -3,9 +3,16 @@ class Messenger < ActiveRecord::Base
   belongs_to :user
   belongs_to :message_group
   belongs_to :short_message
+  before_create :add_group_id
 
   def self.unread(group)
-   where("messengers.read_status=? and short_messages.message_group_id=?",false,group.id).joins(:short_message)
+   where("messengers.read_status=? and message_group_id=?",false,group.id)
+  end
+
+  private
+
+  def add_group_id
+    self.message_group_id=self.short_message.message_group_id
   end
 
 

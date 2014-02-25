@@ -26,6 +26,7 @@ class Timetable < ActiveRecord::Base
 
   def build_calendar_for_user
     calendar_events=self.class_times.inject([]){|events,time| events.concat time.events}
+   
       built_events=calendar_events.inject([]) do |my_array,event|
          my_array<<{
             title: event[:title],
@@ -39,7 +40,7 @@ class Timetable < ActiveRecord::Base
             timetable_name: self.title
           }
        end
-       built_events.first.merge!({:alerts_attributes=>[{:alert_before_event=>'10',:when_to_alert=>'start'}]})
+       built_events.first.try(:merge!,({:alerts_attributes=>[{:alert_before_event=>'10',:when_to_alert=>'start'}]}))
       built_events
 
   end
@@ -51,9 +52,9 @@ class Timetable < ActiveRecord::Base
   def as_json(option={})
     super(option.merge(:only=>[:create_time, :description, :end_day, :lesson_id, :start_day, :title],
                         :include=>{
-                                    :lesson=>{:only=>[:id,:title]},
-                                    :creator=>{:only=>[:id,:nickname]},
-                                    :class_times=>{:methods=>[:events]}
+                                    
+                                    :creator=>{:only=>[:id,:name]},
+                                    :class_times=>{}
                           }))
   end
 

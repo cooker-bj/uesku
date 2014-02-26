@@ -1,6 +1,6 @@
 $(function(){
     function loadComment(myurl){
-        myurl=myurl||("/lessons/"+$("#comment_list").attr('data-lesson_id')+"/comment");
+        myurl=myurl||("/"+$("#comment_list").attr('data-type')+"/"+$("#comment_list").attr('data-id')+"/comments");
         $("#comment_list").load(myurl,function(e){
             $('div.pagination a').attr("data-remote",true).click(function(e){
                 e.preventDefault();
@@ -11,26 +11,29 @@ $(function(){
 
         } );
     };
-    function submitComment(){
-        $.post("/comments",$('#new_comment').serialize(),function(data,status,xhr){
-            if(data.success){
-                loadComment();
-            }else
-            {
-                { var str="";
-                    for(var error in data.errors){
-                        str=str+error;
-                        for (var value in data.errors[error])
-                        {
-                            str=str+data.errors[error][value];
-                        }
-                    }
-                    $("#comment_error").html(str)
-                }
-            }
-        })
-    } ;
+    
     loadComment();
+
+    $('#new_comment').on('ajax:success',function(evt,data,status,xhr){
+        if(data.success) {
+            loadComment();
+            KindEditor.instances[0].html('');
+            $('#errmsgs').html('');
+        }
+    }).on('ajax:error',function(evt,xhr,status,error){
+        var errors,errorText;
+        try{
+            erros=$.parseJSON(xhr.responseText);
+        }catch(err){
+            errors={msg: '请再试试'};
+        }
+        errorText='有以下错误导致无法保存:\n<ul>';
+        for(err in errors){
+            errorText+='<li>'+err+':'+errors[err]+'</li>';
+        }
+        errorText+='</ul>';
+        $("#errmsgs").html(errorText);
+    })
 
 
      /*

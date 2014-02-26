@@ -36,20 +36,21 @@ Uesku::Application.routes.draw do
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
 
-  resources :post_comments
+  #resources :post_comments
 
   resources :posts  do
     get 'set_to_top',:on=>:member
     get 'set_to_distillate',:on=>:member
     get 'withdraw_to_top', :on=>:member
     get 'withdraw_distillate',:on=>:member
+    resources :comments ,:name_prefix=>"post_"
   end
 
 
 
 
  resources :groups do
-    resources  :posts,:only=>[:index]
+    resources  :posts,:name_prefix=>"group_"
     post "add_member",:on=>:member
     get 'administration',:on=>:member
    get 'approval_member',:on=>:member
@@ -72,22 +73,23 @@ Uesku::Application.routes.draw do
   end
 
   resources :companies ,:only=>[:index,:show]
-  resources :lessons, :only=>[:index,:show] do
-    get 'comment', :on=>:member
-    delete 'remove',:on=>:member
+  resources :lessons, :only=>[:index,:show,:update] do
+    resources :comments,:name_prefix=>"lesson_"
+    
     match 'category',:on=>:member,:via=>[:post,:get]
-    match 'location',:on=>:member,:via=>[:post,:get]
+    match 'district',:on=>:member,:via=>[:post,:get]
 
     resources :scores
     resources :timetables,:name_prefix=>"lesson_"
   end
-
+   post 'lessons' =>'lessons#index'
   resources :timetables do
     get 'register_user',:on=>:member
     delete 'withdraw_user',:on=>:member
+    resources :comments,:name_prefix=>"timetable_"
   end
 
-  post 'lessons' =>'lessons#index'
+  resources :comments
   resources :replies
 
 

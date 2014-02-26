@@ -3,6 +3,7 @@ class Timetable < ActiveRecord::Base
   has_many :class_times,:dependent=>:destroy
   has_many :taken_classes,:dependent=>:destroy
   has_many :users,:through=>:taken_classes
+  has_many :comments,:as=>:commentable
   belongs_to :lesson
   belongs_to :creator,:class_name=>'User',:foreign_key=>:creator_id
   before_create :add_create_time

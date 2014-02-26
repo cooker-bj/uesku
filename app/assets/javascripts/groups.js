@@ -18,6 +18,23 @@ $(function(){
 
     });
 
+    $("#new_post").on("ajax:success",function(evt,data,status,xhr){
+        window.location.replace(xhr.responseJSON.url);
+    }).on("ajax:errors",function(evt,xhr,status,error){
+         var errors,errorText;
+        try{
+            erros=$.parseJSON(xhr.responseText);
+        }catch(err){
+            errors={msg: '请再试试'};
+        }
+        errorText='有以下错误导致无法保存:\n<ul>';
+        for(err in errors){
+            errorText+='<li>'+err+':'+errors[err]+'</li>';
+        }
+        errorText+='</ul>';
+        $("#errmsgs").html(errorText);
+    })
+
     $("div#pending_list").on('ajax:success',function(evt,data,status,xhr){
         $(this).html(data);
     });

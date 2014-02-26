@@ -42,6 +42,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'devise'
+gem 'devise-i18n'
 gem 'cancan'
 
 gem 'carrierwave'

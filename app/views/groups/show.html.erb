@@ -28,19 +28,14 @@
     </div>
     <div id="comment">
       <fieldst>
-        <% post=Post.new %>
-        <% post.post_comments.build %>
-        <%=form_for post  do |f| %>
-            <p>  <%=f.label :title,"标题:"%><%=f.text_field :title,:size=>70 %></p>
-            <%= f.hidden_field :poster_id,:value=>current_user.id %>
-            <%= f.hidden_field :group_id,:value=>@group.id %>
-            <%= f.fields_for :post_comments do |p| %>
-
-                <div class="comment_area"><%=p.kindeditor :message %></div>
-                <%=p.hidden_field :user_id,:value=>current_user.id %>
-            <% end %>
-             <%=f.submit '发布' %>
-            <span id="errmsgs"></span>
+       
+        <%=form_for [@group,Post.new], :remote=>true do |f| %>
+            <p>  
+              <%=f.label :title,"标题:"%><%=f.text_field :title,:size=>70 %>
+            </p>  
+            <div class="comment_area"><%=f.kindeditor :content %></div>
+              <%=f.submit '发布' %>
+            <div id="errmsgs"></div>
         <% end %>
       </fieldst>
     </div>

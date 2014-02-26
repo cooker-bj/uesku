@@ -1,14 +1,17 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,:teacher_score,:security_score,:environment_score
+  attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
+                  :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes
   belongs_to :course
   belongs_to :branch
   has_one :company, :through=>:course
   has_many :recommendations
   has_many :scores
-  has_many :comments
+  has_many :comments, :as =>:commentable
   has_many :group_lessons
   has_many :groups,:through=>:group_lessons
   has_many :timetables
+  accepts_nested_attributes_for :scores
+  accepts_nested_attributes_for :comments
   include(AuditContent)
   scope :published, where('lessons.audit=? ',true)
 

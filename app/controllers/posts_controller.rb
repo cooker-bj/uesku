@@ -12,8 +12,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments=@post.post_comments.paginate(:page=>params[:page],:per_page=>20)
-   respond_with [@post,@comments]
+    
+   respond_with @post
   end
 
   # GET /posts/new
@@ -29,10 +29,15 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-  flash[:notice]='已提交' if @post.save
-     respond_with @post
+    @post.poster=current_user
+    @post.group_id=params[:group_id]
+    if @post.save
+      render :json=>{:url=>post_path(@post)}
+    else
+      render :json=>{:errors=>post.errors,:status=>:unprocessable_entity}
+    end
 
-end
+  end
 
 
 

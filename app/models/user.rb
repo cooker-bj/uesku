@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :members
   has_many :posts,:foreign_key=>:poster_id
-  has_many :post_comments
+
   has_many :owned_groups,:class_name=>'Group',:foreign_key => :owner_id
   has_many :groups,:through=>:members
   has_many :authenticated_tokens
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     authentication = AuthenticatedToken.where(:provider =>access_token.provider ,:uid=>access_token.uid.to_s).first
     user=authentication.nil? ? nil : authentication.user
     if authentication.nil? && signed_in_resource.nil?
-          user = User.create(user_attributes  )
+          user = User.create(user_attributes)
     elsif authentication.nil?
           user=signed_in_resource
           user.authenticated_tokens.create(
@@ -91,10 +91,7 @@ class User < ActiveRecord::Base
 
   end
 
-  def friends_recent_post_comments
-    self.my_friends.empty? ? [] :self.my_friends.collect{|user|user.post_comments.where('comment_time>?',2.days.ago)}.flatten
-  end
-
+  
   def friends_recent_comments
     self.my_friends.empty? ? [] :self.my_friends.collect{|user| user.comments.where("comment_time>?",2.days.ago)}.flatten
   end

@@ -21,7 +21,7 @@
     <div><%=render :partial=>"lessons_list",:locals=>{:lessons=>@lessons} %>  </div>
 
     <div id="paginate_area"> 
-      <%=will_paginate @lessons, :controller=>'main',:action=>'category',:previous_label=>'前页',:next_label=>'下页'%>
+      <%=will_paginate @lessons, :controller=>'lessons',:action=>'category',:previous_label=>'前页',:next_label=>'下页'%>
     </div>
   </div>
 

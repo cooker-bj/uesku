@@ -43,12 +43,8 @@
   <div><%=image_tag post.poster.avatar_url.to_s %><%=post.poster.name %></div>
   <div> <%=link_to post.title,group_path(post.group) %>   <%=format_time(post.posted_time) %></div>
  <% end %>
-<%@user.friends_recent_post_comments.each do |comment| %>
-  <div> 
-    <div> <%=image_tag comment.user.avatar_url.to_s %> <%=comment.user.name %></div>
-    <%=comment.comment %><%=format_time(comment.comment_time)%>
-  </div>
-<%end %>
+
+
 <%@user.friends_recent_comments.each do |comment| %>
   <div> 
     <div> <%=image_tag comment.user.avatar_url.to_s %> <%=comment.user.name %></div>

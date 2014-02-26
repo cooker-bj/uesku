@@ -1,21 +1,39 @@
-<h3>评价</h3>
-<fieldset>
+<% @comments.each do |msg| %>
+      <ul class="comment_item">
 
-      <% @comments.each do |msg| %>
-          <div class="user"><%=image_tag msg.user.avatar.thumb.url %><br/><%= msg.user.name %>
-            <div class="undisplay pop_out"><div><%=image_tag msg.user.avatar.thumb.url %><%=msg.user.name %></div>
-             <div> <%=link_to "发送短信",new_messenger_path, :receiver_id=>@msg.user.id %> <%=link_to "加为朋友",'#'%> </div>
+       <li class="user">
+         <%=render :partial=>'/users/post_user',:locals=>{:user=>msg.user} %>
+
+       </li>
+       <li class="comment">
+            <div class="comment_content" > <%=raw(msg.comment)%></div>
+            <div class="move_right">
+                <div class="time"><%= format_time(msg.comment_time) %></div>
+                 <span class='comment_commands'>
+                     <% if current_user.nil? %>
+                         <%=link_to  '回复',''%> </a>
+                     <% else %>
+                         <%= link_to "回复","#",:remote=>true,'data-msg_id'=>msg.id %>
+                         <%=link_to "删除", comment_path(msg),method: :delete, data: {confirm:"你确定删除你的评论吗？"},:remote=>true,:class=>'delete_comment' if msg.user==current_user %>
+                          <div class='undisplay' data-msg_id=<%=msg.id%> >
+                                <%=form_for Reply.new,:remote=>true do |f| %>
+                                <%=f.text_area :message,:cols=>32,:rows=>4 %><%=f.hidden_field :comment_id,:value=>msg.id%><%=f.hidden_field :user_id,:value=>current_user.id %><%=f.submit '确定'%>
+                                 <% end %>
+                           </div>
+                     <% end %>
+                 </span>
             </div>
-           </div>
-          <div class="comments" > <%=msg.content %></div>
-          <div class="time"><%= msg.comment_time %></div><div >
-            <% msg.replies.each do |f| %>
-                <div class="reply"><%= f.message %></div>
-            <% end  %>
+            <div class="comment_reply" id=<%="reply#{msg.id}"%>>
+                <% msg.replies.each do |f| %>
+                       <%=render :partial=>'/replies/show',:locals=>{:reply=>f} %>
+                <% end  %>
 
             </div>
-          <%= link_to "回复",'#' %>
-      <%end%>
 
-   <%=will_paginate @comments,:previous_label=>'前页',:next_label=>'下页' %>
-</fieldset>
+      </li>
+
+
+     </ul>
+  <%end%>
+
+  <div id="paginate_area"> <%=will_paginate @comments,:previous_label=>'前页',:next_label=>'下页' %>  </div>

@@ -1,7 +1,7 @@
 <h1>地区分类</h1>
 <ul >
 <% Location.find(get_city).children.order('id').each do |item| %>
-      <li>   <%= link_to item.name, location_lesson_path(item)%></li>
+      <li>   <%= link_to item.name, district_lesson_path(item)%></li>
 
 
 

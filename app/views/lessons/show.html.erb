@@ -78,26 +78,28 @@
         <%=raw(@lesson.description)%>
     </div>
     <div class='detail_bar'><div class='detail_head'>课程评价</div></div>
-    <div id='comment_list' class="details" data-lesson_id= <%=@lesson.id %>></div>
+    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.downcase.pluralize} do %><%end%>
+    
     <% unless current_user.nil? %>
          <div id='comment'>
-           <%=form_for [@lesson,@score], html:{name:'comment'} do |f| %>
+           <%=nested_form_for @lesson, html:{name:'comment'} do |table| %>
+            <%=table.fields_for :scores,@score do |f| %>
                <div id="star_rating">
                     <div> 课程效果 <% (1..5).each do |v| %><%= f.radio_button :course,v, :class=>'star' %> <% end %></div>
                     <div>教师 <% (1..5).each do |v| %><%= f.radio_button :teacher,v, :class=>'star' %> <% end %></div>
                     <div>安全 <% (1..5).each do |v| %><%= f.radio_button :security,v, :class=>'star' %> <% end %> </div>
                     <div>环境 <% (1..5).each do |v| %><%= f.radio_button :environment,v, :class=>'star' %> <% end %>  </div>
                </div>
-                <%=f.hidden_field :lesson_id,:value=>@lesson.id %>
-                <%=f.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
+               
+                <%=f.hidden_field :user_id,:value=>current_user.id  %>
+            <%end%>
                 <div id="comment_label" >评价:</div>
                 <div id="input_comment" class=float_right>
-                    <%=f.fields_for (@score.comment || Comment.new) do |comm| %>
-                       <%=comm.text_area :comment %>
-                       <%=comm.hidden_field :lesson_id,:value=>@lesson.id %>
+                    <%=table.fields_for :comments,Comment.new do |comm| %>
+                       <%=comm.text_area :comment,:class=>'comment_input' %>
                        <%=comm.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
-                    <% end %> <br/>
-                     <%=f.submit '提交'%>
+                    <% end %> 
+                     <%=table.submit '提交'%>
                 </div>
            <% end %>
            <div class='noad'></div>

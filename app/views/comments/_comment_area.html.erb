@@ -1,0 +1,17 @@
+ <div id='comment_area'>
+
+         <%=form_for [commentable,Comment.new],:remote=>true do |f|%>
+           
+            <%=f.kindeditor :comment,:items=>[ 'undo', 'redo', '|',  'code', 'cut', 'copy', 'paste',
+        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+        'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
+        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+         'media', 'insertfile', 'table', 'hr', 'emoticons', 'pagebreak',
+        'anchor', 'link', 'unlink', '|', 'about'
+] %>
+            <div id="errmsgs"></div>
+             <%=f.submit '发布'%>
+         <% end %>
+    </div>

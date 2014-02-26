@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205032701) do
+ActiveRecord::Schema.define(:version => 20140225072447) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -114,10 +114,10 @@ ActiveRecord::Schema.define(:version => 20140205032701) do
     t.text     "comment"
     t.datetime "comment_time"
     t.integer  "user_id"
-    t.integer  "lesson_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "score_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   create_table "companies", :force => true do |t|
@@ -281,6 +281,7 @@ ActiveRecord::Schema.define(:version => 20140205032701) do
     t.integer  "comment_count",     :default => -1,    :null => false
     t.integer  "last_replier_id"
     t.datetime "last_replied_time"
+    t.text     "content"
   end
 
   create_table "profiles", :force => true do |t|

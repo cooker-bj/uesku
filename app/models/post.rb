@@ -39,5 +39,7 @@ class Post < ActiveRecord::Base
   def add_posted_time
     self.posted_time=Time.now
     self.comment_count=0
+    self.last_replier_id=self.poster_id
+    self.last_replied_time=Time.now
   end
 end

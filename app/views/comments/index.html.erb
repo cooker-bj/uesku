@@ -9,10 +9,12 @@
             <div class="comment_content" > <%=raw(msg.comment)%></div>
             <div class="move_right">
                 <div class="time"><%= format_time(msg.comment_time) %></div>
-                 <span class='comment_commands'>
+                 <div class='comment_commands'>
+                   <%=content_tag :div,:id=>"edit_comment_#{msg.id}" do %>  <% end %>
                      <% if current_user.nil? %>
-                         <%=link_to  '回复',''%> </a>
+                         <%=link_to  '回复',''%> 
                      <% else %>
+                         <%= link_to '编辑','#',:remote=>true, :class=>'edit_comment','data-id'=>msg.id if msg.user==current_user%>
                          <%= link_to "回复","#",:remote=>true,'data-msg_id'=>msg.id %>
                          <%=link_to "删除", comment_path(msg),method: :delete, data: {confirm:"你确定删除你的评论吗？"},:remote=>true,:class=>'delete_comment' if msg.user==current_user %>
                           <div class='undisplay' data-msg_id=<%=msg.id%> >
@@ -21,7 +23,7 @@
                                  <% end %>
                            </div>
                      <% end %>
-                 </span>
+                 </div>
             </div>
             <div class="comment_reply" id=<%="reply#{msg.id}"%>>
                 <% msg.replies.each do |f| %>

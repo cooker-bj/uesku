@@ -1,4 +1,9 @@
 <div class='float_left'>
+  <% unless flash[:alert].blank? %>
+   <div id="error_explanation">
+    <%=flash[:alert] %>
+  </div>
+  <% end %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />

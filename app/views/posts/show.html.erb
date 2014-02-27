@@ -10,7 +10,14 @@
        <%=render :partial=>'/users/post_user',:locals=>{:user=>@post.poster}%>
       </li>
       <li class="comment">
-       <%=raw(@post.content)%>
+        <div class='comment_content'>
+          <%=raw(@post.content)%>
+        </div>
+        <div class="time move_right"><%= format_time(@post.posted_time) %></div>
+        <div class='comment_commands move_right' >
+          <%=link_to '编辑','#',:id=>'edit_post','data-id'=>@post.id,:remote=>true %>
+        </div>
+       
       </li>
     </ul>
      <%=content_tag :div,id: 'comment_list',data: {id: @post.id,type: @post.class.model_name.downcase.pluralize} do %> 

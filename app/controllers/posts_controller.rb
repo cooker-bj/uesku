@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    respond_with @post
+    respond_with @post, :layout=>false
   end
 
   # POST /posts
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     if @post.save
       render :json=>{:url=>post_path(@post)}
     else
-      render :json=>{:errors=>post.errors,:status=>:unprocessable_entity}
+      render :json=>{:errors=>@post.errors,:status=>:unprocessable_entity}
     end
 
   end
@@ -45,10 +45,13 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
-
-    flash[:notice]="已更新"  if @post.update_attributes(params[:post])
-    respond_with @post
+    if @post.update_attributes(params[:post])
+      flash[:notice]=t(:update_message) 
+      render :json=>{:success=>true}
+    else
+      render :json=>{:errors=>@post.errors,:status=>:unprocessable_entity}
+    end
+    
   end
 
   # DELETE /posts/1

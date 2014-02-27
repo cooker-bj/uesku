@@ -1,0 +1,17 @@
+
+<%= form_for(@comment,:remote=>true,:html=>{:id=>'edit_comment_form'}) do |f| %>
+    <div class='validation-error'></div>
+
+
+    <div class="field">
+
+      <%= f.text_area :comment,:id=>'comment_editor' %>
+    </div>
+   
+    <div class="actions">
+      <%= f.submit "修改" %>
+    </div>
+
+<% end %>
+
+

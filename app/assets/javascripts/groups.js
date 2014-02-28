@@ -84,7 +84,7 @@ $(function() {
             },
             title: "修改",
             width: 450,
-            minHeight: 100,
+            minHeight: 250,
             beforeClose: function() {
                 KindEditor.remove('#comment_editor');
             },

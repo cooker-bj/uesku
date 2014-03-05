@@ -8,7 +8,7 @@ $(function() {
     function replaceInputIds(nodes, perfix) {
         nodes.find('form').find('input').each(function() {
             $(this).attr('id', perfix + '_' + this.id);
-        })
+        });
 
     }
 
@@ -94,7 +94,7 @@ $(function() {
                             $('div#repeat_area').toggle();
                         });
 
-                        $(this).on('ajax:success',function(event,data,status,xhr){
+                        $(this).one('ajax:success',function(event,data,status,xhr){
                             build[dialogId].dialog('close');
                             
                             $('#calendar_events').fullCalendar('addEventSource',data['events']);
@@ -171,7 +171,7 @@ $(function() {
         var validate = true;
         if (start > end_slot) {
             validate = false;
-            alert("开始时间必需晚于结束时间");
+            alert("开始时间必需早于结束时间");
         }
         return validate;
 

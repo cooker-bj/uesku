@@ -54,7 +54,7 @@
               <% if @lesson.comments.empty? %>
                   <%="现在还没有人评价，来评价吧 "%>
                <% else %>
-                  <%=@lesson.commentable.last_comment_user_name %>说:<%=@lesson.commentable.last_comment %>
+                  <%=@lesson.comments.last_comment_user_name %>说:<%=@lesson.comments.last_comment %>
               <% end %>
             </div>
         </div>

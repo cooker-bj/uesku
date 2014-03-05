@@ -12,7 +12,7 @@ gem 'therubyracer'
 gem 'rmagick'
 gem 'remotipart','~>1.2'
 # Gems for search
-
+gem 'paper_trail','~>3.0'
 gem 'sunspot_rails','~>1.3'
 gem 'nested_form'
 gem 'fullcalendar-rails'

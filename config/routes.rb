@@ -73,16 +73,17 @@ Uesku::Application.routes.draw do
   end
 
   resources :companies ,:only=>[:index,:show]
-  resources :lessons, :only=>[:index,:show,:update] do
+  resources :lessons, :except=>[:destroy] do
     resources :comments,:name_prefix=>"lesson_"
     
     match 'category',:on=>:member,:via=>[:post,:get]
     match 'district',:on=>:member,:via=>[:post,:get]
-
+    get 'history', :on=>:member
+    post 'compare',:on=>:member
     resources :scores
     resources :timetables,:name_prefix=>"lesson_"
   end
-   post 'lessons' =>'lessons#index'
+  # post 'lessons' =>'lessons#index'
   resources :timetables do
     get 'register_user',:on=>:member
     delete 'withdraw_user',:on=>:member

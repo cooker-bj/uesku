@@ -1,11 +1,14 @@
 class Branch < ActiveRecord::Base
-  attr_accessible :city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id, :street, :website,:company_id
+  attr_accessible :city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id, 
+                  :street, :website,:company_id,:company_attributes
   belongs_to :company
   has_many :lessons,:dependent=>:destroy
   has_many :courses, :through=>:lessons
   belongs_to :province,:class_name=>'Location',:foreign_key=>'province_id'
   belongs_to :city,:class_name=>'Location',:foreign_key =>'city_id'
   belongs_to :district,:class_name=>'Location',:foreign_key =>'district_id'
+  accepts_nested_attributes_for :company
+  has_paper_trail
 
       def address
         if province.name == city.name

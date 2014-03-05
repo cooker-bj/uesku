@@ -1,0 +1,7 @@
+<%=nested_form_for @lesson do |f| %>
+  
+   <%=f.fields_for :course %>
+   <%=f.fields_for :branch %>
+   <%=f.submit '完成' %>
+<% end %>
+   

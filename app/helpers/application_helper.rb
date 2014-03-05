@@ -46,5 +46,14 @@ module ApplicationHelper
     array
   end
 
+  def url_with_protocol(url)
+    /^http/.match(url) ? url : "http://#{url}"
+  end
+
+  def whodoit(id)
+    User.find(id.to_i) unless id.nil?
+  end
+
+
 
 end

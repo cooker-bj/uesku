@@ -7,6 +7,14 @@ class LessonsController <ApplicationController
     render 'category'
   end
 
+  def new
+  end
+
+  def edit
+    @lesson=Lesson.find(params[:id])
+    respond_with @lesson
+  end
+
   def show
     @lesson=Lesson.published.find(params[:id])
     @score=@lesson.find_user_score(current_user) unless current_user.nil?
@@ -18,6 +26,17 @@ class LessonsController <ApplicationController
     @lesson=Lesson.find(params[:id])
     @lesson.update_attributes(params[:lesson])
     respond_with @lesson,:location=>lesson_path(@lesson)
+  end
+
+  def history
+    @lesson=Lesson.find(params[:id])
+  end
+
+  def compare
+    lesson=Lesson.find(params[:id])
+    @current=lesson.versions[params[:versions][0]].reify.next_version;
+    @previous=lesson.versions[params[:versions][1]].reify.next_version;
+    respond_with [@current,@previous]
   end
 
   def category

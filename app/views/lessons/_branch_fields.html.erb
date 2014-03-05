@@ -1,0 +1,29 @@
+<%=f.fields_for :company %>
+<div class="branch">
+  <div class="field">
+    <%=f.label :name,"分支名称:"%>
+    <%=f.text_field :name %>
+  </div>
+  <div class='field'>
+    <%=f.label :phone,"电话:"%> 
+    <%=f.text_field :phone %>
+  </div>
+  <div class='field'>
+    <%=f.label :website, "分支网址"%><br/>
+    <%=f.text_field :website %>
+  </div>
+  <div class='field'>
+    地址：<%=f.select :province_id,options_for_select(Location.roots.collect {|p| [p.name,p.id]}) %> 省
+         <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]})  %> 市
+         <%=f.collection_select :district_id,Location.first_districts,:id,:name %> 区/县 
+         <%=f.text_field :street %>
+   </div>
+   <div class='field'>
+          地理坐标：<br/>
+          经度：<%=f.text_field :geolng,:class=>'positionx' %>  
+          纬度:<%=f.text_field :geolat,:class=>'positiony' %>
+    </div>
+
+     
+    <%=tag "div",{:class=>"mymap set_point",:id=>"mymap#{rand(1000)}"},true%>
+    <%=tag "/div",nil,true%>

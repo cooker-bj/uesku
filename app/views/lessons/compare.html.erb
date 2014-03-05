@@ -1,0 +1,8 @@
+<div>
+	<div class='float_left'>
+		<%=render :partial=>'course_partial',:local=>{:lesson=>@previous} %>
+	</div>
+	<div class='float_right'>
+		<%=render :partial=>'course_partial',:local=>{:lesson=>@current}%>
+	</div>
+</div>

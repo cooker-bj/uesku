@@ -38,6 +38,8 @@
     </div>
     <div class='details'>
         <div id="show_scores_and_comment">
+          <span>
+            最后修改者：<%=link_to whodoit(@lesson.course.originator).try(:name),profile_user_path(whodoit(@lesson.course.originator))%>
             <div id="lesson_score">
                  <% (1..20).each do |v| %><%=radio_button_tag 'rank',v*0.25,(@lesson.rank>=v*0.25 && @lesson.rank <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %>  <% end %>
                 总分: <%=@lesson.rank %> <br/>
@@ -65,11 +67,11 @@
         <p>适合年龄: <%=@lesson.age_range %> </p>
         <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
         <p>特色：<%=@lesson.special %>  </p>
-        <p>网址：<%=@lesson.course.website %> </p>
+        <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
         <p> 校区：<%=@lesson.name%>    </p>
         <p> 电话:<%=@lesson.phone%> </p>
-        <p> 教育机构：<%=@lesson.course.company.name %>  </p>
-        <p> 分支网址<%=@lesson.branch.website%> </p>
+        <p> 教育机构：<%=link_to @lesson.company_name,url_with_protocol(company_path(@lesson.course.company)),:target=>'_blank' %>  </p>
+        <p> 分支网址<%=link_to @lesson.branch.website,url_with_protocol(@lesson.branch.website),:target=>'_blank'%> </p>
         <p>标签： <%=@lesson.tags %> </p>
     </div>
     <div class="detail_bar"><div class='detail_head'>课程详情</div></div>

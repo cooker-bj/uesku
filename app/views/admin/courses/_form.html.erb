@@ -5,7 +5,7 @@
     <%= f.text_field :title %>   <br/>
     <%= f.label :category_id,"类别" %> <br/>
      <% @course.category=Category.roots.first if @course.category.nil?%>
-   <div id="course_category"> <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>@course.category.get_tree} %></div>
+   <div id="course_category"> <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>@course.category.get_tree,:f=>f} %></div>
 
     <%= f.label :price,"价格" %>  <br/>
     <%= f.text_field :price %> <br/>

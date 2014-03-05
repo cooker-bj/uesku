@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
   has_many :lessons,:dependent=>:destroy
   has_many :branches, :through => :lessons
   validates_presence_of :title
+  has_paper_trail
   include AuditContent
   AGE_RANGE=['0-6岁','7-12岁','13-18岁','成人',"无限制"]
 

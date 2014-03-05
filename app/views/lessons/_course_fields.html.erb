@@ -1,0 +1,41 @@
+ <div class='field'>
+    <%= f.label :title,"课程名称:" %>  
+    <%= f.text_field :title %>   
+  </div>
+  <div class='field'>
+     <%= f.label :category_id,"类别:" %> 
+     <% f.object.category=Category.roots.first if f.object.category.nil?%>
+     <span id="course_category"> 
+        <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>f.object.category.get_tree,:f=>f} %>
+      </span>
+  </div>
+   <div class='field'>
+    <%= f.label :price,"价格:" %>  
+    <%= f.text_field :price %> 
+  </div>
+  <div class='field'>
+    <%= f.label :age_range,"适合年龄:" %>
+    <%= f.select :age_range, options_for_select(Course::AGE_RANGE.collect {|v| [v,Course::AGE_RANGE.index(v)]}) %> 
+  </div>
+   <div class='field'>
+    <%=f.label :special, '特色'%>
+    <%=f.text_field :special %>  
+  </div>
+  <div class='field'>
+    <%=f.label :free_try, "试听" %>
+    <%=f.select :free_try,[['无',false],['有',true]] %>
+  </div>
+  <div class='field'>
+    <%= f.label :website,'课程网址:' %>
+    <%= f.text_field :website %>
+  </div>
+  <div class='field'>
+    <%= f.label :tags,'标签:' %>   
+    <%= f.text_field :tags %> 
+  </div>
+  <div class='field'>
+    <%= f.label :description,"课程描述" %> <br/>
+    <%= f.kindeditor :description %> 
+  </div>
+     
+    

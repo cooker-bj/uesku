@@ -1,0 +1,20 @@
+<table>
+ <tr><th>选择比较版本</th><th>更新时间</th><th>修改人</th></tr>
+ <%=form_tag 'compare' do %>
+<%@lesson.versions.reverse_each do |version| %>
+	<tr>
+		<td><%=check_box_tag 'versions[]',version.id %></td>
+
+		<td><%=format_time(version.created_at) %></td>
+		<td>
+			<% unless version.whodunnit.nil? %>
+			<%=link_to whodoit(version.whodunnit).try(:name),profile_user_path(whodoit(version.whodunnit)) %>
+			<%=link_to '讨论','#',:remote=>true,:data=>{:users=>[version.whodunnit]}%>
+			<% end %>
+		</td>
+
+	</tr>
+<% end %>
+<%=submit_tag '比较'%>
+<% end %>
+</table>

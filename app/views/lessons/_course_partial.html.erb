@@ -1,0 +1,31 @@
+        <div class='subtitle'>
+            <p><b><%=lesson.created_at.localtime%>的版本</b><%=link_to '编辑',edit_lesson_path(lesson,:version=>lesson.version.id) %>
+            </p>
+            <p>
+                <% unless lesson.originator.nil? %>
+                    <%=link_to whodoit(lesson.originator).try(:name),profile_user_path(whodoit(lesson.originator)) %>
+                    <%=link_to '讨论','#',:remote=>true,:data=>{:users=>[lesson.originator]}%>
+                    <%=link_to '撤消'，undo_lesson_path(lesson) if lesson.version.nil? %>
+                    <% end %>
+           </p>
+       </div>
+        <p><b><%=lesson.course.title %></b></p>
+        <p>课程类别： <%=lesson.course.category.name %> </p>
+        <p>价格: <%=lesson.price %>    </p>
+        <p>适合年龄: <%=lesson.age_range %> </p>
+        <p>试听:<%=lesson.free_try? ? '有': '无'%> </p>
+        <p>特色：<%=lesson.special %>  </p>
+        <p>网址：<%=link_to lesson.course.website,url_with_protocol(lesson.course.website),:target=>'_blank' %> </p>
+        <p>标签： <%=lesson.tags %> </p>
+        <p> 教育机构：
+            <%=link_to lesson.company_name,url_with_protocol(company_path(lesson.course.company)),:target=>'_blank' %>
+            
+        </p>
+         <p> 校区：<%=lesson.name%>    </p>
+        <p> 电话:<%=lesson.phone%> </p>
+        <p> 分支网址<%=link_to lesson.branch.website,url_with_protocol(lesson.branch.website),:target=>'_blank'%> </p>
+        <p>地址：<%=lesson.course.address %></p>
+        <div >课程详情</div>
+        <div  >
+            <%=raw(lesson.description)%>
+        </div>

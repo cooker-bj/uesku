@@ -1,6 +1,7 @@
 class Lesson < ActiveRecord::Base
   attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
-                  :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes
+                  :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes,
+                  :course_attributes,:branch_attributes
   belongs_to :course
   belongs_to :branch
   has_one :company, :through=>:course
@@ -12,6 +13,8 @@ class Lesson < ActiveRecord::Base
   has_many :timetables
   accepts_nested_attributes_for :scores
   accepts_nested_attributes_for :comments
+  accepts_nested_attributes_for :course
+  accepts_nested_attributes_for :branch
   include(AuditContent)
   scope :published, where('lessons.audit=? ',true)
 
@@ -51,7 +54,7 @@ class Lesson < ActiveRecord::Base
 
   def company_name
     company=self.course.company
-    company.nil? ? "":company.name
+    company.nil? ? "": company.name
   end
 
   def method_missing(method_id,*arguments,&block)

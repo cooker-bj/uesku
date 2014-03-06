@@ -7,7 +7,7 @@ $(function() {
         });
 
     });
-    $("#comment_list").on('click', 'span.comment_commands a[href="#"]', function(e) {
+    $("#comment_list").on('click', '.comment_commands a[href="#"]', function(e) {
         e.preventDefault();
         var id = $(this).attr('data-msg_id');
         var selector = 'div[data-msg_id=' + id + ']';

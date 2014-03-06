@@ -12,7 +12,7 @@
                  <div class='comment_commands'>
                    <%=content_tag :div,:id=>"edit_comment_#{msg.id}" do %>  <% end %>
                      <% if current_user.nil? %>
-                         <%=link_to  '回复','#'%> 
+                         <%=link_to  '回复','##'%> 
                      <% else %>
                          <%= link_to '编辑','#',:remote=>true, :class=>'edit_comment','data-id'=>msg.id if msg.user==current_user%>
                          <%= link_to "回复","#",:remote=>true,'data-msg_id'=>msg.id %>

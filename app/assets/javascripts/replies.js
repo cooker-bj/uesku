@@ -1,6 +1,6 @@
 $(function() {
 
-    $("#comment_list").on('click', '.comment_commands a[href=""]', function(e) {
+    $("#comment_list").on('click', '.comment_commands a[href="#"]', function(e) {
         e.preventDefault();
         $("<div>").html("请点击<a href='/users/sign_in'>登录</a>回复").dialog({
             modal: true

@@ -3,16 +3,17 @@ Uesku::Application.routes.draw do
   get "locations/index"
 
   get "categories/index"
+  match "categories/course_select"
 
-  resources :calendar_events
+  
 
   get "profile/show"
 
- 
+  get "main/index"
+  match "main/category/:id"  =>"main#category" ,:as=>:main_category
+  match "main/location/:id"  =>"main#location", :as=>:main_location
 
-  get "courses/index"
-
-  get "courses/category"
+  resources :calendar_events
 
   resources :my_lessons
 
@@ -32,9 +33,7 @@ Uesku::Application.routes.draw do
     get  'agree',:on=>:member
   end
 
-  get "main/index"
-  match "main/category/:id"  =>"main#category" ,:as=>:main_category
-  match "main/location/:id"  =>"main#location", :as=>:main_location
+ 
 
   #resources :post_comments
 
@@ -72,16 +71,22 @@ Uesku::Application.routes.draw do
 
   end
 
-  resources :companies ,:only=>[:index,:show]
+  resources :companies ,:execpt=>[:destroy] do 
+    get :select_company, :on=>:collection
+  end
+
   resources :lessons, :except=>[:destroy] do
     resources :comments,:name_prefix=>"lesson_"
-    
-    match 'category',:on=>:member,:via=>[:post,:get]
-    match 'district',:on=>:member,:via=>[:post,:get]
-    get 'history', :on=>:member
-    post 'compare',:on=>:member
     resources :scores
     resources :timetables,:name_prefix=>"lesson_"
+    get 'undo',:on=>:member
+    match 'category',:on=>:member,:via=>[:post,:get]
+    match 'district',:on=>:member,:via=>[:post,:get]
+    match 'course',:on=>:collection
+    get 'history', :on=>:member
+    post 'compare',:on=>:member
+    get 'company',:on=>:collection
+    
   end
   # post 'lessons' =>'lessons#index'
   resources :timetables do
@@ -95,6 +100,8 @@ Uesku::Application.routes.draw do
 
 
   post 'query/group_member_for_management'=>'query#group_member_for_management'
+  get 'query/query_companies_auto'
+  post 'query/query_companies'
 
   namespace :admin do
     resources :admins

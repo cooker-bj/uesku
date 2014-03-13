@@ -1,0 +1,10 @@
+<h1>创建课程</h1>
+<div><b>首先选择课程所在的教育机构 </b></div>
+<div id='query_company'>
+	<%=form_tag '/query/query_companies',:remote=>true,:id=>'query_form' do %>
+		<%=text_field_tag 'name',nil,:class=>'autocomplete'%>
+		<%=submit_tag '检索' %>
+	<%end %>
+</div>
+<div id='company_select_list'></div>
+

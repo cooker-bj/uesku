@@ -1,31 +1,34 @@
         <div class='subtitle'>
-            <p><b><%=lesson.created_at.localtime%>的版本</b><%=link_to '编辑',edit_lesson_path(lesson,:version=>lesson.version.id) %>
-            </p>
+            <p><b><%= lesson[:course].previous_version.version.created_at.localtime %>的版本</b></p>
             <p>
-                <% unless lesson.originator.nil? %>
-                    <%=link_to whodoit(lesson.originator).try(:name),profile_user_path(whodoit(lesson.originator)) %>
-                    <%=link_to '讨论','#',:remote=>true,:data=>{:users=>[lesson.originator]}%>
-                    <%=link_to '撤消'，undo_lesson_path(lesson) if lesson.version.nil? %>
-                    <% end %>
+                <% unless lesson[:course].originator.nil? %>
+                    <%=link_to whodoit(lesson[:course].originator).try(:name),profile_user_path(whodoit(lesson[:course].originator)) %>
+                    <%=link_to '讨论','#',:remote=>true,:data=>{:users=>[lesson[:course].originator]}%>
+                    <%=link_to '撤消', undo_lesson_path(lesson[:id]) if lesson[:course].version.nil? %>
+                <% end %>
            </p>
        </div>
-        <p><b><%=lesson.course.title %></b></p>
-        <p>课程类别： <%=lesson.course.category.name %> </p>
-        <p>价格: <%=lesson.price %>    </p>
-        <p>适合年龄: <%=lesson.age_range %> </p>
-        <p>试听:<%=lesson.free_try? ? '有': '无'%> </p>
-        <p>特色：<%=lesson.special %>  </p>
-        <p>网址：<%=link_to lesson.course.website,url_with_protocol(lesson.course.website),:target=>'_blank' %> </p>
-        <p>标签： <%=lesson.tags %> </p>
-        <p> 教育机构：
-            <%=link_to lesson.company_name,url_with_protocol(company_path(lesson.course.company)),:target=>'_blank' %>
+    <div class='course_part'>
+        <div class='title'><b><%=lesson[:course].title %></b></div>
+        <div class='category'>课程类别： <%=lesson[:course].category.name %> </div>
+        <div class='price'>价格: <%=lesson[:course].price %>    </div>
+        <div class='age_range'>适合年龄: <%=lesson[:course].age_range %> </div>
+        <div class='free_try'>试听:<%=lesson[:course].free_try? ? '有': '无'%> </div>
+        <div class='special'>特色：<%=lesson[:course].special %>  </div>
+        <div class='website'>网址：<%=link_to lesson[:course].website,url_with_protocol(lesson[:course].website),:target=>'_blank' %> </div>
+        <div class='course_tags'>标签： <%=lesson[:course].tags %> </div>
+    </div>
+    <div> 教育机构：
+            <%=link_to lesson[:branch].company.name,url_with_protocol(company_path(lesson[:course].company)),:target=>'_blank' %>
             
-        </p>
-         <p> 校区：<%=lesson.name%>    </p>
-        <p> 电话:<%=lesson.phone%> </p>
-        <p> 分支网址<%=link_to lesson.branch.website,url_with_protocol(lesson.branch.website),:target=>'_blank'%> </p>
-        <p>地址：<%=lesson.course.address %></p>
+    </div>
+    <div class='branch_part'>
+         <div class='branch_name'> 校区：<%=lesson[:branch].name%>    </div>
+        <div  class='phone'> 电话:<%=lesson[:branch].phone%> </div>
+        <div class='branch_website'> 分支网址<%=link_to lesson[:branch].website,url_with_protocol(lesson[:branch].website),:target=>'_blank'%> </div>
+        <div class='branch_address'>地址：<%=lesson[:branch].address %></div>
         <div >课程详情</div>
-        <div  >
-            <%=raw(lesson.description)%>
+        <div class='description'  >
+            <%=raw(lesson[:course].description)%>
         </div>
+    </div>

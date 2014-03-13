@@ -102,4 +102,39 @@ class Lesson < ActiveRecord::Base
                 }))
   end
 
+
+  def versions
+    cl=[]
+    self.course.versions.reverse_each do |v|
+      
+
+      c_date=v.created_at
+      d_date=v.next.try(:created_at)
+      branch_versions=self.branch.versions.where(created_at: c_date ... (d_date.nil? ? Time.now : d_date))
+      cl<<{:course=>v.reify.next_version,:branch=>self.branch} if branch_versions.blank?
+      branch_versions.each do |bv|
+         
+        cl<<{:course=>v.reify.next_version,:branch=>bv.reify.next_version}
+        
+      end
+     
+    end
+
+    cl
+  end
+
+  def get_version(arg)
+   pattern=/(\d*)_(\d*)/
+   match_data=pattern.match(arg)
+
+   course_version_id=match_data[1]
+   branch_version_id=match_data[2]
+  
+   course=course_version_id.blank? ? self.course : self.course.versions[course_version_id.to_i].reify
+   branch=branch_version_id.blank? ? self.branch :  self.branch.versions[branch_version_id.to_i].reify
+   {:id=>self.id,:course=>course,:branch=>branch}
+   
+   
+  end
+
 end

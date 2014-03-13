@@ -7,7 +7,15 @@ class LessonsController <ApplicationController
     render 'category'
   end
 
-  def new
+  def company
+    @course=Course.new(:company_id=>params[:company_id])
+    respond_with @course
+  end
+
+  def course
+    @course=Course.new(:company_id=>params[:company_id])
+    respond_with @course
+
   end
 
   def edit
@@ -22,6 +30,12 @@ class LessonsController <ApplicationController
     respond_with [@lesson,@score]
   end
 
+  def create
+    @course=Course.new(:params[:course])
+    @course.save
+    respond_with @course,:location=>lesson_path(@course.lessons.first)
+  end
+
   def update
     @lesson=Lesson.find(params[:id])
     @lesson.update_attributes(params[:lesson])
@@ -30,12 +44,14 @@ class LessonsController <ApplicationController
 
   def history
     @lesson=Lesson.find(params[:id])
+    @history=@lesson.versions
+    respond_with [@lesson,@history]
   end
 
   def compare
     lesson=Lesson.find(params[:id])
-    @current=lesson.versions[params[:versions][0]].reify.next_version;
-    @previous=lesson.versions[params[:versions][1]].reify.next_version;
+    @current=lesson.get_version(params[:versions][0])
+    @previous=lesson.get_version(params[:versions][1])
     respond_with [@current,@previous]
   end
 
@@ -51,5 +67,7 @@ class LessonsController <ApplicationController
     respond_with [@lessons,@category]
   end
 
+  def undo
+  end
  
 end

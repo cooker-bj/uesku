@@ -1,4 +1,5 @@
-<%=f.fields_for :company %>
+机构名称：
+<%=f.object.company.name %>
 <div class="branch">
   <div class="field">
     <%=f.label :name,"分支名称:"%>
@@ -9,7 +10,7 @@
     <%=f.text_field :phone %>
   </div>
   <div class='field'>
-    <%=f.label :website, "分支网址"%><br/>
+    <%=f.label :website, "分支网址:"%>
     <%=f.text_field :website %>
   </div>
   <div class='field'>
@@ -19,9 +20,9 @@
          <%=f.text_field :street %>
    </div>
    <div class='field'>
-          地理坐标：<br/>
-          经度：<%=f.text_field :geolng,:class=>'positionx' %>  
-          纬度:<%=f.text_field :geolat,:class=>'positiony' %>
+            分支位置：(点击地图设定位置)<br/>
+            <%=f.text_field :geolng,:class=>'positionx undisplay' %>  
+            <%=f.text_field :geolat,:class=>'positiony undisplay' %>
     </div>
 
      

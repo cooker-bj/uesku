@@ -1,0 +1,18 @@
+<div>
+<%=form_tag '/lessons/course' do %>
+	<% @companies.each do |company| %>
+	<div>
+		<%=radio_button_tag 'company_id',company.id %>
+		<%=link_to company.name,company_path(company),:target=>'_blank'%><br/>
+	分支：<br/>
+	<ul>
+	<% company.branches.each do |branch| %>
+		<li><%=branch.name %></li>
+	<% end %>
+    </ul>
+	</div>
+	<% end %>
+	<%=submit_tag '下一步' %>
+
+<% end %>
+</div>

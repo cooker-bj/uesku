@@ -1,11 +1,11 @@
-
-
-<%= form_for [:admin,@course.company,@course]  do |f| %>
+<%= form_for @course,:url=>lessons_path do |f| %>
    <%= f.label :title,"课程名称" %>  <br/>
     <%= f.text_field :title %>   <br/>
     <%= f.label :category_id,"类别" %> <br/>
      <% @course.category=Category.roots.first if @course.category.nil?%>
-   <div id="course_category"> <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>@course.category.get_tree,:f=>f} %></div>
+   <div id="course_category"> 
+    <%= render :partial=>"/categories/course_select",:locals=>{:cur=>@course.category.get_tree,:f=>f} %>
+  </div>
 
     <%= f.label :price,"价格" %>  <br/>
     <%= f.text_field :price %> <br/>
@@ -30,21 +30,16 @@
 
     <%= f.label :description,"课程描述" %> <br/>
     <%= f.kindeditor :description %> <br/>
+    <p><b>选择课程所在的分支/校区</b></p>
+    <fieldset>
       <% @course.company.branches.each do |branch| %>
        <%=f.fields_for :branches do |br|%>
           <%=branch.name %>
           <%=check_box_tag 'course[branches][]',branch.id, @course.branches.index(branch)  %>
           <% end %>
       <%end %>
+    </fieldset>
 
 
 
     <%= f.submit "提交" %><% end %>
-
-
-
-
-
-    
-
-

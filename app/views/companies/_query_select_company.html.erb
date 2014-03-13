@@ -1,0 +1,6 @@
+<div>
+	<% if @companies.blank? %>
+	<p>没有你查找的机构， 请<%=link_to '点击',new_company_path %>新建你查找的机构</p>
+	<% end %>
+	<%=render '/companies/select_company'%>
+</div>

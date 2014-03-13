@@ -18,27 +18,33 @@
   <%= raw(@company.description) %>
 </p>
 <div>
+  <%=link_to '添加课程',course_lessons_path(:company_id=>@company.id),:class=>'float_right' %>
+<div>
   <b>地点</b> <br/>
 
   <% n=0 %>
   <%@company.branches.each do |branch| %>
 
       <fieldset>
-        <div>
-          <div>
+        
+          <div class='branch_message'>
             <p><b>名称</b><%=branch.name%></p>
             <p><b>电话</b><%=branch.phone%></p>
             <p><b>地址</b><%=branch.address %></p>
             <p><b>分支网址</b><%=branch.website%></p>
-          </div>
-           <%= tag "div",{:id=>"mymap#{n}", :class=>"course_map small_map",:data=>{:positionx=>branch.geolng,:positiony=>branch.geolat}},true  %>  <%=tag "/div","",true %>
-         <div>
-         <% branch.lessons.published.each do |lesson|%>
-        <div>   课程名称：<%=lesson.title %> 总分：<%=lesson.rank %> <%=link_to '详细',lesson_path(lesson)%></div>
+             <div>
+                <% branch.lessons.each do |lesson|%>
+                  <div>   课程名称：<%=lesson.title %> 
+                          总分：<%=lesson.rank %> 
+                          <%=link_to '详细',lesson_path(lesson)%>
+                  </div>
 
-          <% end %>
-         </div>
-         </div>
+                <% end %>
+             </div>
+          </div>
+           <%= tag "div",{:id=>"mymap#{n}", :class=>"course_map small_map float_right ",:data=>{:positionx=>branch.geolng,:positiony=>branch.geolat}},true  %>  <%=tag "/div","",true %>
+        
+         
 
         </fieldset>
       <% n+=1 %>

@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
 
   validates_presence_of :name
   def self.first_cities
-    self.roots.nil? ||self.roots.first.nil? ? [] :self.roots.first.children()
+    self.roots.nil? ||self.roots.order(:id).first.nil? ? [] :self.roots.order(:id).first.children.order(:id)
   end
 
   def level
@@ -18,7 +18,7 @@ class Location < ActiveRecord::Base
   end
 
   def self.first_districts
-    self.first_cities.first.nil? ? [] :self.first_cities.first.children()
+    self.first_cities.first.nil? ? [] :self.first_cities.first.children.order(:id)
   end
 
 def as_json(option={})

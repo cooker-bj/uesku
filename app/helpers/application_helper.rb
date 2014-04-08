@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def get_city
-    session[:city]||2
+    session[:city]||110100
   end
 
   def format_time(mytime)

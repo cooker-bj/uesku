@@ -3,7 +3,7 @@
     <%= f.text_field :title %>   <br/>
     <%= f.label :category_id,"类别" %> <br/>
      <% @course.category=Category.roots.first if @course.category.nil?%>
-   <div id="course_category"> 
+   <div id="select_category"> 
     <%= render :partial=>"/categories/course_select",:locals=>{:cur=>@course.category.get_tree,:f=>f} %>
   </div>
 
@@ -35,7 +35,7 @@
       <% @course.company.branches.each do |branch| %>
        <%=f.fields_for :branches do |br|%>
           <%=branch.name %>
-          <%=check_box_tag 'course[branches][]',branch.id, @course.branches.index(branch)  %>
+          <%=check_box_tag 'course[branches][]',branch.id, true  %>
           <% end %>
       <%end %>
     </fieldset>

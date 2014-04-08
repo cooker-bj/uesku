@@ -15,10 +15,10 @@
           <%=f.label :website, "分支网址"%><br/>
           <%=f.text_field :website %>
         </div>
-        <div class='field'>
-          地址：<%=f.select :province_id,options_for_select(Location.roots.collect {|p| [p.name,p.id]}) %> 省
-          <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]})  %> 市
-          <%=f.collection_select :district_id,Location.first_districts,:id,:name %> 区/县 
+        <div class='address'>
+          地址：<%=f.select :province_id,options_for_select(Location.roots.order(:id).collect {|p| [p.name,p.id]}),{},:class=>'province' %> 
+          <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]}),{},:class=>'city'  %> 
+          <%=f.collection_select :district_id,Location.first_districts,:id,:name,{},:class=>'district' %>  
           <%=f.text_field :street %>
         </div>
         <div class='field undisplay'>

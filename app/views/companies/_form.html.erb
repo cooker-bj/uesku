@@ -1,4 +1,4 @@
-<%= nested_form_for([:admin,@company]) do |f| %>
+<%= nested_form_for(@company) do |f| %>
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -28,7 +28,7 @@
     <%= f.kindeditor :description %>
   </div>
   <div id='branches'>
-    <%=f.fields_for :branches %>
+    <%=f.fields_for :branches,@company.versioned_branches %>
   </div>
 
   <%=f.link_to_add "新增分支",:branches%>

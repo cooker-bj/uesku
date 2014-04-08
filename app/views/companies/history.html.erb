@@ -1,0 +1,29 @@
+<div >
+<%=link_to '机构详情',company_path(@company) %>&nbsp;<%=link_to '编辑', edit_company_path(@company) %> &nbsp; 历史
+</div>
+
+<div>
+<table>
+ <tr><th>选择比较版本</th><th>更新时间</th><th>修改人</th></tr>
+ <%=form_tag 'compare' do %>
+	<% @history.each do |version| %>
+	<tr>
+		<td><%=check_box_tag 'versions[]',version.id%></td>
+		<td><%=version.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+		<td>
+			<% unless version.whodunnit.nil? %>
+				<%=link_to whodoit(version.whodunnit).try(:name),profile_user_path(whodoit(version.whodunnit)) %>
+					<%=link_to '讨论','#',:remote=>true,:data=>{:users=>version.whodunnit}%>
+			<% end %>
+		</td>
+		
+			
+		
+
+
+	</tr>
+	<% end %>
+	<%=submit_tag '比较'%>
+<% end %>
+</table>
+</div>

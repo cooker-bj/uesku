@@ -2,12 +2,12 @@ class CompaniesController < ApplicationController
 	respond_to :html,:json
 
   def index
-    @companies=Company.published.paginate :page=>params[:page],:per_page=>40
+    @companies=Company.paginate :page=>params[:page],:per_page=>40
     respond_with @companies
   end
 
   def show
-    @company=Company.published.find(params[:id])
+    @company=Company.find(params[:id])
     respond_with @company
   end
 
@@ -36,10 +36,31 @@ class CompaniesController < ApplicationController
   end
 
   def select_company
-  	@companies=Company.published.paginate :page=>params[:page],:per_page=>40
+  	@companies=Company.paginate :page=>params[:page],:per_page=>40
     respond_with @companies do |format|
     	format.html {render :partial=>'companies_partial',:layout=>false}
     end
+  end
+
+
+  def history
+    @company=Company.find(params[:id])
+    @history=@company.versions
+    respond_with [@company,@history]
+  end
+
+
+  def compare
+    company=Company.find(params[:id])
+    @current=company.get_version(params[:versions][0])
+    @previous=company.get_version(params[:versions][1])
+    respond_with [@current,@previous]
+  end
+
+  def undo
+    company_object=Company.find(params[:id])
+    @company=company_object.versions.find(params[:version_id]).reify
+    render 'edit'
   end
 
 end

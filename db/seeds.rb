@@ -12,11 +12,17 @@
                     roles: [1,2,4,8]
                  })
     begin
-    root=Location.create({name: '北京'})
-      city=root.children.create({name: '北京'})
-        ['东城','西城','海淀','朝阳','丰台','通州','石景山','门头沟','昌平','延庆','平谷','密云','怀柔','顺义','大兴'].each do |district|
-        city.children.create({name: district})
+      require 'csv'
+      CSV.foreach("#{Rails.root}/db/cities.csv",col_sep: "\t",encoding: 'GBK:UTF-8',headers: true) do |row|
+        if row[3].blank?
+
+          Location.create({id: row[0],name: row[1], pinyin:row[2]},:without_protection=>true)
+        else
+          parent=Location.find(row[3])
+          Location.create({id: row[0],name: row[1], pinyin:row[2],:parent=>parent},:without_protection=>true)
         end
+      end
+   
     end
 
     category={'语言'=>['英语','日语','法语','德语','俄语'],'音乐'=>['钢琴','小提琴','吉他','声乐','其它'],'书画'=>['绘画','书法'],'体育'=>['游泳','轮滑','羽毛球','舞蹈','围棋','其它']}

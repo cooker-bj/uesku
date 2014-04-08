@@ -1,7 +1,13 @@
-<p>
-  <b>名称:</b>
-  <%= @company.name %>
-</p>
+<div >
+  机构详情&nbsp;<%=link_to '编辑', edit_company_path(@company) %> &nbsp; <%=link_to '历史',history_company_path(@company)%>
+</div>
+<div>
+  <div>
+  <p>
+    <b>名称:</b>
+    <%= @company.name %> &nbsp;  
+    <%=link_to '添加课程',course_lessons_path(:company_id=>@company.id) %>
+  </p>
 
 <p>
   <b>网址:</b>
@@ -17,12 +23,13 @@
   <b>公司简介:</b>
   <%= raw(@company.description) %>
 </p>
-<div>
-  <%=link_to '添加课程',course_lessons_path(:company_id=>@company.id),:class=>'float_right' %>
+</div>
+
+ 
 <div>
   <b>地点</b> <br/>
 
-  <% n=0 %>
+  <% n=rand(10000) %>
   <%@company.branches.each do |branch| %>
 
       <fieldset>
@@ -55,3 +62,4 @@
 
 
   <%= link_to '返回', companies_path %>
+</div>

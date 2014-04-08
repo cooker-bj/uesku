@@ -3,7 +3,7 @@
 <div id='query_company'>
 	<%=form_tag '/query/query_companies',:remote=>true,:id=>'query_form' do %>
 		<%=text_field_tag 'name',nil,:class=>'autocomplete'%>
-		<%=submit_tag '检索' %>
+		<%=submit_tag '检索' %><%=link_to '新建教育机构',new_company_path %>
 	<%end %>
 </div>
 <div id='company_select_list'></div>

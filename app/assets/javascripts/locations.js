@@ -39,4 +39,16 @@ $(function(){
         $('select#courses_district_id').load("/admin/locations/select",{mid:$(this).val()});
     })
 
+    $("div.address select:not('.district')").change(function(e){
+      $.post("/locations/select",{mid: $(e.target).val()},function(data){
+        var addpoint=$(e.target).next();
+        addpoint.empty();
+        $.each(data,function(index,value){
+          addpoint.append($('<option>').attr('value',value.id).html(value.name));
+        })
+        addpoint.trigger('change');
+
+      })
+    })
+
 })

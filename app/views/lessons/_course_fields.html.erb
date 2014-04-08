@@ -5,8 +5,8 @@
   <div class='field'>
      <%= f.label :category_id,"类别:" %> 
      <% f.object.category=Category.roots.first if f.object.category.nil?%>
-     <span id="course_category"> 
-        <%= render :partial=>"/admin/categories/course_select",:locals=>{:cur=>f.object.category.get_tree,:f=>f} %>
+     <span id="select_category"> 
+        <%= render :partial=>"categories/course_select",:locals=>{:cur=>f.object.category.get_tree,:f=>f} %>
       </span>
   </div>
    <div class='field'>

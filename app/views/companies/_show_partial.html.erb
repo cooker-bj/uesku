@@ -1,0 +1,62 @@
+<div class='subtitle'>
+  <p><b><%=company.version.nil? ? company.versions.last.created_at.localtime : company.version.previous.created_at.localtime %>的版本</b></p>
+  <p>
+    <% unless company.originator.nil? %>
+                    <%=link_to whodoit(company.originator).try(:name),profile_user_path(whodoit(company.originator)) %>
+                    <%=link_to '讨论','#',:remote=>true,:data=>{:users=>[company.originator]}%>
+                    <%=link_to '修改', undo_company_path(company,:version_id=>company.version.try(:id)) %>
+                <% end %>
+  </p>
+</div>
+<p>
+  <b>名称:</b>
+  <%= company.name %>
+</p>
+
+<p>
+  <b>网址:</b>
+  <%= company.website %>
+</p>
+
+<p>
+  <b>标签:</b>
+  <%= company.tags %>
+</p>
+
+<p>
+  <b>公司简介:</b>
+  <%= raw(company.description) %>
+</p>
+
+  
+<div>
+  <b>地点</b> <br/>
+
+  <% n=rand(10000) %>
+  <%company.versioned_branches.each do |branch| %>
+
+      <fieldset>
+        
+          <div class='branch_message'>
+            <p><b>名称</b><%=branch.name%></p>
+            <p><b>电话</b><%=branch.phone%></p>
+            <p><b>地址</b><%=branch.address %></p>
+            <p><b>分支网址</b><%=branch.website%></p>
+             <div>
+                <% branch.lessons.each do |lesson|%>
+                  <div>   课程名称：<%=lesson.title %> 
+                          总分：<%=lesson.rank %> 
+                          <%=link_to '详细',lesson_path(lesson)%>
+                  </div>
+
+                <% end %>
+             </div>
+          </div>
+           <%= tag "div",{:id=>"mymap#{n}", :class=>"course_map small_map",:data=>{:positionx=>branch.geolng,:positiony=>branch.geolat}},true  %>  <%=tag "/div","",true %>
+        
+         
+
+        </fieldset>
+      <% n+=1 %>
+  <% end %>
+  </div>

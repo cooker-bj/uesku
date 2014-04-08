@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
   	respond_with @categories
   end
 
-  def course_select
-    @cur=Category.find(params[:mid]).get_tree
-    render :partial=>'course_select',:layout=>false,:locals=>{:cur=>@cur}
+  def subcategory
+    @cur=Category.find(params[:mid]).children
+    render :json=>@cur
   end
 end

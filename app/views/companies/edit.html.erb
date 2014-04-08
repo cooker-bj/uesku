@@ -1,6 +1,9 @@
-<h1>编辑教育机构信息</h1>
-
-<%= render 'form' %>
-
-<%= link_to '显示',[:admin,@company] %> |
-<%= link_to '回退', admin_companies_path %>
+<div >
+  <%=link_to '机构详情',company_path(@company) %>&nbsp;编辑 &nbsp; <%=link_to '历史',history_company_path(@company)%>
+</div>
+<div>
+	<h1>编辑教育机构信息</h1>
+	<%= render 'form' %>
+</div>
+<%= link_to '显示',company_path(@company)%> |
+<%= link_to '回退', :back %>

@@ -1,9 +1,10 @@
 Uesku::Application.routes.draw do
 
   get "locations/index"
+  match 'locations/select'
 
   get "categories/index"
-  match "categories/course_select"
+  match "categories/subcategory"
 
   
 
@@ -73,6 +74,9 @@ Uesku::Application.routes.draw do
 
   resources :companies ,:execpt=>[:destroy] do 
     get :select_company, :on=>:collection
+    get 'history',:on=>:member
+    post 'compare',:on=>:member
+    get 'undo',:on=>:member
   end
 
   resources :lessons, :except=>[:destroy] do

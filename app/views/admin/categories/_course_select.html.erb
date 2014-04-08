@@ -1,12 +1,14 @@
+
+
 <% if cur[0].has_children? %>
     <%= select_tag "main_category",options_for_select(Category.roots.collect {|p| [p.name,p.id]},cur[0].id) %>
     <% if cur[1].has_children? %>
         <%= select_tag "second_category",options_for_select(cur[0].children.collect { |p| [p.name,p.id]},cur[1].id) %>
-        <%= f.select :category_id, options_for_select(cur[1].children.collect {|p| [p.name,p.id]},cur[2].id),class: 'fcategory' %> <br/>
+        <%= select_tag 'course[category_id]', options_for_select(cur[1].children.collect {|p| [p.name,p.id]},cur[2].id),class: 'fcategory' %> <br/>
     <% else %>
-        <%= f.select :category_id, options_for_select(cur[0].children.collect {|p| [p.name,p.id]},cur[1].id) %>
+        <%= select_tag 'course[category_id]', options_for_select(cur[0].children.collect {|p| [p.name,p.id]},cur[1].id) %>
     <% end %>
 
 <% else %>
-    <%= f.select :category_id, options_for_select(Category.roots.collect {|p| [p.name,p.id]},cur[0].id) %>  <br/>
+    <%=select_tag 'course[category_id]', options_for_select(Category.roots.collect {|p| [p.name,p.id]},cur[0].id) %>  <br/>
 <% end %>

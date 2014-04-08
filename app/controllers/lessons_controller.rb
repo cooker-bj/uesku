@@ -24,14 +24,14 @@ class LessonsController <ApplicationController
   end
 
   def show
-    @lesson=Lesson.published.find(params[:id])
+    @lesson=Lesson.find(params[:id])
     @score=@lesson.find_user_score(current_user) unless current_user.nil?
     @score||=Score.new
     respond_with [@lesson,@score]
   end
 
   def create
-    @course=Course.new(:params[:course])
+    @course=Course.new(params[:course])
     @course.save
     respond_with @course,:location=>lesson_path(@course.lessons.first)
   end
@@ -68,6 +68,9 @@ class LessonsController <ApplicationController
   end
 
   def undo
+    mylesson=Lesson.find(params[:id])
+    @lesson=mylesson.versions.find(params[:versions_id]).reify
+    render 'edit'
   end
  
 end

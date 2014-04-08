@@ -16,7 +16,9 @@ class Lesson < ActiveRecord::Base
   accepts_nested_attributes_for :course
   accepts_nested_attributes_for :branch
   include(AuditContent)
-  scope :published, where('lessons.audit=? ',true)
+  #scope :published, where('lessons.audit=? ',true)
+  has_paper_trail
+
 
   def self.local_lessons(city_id)
   self.published.where("branches.city_id"=>city_id).joins(:branch)

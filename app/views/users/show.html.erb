@@ -86,7 +86,7 @@
      <%=render :partial=>"message_groups" ,:locals=>{:message_groups=>@user.message_groups}%>
 
   </div>
-  <%=content_tag :div, id: 'calendar_events',data: { events: @user.my_events} do %> <%end %>
+  <%=content_tag :div, id: 'calendar_events' do %> <%end %>
 
   </div>
 

@@ -97,7 +97,7 @@ $(function() {
                         $(this).one('ajax:success',function(event,data,status,xhr){
                             build[dialogId].dialog('close');
                             
-                            $('#calendar_events').fullCalendar('addEventSource',data['events']);
+                            $('#calendar_events').fullCalendar('refetchEvents');
 
 
                         });
@@ -158,7 +158,7 @@ $(function() {
             week: '周',
             month: '月'
         },
-        events: $('#calendar_events').data('events'),
+        events: 'calendar_events.json',
         dayClick: newCalendarEvent,
         eventClick: showEvent
 

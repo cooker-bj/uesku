@@ -1,8 +1,8 @@
 class CalendarEventsController < ApplicationController
   respond_to :html,:json
   def index
-    @events=current_user.calendar_events
-    respond_with @events
+    @events=current_user.calendar_events.range(params[:start],params[:end])
+    respond_with @events,:layout=>false
   end
 
   def new
@@ -46,4 +46,6 @@ class CalendarEventsController < ApplicationController
    
     render :json=>{:success=>true,:events=>@events} 
   end
+
+
 end

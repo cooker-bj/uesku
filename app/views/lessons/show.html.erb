@@ -70,7 +70,7 @@
         <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
         <p> 校区：<%=@lesson.name%>    </p>
         <p> 电话:<%=@lesson.phone%> </p>
-        <p> 教育机构：<%=link_to @lesson.company_name,url_with_protocol(company_path(@lesson.course.company)),:target=>'_blank' %>  </p>
+        <p> 教育机构：<%=link_to @lesson.company_name,company_path(@lesson.course.company) %>  </p>
         <p> 分支网址<%=link_to @lesson.branch.website,url_with_protocol(@lesson.branch.website),:target=>'_blank'%> </p>
         <p>标签： <%=@lesson.tags %> </p>
     </div>

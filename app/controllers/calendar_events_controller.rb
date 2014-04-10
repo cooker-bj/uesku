@@ -1,4 +1,5 @@
 class CalendarEventsController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html,:json
   def index
     @events=current_user.calendar_events.range(params[:start],params[:end])

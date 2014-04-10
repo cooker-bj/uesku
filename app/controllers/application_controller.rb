@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include ApplicationHelper
 
-  before_filter :store_location,:authenticate_user!
+  before_filter :store_location
   after_filter :user_activity
 
   def store_location

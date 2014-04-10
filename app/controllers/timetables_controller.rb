@@ -95,4 +95,15 @@ class TimetablesController < ApplicationController
     end
     
   end
+
+  def edit_calendar
+    @timetable = Timetable.find(params[:id])
+    respond_with @timetable
+  end
+
+  def remove_class_time
+  end
+
+  def update_class_time
+  end
 end

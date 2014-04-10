@@ -21,7 +21,7 @@
     <%end%>
     </div>
     <div><%=render :partial=>"lessons_list",:locals=>{:lessons=>@lessons} %>  </div>
-    <div><%=link_to '新建课程',company_lessons_path if user_signed_in? %></div>
+    <div><%=link_to '新建课程',company_lessons_path  %></div>
     <div id="paginate_area"> <%= will_paginate @lessons,:controller=>'lessons',:action=>'location',:previous_label=>'前页',:next_label=>'下页'%>   </div>
   </div>
 </div>

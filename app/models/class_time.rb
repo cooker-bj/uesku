@@ -20,4 +20,8 @@ class ClassTime < ActiveRecord::Base
     end
     calendar_events
   end
+
+  def self.events
+    all.inject([]){|events_array,event| events_array.concat event.events}
+  end
 end

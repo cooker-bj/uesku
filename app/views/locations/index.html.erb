@@ -1,2 +1,12 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+<h1>选择城市</h1>
+<div class='list'>
+<% Location.roots.reverse_each do |province| %>
+	<ul>
+		<b><%=province.name %></b><br/>
+		<% province.children.each do |city| %>
+			<li><%=link_to city.name, set_city_location_path(city) %></li>
+		<% end %>
+	</ul>
+<% end %>
+</div>
+

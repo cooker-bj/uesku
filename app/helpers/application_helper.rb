@@ -5,12 +5,16 @@ module ApplicationHelper
     (content.length <size ? content : content[0,size-5]+'...' ) unless content.nil?
   end
 
-  def set_city(city)
+  def set_city_in_session(city)
   session[:city]=city.id
   end
 
   def get_city
-    session[:city]||110100
+    session[:city]||Ipaddress.find(request.remote_ip).try(:id) || 110100
+  end
+
+  def get_city_name
+    Location.find(get_city).try(:name)
   end
 
   def format_time(mytime)

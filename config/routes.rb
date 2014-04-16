@@ -1,7 +1,7 @@
 Uesku::Application.routes.draw do
 
-  get "locations/index"
-  match 'locations/select'
+  #get "locations/index"
+  #match 'locations/select'
 
   get "categories/index"
   match "categories/subcategory"
@@ -13,6 +13,10 @@ Uesku::Application.routes.draw do
   get "main/index"
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
+  resources :locations,:only=>[:index] do 
+    match 'seletct', :on=>:collection
+    get 'set_city', :on=>:member
+  end 
 
   resources :calendar_events
 
@@ -125,7 +129,9 @@ Uesku::Application.routes.draw do
     end
     resources :locations   do
       post 'select', :on=>:collection
+      
     end
+
     resources :companies do
     resources :branches
      get  'set_audit', :on=>:member

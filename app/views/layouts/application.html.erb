@@ -23,7 +23,8 @@
     </div>
     <div id="head">
       <img src="/assets/logo.png" alt="my logo" name="logo"  id="logo" />
-      <div id="query_box"> <%=text_field_tag 'query'%><%=link_to '检索','#'%></div>
+      <span id='city'><%=get_city_name %><%= link_to '<变更>',locations_path %>
+      </span>
       <span id="login_area">
         <% if current_user.nil? %>
           <%=link_to '登录',new_user_session_path  %>|
@@ -45,7 +46,7 @@
       </li><li>
         <a href="/groups" class="parent"><span>社区</span></a>
       </li>
-      </ul>
+      </ul><div id="query_box"> <%=text_field_tag 'query'%><%=link_to '检索','#'%></div>
     </div>
   </div>
   <div id="main">

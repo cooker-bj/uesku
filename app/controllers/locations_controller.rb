@@ -1,14 +1,19 @@
 class LocationsController < ApplicationController
-	before_filter :authenticate_user!
-	respond_to :json
+	
+	respond_to :json,:html
   def index
-  	@location=Location.all
-  	respond_with @location
-
+  	@locations=Location.all
+  	respond_with @locations
   end
 
    def select
     @locations=Location.find(params[:mid]).children.order('id')
     render :json=>@locations
+   end
+
+  def set_city
+    location=Location.find(params[:id])
+    set_city_in_session(location)
+    redirect_to '/'
   end
 end

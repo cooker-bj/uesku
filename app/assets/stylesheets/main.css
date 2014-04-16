@@ -15,7 +15,9 @@
 #query_box{
     display:inline;
     position:relative;
-    top: -15px;
+    top: 8px;
+    float:right;
+    right:30px;
 }
 #head form{
     margin: 0px;
@@ -38,6 +40,13 @@
 
 #top_head a{
     text-decoration:none;
+}
+
+#city {
+    height:75px;
+    line-height:75px;
+    overflow:hidden;
+    position:absolute;
 }
 #main{
 	position: relative;
@@ -358,6 +367,15 @@ table a{
 .list ul {
     list-style-type:none;
     margin: 0px;
+    padding:0px;
+}
+
+.list li {
+    list-style-type:none;
+    width:50px;
+    display: inline;
+    border:none;
+    margin:0px;
     padding:0px;
 }
 

@@ -15,7 +15,7 @@ class Lesson < ActiveRecord::Base
   accepts_nested_attributes_for :comments
   accepts_nested_attributes_for :course
   accepts_nested_attributes_for :branch
-  include(AuditContent)
+  #include(AuditContent)
   #scope :published, where('lessons.audit=? ',true)
   #has_paper_trail
 
@@ -32,9 +32,8 @@ class Lesson < ActiveRecord::Base
   end
 
   def self.filter_with_category(cat)
-    if cat.nil?||cat.empty?
-
-      self
+    if cat.blank?
+      scoped
     else
        where("courses.category_id"=>cat).joins(:course).order("rank desc")
     end
@@ -43,8 +42,8 @@ class Lesson < ActiveRecord::Base
 
 
   def self.filter_with_district(dist)
-    if dist.nil?||dist.empty?
-       self
+    if dist.blank?
+       scoped
     else
       where("branches.district_id"=>dist).joins(:branch).order("rank desc")
     end

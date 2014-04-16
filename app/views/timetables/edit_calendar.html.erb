@@ -1,0 +1,25 @@
+<h1>变更课程时间</h1>
+<%=content_tag :div, id: 'edit_class_time',data: {events: @timetable.class_times.events} do %><% end %>
+<div class='undisplay'>
+	<div id='modify_class_time'>
+		<div id='command_line'>
+			<%=link_to '停课','#',:id=>'remove_class_time' %>
+			<%=link_to '变更时间','#',:id=>'change_class_time'%>
+		</div>
+    
+    	<div id='update_time_form'>
+			<%=form_tag 'update_class_time' do %>
+				<%=hidden_field_tag :event_id,nil,:id=>'event_id' %>
+				<%=hidden_field_tag :start,nil,:id=>'start' %>
+
+				<%=label_tag :class_date,'上课日期' %>
+				<%=text_field_tag :start_day,nil,:class=>'date_picker' %><br/>
+				从<%=select_tag :start_time_hour,options_for_select(hour_array) %>:
+           	  	<%=select_tag :start_time_minute,options_for_select(minute_array) %>
+          	  	到<%=select_tag :end_time_hour,options_for_select(hour_array) %>:
+          	  	<%=select_tag :end_time_minute,options_for_select(minute_array) %>
+				<%=submit_tag '提交' %>
+			<% end %>
+    	</div>
+	</div>
+</div>

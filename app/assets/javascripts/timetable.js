@@ -2,6 +2,11 @@
  * Created by cooker on 1/6/14.
  */
 $(function(){
+    var pad=function(n){
+       return (n < 10) ? ("0" + n) : n;
+
+    }
+
     $('.date_picker').datepicker({
         dateFormat: $.datepicker.ATOM
     });
@@ -67,5 +72,60 @@ $(function(){
 
 
     });
+    
+    $('#edit_class_time').fullCalendar({
+        header: {
+            left: 'prev, today title',
+            center: '',
+            right: 'month,agendaWeek,agendaDay next'
+        },
+        events: $('#edit_class_time').data('events'),
+        timeFormat: 'hh:mmt',
+        handleWindowResize: true,
+        aspectRatio: 2,
+        buttonText: {
+            today: '今天',
+            day: '日',
+            week: '周',
+            month: '月'
+        },
+        allDaySlot:false,
+        eventClick: function(event,jsevent,view){
+            
+            $('#modify_class_time').on('click','#remove_class_time',function(e){
+                $.post('remove_class_time',{class_time_id: event.id,start: event.start},function(data,status,xhr){
+                   window.location.href='/timetables/'+data.id;
+                });
+            })
+
+            $('#modify_class_time').on('click','#change_class_time',function(e){
+                $('#command_line').hide();
+                $('#update_time_form').show();
+
+            })
+
+            $('#update_time_form #event_id').val(event.id);
+            $('#update_time_form #start').val(event.start);
+            $('#update_time_form #start_day').val($.format.date(event.start.getTime(), "yyyy-MM-dd"));
+            $('#update_time_form #start_time_hour').val(pad(event.start.getHours()));
+            $('#update_time_form #start_time_minute').val(pad(event.start.getMinutes()));
+            $('#update_time_form #end_time_hour').val(pad(event.end.getHours()));
+            $('#update_time_form #end_time_minute').val(pad(event.end.getMinutes()));
+
+            $('#modify_class_time').dialog({
+                open: function(e,ui){
+                     $('#update_time_form').hide();
+                },
+                close: function(e,ui){
+                    $('#command_line').show();
+                }
+            });
+        }
+
+
+
+
+    });
+
 
 })

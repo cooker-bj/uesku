@@ -102,8 +102,18 @@ class TimetablesController < ApplicationController
   end
 
   def remove_class_time
+    class_time=ClassTime.find(params[:class_time_id])
+    @timetable=Timetable.find(params[:id])
+    class_time.remove_class_time(params[:start])
+    render :json=>{:success=>true,:id=>@timetable.id}
   end
 
   def update_class_time
+    @timetable=Timetable.find(params[:id])
+    class_time=ClassTime.find(params[:event_id])
+    class_time.modify(params[:start],params)
+    respond_with @timetable,:location=>timetable_path(@timetable)
   end
+
+
 end

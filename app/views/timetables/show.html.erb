@@ -41,6 +41,7 @@
 <%= link_to '注册使用',register_user_timetable_path(@timetable) %>
 <%= link_to '返回', lesson_timetables_path(@timetable.lesson) %>
 <%= link_to '修改', edit_timetable_path(@timetable)%>
+<%= link_to '中止和变更时间', edit_calendar_timetable_path(@timetable) %>
 <div id='main_content'>
 <div class='detail_bar'>
       <div class='detail_head'>课表评价</div>

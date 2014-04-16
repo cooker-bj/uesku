@@ -96,6 +96,9 @@ Uesku::Application.routes.draw do
   resources :timetables do
     get 'register_user',:on=>:member
     delete 'withdraw_user',:on=>:member
+    get 'edit_calendar',:on=>:member
+    post 'remove_class_time',:on=>:member
+    post 'update_class_time', :on=>:member
     resources :comments,:name_prefix=>"timetable_"
   end
 

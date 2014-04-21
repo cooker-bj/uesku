@@ -1,0 +1,8 @@
+zh-CN:
+  api:
+    v1:
+      token:
+        invalid_token: "错误的证书"
+      sessions:
+        invalid_login: "邮箱或密码错误。"
+

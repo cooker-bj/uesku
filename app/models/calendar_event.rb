@@ -125,9 +125,15 @@ class CalendarEvent < ActiveRecord::Base
     
   end
 
-  def self.range(start,terminal)
-    where(:start_time=>DateTime.strptime(start,'%s')...DateTime.strptime(terminal,'%s'))
-
+  def self.range(start=nil,terminal=nil)
+    case
+    when start.nil? && terminal.nil?
+      scoped
+    when terminal.nil?
+      where('start_time >? ',DateTime.strptime(start,'%s'))
+    else
+        where(:start_time=>DateTime.strptime(start,'%s')...DateTime.strptime(terminal,'%s'))
+    end
   end
 
   

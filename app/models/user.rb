@@ -2,18 +2,19 @@
 class User < ActiveRecord::Base
   extend Users::OmniauthCallbacksHelper
   
-
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,:trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect]
+         :recoverable, :rememberable, :validatable,:trackable#,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,
                   :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:points
   # attr_accessible :title, :body
   scope :online, lambda{ where('update_at <?', 10.minutes.ago)}
+  before_save :ensure_authentication_token
   has_many :comments
   has_many :scores
   has_many :replies
@@ -44,6 +45,12 @@ class User < ActiveRecord::Base
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens
    before_create :add_random_nickname, :add_registration_date
+
+def ensure_authentication_token
+  if authentication_token.blank?
+    self.authentication_token = generate_authentication_token
+  end
+end
 
 
 
@@ -184,7 +191,7 @@ class User < ActiveRecord::Base
   end
 
   def as_json(option={})
-    super(option.merge(:include=>[:friendships,:members,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
+    super(option.merge(:include=>[:members,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
   end
 
 
@@ -202,6 +209,15 @@ class User < ActiveRecord::Base
 
   def add_registration_date
        self.registration_date=Time.now
+  end
+
+  
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
   end
 
 end

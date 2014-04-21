@@ -68,7 +68,13 @@ Uesku::Application.routes.draw do
   devise_for :admins, :controllers =>{:sessions=>'admin/sessions'}
   get 'admin/companies'=>'admin/companies#index',:as=>:admin_root
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",:registrations=>"users/registrations" }
+  devise_for :users#, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",:registrations=>"users/registrations",:sessions=>"users/sessions" }
+  get '/users/auth/google_oauth2/callback'=>'users/omniauth_callbacks#google_oauth2'
+  get '/users/auth/weibo/callback'=>'users/omniauth_callbacks#weibo'
+  get '/users/auth/qq_connect/callback'=>'users/omniauth_callbacks#qq_connect'
+
+ 
+
   resources :users,:only=>[:show] do
     get 'groups',:on=>:member
     get 'messenger',:on=>:member
@@ -113,6 +119,15 @@ Uesku::Application.routes.draw do
   post 'query/group_member_for_management'=>'query#group_member_for_management'
   get 'query/query_companies_auto'
   post 'query/query_companies'
+
+  namespace :api,defaults: {format: 'json'} do 
+    namespace :v1 do 
+      devise_for :users
+      resources :calendar_events
+      resources :users,:only=>[:show]
+      #get 'users',to: 'users#show'
+    end
+  end
 
   namespace :admin do
     resources :admins

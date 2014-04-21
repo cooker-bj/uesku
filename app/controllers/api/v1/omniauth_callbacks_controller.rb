@@ -1,4 +1,4 @@
-class Users::OmniauthCallbacksController < ApplicationController
+class Api::V1::OmniauthCallbacksController <Devise::OmniauthCallbacksController
    include Users::OmniauthCallbacksHelper
 
   def google_oauth2

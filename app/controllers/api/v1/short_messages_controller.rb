@@ -1,4 +1,4 @@
-class ShortMessagesController < ApiController
+class Api::V1::ShortMessagesController < ApiController
   
   respond_to :json
   def index

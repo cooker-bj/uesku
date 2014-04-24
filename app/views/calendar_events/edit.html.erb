@@ -7,7 +7,7 @@
 	<%=f.fields_for :alerts  %>
    		
     </div>
-	<%=f.link_to_add '增加',:alerts,data: {:target=>'#notice'} %><br/>
+	<%=f.link_to_add '增加',:alerts %><br/>
 <%=f.label :locaion,'地点' %><%=f.text_field :location %><br/>
 <%=f.label :description,'简介' %><%=f.text_area :description %><br/>
 <% if @event.repeat %>应用到全部<%=check_box_tag :applied_to_all,true,true %><% end %><br/>

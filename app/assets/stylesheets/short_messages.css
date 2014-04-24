@@ -1,0 +1,120 @@
+.messages{
+margin:2px;
+position:relative;
+overflow:hidden;
+}
+
+.current_user{
+position:relative;
+max-width:225px;
+float:right;
+text-align:right;
+min-height:30px;
+border: 1px solid #cccccc;
+background: rgb(231,231,231);
+margin: 5px auto;
+line-height:20px;
+border-radius: 5px 5px 5px 5px;
+}
+
+.current_user:before{
+    content: ' ';
+    width:0px;
+    height:0px;
+    border-color:  transparent transparent transparent #cccccc;
+    border-width: 6px 6px 6px 6px;
+    border-style:solid;
+    top:10px;
+    left:100%;
+    position:absolute;
+}
+
+.current_user:after{
+    content: ' ';
+    width:0px;
+    height:0px;
+    border-color: transparent transparent transparent rgb(231,231,231);
+    border-width: 4px 4px 4px 4px;
+    border-style:solid;
+    top: 12px;
+    left:100%;
+    position:absolute;
+}
+
+.others{
+position:relative;
+max-width:225px;
+float:left;
+min-height:30px;
+border: 1px solid #cccccc;
+background: rgb(231,231,231);
+margin: 5px auto;
+line-height:20px;
+border-radius: 5px 5px 5px 5px;
+}
+
+
+.others:before{
+    content: ' ';
+    width:0px;
+    height:0px;
+    border-color: transparent #cccccc  transparent transparent;
+    border-width: 6px 6px 6px 6px;
+    border-style:solid;
+    top:10px;
+    right:100%;
+    position:absolute;
+}
+
+.others:after{
+    content: ' ';
+    width:0px;
+    height:0px;
+    border-color: transparent rgb(231,231,231) transparent transparent;
+    border-width: 4px 4px 4px 4px;
+    border-style:solid;
+    top: 12px;
+    right:100%;
+    position:absolute;
+}
+
+.messager_user{
+ width: 50px;
+ text-align:center;
+
+}
+
+.list ul{
+  list-style-type:none;
+    margin: 0px;
+    padding:0px;   
+}
+
+.list {
+	padding: 0px;
+}
+
+.list li{
+    list-style-type:none;
+    
+    
+    border:none;
+    margin:0px;
+    padding:0px;
+}
+
+.list strong{
+    font-size:14px;
+}
+.list a {
+    text-decoration:none;
+
+    color:black;
+}
+
+.messages_area{
+	max-height:370px;
+	overflow:auto;
+}
+
+

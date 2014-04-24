@@ -13,14 +13,21 @@ $(function(){
          var users=$('#messages_list input:checkbox:checked').map(function(){ return $(this).val()}).get();
          var title=$('#messages_list input:checkbox:checked').siblings('a').map(function(){return $(this).html()}).get();
          $('<div>').dialog({
-             open: function(){$(this).load("short_messages/new_message", {'users[]': users},function(){
+             open: function(event,ui){ 
+                $(this).load("short_messages/new_message", {'users[]': users},function(){
 
                  repeat();
              })},
              close:function(){clearTimeout(timeout)},
              title: title,
              modal: true,
-             maxHeight:600
+             maxHeight:500,
+             minWidth:350,
+             minHeight:400,
+             resizable: true,
+             resize: function(event,ui){
+                $(".messages_area").css('max-height',ui.size.height-120);
+            }
          })
     });
 
@@ -33,15 +40,23 @@ $(function(){
        }else
        {
         dialogs[id]=$('<div>').dialog({ title:$(this).html(),
-            open: function(){
+            open: function(event,ui){
                 $(this).html(xhr.responseText);
+                $(this).css('overflow','hidden');
+                $(".messages_area").css('max-height',ui.size.height()-120);
                repeat();
                 },
             beforeClose:  function(){
                 clearTimeout(timeout);
             },
             modal:true,
-            maxHeight:600
+            maxHeight: $(window).height()-50,
+            minWidth:350,
+            minHeight:400,
+            resizable: true,
+            resize: function(event,ui){
+                $(".messages_area").css('max-height',ui.size.height-120);
+            }
 
 
         })
@@ -61,7 +76,7 @@ $(function(){
     })
 
     $("body").on('click',".message_box #add",function(){$(this).siblings('#choose').show()})
-    $("body").on('click',".message_box #add_img",function(){
+    $("body").on('click',".message_box #add_img,.message_box #add_audio",function(){
         var category=$(this).attr("data-type");
         $(this).parent().siblings("input.category").val(category);
         $(this).parent().siblings("span#input_file").show();

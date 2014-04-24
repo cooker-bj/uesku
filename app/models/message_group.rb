@@ -20,8 +20,7 @@ class MessageGroup < ActiveRecord::Base
   end
 
    def title
-
-     users.inject(''){|title,user| title << user.name.to_s<<','}.chop
+    users.inject(''){|title,user| title << user.name.to_s<<','}.chop
    end
 
   def has_new_messages(user)
@@ -60,7 +59,7 @@ class MessageGroup < ActiveRecord::Base
   end
 
   def as_json(option={})
-    super(option.merge(:methods=>[:title,:messages],:include=>[:users]))
+    super(option.merge(:methods=>[:title],:only=>[:id,:creator_id,:update_time]))
   end
 
 

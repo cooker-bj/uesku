@@ -125,7 +125,18 @@ Uesku::Application.routes.draw do
       devise_for :users
       resources :calendar_events
       resources :users,:only=>[:show]
-      #get 'users',to: 'users#show'
+      resources :short_messages do
+        get 'manage',:on=>:member
+        get 'reply', :on=>:member
+        post 'new_message',:on=>:collection
+        get 'show_messages',:on=>:member
+        post 'add_users',:on=>:collection
+        post 'remove_users',:on=>:collection
+        get 'new_messages',:on=>:member
+      end
+      resources :friendships  do
+        get  'agree',:on=>:member
+      end
     end
   end
 

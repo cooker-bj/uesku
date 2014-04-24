@@ -112,7 +112,7 @@ end
   def read_new_messages(group)
     messengers=self.messengers.unread(group)
     messages=[]
-    logger.info "messenger=#{messengers.first}"
+    logger.debug "messenger=#{messengers.first}"
     messengers.each do |messenger|
       messenger.update_attribute(:read_status,true)
       logger.info "error: messenger.errors"

@@ -364,13 +364,13 @@ table a{
     padding:10px;
     border-bottom: 1px rgb(186,212,227) dashed;
 }
-.list ul {
+.city_list ul {
     list-style-type:none;
     margin: 0px;
     padding:0px;
 }
 
-.list li {
+.city_list li {
     list-style-type:none;
     width:50px;
     display: inline;
@@ -379,14 +379,7 @@ table a{
     padding:0px;
 }
 
-.list strong{
-    font-size:14px;
-}
-.list a {
-    text-decoration:none;
 
-    color:black;
-}
 
 .list .cell_detail{
 

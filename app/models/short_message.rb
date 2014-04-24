@@ -14,6 +14,10 @@ class ShortMessage < ActiveRecord::Base
     where(:message_group_id=>group.id)
   end
 
+  def self.find_by_group_range(group,start_param,end_param)
+    where("short_messages.message_group_id=? and create_time>? and create_time <=?",group.id,start_param,end_param)
+  end
+
   def self.send_system_message(user,message)
     system_user=User.where(:email=>'system@uesku.com').first
     group=MessageGroup.locate_users([user],system_user)
@@ -36,6 +40,10 @@ class ShortMessage < ActiveRecord::Base
 
   end
 
+  def as_json(option={})
+    super(option.merge(:only=>[:id,:create_time, :media, :message, :message_group_id, :category],
+                        :include=>{:sender=>{:only=>[:id,:name]}}))
+  end
 
 
   private

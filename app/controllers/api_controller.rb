@@ -11,7 +11,7 @@ class ApiController < ActionController::Base
   def authenticate_user_from_token!
     user_email = params[:user_email].presence
     user       = user_email && User.where(:email=>user_email).first
- 
+    
     # Notice how we use Devise.secure_compare to compare the token
     # in the database with the token given in the params, mitigating
     # timing attacks.

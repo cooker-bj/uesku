@@ -28,6 +28,7 @@ class ShortMessagesController < ApplicationController
 
   def create
     @message=ShortMessage.new(params[:short_message])
+    @message.sender_id=current_user.id
     respond_with @message do |format|
       if @message.save
         format.html do 
@@ -76,7 +77,7 @@ class ShortMessagesController < ApplicationController
   def remove_users
     @group=MessageGroup.find(params[:id])
     @group.remove_users(params[:users])
-    render :json=>{:success=>false}
+    render :json=>{:success=>true}
   end
 
   def destroy

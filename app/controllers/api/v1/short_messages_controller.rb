@@ -1,6 +1,7 @@
 class Api::V1::ShortMessagesController < ApiController
   
   respond_to :json
+
   def index
     @groups=current_user.message_groups
     respond_with @groups
@@ -9,17 +10,18 @@ class Api::V1::ShortMessagesController < ApiController
   def show
     @group=MessageGroup.get_messages(params[:id],current_user)
     @messages=@group.messages
-    respond_with [@group,@messages]
+    respond_with @messages
   end
 
   def new_message
     @group=MessageGroup.locate_users(params[:users],current_user)
-    @messages=[]
-    respond_with [@group,@messages] 
+    respond_with @group 
   end
 
   def create
     @message=ShortMessage.new(params[:short_message])
+    @message.sender_id=current_user.id
+    @message.save   
     respond_with @message 
   end
 
@@ -30,8 +32,8 @@ class Api::V1::ShortMessagesController < ApiController
 
   def new_messages
     group=MessageGroup.find(params[:id])
-    @messages=current_user.read_new_messages(group)
-    respond_with [@group,@messages] 
+    @messages=current_user.short_messages.find_by_group_range(group,params[:start],params[:end])
+    respond_with @messages
   end
 
   def manage
@@ -48,7 +50,7 @@ class Api::V1::ShortMessagesController < ApiController
   def remove_users
     @group=MessageGroup.find(params[:id])
     @group.remove_users(params[:users])
-    render :json=>{:success=>false}
+    render :json=>{:success=>true}
   end
 
   def destroy

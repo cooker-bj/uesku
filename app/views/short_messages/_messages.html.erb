@@ -1,12 +1,40 @@
 
   <%messages.each do |message|%>
-      <li>
-        <%=image_tag message.sender.avatar_url,:height=>30,:width=>30 %><%=message.sender.name%>&nbsp<%=message.message %>
-        <% if message.category==1 %>
-            <%=image_tag message.media_url,:height=>60,:width=>80 %>
-        <%else if message.category==2 %>
+      <li><div class='messages' > 
+        <% if message.sender==current_user %>
+         <div class="messager_user float_right">
+            <%=image_tag message.sender.avatar_url,:height=>30,:width=>30 %>
+            <%=message.sender.name%>
+          </div>
+        
+          <div class='current_user'>
+            <%=message.message %>&nbsp 
+            <% if message.category==1 %>
+                <%=link_to image_tag(message.media_url,:height=>60,:width=>80),message.media_url,:target=>'_blank' %>
+            <%elsif message.category==2 %>
+                <%=link_to image_tag("sound.png",:height=>40,:width=>50), message.media_url,:target=>'_blank' %>
+            <%end %>
+          
+          </div>
+         
+        
+
+         <%else%>
+          <div class="messager_user float_left">
+            <%=image_tag message.sender.avatar_url,:height=>30,:width=>30 %>
+            <%=message.sender.name%>
+          </div>
+          <div class='others'>
+            &nbsp<%=message.message %>
+            <% if message.category==1 %>
+                <%=image_tag message.media_url,:height=>60,:width=>80 %>
+            <%elsif message.category==2 %>
                 <%=link_to "voice", message.media_url %>
-            <% end %>
-        <%end %>
+            <%end %>
+          </div>
+      
+        <% end %>
+          </div>
+        
       </li>
   <% end %>

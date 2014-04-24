@@ -268,7 +268,7 @@ ul.menu{
 }
 table a{
     text-decoration: none;
-    color:black;
+    
 }
 #hot_lessons table th{
     background-color:rgb(233,248,253);
@@ -332,7 +332,7 @@ table a{
 #side_menu a,#tools_menu a {
     text-decoration:none;
     font-size: 14px;
-    color:black;
+    
 }
 
 #tools_menu ul{

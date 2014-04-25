@@ -17,6 +17,8 @@ gem 'sunspot_rails','~>1.3'
 gem 'nested_form'
 gem 'fullcalendar-rails'
 gem 'jquery-timepicker-addon-rails'
+gem 'acts-as-taggable-on'
+gem 'jquery-fileupload-rails'
 group :development,:test do
   gem 'rspec'
   gem 'rspec-rails'

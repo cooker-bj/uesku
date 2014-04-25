@@ -28,6 +28,10 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    acts-as-taggable-on (3.1.1)
+      actionpack (>= 3, < 5)
+      activerecord (>= 3, < 5)
+      activesupport (>= 3, < 5)
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
     arel (3.0.3)
@@ -79,6 +83,9 @@ GEM
     i18n (0.6.1)
     interception (0.3)
     journey (1.0.4)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -240,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   ancestry
   cancan
   capybara
@@ -252,6 +260,7 @@ DEPENDENCIES
   execjs
   factory_girl
   fullcalendar-rails
+  jquery-fileupload-rails
   jquery-rails
   jquery-timepicker-addon-rails
   jquery-ui-rails

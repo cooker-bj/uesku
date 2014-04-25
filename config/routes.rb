@@ -1,5 +1,8 @@
 Uesku::Application.routes.draw do
 
+  resources :places
+
+
   #get "locations/index"
   #match 'locations/select'
 

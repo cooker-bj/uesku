@@ -112,10 +112,14 @@ $(function() {
   $("div#maped_list").each(function() {
     var handle = initMap($(this));
     $('div.course_items').each(function(n) {
-      var location = new MMap.Lnglat($(this).attr('data-positionx'), $(this).attr('data-positiony'));
-      var msg = $(this).find('.course_title').text() + '<br/>' + $(this).find('.company_name').text() + '<br/> 价格:' + $(this).find('.course_price').text() + '<br/> 推荐率:' + $(this).find('.course_rank').text();
-      var mid = 'm' + n;
-      addPoint(handler, mid, location, msg);
+      var mylng = $(this).attr('data-positionx');
+      var mylat = $(this).attr('data-positiony');
+      if (mylng && mylat) {
+        var location = new MMap.Lnglat(mylng, mylat);
+        var msg = $(this).find('.course_title').text() + '<br/>' + $(this).find('.company_name').text() + '<br/> 价格:' + $(this).find('.course_price').text() + '<br/> 推荐率:' + $(this).find('.course_rank').text();
+        var mid = 'm' + n;
+        addPoint(handler, mid, location, msg);
+      }
     })
   })
 
@@ -127,14 +131,22 @@ $(function() {
 
   $(".course_map").each(function(id) {
     var handle = initMap($(this));
-    var location = new MMap.LngLat($(this).attr('data-positionx'), $(this).attr('data-positiony'));
-    addOnePoint(handle, 'mm' + id, location);
+    var mylng = $(this).attr('data-positionx');
+    var mylat = $(this).attr('data-positiony');
+    if (mylng && mylat) {
+      var location = new MMap.LngLat(mylng, mylat);
+      addOnePoint(handle, 'mm' + id, location);
+    }
   });
 
   $("#lesson_map").each(function(id) {
     var handle = initMap_without_tools($(this));
-    var location = new MMap.LngLat($(this).attr('data-positionx'), $(this).attr('data-positiony'));
+     var mylng = $(this).attr('data-positionx');
+      var mylat = $(this).attr('data-positiony');
+      if (mylng && mylat) {
+    var location = new MMap.LngLat(mylng,mylat);
     addOnePoint(handle, 'mm' + id, location);
+  }
   });
   $('.branch').each(function(id) {
     var mypoint = $(this).find(".mymap")
@@ -159,14 +171,15 @@ $(function() {
     var handler = initMap(element);
     handler = clickPoint(handler, added.find('.positionx'), added.find('.positiony'));
   });
-  $("form").on('nested:fieldAdded',function(e){
-   var  point=e.field.find('.mymap');
-   var location=e.field.find('.positionx');
-   var id_pattern=/[a-z|_]+_(\d+)_geolng$/i
-   var newId=location.attr('id').match(id_pattern).pop();
-   point.attr('id',"mmap"+newId)
-   var handler=initMap(point);
-   handler=clickPoint(handler,e.field.find('.positionx'),e.field.find('.positiony'));
+
+  $("form").on('nested:fieldAdded', function(e) {
+    var point = e.field.find('.mymap');
+    var location = e.field.find('.positionx');
+    var id_pattern = /[a-z|_]+_(\d+)_geolng$/i
+    var newId = location.attr('id').match(id_pattern).pop();
+    point.attr('id', "mmap" + newId)
+    var handler = initMap(point);
+    handler = clickPoint(handler, e.field.find('.positionx'), e.field.find('.positiony'));
   });
 
 })

@@ -14,7 +14,7 @@ Uesku::Application.routes.draw do
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
   resources :locations,:only=>[:index] do 
-    match 'seletct', :on=>:collection
+    match 'select', :on=>:collection
     get 'set_city', :on=>:member
   end 
 

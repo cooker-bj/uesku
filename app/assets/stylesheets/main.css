@@ -435,3 +435,7 @@ table a{
      font-style: italic;
     vertical-align: super;
 }
+
+.branch .address{
+    width:250px;
+}

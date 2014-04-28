@@ -10,20 +10,19 @@ $(function() {
 
   function initMap(handler, options) {
     var opt = $.extend({
-      level: 14, //初始地图视野级别
+      level: 13 //初始地图视野级别
       //center:new MMap.LngLat(116.397428,39.90923),//设置地图中心点
-      doubleClickZoom: true, //双击放大地图
-      scrollWheel: true //鼠标滚轮缩放地图
+
     }, options || {});
     var attached = handler.attr('id');
-    var mapObj = new MMap.Map(attached, opt);
-    mapObj.plugin(["MMap.ToolBar", "MMap.OverView", "MMap.Scale"], function() {
-      toolbar = new MMap.ToolBar();
+    var mapObj = new AMap.Map(attached, opt);
+    mapObj.plugin(["AMap.ToolBar", "AMap.OverView", "AMap.Scale"], function() {
+      toolbar = new AMap.ToolBar();
       toolbar.autoPosition = false; //加载工具条
       mapObj.addControl(toolbar);
-      overview = new MMap.OverView(); //加载鹰眼
+      overview = new AMap.OverView(); //加载鹰眼
       mapObj.addControl(overview);
-      scale = new MMap.Scale(); //加载比例尺
+      scale = new AMap.Scale(); //加载比例尺
       mapObj.addControl(scale);
     });
     handler.data('mapObj', mapObj);
@@ -34,11 +33,11 @@ $(function() {
     var opt = $.extend({
       level: 10, //初始地图视野级别
       //center:new MMap.LngLat(116.397428,39.90923),//设置地图中心点
-      doubleClickZoom: true, //双击放大地图
-      scrollWheel: true //鼠标滚轮缩放地图
+      //doubleClickZoom: true, //双击放大地图
+      //scrollWheel: true //鼠标滚轮缩放地图
     }, options || {});
     var attached = handler.attr('id');
-    mapObj = new MMap.Map(attached, opt);
+    mapObj = new AMap.Map(attached, opt);
 
     handler.data('mapObj', mapObj);
     return handler;
@@ -53,11 +52,11 @@ $(function() {
       if (marker) {
         marker.setPosition(e.lnglat);
       } else {
-        marker = new MMap.Marker({
+        marker = new AMap.Marker({
           id: 'mypoint',
           position: e.lnglat,
           icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
-          offset: new MMap.Pixel(-7, -28), //相对于基点的偏移量
+          offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
           visible: true
         })
         mapObj.addOverlays(marker);
@@ -72,17 +71,17 @@ $(function() {
 
   function addPoint(handler, mid, location, msg) {
     var mapObj = handler.data('mapObj');
-    var marker = new MMap.Marker({
+    var marker = new AMap.Marker({
       id: mid,
       position: location,
       icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
-      offset: new MMap.Pixel(-7, -28), //相对于基点的偏移量
+      offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
       visible: true
     })
     mapObj.addOverlays(marker);
-    var infoWindow = new MMap.infoWindow({
+    var infoWindow = new AMap.infoWindow({
       content: msg,
-      offset: new MMap.Pixel(-106, -61)
+      offset: new AMap.Pixel(-106, -61)
     });
     mapObj.bind(marker, 'click', function(evnet) {
       inforWindow.open(mapObj, marker.getPosition());
@@ -94,11 +93,11 @@ $(function() {
 
   function addOnePoint(handler, mid, location) {
     var mapObj = handler.data('mapObj');
-    var marker = new MMap.Marker({
+    var marker = new AMap.Marker({
       id: mid,
       position: location,
       icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
-      offset: new MMap.Pixel(-7, -28), //相对于基点的偏移量
+      offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
       visible: true
     })
     mapObj.addOverlays(marker);
@@ -109,13 +108,14 @@ $(function() {
   };
 
 
+
   $("div#maped_list").each(function() {
     var handle = initMap($(this));
     $('div.course_items').each(function(n) {
       var mylng = $(this).attr('data-positionx');
       var mylat = $(this).attr('data-positiony');
       if (mylng && mylat) {
-        var location = new MMap.Lnglat(mylng, mylat);
+        var location = new AMap.Lnglat(mylng, mylat);
         var msg = $(this).find('.course_title').text() + '<br/>' + $(this).find('.company_name').text() + '<br/> 价格:' + $(this).find('.course_price').text() + '<br/> 推荐率:' + $(this).find('.course_rank').text();
         var mid = 'm' + n;
         addPoint(handler, mid, location, msg);
@@ -129,24 +129,24 @@ $(function() {
   });
 
 
-  $(".course_map").each(function(id) {
-    var handle = initMap($(this));
+  /* $(".course_map").each(function(id) {
+    var handle = initMap_without_tools($(this));
     var mylng = $(this).attr('data-positionx');
     var mylat = $(this).attr('data-positiony');
     if (mylng && mylat) {
-      var location = new MMap.LngLat(mylng, mylat);
+      var location = new AMap.LngLat(mylng, mylat);
       addOnePoint(handle, 'mm' + id, location);
     }
-  });
+  });*/
 
-  $("#lesson_map").each(function(id) {
+  $("#lesson_map,.course_map").each(function(id) {
     var handle = initMap_without_tools($(this));
-     var mylng = $(this).attr('data-positionx');
-      var mylat = $(this).attr('data-positiony');
-      if (mylng && mylat) {
-    var location = new MMap.LngLat(mylng,mylat);
-    addOnePoint(handle, 'mm' + id, location);
-  }
+    var mylng = $(this).attr('data-positionx');
+    var mylat = $(this).attr('data-positiony');
+    if (mylng && mylat) {
+      var location = new AMap.LngLat(mylng, mylat);
+      addOnePoint(handle, 'mm' + id, location);
+    }
   });
   $('.branch').each(function(id) {
     var mypoint = $(this).find(".mymap")
@@ -155,12 +155,17 @@ $(function() {
       var px = $(this).find('.positionx').first();
       var py = $(this).find('.positiony').first();
       if (px.val() && py.val()) {
-        var location = new MMap.LngLat(px.val(), py.val());
+        var location = new AMap.LngLat(px.val(), py.val());
         handler = addOnePoint(handler, 'mm' + id, location);
+
       }
+      getGeocode($(this),handler);
       handler = clickPoint(handler, px, py);
     }
   });
+
+
+
   $('#add_branch').click(function() {
     var added = $("#new_branch ").children().clone()
 
@@ -172,14 +177,67 @@ $(function() {
     handler = clickPoint(handler, added.find('.positionx'), added.find('.positiony'));
   });
 
+
   $("form").on('nested:fieldAdded', function(e) {
     var point = e.field.find('.mymap');
     var location = e.field.find('.positionx');
     var id_pattern = /[a-z|_]+_(\d+)_geolng$/i
     var newId = location.attr('id').match(id_pattern).pop();
+
     point.attr('id', "mmap" + newId)
     var handler = initMap(point);
     handler = clickPoint(handler, e.field.find('.positionx'), e.field.find('.positiony'));
+    getGeocode(e.field,handler);
   });
+
+
+
+function getGeocode(position,handler){
+    // set point in map by decoding address
+    var MGeocoder;
+    var callbackfn = function(data) {
+      var noticePoint = position.find('.map_notice');
+      var listItem;
+      if (data.resultNum == 1) {
+        noticePoint.html("定位" + data.geocodes[0].formattedAddress + "请检查地图的标志是否正确");
+      } else {
+        noticePoint.html("有多个位置匹配该地址， 请在列表中选择正确的项， 或在地图上标出位置");
+        var addtml = $('<ul>');
+        $.each(data.geocodes, function(index, p) {
+          listItem = $('<li>').html(p.formattedAddress).data('location', p.location).on('click', function(event) {
+            handler = addOnePoint(handler, 'mypoint', $(this).data('location'));
+          });
+
+          addtml.append(listItem);
+        });
+        noticePoint.append(addtml);
+      }
+
+      var location = data.geocodes[0].location
+      var lat = location.getLat();
+      var lng = location.getLng();
+      position.find('.positiony').val(lat);
+      position.find('.positionx').val(lng);
+      handler = addOnePoint(handler, 'mypoint', location);
+
+
+    }
+
+    position.find('.address').on('change', function(event) {
+      var address = position.find('.province').find("option:selected").text() + position.find('.city').find("option:selected").text() + position.find('.district').find("option:selected").text() + position.find(".street").val();
+      var mapObj = handler.data('mapObj');
+      mapObj.plugin(["AMap.Geocoder"], function() {
+
+        MGeocoder = new AMap.Geocoder();
+
+        AMap.event.addListener(MGeocoder, "complete", callbackfn);
+        MGeocoder.getLocation(address);
+      });
+    });
+  }
+
+  
+
+
 
 })

@@ -1,10 +1,10 @@
 .set_point{
-    height: 600px;
-    width: 800px;
+    min-height: 400px;
+    width: 700px;
 }
 
 .small_map{
-     height: 300px;
+     min-height: 300px;
      width: 400px;
 }
 
@@ -17,3 +17,9 @@
       margin: 5px;
       padding: 5px;
 }
+
+.map_notice{
+	color:red;
+}
+
+

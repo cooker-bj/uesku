@@ -439,3 +439,28 @@ table a{
 .branch .address{
     width:250px;
 }
+
+.columns_list{
+    overflow:hidden;
+}
+
+ul.columns {
+    float: left;
+    position: relative;
+    margin-right: 20px;
+    width: 300px;
+    
+
+ }
+
+.columns li {
+    list-style-type:none;
+    width: 150px;
+    margin: 10px;
+    font-size: 14px;
+    
+}
+
+ .columns li a {
+    text-decoration:none;
+}

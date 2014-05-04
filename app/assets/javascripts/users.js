@@ -31,4 +31,8 @@ $(function(){
      $('#friends').on("ajax:success",'.friends_option',function(evt,data,status,xhr){
          $('#friends').html(xhr);
      })
+     $('#query_user').on('click','#query_submit',function(event){
+        $('#query_result').load('/query/query_users',{argm: $('#query_user input#argm').val()})
+
+     })
 })

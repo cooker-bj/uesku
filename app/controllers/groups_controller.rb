@@ -1,7 +1,7 @@
 #encoding: UTF-8
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
-  respond_to :html,:json
+  before_filter :authenticate_user!,:except=>[:index]
+  respond_to :html
   # GET /groups
   # GET /groups.json
   def index

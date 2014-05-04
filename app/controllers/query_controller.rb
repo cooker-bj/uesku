@@ -1,6 +1,6 @@
 #--encoding: UTF-8
 class QueryController < ApplicationController
-	respond_to :html,:json
+	respond_to :html
 
   def group_member_for_management
     group=Group.find(params[:group_id])
@@ -25,6 +25,15 @@ class QueryController < ApplicationController
     companies=Company.where('name like ?','%'+params[:term]+'%')
     @result=companies.inject([]){|ary,company| ary<<company.name}
     render :json=>@result
+  end
+  
+  def query_users
+    if params[:argm]=~ /(\w+\.?)*@\w+\.\w+/
+      @users=User.where(:email=>params[:argm])
+    else
+      @users=User.where('nickname= :args or (nickname is null and real_name= :args)',:args=>params[:argm])
+    end
+    render :partial=>'query_users',:layout=>false
   end
 
 

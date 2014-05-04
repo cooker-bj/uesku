@@ -7,6 +7,8 @@ class Company < ActiveRecord::Base
    has_paper_trail
    accepts_nested_attributes_for :branches
    before_save :moniter_clients
+   after_create :renew_score
+   after_update :renew_update_score
   include AuditContent
    scope :published, where(:audit => true)
    validates_uniqueness_of :name
@@ -43,5 +45,13 @@ class Company < ActiveRecord::Base
    def moniter_clients
     self.updated_at=Time.now if self.changed_for_autosave?
    end
+
+   def renew_score
+      User.find(self.originator).update_attributes(:score=>User.find(self.originator).score+10)
+  end
+
+  def renew_update_score
+      User.find(self.originator).update_attributes(:score=>User.find(self.originator).score+5) 
+  end
 
 end

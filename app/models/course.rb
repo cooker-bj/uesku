@@ -9,7 +9,8 @@ class Course < ActiveRecord::Base
   has_paper_trail
   include AuditContent
   AGE_RANGE=['0-6岁','7-12岁','13-18岁','成人',"无限制"]
-
+  after_create :renew_score
+  after_update :renew_update_score
 
   def branches=(brs)
        brs.each do  |br|
@@ -25,5 +26,12 @@ class Course < ActiveRecord::Base
     AGE_RANGE[attribute(:age_range).to_i]
   end
 
+  private
+  def renew_score
+    User.find(self.originator).update_attributes(:score=>User.find(self.originator).score+10)
+  end
 
+  def renew_update_score
+      User.find(self.originator).update_attributes(:score=>User.find(self.originator).score+5) 
+  end
 end

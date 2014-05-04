@@ -2,6 +2,6 @@
   <%=tag 'div',{:class=>"#{position}_box"}, true %>
 <%=image_tag user.avatar.thumb.url,:height=>32,:width=>32 %>
 <%=user.name %> <div>注册时间:<%=format_time(user.registration_date) %></div>
-  <div>积分:<%=user.points %></div>
+  <div>积分:<%=user.score%></div>
 <%=link_to '加为好友',friendships_path(:friend_id=>user.id),:method=>'post',:class=>'add_friend', :remote=>true unless user==current_user%>
    </div>

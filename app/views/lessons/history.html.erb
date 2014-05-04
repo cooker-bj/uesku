@@ -1,34 +1,23 @@
+ <div>
+ 	<%=link_to '课程详情',lesson_path(@lesson) %>&nbsp;<%=link_to '编辑', edit_lesson_path(@lesson) %> &nbsp;历史
+ </div>
+<%=form_tag 'compare' do %>
 <table>
  <tr><th>选择比较版本</th><th>更新时间</th><th>修改人</th></tr>
- <%=form_tag 'compare' do %>
-	<% @history.each do |version| %>
-	<tr>
-		<td><%=check_box_tag 'versions[]',"#{version[:course].version.try(:index)}_#{version[:branch].version.try(:index)}"%></td>
-
+  
+  <% @history.each do |version| %>
+	<tr> 
+		<td ><%=check_box_tag 'versions[]', version.id%></td>
+		<td><%=version.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')  %></td>
 		<td>
-			<tr>
-				<td>课程：<%=version[:course].version.nil? ? (version[:course].created_at.localtime) : version[:course].version.created_at.localtime %></td>
-				<td>
-					<% unless version[:course].originator.nil? %>
-						<%=link_to whodoit(version[:course].originator).try(:name),profile_user_path(whodoit(version[:course].originator)) %>
-					<%=link_to '讨论','#',:remote=>true,:data=>{:users=>[version[:course].originator]}%>
-					<% end %>
-				</td>
-			</tr>
-			<tr>
-				<td>分支：<%=version[:branch].version.nil? ? (version[:branch].created_at.localtime) : version[:branch].version.created_at.localtime  %></td>
-				<td>
-					<% unless version[:branch].originator.nil? %>
-						<%=link_to whodoit(version[:branch].originator).try(:name),profile_user_path(whodoit(version[:branch].originator)) %>
-					<%=link_to '讨论','#',:remote=>true,:data=>{:users=>[version[:branch].originator]}%>
-					<% end %>
-				</td>
-			</tr>
+			<% unless version.whodunnit.nil? %>
+				<%=link_to whodoit(version.whodunnit).try(:name),profile_user_path(whodoit(version.whodunnit)) %>
+				<%=link_to '讨论','#',:remote=>true,:data=>{:users=>version.whodunnit}%>
+			<% end %>
 		</td>
-
-
 	</tr>
-	<% end %>
+  <% end %>
 	<%=submit_tag '比较'%>
-<% end %>
+
 </table>
+<% end %>

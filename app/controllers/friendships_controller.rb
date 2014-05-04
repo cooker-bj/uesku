@@ -1,6 +1,6 @@
 class FriendshipsController< ApplicationController
    before_filter :authenticate_user!
-   respond_to :html,:json
+   respond_to :html
   def create
   @friendship=current_user.friendships.build(:friend_id=>params[:friend_id])
   if @friendship.save

@@ -3,7 +3,7 @@
   <div><%=image_tag current_user.avatar_url.to_s,:width=>150,:height=>150 %>  </div>
   <div>
     <div>注册时间:<%=format_time(current_user.registration_date) %></div>
-    <div>积分:<%=current_user.points %></div>
+    <div>积分:<%=current_user.score %></div>
   </div>
   <div><%=link_to "修改个人信息", edit_user_registration_path(current_user) %> </div>
 

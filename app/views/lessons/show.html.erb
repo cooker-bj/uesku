@@ -29,6 +29,9 @@
     </div>
   </div>
   <div id='main_content' class="float_right">
+    <div >
+  课程详情&nbsp;<%=link_to '编辑', edit_lesson_path(@lesson) %> &nbsp; <%=link_to '历史',history_lesson_path(@lesson)%>
+</div>
     <div id="lesson_title"><%=@lesson.title %> </div>
     <div class='details'><b><%=@lesson.address %></b></div>
     <div id="lesson_left">

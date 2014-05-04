@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   belongs_to :last_replier, :class_name=>'User',:foreign_key=>:last_replier_id
   belongs_to :poster,:class_name=>'User',:foreign_key=>:poster_id
   before_create :add_posted_time
+  after_create :renew_score
   #accepts_nested_attributes_for :post_comments
 
   def self.group_posts_list(group_id)
@@ -41,5 +42,9 @@ class Post < ActiveRecord::Base
     self.comment_count=0
     self.last_replier_id=self.poster_id
     self.last_replied_time=Time.now
+  end
+
+  def renew_score
+    poster.update_attributes(:score=>poster.score+8)
   end
 end

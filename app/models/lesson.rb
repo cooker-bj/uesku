@@ -12,7 +12,7 @@ class Lesson < ActiveRecord::Base
   has_many :groups,:through=>:group_lessons
   has_many :timetables
   accepts_nested_attributes_for :scores
-  accepts_nested_attributes_for :comments
+  accepts_nested_attributes_for :comments, reject_if: proc{|attributes| attributes[:comment].blank?}
   accepts_nested_attributes_for :course
   accepts_nested_attributes_for :branch
   #include(AuditContent)
@@ -107,16 +107,16 @@ class Lesson < ActiveRecord::Base
   def versions
     cl=[]
     self.course.versions.reverse_each do |v|
-      
-
       c_date=v.created_at
       d_date=v.next.try(:created_at)
       branch_versions=self.branch.versions.where(created_at: c_date ... (d_date.nil? ? Time.now : d_date))
-      cl<<{:course=>v.reify.next_version,:branch=>self.branch} if branch_versions.blank?
+      this_course= v.next.nil? ? self.course : v.next.reify
+            
+
+      cl<<{:course=>this_course,:branch=>self.branch} if branch_versions.blank?
       branch_versions.each do |bv|
-         
-        cl<<{:course=>v.reify.next_version,:branch=>bv.reify.next_version}
-        
+        this_branch= bv.next.nil? ? self.branch : bv.next.reify
+        cl<<{:course=>this_course,:branch=>this_branch}
       end
      
     end

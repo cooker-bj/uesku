@@ -1,7 +1,13 @@
+<div >
+ <%=link_to '课程详情',lesson_path(@lesson) %>&nbsp;编辑 &nbsp; <%=link_to '历史',history_lesson_path(@lesson)%>
+</div>
 <%=nested_form_for @lesson do |f| %>
+
   
    <%=f.fields_for :course %>
-   <%=f.fields_for :branch %>
-   <%=f.submit '完成' %>
+  
+   <%=f.submit '完成' %>&nbsp;<%=link_to '修改地址及教育机构信息', edit_company_path(@lesson.company) %>
 <% end %>
+
+
    

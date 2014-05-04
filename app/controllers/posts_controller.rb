@@ -1,7 +1,7 @@
 #encoding: UTF-8
 class PostsController < ApplicationController
   before_filter :authenticate_user!
- respond_to :html,:json
+ respond_to :html
   def index
     @posts = Post.group_posts_list(params[:group_id]).paginate(:page=>params[:page],:per_page=>20)
 

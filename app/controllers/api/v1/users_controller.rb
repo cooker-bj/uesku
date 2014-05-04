@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApiController
     if @user==current_user
      respond_with @user
     else
-      respond_with @user.as_json({:only=>[:email,:registration_date,:points,:avatar],:method=>[:name]})
+      respond_with @user.as_json({:only=>[:email,:registration_date,:score,:avatar],:method=>[:name]})
     end
   end
  

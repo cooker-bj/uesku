@@ -37,5 +37,14 @@
     <%= f.label :description,"课程描述" %> <br/>
     <%= f.kindeditor :description %> 
   </div>
+   <p><b>选择课程所在的分支/校区</b></p>
+    <fieldset>
+      <% f.object.company.branches.each do |branch| %>
+       <%=f.fields_for :branches do |br|%>
+          <%=branch.name %>
+          <%=check_box_tag 'course[branches][]',branch.id, true  %>
+          <% end %>
+      <%end %>
+    </fieldset>
      
     

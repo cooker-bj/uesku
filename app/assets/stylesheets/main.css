@@ -464,3 +464,41 @@ ul.columns {
  .columns li a {
     text-decoration:none;
 }
+
+.list_items{
+    overflow:hidden;
+}
+
+.list_items ul{
+   
+    list-style-type:none;
+    position: relative;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.time_field{
+    width:150px;
+    margin:1px 1px 1px 5px;
+     float: left;
+     text-align:center;
+
+}
+
+.content_field{
+    width:600px;
+    margin: 1px;
+     float: left;
+      text-align:center;
+}
+.title_field{
+    width:400px;
+    margin: 1px;
+    float: left;
+    text-align:center;
+
+}
+
+.title_field a {
+     text-decoration:none;
+}

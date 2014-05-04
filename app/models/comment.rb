@@ -3,9 +3,9 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable,:polymorphic => true
   belongs_to :user
   has_many :replies
- 
+  validates_presence_of :comment
   before_create :add_comment_time
-  after_create :update_commentable_after_create
+  after_create :update_commentable_after_create,:renew_score
   after_destroy :update_commentable_after_destroy
 
   def self.last_comment_user_name
@@ -36,5 +36,9 @@ class Comment < ActiveRecord::Base
       self.commentable.save
     end
 
+  end
+
+  def renew_score
+    user.update_attributes(:score=>user.score+1)
   end
 end

@@ -93,15 +93,22 @@ $(function() {
 
   function addOnePoint(handler, mid, location) {
     var mapObj = handler.data('mapObj');
-    var marker = new AMap.Marker({
+    var marker = handler.data('marker');
+    if (marker){
+      marker.setPosition(location);
+
+    }else{
+    marker=new AMap.Marker({
       id: mid,
       position: location,
       icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
       offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
       visible: true
-    })
+    });
+  }
     mapObj.addOverlays(marker);
     mapObj.setFitView([marker]);
+    mapObj.setZoom(14);
     handler.data('marker', marker);
     handler.data('mapObj', mapObj);
     return handler;
@@ -148,6 +155,7 @@ $(function() {
       addOnePoint(handle, 'mm' + id, location);
     }
   });
+
   $('.branch').each(function(id) {
     var mypoint = $(this).find(".mymap")
     if (mypoint.size() > 0) {
@@ -159,7 +167,7 @@ $(function() {
         handler = addOnePoint(handler, 'mm' + id, location);
 
       }
-      getGeocode($(this),handler);
+      getGeocode($(this), handler,"mm"+id);
       handler = clickPoint(handler, px, py);
     }
   });
@@ -187,12 +195,12 @@ $(function() {
     point.attr('id', "mmap" + newId)
     var handler = initMap(point);
     handler = clickPoint(handler, e.field.find('.positionx'), e.field.find('.positiony'));
-    getGeocode(e.field,handler);
+    getGeocode(e.field, handler,'mypoint');
   });
 
 
 
-function getGeocode(position,handler){
+  function getGeocode(position, handler,mid) {
     // set point in map by decoding address
     var MGeocoder;
     var callbackfn = function(data) {
@@ -205,7 +213,7 @@ function getGeocode(position,handler){
         var addtml = $('<ul>');
         $.each(data.geocodes, function(index, p) {
           listItem = $('<li>').html(p.formattedAddress).data('location', p.location).on('click', function(event) {
-            handler = addOnePoint(handler, 'mypoint', $(this).data('location'));
+            handler = addOnePoint(handler, mid, $(this).data('location'));
           });
 
           addtml.append(listItem);
@@ -218,12 +226,12 @@ function getGeocode(position,handler){
       var lng = location.getLng();
       position.find('.positiony').val(lat);
       position.find('.positionx').val(lng);
-      handler = addOnePoint(handler, 'mypoint', location);
+      handler = addOnePoint(handler, mid, location);
 
 
     }
 
-    position.find('.address').on('change', function(event) {
+    position.find('.address').on('change','.street', function(event) {
       var address = position.find('.province').find("option:selected").text() + position.find('.city').find("option:selected").text() + position.find('.district').find("option:selected").text() + position.find(".street").val();
       var mapObj = handler.data('mapObj');
       mapObj.plugin(["AMap.Geocoder"], function() {
@@ -235,9 +243,4 @@ function getGeocode(position,handler){
       });
     });
   }
-
-  
-
-
-
 })

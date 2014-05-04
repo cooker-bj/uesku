@@ -1,30 +1,44 @@
-机构名称：
-<%=f.object.company.name %>
-<div class="branch">
-  <div class="field">
-    <%=f.label :name,"分支名称:"%>
-    <%=f.text_field :name %>
-  </div>
-  <div class='field'>
-    <%=f.label :phone,"电话:"%> 
-    <%=f.text_field :phone %>
-  </div>
-  <div class='field'>
-    <%=f.label :website, "分支网址:"%>
-    <%=f.text_field :website %>
-  </div>
-  <div class='field'>
-    地址：<%=f.select :province_id,options_for_select(Location.roots.collect {|p| [p.name,p.id]}) %> 省
-         <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]})  %> 市
-         <%=f.collection_select :district_id,Location.first_districts,:id,:name %> 区/县 
-         <%=f.text_field :street %>
-   </div>
-   <div class='field'>
-            分支位置：(点击地图设定位置)<br/>
-            <%=f.text_field :geolng,:class=>'positionx undisplay' %>  
-            <%=f.text_field :geolat,:class=>'positiony undisplay' %>
-    </div>
 
+
+ 
+<div class="branch">
+  <fieldset>
+  <div class="float_left">
+        <%=f.hidden_field :id %>
+        <%=f.link_to_remove '删除' %>
+        <div class="field">
+          <%=f.label :name,"分支名称"%><br/>
+          <%=f.text_field :name %> 
+        </div>
+        <div class='field'>
+          <%=f.label :phone,"电话"%> <br/>
+          <%=f.text_field :phone %>
+        </div>
+        <div class='field'>
+          <%=f.label :website, "分支网址"%><br/>
+          <%=f.text_field :website %>
+        </div>
+        <div class='address'>
+          地址：<%=f.select :province_id,options_for_select(Location.roots.order(:id).collect {|p| [p.name,p.id]}),{},:class=>'province' %> 
+          <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]}),{},:class=>'city'  %> 
+          <%=f.collection_select :district_id,Location.first_districts,:id,:name,{},:class=>'district' %> <br/> 
+          <%=f.text_field :street,:class=>'street' %><div class='map_notice'></div>
+        </div>
+        <div class='field undisplay'>
+          地理坐标：<br/>
+          经度：<%=f.text_field :geolng,:class=>'positionx' %>  <br/>
+          纬度:<%=f.text_field :geolat,:class=>'positiony' %>
+        </div>
+      </div>
+      <div class="float_right">
+
+        <div><b>点击地图设定分支所在位置：</b></div>
+        <%=tag "div",{:class=>"mymap set_point",:id=>"mymap#{rand(1000)}"},true%>
+        <%=tag "/div",nil,true%>
+      </div>
      
-    <%=tag "div",{:class=>"mymap set_point",:id=>"mymap#{rand(1000)}"},true%>
-    <%=tag "/div",nil,true%>
+     
+    </fieldset>
+</div>
+  
+ 

@@ -13,6 +13,7 @@ Uesku::Application.routes.draw do
   get "main/index"
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
+
   resources :locations,:only=>[:index] do 
     match 'select', :on=>:collection
     get 'set_city', :on=>:member
@@ -119,6 +120,7 @@ Uesku::Application.routes.draw do
   post 'query/group_member_for_management'=>'query#group_member_for_management'
   get 'query/query_companies_auto'
   post 'query/query_companies'
+  post 'query/query_users'
 
   namespace :api,defaults: {format: 'json'} do 
     namespace :v1 do 
@@ -136,6 +138,7 @@ Uesku::Application.routes.draw do
       end
       resources :friendships  do
         get  'agree',:on=>:member
+        post 'query_users',:on=>:collection
       end
     end
   end

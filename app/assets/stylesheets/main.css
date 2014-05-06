@@ -210,12 +210,15 @@ ul.menu{
 
     font-size: 30px;
     font-family: microsoft yahei;
+    line-height:40px;
 }
 
 .recommend_item_title{
 
     font-size: 18px;
     font-family: microsoft yahei;
+    line-height:40px;
+    margin: 5px;
 }
 .recommend_item_description{
     text-align:left;

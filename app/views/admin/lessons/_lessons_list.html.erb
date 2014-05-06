@@ -21,13 +21,9 @@
         <td><%=lesson.rank %></td>
         <td><%=lesson.recommendations.empty? ? '无':'有'%></td>
         <td><%=link_to '显示',admin_lesson_path(lesson)  %> </td>
-        <% if lesson.audit %>
-        <td><%=link_to '撤消审核',withdraw_audit_admin_lesson_path(lesson) %></td>
         <td><%=link_to '推荐管理', admin_lesson_recommendations_path(lesson)%></td>
         <td><%=link_to '推荐',new_admin_lesson_recommendation_path(lesson) if lesson.recommendations.empty? %></td>
-        <% else %>
-            <td><%=link_to '审核',set_audit_admin_lesson_path(lesson) unless lesson.audit%></td>
-         <% end%>
+       
       </tr>
   <% end %>
 </table>

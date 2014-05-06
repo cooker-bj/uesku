@@ -70,8 +70,8 @@
 
 #back_main{
     position:relative;
-    width:800px;
-    right:2px;
+    width:850px;
+    margin-left:5px;
     float:right;
 }
 

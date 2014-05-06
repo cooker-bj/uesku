@@ -136,7 +136,7 @@ $(function() {
   });
 
 
-  /* $(".course_map").each(function(id) {
+   $(".course_map").each(function(id) {
     var handle = initMap_without_tools($(this));
     var mylng = $(this).attr('data-positionx');
     var mylat = $(this).attr('data-positiony');
@@ -144,7 +144,7 @@ $(function() {
       var location = new AMap.LngLat(mylng, mylat);
       addOnePoint(handle, 'mm' + id, location);
     }
-  });*/
+  });
 
   $("#lesson_map,.course_map").each(function(id) {
     var handle = initMap_without_tools($(this));

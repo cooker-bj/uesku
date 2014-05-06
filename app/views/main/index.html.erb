@@ -3,7 +3,7 @@
 <div id='recommendation'>
      <div id="recommendation_title">优异思库－最优课徎列表</div>
      <% i=1 %>
-     <% Recommendation.get_list('F1',2).each do |item|%>
+     <% Recommendation.get_list('F1',get_city).each do |item|%>
 
       <%=tag('div',{:id=>"recommend_#{i}",:class=>'recommend_items',:'data-id'=>item.lesson.id},true) %>
          <div class="recommend_item_top"><%="0#{i}"%></div>

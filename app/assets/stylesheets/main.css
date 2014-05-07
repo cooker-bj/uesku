@@ -505,3 +505,7 @@ ul.columns {
 .title_field a {
      text-decoration:none;
 }
+
+.notice {
+    color: red;
+}

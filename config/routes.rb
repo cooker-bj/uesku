@@ -69,7 +69,7 @@ Uesku::Application.routes.draw do
   devise_for :admins, :controllers =>{:sessions=>'admin/sessions'}
   get 'admin/companies'=>'admin/companies#index',:as=>:admin_root
 
-  devise_for :users#, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",:registrations=>"users/registrations",:sessions=>"users/sessions" }
+  devise_for :users, :controllers => { :registrations=>"users/registrations",:sessions=>"users/sessions" }
   get '/users/auth/google_oauth2/callback'=>'users/omniauth_callbacks#google_oauth2'
   get '/users/auth/weibo/callback'=>'users/omniauth_callbacks#weibo'
   get '/users/auth/qq_connect/callback'=>'users/omniauth_callbacks#qq_connect'

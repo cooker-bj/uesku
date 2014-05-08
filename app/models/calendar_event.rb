@@ -162,7 +162,8 @@ class CalendarEvent < ActiveRecord::Base
          :allDay=>all_day,
          :realId=>id,
          :timetable_name=>timetable_name,
-         :location=>location
+         :location=>location,
+         :description=>description
         }
     json[:alerts]=alerts.as_json(option)
     json

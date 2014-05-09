@@ -45,6 +45,7 @@ end
 gem 'devise'
 gem 'devise-i18n'
 gem 'cancan'
+gem 'jwt','0.1.11'
 
 gem 'carrierwave'
 gem 'ancestry'

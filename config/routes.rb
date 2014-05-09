@@ -83,7 +83,7 @@ Uesku::Application.routes.draw do
 
   end
 
-  resources :companies ,:execpt=>[:destroy] do 
+  resources :companies ,:except=>[:destroy] do 
     get :select_company, :on=>:collection
     get 'history',:on=>:member
     post 'compare',:on=>:member

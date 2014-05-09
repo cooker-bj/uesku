@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
   end
 
   def select_company
-  	@companies=Company.paginate :page=>params[:page],:per_page=>40
+  	@companies=Company.order('id DESC').paginate :page=>params[:page],:per_page=>40
     respond_with @companies do |format|
     	format.html {render :partial=>'companies_partial',:layout=>false}
     end

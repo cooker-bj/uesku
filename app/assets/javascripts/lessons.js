@@ -4,7 +4,7 @@ $(function(){
 		$('#company_select_list').load(url,function(e){
 			$('div.pagination a').attr("data-remote", true).click(function(e) {
                 e.preventDefault();
-                loadCompnay($(this).attr('href'));
+                loadCompany($(this).attr('href'));
             });
 		});
 	}

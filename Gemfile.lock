@@ -98,7 +98,7 @@ GEM
     jquery-ui-rails (4.1.2)
       railties (>= 3.1.0)
     json (1.8.1)
-    jwt (0.1.12)
+    jwt (0.1.11)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -270,6 +270,7 @@ DEPENDENCIES
   jquery-rails
   jquery-timepicker-addon-rails
   jquery-ui-rails
+  jwt (= 0.1.11)
   nested_form
   omniauth-google-oauth2
   omniauth-qq-connect

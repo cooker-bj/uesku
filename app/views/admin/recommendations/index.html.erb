@@ -9,7 +9,7 @@
   <tr>
   <td> <%=Recommendation::POSITION[re.position]  %></td>
    <td><%=re.recommend_date %></td>
-   <td><%=re.link_to '修改',edit_admin_recommendation_path(@lesson,re) %></td>
+   <td><%=link_to '修改',edit_admin_recommendation_path(@lesson,re) %></td>
     <td><%=link_to '取消推荐', [:admin,@lesson,re],method: :delete, data:{confirm: '你确定？'}%></td>
 
   </tr>

@@ -1,0 +1,14 @@
+<%=form_for [:admin,@rec.lesson,@rec] do |f| %>
+	 <h3><%=f.object.lesson.title %><h3>
+推荐位置： <%=f.select :position,Recommendation::POSITION.collect {|key,value|[value,key]}  %><br/>
+
+    <%=f.hidden_field :lesson_id %>
+    <%=f.hidden_field :city_id %>
+    <%=f.label :description,'推荐原因'%><br/>
+    <%=f.text_area :description %><br/>
+    <%=f.label :image,'课程图片'%>
+    <div> <%=image_tag f.image_url.to_s unless f.image_url.nil? %></div>
+    <%=f.file_field :image %><%=f.hidden_field :image_cache %><br/>
+    <%=f.submit '推荐'%>
+
+<% end %>

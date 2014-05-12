@@ -7,7 +7,7 @@
     <%=f.label :description,'推荐原因'%><br/>
     <%=f.text_area :description %><br/>
     <%=f.label :image,'课程图片'%>
-    <div> <%=image_tag f.image_url.to_s unless f.image_url.nil? %></div>
+    <div> <%=image_tag @rec.image_url.to_s unless rec.image_url.nil? %></div>
     <%=f.file_field :image %><%=f.hidden_field :image_cache %><br/>
     <%=f.submit '推荐'%>
 

@@ -12,6 +12,11 @@
 <div>
   <%=f.label :real_name,"姓名" %>  <%=f.text_field :real_name %>
 </div>
+<div><% if f.object.nickname.blank? %>
+  <%=f.label :nickname,"呢称" %>  <%=f.text_field :nickname %><span class="notice">呢称选定后，  将不能修改</span>
+  <% end %>
+</div>
+
  <div>
    <%=f.label :gender, "性别" %><%=f.select :gender, ['男','女']%>
  </div>

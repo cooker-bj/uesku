@@ -1,6 +1,6 @@
 #--*-- encoding: UTF-8
 class Recommendation < ActiveRecord::Base
-  attr_accessible :lesson_id, :recommend_date,:position,:city_id,:image,:description
+  attr_accessible :lesson_id, :recommend_date,:position,:city_id,:image,:description,:image_cache
   belongs_to :lesson
   before_save :add_recommendation_time
   mount_uploader :image,ImageUploader

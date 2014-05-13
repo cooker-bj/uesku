@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:index,:show]
-	respond_to :html,:json
+	respond_to :html
 
   def index
     @companies=Company.paginate :page=>params[:page],:per_page=>40
@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
   end
 
   def select_company
-  	@companies=Company.paginate :page=>params[:page],:per_page=>40
+  	@companies=Company.order('id DESC').paginate :page=>params[:page],:per_page=>40
     respond_with @companies do |format|
     	format.html {render :partial=>'companies_partial',:layout=>false}
     end
@@ -60,7 +60,7 @@ class CompaniesController < ApplicationController
 
   def undo
     company_object=Company.find(params[:id])
-    @company=company_object.versions.find(params[:version_id]).reify
+    @company=params[:version_id].nil? ? company_object : company_object.versions.find(params[:version_id]).reify
     render 'edit'
   end
 

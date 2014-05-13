@@ -2,9 +2,9 @@ class Admin::CompaniesController < Admin::AdminBaseController
   # GET /companies
   # GET /companies.json
   def index
-    @companies={}
-    @companies['unaudit'] =Company.un_audit_all.limit(20)
-    @companies['audit']=Company.audit_all.limit(20)
+    
+    @companies=Company.paginate(:page=>params[:page],:per_page=>40)
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,16 +83,5 @@ class Admin::CompaniesController < Admin::AdminBaseController
     end
   end
 
-  def set_audit
-    company=Company.find(params[:id])
-
-     company.set_audit
-    redirect_to :action=> 'index'
-  end
-
-  def withdraw_audit
-    company=Company.find(params[:id])
-    company.withdraw_audit
-    redirect_to :action=> 'index'
-  end
+ 
 end

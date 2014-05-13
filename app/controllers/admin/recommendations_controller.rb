@@ -11,9 +11,20 @@ class Admin::RecommendationsController <Admin::AdminBaseController
     @rec.city_id=Lesson.find(params[:lesson_id]).city_id
   end
 
+  def edit
+    @rec=Recommendation.find(params[:id])
+    respond_with @rec
+  end
+
   def create
     @rec=Recommendation.new(params[:recommendation])
     @rec.save
+    respond_with @rec, :location=>admin_lesson_recommendations_path(@rec.lesson.id)
+  end
+
+  def update
+    @rec=Recommendation.find(params[:id])
+    @rec.update_attributes(params[:recommendation])
     respond_with @rec, :location=>admin_lesson_recommendations_path(@rec.lesson.id)
   end
 

@@ -1,5 +1,6 @@
 <h1>公司列表</h1>
- <h2>已审核公司列表</h2>
+ 
+
 <table>
   <tr>
     <th>名称</th>
@@ -11,30 +12,7 @@
     <th></th>
   </tr>
 
-  <% @companies['audit'].each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.website %></td>
-        <td><%= company.tags %></td>
-
-        <td><%= link_to '显示', admin_company_path(company) %></td>
-        <td> <%=link_to '撤销审核',withdraw_audit_admin_company_path(company) %></td>
-
-      </tr>
-  <% end %>
-</table>
-<table>
-  <tr>
-    <th>名称</th>
-    <th>网址</th>
-    <th>标签</th>
-
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-<h2>未审核公司列表</h2>
-<% @companies['unaudit'].each do |company| %>
+<% @companies.each do |company| %>
   <tr>
     <td><%= company.name %></td>
     <td><%= company.website %></td>
@@ -49,5 +27,5 @@
 </table>
 
 <br />
-
+<%=will_paginate @companies,:prev_label=>'前一页',:next_label=>'下一页'%>
 <%= link_to '新建公司', new_admin_company_path %>

@@ -1,0 +1,73 @@
+<div >
+  <div class='list_items'>
+    <h3>发表评论：</h3>
+    <ul>
+      <li class='content_field'>评价内容</li>
+      <li class='time_field'>时间</li>
+    </ul>
+    <ul>
+    <% @user.comments.each do |comment|%>
+     <li class="content_field">  <%=display_string(comment.comment,40) %></li>
+      <li class='time_field'><%=format_time(comment.comment_time) %></li>
+    <% end %>
+  </ul>
+  </div>
+    <div class='list_items'>
+      <h3>  发表文章：</h3>
+    <ul>
+      <li class='title_field'>标题</li>
+      <li class='time_field'>时间</li>
+    </ul>
+      <ul>
+        <% @user.posts.each do |post| %>
+         <li class="title_field">   <%=display_string(post.title,30) %></li>
+          <li class='time_field'><%=format_time(post.posted_time) %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+
+    <div class='list_items'>
+      <h3>提交的课程：</h3>
+      <ul>
+      <li class='title_field'>标题</li>
+      <li class='time_field'>时间</li>
+      <li class='time_field'>操作类型</li>
+    </ul>
+        <% @user.my_courses.each do |item| %>
+       
+          <ul>
+            <li class="title_field">
+              <%=link_to display_string(item[:title],25),lesson_path(item[:lesson]) %>
+            </li>
+            <li class='time_field'><%=format_time(item[:date]) %></li>
+            <li class='time_field'><%=t(item[:event]) %> </li>
+            
+            </ul>
+        
+        <% end %>
+      
+    </div>
+
+     <div class='list_items'>
+     <h3> 提交的教育机构：</h3>
+       <ul>
+      <li class='title_field'>标题</li>
+      <li class='time_field'>时间</li>
+      <li class='time_field'>操作类型</li>
+    </ul>
+      
+        <% @user.my_companies.each do |item| %>
+        
+          <ul>
+            <li class="title_field"><%=link_to display_string(item[:name],25),company_path(item[:id]) %></li>
+            <li class='time_field'><%=format_time(item[:date]) %></li>
+            <li class='time_field'><%=t(item[:event]) %> </li>
+            
+            </ul>
+        
+        <% end %>
+     
+    </div>
+
+</div>

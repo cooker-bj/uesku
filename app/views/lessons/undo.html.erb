@@ -1,0 +1,7 @@
+<%=nested_form_for @lesson do |f| %>
+
+  
+   <%=f.fields_for :course,@course %>
+  
+   <%=f.submit '完成' %>&nbsp;<%=link_to '修改地址及教育机构信息', edit_company_path(@lesson.company) %>
+<% end %>

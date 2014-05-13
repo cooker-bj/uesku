@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
   before_filter :authenticate_user!
-   respond_to :html,:json
+   respond_to :html
   def create
      @reply=Reply.new(params[:reply])
     if @reply.save

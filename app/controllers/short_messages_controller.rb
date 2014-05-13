@@ -1,6 +1,6 @@
 class ShortMessagesController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :html,:json
+  respond_to :html
   def index
     @groups=current_user.message_groups
     respond_with @groups

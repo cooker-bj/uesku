@@ -16,8 +16,9 @@ Uesku::Application.routes.draw do
   get "main/index"
   match "main/category/:id"  =>"main#category" ,:as=>:main_category
   match "main/location/:id"  =>"main#location", :as=>:main_location
+
   resources :locations,:only=>[:index] do 
-    match 'seletct', :on=>:collection
+    match 'select', :on=>:collection
     get 'set_city', :on=>:member
   end 
 
@@ -71,7 +72,7 @@ Uesku::Application.routes.draw do
   devise_for :admins, :controllers =>{:sessions=>'admin/sessions'}
   get 'admin/companies'=>'admin/companies#index',:as=>:admin_root
 
-  devise_for :users#, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",:registrations=>"users/registrations",:sessions=>"users/sessions" }
+  devise_for :users, :controllers => { :registrations=>"users/registrations",:sessions=>"users/sessions" }
   get '/users/auth/google_oauth2/callback'=>'users/omniauth_callbacks#google_oauth2'
   get '/users/auth/weibo/callback'=>'users/omniauth_callbacks#weibo'
   get '/users/auth/qq_connect/callback'=>'users/omniauth_callbacks#qq_connect'
@@ -85,7 +86,7 @@ Uesku::Application.routes.draw do
 
   end
 
-  resources :companies ,:execpt=>[:destroy] do 
+  resources :companies ,:except=>[:destroy] do 
     get :select_company, :on=>:collection
     get 'history',:on=>:member
     post 'compare',:on=>:member
@@ -122,6 +123,7 @@ Uesku::Application.routes.draw do
   post 'query/group_member_for_management'=>'query#group_member_for_management'
   get 'query/query_companies_auto'
   post 'query/query_companies'
+  post 'query/query_users'
 
   namespace :api,defaults: {format: 'json'} do 
     namespace :v1 do 
@@ -139,6 +141,7 @@ Uesku::Application.routes.draw do
       end
       resources :friendships  do
         get  'agree',:on=>:member
+        post 'query_users',:on=>:collection
       end
     end
   end

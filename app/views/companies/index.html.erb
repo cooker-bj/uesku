@@ -1,12 +1,13 @@
-<div>
-  <% n=0 %>
+<div class='columns_list'>
+
+ <ul class='columns' data-columns='2'>
     <% @companies.each do |company| %>
-      <% if n==0 %> <div class="left"> <% end %>
-        <%=link_to company.name, company_path(company) %>
-      <% if n>19 %> </div> <div class='right'> <% end %>
-      <% n+=1%>
+      
+    <li>    <%=link_to company.name, company_path(company) %></li>
+     
+     
     <% end %>
-    </div>
+ </ul>  
 </div>
 <div>
 	<%=link_to '新建教育机构',new_company_path %>

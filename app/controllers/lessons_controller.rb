@@ -1,6 +1,6 @@
 class LessonsController <ApplicationController
   before_filter :authenticate_user!, :except=>[:index,:show,:category,:district]
-  respond_to :html, :json
+  respond_to :html
 
   def index
     @lessons=Lesson.local_lessons(get_city).filter_with_district(params[:district]).paginate(:page=>params[:page],:per_page=>20)
@@ -45,15 +45,15 @@ class LessonsController <ApplicationController
 
   def history
     @lesson=Lesson.find(params[:id])
-    @history=@lesson.versions
+    @history=@lesson.course.versions
     respond_with [@lesson,@history]
   end
 
   def compare
-    lesson=Lesson.find(params[:id])
-    @current=lesson.get_version(params[:versions][0])
-    @previous=lesson.get_version(params[:versions][1])
-    respond_with [@current,@previous]
+    @lesson=Lesson.find(params[:id])
+    @current=@lesson.course.versions.find(params[:versions][0]).next.nil? ? @lesson.course : @lesson.course.versions.find(params[:versions][0]).next.reify
+    @previous=@lesson.course.versions.find(params[:versions][1]).next.nil? ? @lesson.course : @lesson.course.versions.find(params[:versions][1]).next.reify
+    respond_with [@lesson,@current,@previous]
   end
 
   def category
@@ -69,9 +69,9 @@ class LessonsController <ApplicationController
   end
 
   def undo
-    mylesson=Lesson.find(params[:id])
-    @lesson=mylesson.versions.find(params[:versions_id]).reify
-    render 'edit'
+    @lesson=Lesson.find(params[:id])
+    @course=params[:version_id].nil? ? @lesson.course : @lesson.course.versions.find(params[:version_id]).reify
+    respond_with [@lesson,@course]
   end
  
 end

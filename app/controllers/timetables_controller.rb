@@ -2,7 +2,7 @@ class TimetablesController < ApplicationController
   # GET /timetables
   # GET /timetables.json
   before_filter :authenticate_user!
-  respond_to :html,:json
+  respond_to :html
   def index
     @lesson=Lesson.find(params[:lesson_id])
     @timetables = @lesson.timetables.all

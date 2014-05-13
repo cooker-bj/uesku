@@ -70,8 +70,8 @@
 
 #back_main{
     position:relative;
-    width:800px;
-    right:2px;
+    width:850px;
+    margin-left:5px;
     float:right;
 }
 
@@ -210,12 +210,15 @@ ul.menu{
 
     font-size: 30px;
     font-family: microsoft yahei;
+    line-height:40px;
 }
 
 .recommend_item_title{
 
     font-size: 18px;
     font-family: microsoft yahei;
+    line-height:40px;
+    margin: 5px;
 }
 .recommend_item_description{
     text-align:left;
@@ -434,4 +437,75 @@ table a{
      color: red;
      font-style: italic;
     vertical-align: super;
+}
+
+.branch .address{
+    width:250px;
+}
+
+.columns_list{
+    overflow:hidden;
+}
+
+ul.columns {
+    float: left;
+    position: relative;
+    margin-right: 20px;
+    width: 300px;
+    
+
+ }
+
+.columns li {
+    list-style-type:none;
+    width: 150px;
+    margin: 10px;
+    font-size: 14px;
+    
+}
+
+ .columns li a {
+    text-decoration:none;
+}
+
+.list_items{
+    overflow:hidden;
+}
+
+.list_items ul{
+   
+    list-style-type:none;
+    position: relative;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.time_field{
+    width:150px;
+    margin:1px 1px 1px 5px;
+     float: left;
+     text-align:center;
+
+}
+
+.content_field{
+    width:600px;
+    margin: 1px;
+     float: left;
+      text-align:center;
+}
+.title_field{
+    width:400px;
+    margin: 1px;
+    float: left;
+    text-align:center;
+
+}
+
+.title_field a {
+     text-decoration:none;
+}
+
+.notice {
+    color: red;
 }

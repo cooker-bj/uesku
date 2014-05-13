@@ -9,3 +9,7 @@
     width:800px;
     margin-left:2px;
 }
+
+#mytabs{
+	overflow:hidden;
+}

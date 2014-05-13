@@ -32,7 +32,7 @@
   <% n=rand(10000) %>
   <%@company.branches.each do |branch| %>
 
-      <fieldset>
+      <fieldset class='map_lists'>
         
           <div class='branch_message'>
             <p><b>名称</b><%=branch.name%></p>
@@ -49,7 +49,7 @@
                 <% end %>
              </div>
           </div>
-           <%= tag "div",{:id=>"mymap#{n}", :class=>"course_map small_map float_right ",:data=>{:positionx=>branch.geolng,:positiony=>branch.geolat}},true  %>  <%=tag "/div","",true %>
+           <%= tag "div",{:id=>"mymap#{n}", :class=>"course_map small_map float_right",:data=>{:positionx=>branch.geolng,:positiony=>branch.geolat}},true  %>  <%=tag "/div","",true %>
         
          
 

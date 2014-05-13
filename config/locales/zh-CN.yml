@@ -1,5 +1,8 @@
 zh-CN:
   update_message: '已更新'
+  update: '修改'
+  create: '新增'
+  destroy: '删除'
   date:
     abbr_day_names:
     - 日

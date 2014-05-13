@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,
-                  :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:points
+                  :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:score
   # attr_accessible :title, :body
   scope :online, lambda{ where('update_at <?', 10.minutes.ago)}
   before_save :ensure_authentication_token
@@ -79,7 +79,7 @@ end
   end
 
   def name
-    self.nickname || self.real_name
+    self.nickname.blank? ? self.real_name : self.nickname
   end
 
 
@@ -188,6 +188,37 @@ end
 
   def remove_timetable_events(timetable)
     self.calendar_events.where(:event_group_id=>timetable.event_group_id).destroy_all
+  end
+
+  def my_courses
+    course_versions=PaperTrail::Version.where(:whodunnit=>id.to_s,:item_type=>'Course')
+    
+    course_versions.inject([]) do |result,v|
+        course=v.next.nil? ? Course.find(v.item_id) : v.next.reify
+      result<<{
+        title: course.title,
+        date: v.created_at,
+        event: v.event,
+        id: v.item_id,
+        lesson: course.lessons.first
+      }
+    end
+   
+
+  end
+
+  def my_companies
+    company_versions=PaperTrail::Version.where(:whodunnit=>id.to_s,:item_type=>'Company')
+     company_versions.inject([]) do |result,v|
+      result<<{
+        name: v.next.nil? ? Company.find(v.item_id).name : v.next.reify.name,
+        date: v.created_at,
+        event: v.event,
+        id: v.item_id
+      }
+    end
+    
+
   end
 
   def as_json(option={})

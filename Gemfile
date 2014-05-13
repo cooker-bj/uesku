@@ -17,8 +17,12 @@ gem 'sunspot_rails','~>1.3'
 gem 'nested_form'
 gem 'fullcalendar-rails'
 gem 'jquery-timepicker-addon-rails'
+
 gem 'acts-as-taggable-on'
 gem 'jquery-fileupload-rails'
+
+gem 'fog','~>1.3.1'
+
 group :development,:test do
   gem 'rspec'
   gem 'rspec-rails'
@@ -46,6 +50,7 @@ end
 gem 'devise'
 gem 'devise-i18n'
 gem 'cancan'
+gem 'jwt','0.1.11'
 
 gem 'carrierwave'
 gem 'ancestry'

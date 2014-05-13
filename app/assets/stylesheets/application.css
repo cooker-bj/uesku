@@ -12,5 +12,6 @@
  *=require jquery.ui.all
  *=require fullcalendar
  *=require jquery-ui-timepicker-addon
+ *= require jquery.fileupload-ui
  *= require_tree
  */

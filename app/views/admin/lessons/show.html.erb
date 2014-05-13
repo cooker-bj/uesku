@@ -12,10 +12,15 @@
 标签： <%=@lesson.course.tags %> <br/>
 课程描述： <br/>
 <%=raw(@lesson.course.description)%>  <br/>
-<fieldset> <div> <p><b>名称</b><%=@lesson.branch.name%></p>
-  <p><b>电话</b><%=@lesson.branch.phone%></p>
-  <p><b>地址</b><%=@lesson.branch.address %></p>
-  <p><b>分支网址</b><%=@lesson.branch.website%></p></div>
-  <div id= 'mymap'  class="course_map small_map" data-positionx=<%=@lesson.branch.geolng %> data-positiony= <%=@lesson.branch.geolat %> >
-  </div>  </fieldset>
+<fieldset> 
+	<div class="branch_message"> 
+		<p><b>名称</b><%=@lesson.branch.name%></p>
+ 		 <p><b>电话</b><%=@lesson.branch.phone%></p>
+ 		 <p><b>地址</b><%=@lesson.branch.address %></p>
+  		<p><b>分支网址</b><%=@lesson.branch.website%></p>
+	</div>
+  	<div id= 'mymap'  class="course_map small_map float_right" data-positionx=<%=@lesson.branch.geolng %> data-positiony= <%=@lesson.branch.geolat %> >
+  	</div>  
+</fieldset>
+
 <%=link_to '返回',:back %>

@@ -18,5 +18,6 @@
 //= require jquery_nested_form
 //= require jquery-ui-timepicker-addon
 //= require fullcalendar
+//= require jquery-fileupload
 
 //= require_tree .

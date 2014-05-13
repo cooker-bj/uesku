@@ -5,6 +5,7 @@ class Score < ActiveRecord::Base
   belongs_to :user
   
   after_save :count_score
+  after_create :renew_score
 
 
 
@@ -19,6 +20,10 @@ class Score < ActiveRecord::Base
 
   def count_score
     self.lesson.count_scores
+  end
+
+  def renew_score
+    user.update_attributes(:score=>user.score+1)
   end
 
 end

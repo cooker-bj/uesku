@@ -5,12 +5,12 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   belongs_to :branch
   has_one :company, :through=>:course
-  has_many :recommendations
-  has_many :scores
+  has_many :recommendations,:dependent=>:destroy
+  has_many :scores,:dependent=>:destroy
   has_many :comments, :as =>:commentable
-  has_many :group_lessons
+  has_many :group_lessons,:dependent=>:destroy
   has_many :groups,:through=>:group_lessons
-  has_many :timetables
+  has_many :timetables,:dependent=>:destroy
   accepts_nested_attributes_for :scores
   accepts_nested_attributes_for :comments, reject_if: proc{|attributes| attributes[:comment].blank?}
   accepts_nested_attributes_for :course

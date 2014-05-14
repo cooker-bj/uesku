@@ -1,8 +1,8 @@
 class Company < ActiveRecord::Base
 
   attr_accessible :description,  :name, :tags, :website,:branches_attributes
-   has_many :branches
-   has_many :courses
+   has_many :branches,:dependent=>:destroy
+   has_many :courses,:dependent=>:destroy
    has_many :lessons, :through=>:courses
    has_paper_trail
    accepts_nested_attributes_for :branches

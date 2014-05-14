@@ -7,6 +7,7 @@ class CalendarEvent < ActiveRecord::Base
   validates_presence_of :title,:start_time,:end_time
   validate :start_less_end
   before_save :add_group_id
+  after_destroy :clean_alert
   accepts_nested_attributes_for :alerts,:allow_destroy => true
   DAY_UNIT={'天'=>:day,'周'=>:week,'月'=>:month,'年'=>:year}
   
@@ -186,5 +187,9 @@ class CalendarEvent < ActiveRecord::Base
     def self.create_group_id
       gid="group#{Random.rand(100000000).to_s}"
       where(:event_group_id=>gid).blank? ? gid : create_group_id
+    end
+
+    def clean_alert
+     self.alerts.destroy_all if CalendarEvent.where(:event_group_id=>self.event_group_id).blank?
     end
 end

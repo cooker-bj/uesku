@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible  :posted_time, :poster_id, :title,:group_id,:content
   belongs_to :group
-  has_many :comments,:as=>:commentable
+  has_many :comments,:as=>:commentable,:dependent=>:destroy
   #has_many :post_comments,:dependent=>:destroy
   belongs_to :last_replier, :class_name=>'User',:foreign_key=>:last_replier_id
   belongs_to :poster,:class_name=>'User',:foreign_key=>:poster_id

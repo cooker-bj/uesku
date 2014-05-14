@@ -1,9 +1,9 @@
 class Group < ActiveRecord::Base
   attr_accessible :created_time, :owner_id, :lesson_id, :logo, :title,:locked,:description,:lessons
-  has_many :group_lessons
+  has_many :group_lessons,:dependent=>:destroy
   has_many :lessons,:through=>:group_lessons
-  has_many :posts
-  has_many :members
+  has_many :posts,:dependent=>:destroy
+  has_many :members,:dependent=>:destroy
   belongs_to :owner,:class_name=>'User',:foreign_key=>:owner_id
   has_many :users,:through =>:members
   mount_uploader :logo,ImageUploader

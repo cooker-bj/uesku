@@ -18,14 +18,14 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :scores
   has_many :replies
-  has_many :members
+  has_many :members,:dependent=>:destroy
   has_many :posts,:foreign_key=>:poster_id
 
   has_many :owned_groups,:class_name=>'Group',:foreign_key => :owner_id
   has_many :groups,:through=>:members
   has_many :authenticated_tokens
-  has_many :sent_messages,:class_name=>'ShortMessage',:foreign_key=>:sender_id
-  has_many :message_group_users
+  has_many :sent_messages,:class_name=>'ShortMessage',:foreign_key=>:sender_id,:dependent=>:destroy
+  has_many :message_group_users,:dependent=>:destroy
   has_many :message_groups,:through=>:message_group_users
   has_many :short_messages,:class_name=>'ShortMessage',:through=>:messengers  do
     def unread_messages(group)
@@ -37,9 +37,9 @@ class User < ActiveRecord::Base
   has_many :friends, :through=>:friendships
   has_many :inverse_friendships,:class_name=>'Friendship',:foreign_key=>:friend_id
   has_many :inverse_friends,:through=>:inverse_friendships,:source=>:user
-  has_many :calendar_events
+  has_many :calendar_events,:dependent=>:destroy
   has_many :created_timetables,:class_name=>'Timetable',:foreign_key=>:creator_id
-  has_many :taken_classes
+  has_many :taken_classes,:dependent=>:destroy
   has_many :timetables,:through=>:taken_classes
 
   mount_uploader :avatar,AvatarUploader

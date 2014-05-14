@@ -1,7 +1,9 @@
 Uesku::Application.routes.draw do
 
-  resources :places
+ 
 
+  resources :places
+  resources :pictures, :only=>[:index,:create,:destroy,:show]
 
   #get "locations/index"
   #match 'locations/select'

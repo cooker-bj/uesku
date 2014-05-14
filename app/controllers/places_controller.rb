@@ -23,6 +23,7 @@ class PlacesController < ApplicationController
   # GET /places/new.json
   def new
     @place = Place.new
+    @place.pictures<<Picture.first
 
    respond_with @place
   end

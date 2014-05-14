@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :members
   has_many :posts,:foreign_key=>:poster_id
-
+  has_many :pictures,:foreign_key=>:creator_id
   has_many :owned_groups,:class_name=>'Group',:foreign_key => :owner_id
   has_many :groups,:through=>:members
   has_many :authenticated_tokens
@@ -222,7 +222,7 @@ end
   end
 
   def as_json(option={})
-    super(option.merge(:include=>[:members,:timetables],:method=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
+    super(option.merge(:include=>[:members,:timetables],:methods=>[:friends_recent_comments,:friends_recent_posts,:friends_recent_post_comments]))
   end
 
 

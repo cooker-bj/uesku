@@ -3,7 +3,7 @@ class CalendarEvent < ActiveRecord::Base
   attr_accessible :description, :end_time, :event_group_id, :location, :source, :start_time, :title,:user_id,:alerts_attributes,
                   :all_day,:repeat,:timetable_name
   belongs_to :user
-  has_many :alerts,:primary_key=>:event_group_id,:dependent=>:destroy
+  has_many :alerts,:primary_key=>:event_group_id
   validates_presence_of :title,:start_time,:end_time
   validate :start_less_end
   before_save :add_group_id

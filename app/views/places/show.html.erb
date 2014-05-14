@@ -69,6 +69,12 @@
   <b>Phone:</b>
   <%= @place.phone %>
 </p>
+<p>
+  <b>图片</b>
+  <% @place.pictures.each do |picture| %>
+  <%=image_tag picture.image_url.to_s %>
+  <% end %>
+  </p>
 
 
 <%= link_to 'Edit', edit_place_path(@place) %> |

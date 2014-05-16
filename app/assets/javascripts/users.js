@@ -1,5 +1,6 @@
 $(function(){
     $('#mytabs').tabs({selected:'0'});
+    
     $('body').on('ajax:success','.add_friend',function(evt,data,status,xhr){
         alert("已向"+data.friend+"发出邀请");
     }).on('ajax:error','.add_friend',function(evt,xhr,status,error){
@@ -33,6 +34,5 @@ $(function(){
      })
      $('#query_user').on('click','#query_submit',function(event){
         $('#query_result').load('/query/query_users',{argm: $('#query_user input#argm').val()})
-
-     })
+    })
 })

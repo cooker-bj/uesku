@@ -49,7 +49,7 @@
 
 <div class='detail_bar'><div class='detail_head'>位置交通</div></div>
 <div class='details'>
-  <%=content_tag 'div', :id=>'lesson_map',:class=>"float_right",:data=>{:positionx=>@place.latitude,:postiony=>@place.longitude} do %>
+  <%=content_tag 'div', :id=>'lesson_map',:class=>"float_right",:data=>{:positiony=>@place.latitude,:positionx=>@place.longitude} do %>
   <% end %>
   <div class='direction'>
     <%=@place.direction %>

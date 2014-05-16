@@ -130,6 +130,7 @@ $(function() {
                             var local=$(this).parent(".show_window").html(xhr.responseText);
                             local.on('ajax:success',"form",function(event,data,status,xhr){
                                 show[dialogId].dialog('close');
+                                $('#calendar_events').fullCalendar('refetchEvents');
                             })
                         })
 

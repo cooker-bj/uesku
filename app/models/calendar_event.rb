@@ -78,6 +78,7 @@ class CalendarEvent < ActiveRecord::Base
     my_event=self.find(event_id)
     
     if(applied_to_all && (my_event.repeat))
+      result=[]
       illegal = false
       illegal=true if attrs.has_key?(:title) && attrs[:title].blank?
       illegal=true if attrs.has_key?(:start_time) && attrs[:start_time].blank?
@@ -96,9 +97,9 @@ class CalendarEvent < ActiveRecord::Base
           params.merge!({:end_time=>event.end_time+end_gap}) if attrs.has_key? :end_time
             return nil unless event.update_attributes(params)
             params.try :delete,:alerts_attributes
-           
-         
-        end
+            result<<event
+          end
+          result
        
       else
         nil

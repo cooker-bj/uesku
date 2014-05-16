@@ -1,6 +1,6 @@
 $(function(){
-    $('#mytabs').tabs({selected:'0'});
-    
+    $('#tabs').tabs({selected:'0'});
+
     $('body').on('ajax:success','.add_friend',function(evt,data,status,xhr){
         alert("已向"+data.friend+"发出邀请");
     }).on('ajax:error','.add_friend',function(evt,xhr,status,error){

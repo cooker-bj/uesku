@@ -1,7 +1,0 @@
-<div class="post_content"><%=raw(comment.message) %></div>
-<div class='post_comment_utility'>
-  <%=format_time(comment.comment_time)%>
-  <%=tag 'div',{:id=>"edit_comment_#{comment.id}"},true %>  <%=tag "/div",nil,true %>
-  <%=link_to "修改",'#',:remote=>true, :class=>'edit_comment','data-id'=>comment.id if comment.user==current_user%>
-  <%=link_to "删除",comment,method: :delete,data:{confirm:"你确定删除吗？"},:remote=>true,:class=>'delete_comment' if comment.can_destroy?(current_user)%>
-</div>

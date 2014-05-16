@@ -11,11 +11,16 @@ $(function() {
     };
 
     loadComment();
-     // 添加评论
+    // 添加评论
     $('#new_comment').on('ajax:success', function(evt, data, status, xhr) {
         if (data.success) {
             loadComment();
-            KindEditor.instances[0].html('');
+            if (KindEditor.instances[0]) {
+                KindEditor.instances[0].html('');
+            } else {
+                $('#input_comment_area').val('');
+            }
+
             $('#errmsgs').html('');
         }
     }).on('ajax:error', function(evt, xhr, status, error) {
@@ -135,8 +140,8 @@ $(function() {
     });
 
 
-        $('#comment_list').on('ajax:success','.delete_comment',function(evnt,data,status,xhr){
-           $(this).parents('ul').remove();
-       });
+    $('#comment_list').on('ajax:success', '.delete_comment', function(evnt, data, status, xhr) {
+        $(this).parents('ul').remove();
+    });
 
 })

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140417131308) do
+ActiveRecord::Schema.define(:version => 20140516044624) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -261,6 +261,37 @@ ActiveRecord::Schema.define(:version => 20140417131308) do
     t.datetime "updated_at",                              :null => false
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "creator_id"
+    t.string   "has_picture_type"
+    t.integer  "has_picture_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "places", :force => true do |t|
+    t.string   "title"
+    t.string   "street"
+    t.integer  "province_id"
+    t.integer  "city_id"
+    t.integer  "district_id"
+    t.string   "website"
+    t.text     "description"
+    t.text     "recommendation"
+    t.string   "price"
+    t.string   "opening_hours"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "direction"
+    t.string   "phone"
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+    t.decimal  "rank",           :precision => 2, :scale => 1, :default => 0.0, :null => false
+    t.integer  "rank_count",                                   :default => 0,   :null => false
+    t.integer  "user_id"
+  end
+
   create_table "post_comments", :force => true do |t|
     t.integer  "user_id"
     t.datetime "comment_time"
@@ -293,6 +324,15 @@ ActiveRecord::Schema.define(:version => 20140417131308) do
     t.integer  "district_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "value"
+    t.string   "ratingable_type"
+    t.integer  "ratingable_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "recommendations", :force => true do |t|
@@ -337,6 +377,25 @@ ActiveRecord::Schema.define(:version => 20140417131308) do
     t.datetime "updated_at",                          :null => false
     t.integer  "category",         :default => 0,     :null => false
   end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], :name => "taggings_idx", :unique => true
+
+  create_table "tags", :force => true do |t|
+    t.string  "name"
+    t.integer "taggings_count", :default => 0
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "taken_classes", :force => true do |t|
     t.integer  "user_id"

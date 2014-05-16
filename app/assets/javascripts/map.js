@@ -156,7 +156,7 @@ $(function() {
     }
   });
 
-  $('.branch').each(function(id) {
+  $('.branch,.has_map').each(function(id) {
     var mypoint = $(this).find(".mymap")
     if (mypoint.size() > 0) {
       var handler = initMap(mypoint);

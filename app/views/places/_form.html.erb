@@ -11,61 +11,74 @@
       </ul>
     </div>
   <% end %>
-
+ <div class='has_map'>
   <div class="field">
-    <%= f.label :title,'名称：' %><br />
+    <%= f.label :title,'名称：' %>
     <%= f.text_field :title %>
   </div>
-  <div class='field'>
-    地址：<%=f.select :province_id,options_for_select(Location.roots.collect {|p| [p.name,p.id]}) %> 省
-         <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]})  %> 市
-         <%=f.collection_select :district_id,Location.first_districts,:id,:name %> 区/县 
-         <%=f.text_field :street %>
-   </div>
-  
+ 
   <div class="field">
-    <%= f.label :website %><br />
+    标签：<%=f.text_field :tag_list %>
+  </div>
+  <div class="field">
+    <%= f.label :website %>
     <%= f.text_field :website %>
   </div>
   <div class="field">
-    <%= f.label :phone,"电话" %><br />
+    <%= f.label :phone,"电话" %>
     <%= f.text_field :phone %>
   </div>
-  <div class="field">
-    <%= f.label :description,"介绍" %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :recommendation,"推荐理由" %><br />
-    <%= f.text_area :recommendation %>
-  </div>
-  <div class="field">
-    <%= f.label :price,"价格" %><br />
+   <div class="field">
+    <%= f.label :price,"价格" %>
     <%= f.text_field :price %>
   </div>
-  <div class="field">
-    <%= f.label :opening_hours,"开放时间" %><br />
+   <div class="field">
+    <%= f.label :opening_hours,"开放时间" %>
     <%= f.text_field :opening_hours %>
   </div>
   <div class="field">
-   
-    <%= f.hidden_field :positionx %>
-    <%= f.hidden_field :positiony %>
+    <%= f.label :description,"介绍及推荐理由" %><br />
+    <%= f.kindeditor :description %>
   </div>
+  <div class='address'>
+          地址：<%=f.select :province_id,options_for_select(Location.roots.order(:id).collect {|p| [p.name,p.id]}),{},:class=>'province' %> 
+          <%=f.select :city_id,options_for_select(Location.first_cities.collect{|p| [p.name,p.id]}),{},:class=>'city'  %> 
+          <%=f.collection_select :district_id,Location.first_districts,:id,:name,{},:class=>'district' %> 
+          <%=f.text_field :street,:class=>'street' %><div class='map_notice'></div>
+  </div>
+ 
+ 
+ 
   <div class="field">
-    <%= f.label :direction %><br />
-    <%= f.text_field :direction %>
+   
+    <%= f.hidden_field :latitude,:class=>'positionx' %>
+    <%= f.hidden_field :longitude,:class=>'positiony' %>
   </div>
+  <div >
+
+        <div><b>点击地图设定分支所在位置：</b></div>
+        <%=tag "div",{:class=>"mymap set_point",:id=>"mymap#{rand(1000)}"},true%>
+        <%=tag "/div",nil,true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :direction,'交通指引' %><br />
+    <%= f.text_area :direction,:cols=>80,:rows=>5 %>
+  </div>
+  
+     
   <div id="pictures">
   
   </div>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "提交" %>
   </div>
+</div>
 <% end %>
 
-
+<fieldset>
+  <h3>图片管理</h3>
 <%= form_for Picture.new, :html => { :multipart => true, :id => "fileupload" ,:data=>{:place=>@place.id,:name=>@place.class.name} } do |f| %>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
@@ -73,20 +86,20 @@
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
+                    <span>增加图片...</span>
                     <%= f.file_field :image %>
                 </span>
                 <button type="submit" class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
-                    <span>Start upload</span>
+                    <span>开始上传</span>
                 </button>
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel upload</span>
+                    <span>中断上传</span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
                     <i class="icon-trash icon-white"></i>
-                    <span>Delete</span>
+                    <span>删除</span>
                 </button>
                 <input type="checkbox" class="toggle">
             </div>
@@ -104,6 +117,7 @@
         <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
         </table>
     <% end %>
+  </fieldset>
 <script>
   var fileUploadErrors = {
     maxFileSize: 'File is too big',
@@ -131,7 +145,7 @@
             <td class="start">{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary">
                     <i class="icon-upload icon-white"></i>
-                    <span>{%=locale.fileupload.start%}</span>
+                    <span>上传</span>
                 </button>
             {% } %}</td>
         {% } else { %}
@@ -140,7 +154,7 @@
         <td class="cancel">{% if (!i) { %}
             <button class="btn btn-warning">
                 <i class="icon-ban-circle icon-white"></i>
-                <span>{%=locale.fileupload.cancel%}</span>
+                <span>取消</span>
             </button>
         {% } %}</td>
     </tr>
@@ -168,7 +182,7 @@
         <td class="delete">
             <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
                 <i class="icon-trash icon-white"></i>
-                <span>{%=locale.fileupload.destroy%}</span>
+                <span>删除</span>
             </button>
             <input type="checkbox" name="delete" value="1">
         </td>

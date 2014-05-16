@@ -162,6 +162,8 @@ div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizabl
 
 .details{
     margin: 5px;
+    min-height: 100px;
+    overflow:auto;
 }
 
 .detail_head{

@@ -11,8 +11,8 @@ class CreatePlaces < ActiveRecord::Migration
       t.text :recommendation
       t.string :price
       t.string :opening_hours
-      t.string :positionx
-      t.string :positiony
+      t.string :latitude
+      t.string :longitude
       t.string :direction
       t.string :phone
 

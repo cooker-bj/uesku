@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   has_many :members
   belongs_to :owner,:class_name=>'User',:foreign_key=>:owner_id
   has_many :users,:through =>:members
-  mount_uploader :logo,ImageUploader
+  mount_uploader :logo,AvatarUploader
   validates_presence_of :title,:description
   before_create :add_created_time
   after_create :owner_is_manager

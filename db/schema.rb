@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140425053343) do
+ActiveRecord::Schema.define(:version => 20140516044624) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false
@@ -281,12 +281,15 @@ ActiveRecord::Schema.define(:version => 20140425053343) do
     t.text     "recommendation"
     t.string   "price"
     t.string   "opening_hours"
-    t.string   "positionx"
-    t.string   "positiony"
+    t.string   "latitude"
+    t.string   "longitude"
     t.string   "direction"
     t.string   "phone"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+    t.decimal  "rank",           :precision => 2, :scale => 1, :default => 0.0, :null => false
+    t.integer  "rank_count",                                   :default => 0,   :null => false
+    t.integer  "user_id"
   end
 
   create_table "post_comments", :force => true do |t|
@@ -321,6 +324,15 @@ ActiveRecord::Schema.define(:version => 20140425053343) do
     t.integer  "district_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "value"
+    t.string   "ratingable_type"
+    t.integer  "ratingable_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "recommendations", :force => true do |t|

@@ -1,49 +1,32 @@
-<h1>Listing places</h1>
+<div class="list">
+  <% @places.each do |place| %>
+  <ul class='list_item'>
+    <li class='float_left cell_detail'>
+      <ul>
+        <li><strong><%= link_to place.title,place_path(place) %></strong></li>
+        <li>地址:<%=place.address %></li>
+        <li>电话:<%=place.phone %></li>
+        <li>标签:<%=place.tag_list %></li>
+        <li>开放时间:<%=place.opening_hours %></li>
+      </ul>
+    </li>
+    <li class='float_left cell_price'>
+      <%=place.price %>
+    </li>
+    <li class='float_left cell_rank'>
+      <ul>
+        <li>推荐指数：<%=place.rank %></li>
+        <li>共有<%=place.rank_count %>人推荐</li>
+      </ul>
+    </li>
+    <div class='noad'></div>
+   </ul>
+  <% end %>
+ </div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Street</th>
-    <th>Province</th>
-    <th>City</th>
-    <th>District</th>
-    <th>Website</th>
-    <th>Description</th>
-    <th>Recommendation</th>
-    <th>Price</th>
-    <th>Opening hours</th>
-    <th>Positionx</th>
-    <th>Positiony</th>
-    <th>Direction</th>
-    <th>Phone</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @places.each do |place| %>
-  <tr>
-    <td><%= place.title %></td>
-    <td><%= place.street %></td>
-    <td><%= place.province_id %></td>
-    <td><%= place.city_id %></td>
-    <td><%= place.district_id %></td>
-    <td><%= place.website %></td>
-    <td><%= place.description %></td>
-    <td><%= place.recommendation %></td>
-    <td><%= place.price %></td>
-    <td><%= place.opening_hours %></td>
-    <td><%= place.positionx %></td>
-    <td><%= place.positiony %></td>
-    <td><%= place.direction %></td>
-    <td><%= place.phone %></td>
-    <td><%= link_to 'Show', place %></td>
-    <td><%= link_to 'Edit', edit_place_path(place) %></td>
-    <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Place', new_place_path %>
+
+
+<%= link_to '新建地点', new_place_path %>

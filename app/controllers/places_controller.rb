@@ -4,7 +4,11 @@ class PlacesController < ApplicationController
   respond_to :html
   before_filter :authenticate_user!, :except=>[:index,:show]
   def index
-    @places = Place.all
+    if params[:tag]
+      @places=Place.tagged_with(params[:tag])
+    else
+      @places = Place.all
+    end
 
     respond_with  @places 
   end
@@ -13,8 +17,9 @@ class PlacesController < ApplicationController
   # GET /places/1.json
   def show
     @place = Place.find(params[:id])
+    @rating=@place.ratings.where(:user_id=>current_user.id).first
 
-    respond_with @place
+    respond_with [@place,@rating]
       
     
   end
@@ -23,7 +28,7 @@ class PlacesController < ApplicationController
   # GET /places/new.json
   def new
     @place = Place.new
-    @place.pictures<<Picture.first
+   
 
    respond_with @place
   end
@@ -37,6 +42,7 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(params[:place])
+    @place.user_id=current_user.id
      @place.save
     respond_with @place
      
@@ -46,8 +52,8 @@ class PlacesController < ApplicationController
   # PUT /places/1.json
   def update
     @place = Place.find(params[:id])
-     @place.update_attributes(params[:place])
-     respond_with @place
+    @place.update_attributes(params[:place])
+    respond_with @place
       
   end
 

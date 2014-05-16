@@ -2,7 +2,13 @@ Uesku::Application.routes.draw do
 
  
 
-  resources :places
+  resources :places do 
+    resources :comments ,:name_prefix=>"place_"
+    resources :ratings, :name_prefix=>"place_"
+  end
+
+  resources :ratings 
+  
   resources :pictures, :only=>[:index,:create,:destroy,:show]
 
   #get "locations/index"

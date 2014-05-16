@@ -1,81 +1,93 @@
 <p id="notice"><%= notice %></p>
+<% content_for :author do %>
+<div id="user_bar" >
+  <h1>作者 </h1>
+  <div><%=image_tag @place.user.avatar_url.to_s,:width=>150,:height=>150 %>  </div>
+  <div>
+    <%=link_to @place.user.name,profile_user_path(@place.user) %>
+  </div>
+  <div>
+    <div>注册时间:<%=format_time(@place.user.registration_date) %></div>
+    <div>积分:<%=@place.user.score %></div>
+  </div>
+  
 
-<p>
-  <b>Title:</b>
-  <%= @place.title %>
-</p>
+</div>
+<% end %>
+<div class='toolbar'><%= link_to '修改', edit_place_path(@place) if @place.user==current_user%></div>
+<div id='lesson_title'> <%= @place.title %></div>
+<div class='details'>
+  
+  <div class='float_right'>
+    推荐指数：<%=@place.rank %>,共有<%=@place.rank_count %>人推荐
+  </div>
+  <div>
+    标签：<%=raw @place.tag_list.map {|tag| link_to tag, places_path(:tag=>tag)}.join(',') %>
+  </div>
+  <div>
+    地址：<%=@place.address %>
+  </div>
+  <div>
+   电话： <%=@place.phone %>
+  </div>
+  <div>
+    Website: <%= link_to @place.website,url_with_protocol(@place.website),:target=>'_blank' %> 
+  </div>
+  <div>
+    价格：<%= @place.price %>
+  </div>
+  <div>
+   开放时间:<%=@place.opening_hours %>
+  </div>
+</div>
+<div class='detail_bar'>
+  <div class='detail_head'>简介及推荐理由</div>
+</div>
+<div class='details' >
+  <%=raw @place.description %>
+</div>
 
-<p>
-  <b>Street:</b>
-  <%= @place.street %>
-</p>
-
-<p>
-  <b>Province:</b>
-  <%= @place.province_id %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @place.city_id %>
-</p>
-
-<p>
-  <b>District:</b>
-  <%= @place.district_id %>
-</p>
-
-<p>
-  <b>Website:</b>
-  <%= @place.website %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @place.description %>
-</p>
-
-<p>
-  <b>Recommendation:</b>
-  <%= @place.recommendation %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @place.price %>
-</p>
-
-<p>
-  <b>Opening hours:</b>
-  <%= @place.opening_hours %>
-</p>
-
-<p>
-  <b>Positionx:</b>
-  <%= @place.positionx %>
-</p>
-
-<p>
-  <b>Positiony:</b>
-  <%= @place.positiony %>
-</p>
-
-<p>
-  <b>Direction:</b>
-  <%= @place.direction %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @place.phone %>
-</p>
-<p>
-  <b>图片</b>
-  <% @place.pictures.each do |picture| %>
-  <%=image_tag picture.image_url.to_s %>
+<div class='detail_bar'><div class='detail_head'>位置交通</div></div>
+<div class='details'>
+  <%=content_tag 'div', :id=>'lesson_map',:class=>"float_right",:data=>{:positionx=>@place.latitude,:postiony=>@place.longitude} do %>
   <% end %>
-  </p>
+  <div class='direction'>
+    <%=@place.direction %>
+  </div>
+</div>
+<div class='details'>
+<div id='makeMeScrollable'>
+  <% @place.pictures.each do |p| %>
+    <%=image_tag p.image_url.to_s %>
+  <% end %>
+</div>
+</div>
+<div class='detail_bar'><div class='detail_head'>大众评价</div></div>
+<%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @place.id,type: @place.class.model_name.downcase.pluralize} do %><%end%>
+<% unless current_user.nil? %>
+  <div class="details">
+    <div>
+      <b>推荐指数：</b>
+      <%=content_tag 'div',:id=>"start_rating", :data=>{:url=>place_ratings_path(@place),:id=>@rating.try(:id)} do %>
+        <% (1..5).each do |v| %>
+          <%= radio_button_tag 'rank',v,@rating.try(:value)==v, :class=>'auto-submit-star' %> 
+        <% end %>
+      <% end %>
+      <div>
+         1星为千万不要去，5星为非常值得去，请做出您的推荐
+      </div>
+    </div>
+   <div id='comment_area' class='float_right'>
 
+         <%=form_for [@place,Comment.new],:remote=>true do |f|%>
+           
+            <%=f.text_area :comment,:cols=>60,:rows=>8,:id=>'input_comment_area'%>
+            <div id="errmsgs"></div>
+             <%=f.submit '发布'%>
+         <% end %>
+    </div>
 
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+  </div>
+<% end %>
+ 
+

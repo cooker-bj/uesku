@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   has_many :comments
   has_many :scores
+  has_many :ratings
   has_many :replies
   has_many :members
   has_many :posts,:foreign_key=>:poster_id
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
   has_many :created_timetables,:class_name=>'Timetable',:foreign_key=>:creator_id
   has_many :taken_classes
   has_many :timetables,:through=>:taken_classes
+  has_many :places
 
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens

@@ -22,6 +22,7 @@ gem 'acts-as-taggable-on'
 gem 'jquery-fileupload-rails'
 
 gem 'fog','~>1.3.1'
+#gem 'activerecord-reputation-system'
 
 group :development,:test do
   gem 'rspec'

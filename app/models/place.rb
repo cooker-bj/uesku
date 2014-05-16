@@ -1,11 +1,15 @@
 class Place < ActiveRecord::Base
-  attr_accessible :city_id, :description, :direction, :district_id, :opening_hours, :phone, :positionx, 
-  				  :positiony, :price, :province_id, :recommendation, :street, :title, :website,:pictures
+  attr_accessible :city_id, :description, :direction, :district_id, :opening_hours, :phone, :latitude, 
+  				  :longitude, :price, :province_id, :street, :title, :website,:pictures,:tag_list,:user_id
   belongs_to :province,:class_name=>'Location',:foreign_key=>'province_id'
   belongs_to :city, :class_name=>'Location',:foreign_key=>'city_id'
   belongs_to :district,:class_name=>'Location',:foreign_key=>'district_id'
+  belongs_to :user
   has_many :pictures,:as=>:has_picture
-  
+  has_many :comments, :as =>:commentable
+  has_many :ratings, :as=>:ratingable
+  validates_presence_of :title,:street
+  has_paper_trail
   acts_as_taggable
 
   def pictures=(args)
@@ -22,5 +26,11 @@ class Place < ActiveRecord::Base
         else
           province.name+city.name+district.name+street
         end
+    end
+
+    def recount_rank
+      self.rank=ratings.average('value')
+      self.rank_count=ratings.count
+      save!
     end
 end

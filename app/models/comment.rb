@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :comment, :comment_time, :user_id,:commentable,:commentable_type
   belongs_to :commentable,:polymorphic => true
   belongs_to :user
-  has_many :replies
+  has_many :replies,:dependent=>:destroy
   validates_presence_of :comment
   before_create :add_comment_time
   after_create :update_commentable_after_create,:renew_score

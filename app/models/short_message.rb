@@ -6,6 +6,8 @@ class ShortMessage < ActiveRecord::Base
 
   belongs_to :sender,:class_name=>'User',:foreign_key=>:sender_id
   mount_uploader :media, MessageUploader
+  validates_presence_of :message_group_id
+  validates :media, :presence=>true, :if => :have_media?
   before_create :add_create_time,:add_receivers
   after_save :update_status
   CATEGORY={'文字'=>0,'图片'=>1,'声音'=>2}
@@ -47,6 +49,10 @@ class ShortMessage < ActiveRecord::Base
 
 
   private
+    def have_media?
+      self.category >0 
+    end
+    
     def add_create_time
       self.create_time=Time.now
     end

@@ -34,5 +34,22 @@ $(function(){
      })
      $('#query_user').on('click','#query_submit',function(event){
         $('#query_result').load('/query/query_users',{argm: $('#query_user input#argm').val()})
-    })
+    });
+
+     function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#avatar').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#user_avatar").change(function(){
+    readURL(this);
+});
 })

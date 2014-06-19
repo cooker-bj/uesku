@@ -26,7 +26,7 @@
  </div>
  <div>
    <%=f.label :avatar, "头像"%><br/>
-  <div> <%=image_tag resource.avatar_url.to_s unless resource.avatar_url.nil? %></div>
+  <div> <%=image_tag resource.avatar_url,:id=>'avatar',:width=>200,:height=>200  %></div>
    <%=f.file_field :avatar %> <%=f.hidden_field :avatar_cache %>
  </div>
 

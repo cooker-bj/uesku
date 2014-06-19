@@ -1,6 +1,6 @@
 class Ipaddress
 	def self.find(ip)
-	   
+	   begin
 		Net::HTTP.start('int.dpool.sina.com.cn') do |http|
 			response=http.get('/iplookup/iplookup.php?format=json&ip='+ip)
 			if response.code =='200'
@@ -12,7 +12,11 @@ class Ipaddress
 
 			end
 
+			end
+		rescue
+		nil
 		end
+
 	end
 
 

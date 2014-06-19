@@ -7,7 +7,7 @@ class ShortMessage < ActiveRecord::Base
   belongs_to :sender,:class_name=>'User',:foreign_key=>:sender_id
   mount_uploader :media, MessageUploader
   validates_presence_of :message_group_id
-  validates :media_cannot_be_null_when_it_set
+  validate :media_cannot_be_null_when_it_set
   before_create :add_create_time,:add_receivers
   after_save :update_status
   CATEGORY={'文字'=>0,'图片'=>1,'声音'=>2}

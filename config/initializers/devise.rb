@@ -15,9 +15,9 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
   require 'omniauth-google-oauth2'
-  #config.omniauth :google_oauth2,'10873509038.apps.googleusercontent.com','9X56kwg4Xu4nhlS9OixQyj2V',{access_type: 'offline',approval_prompt:'force'}
-  #config.omniauth :weibo,'4007611135','466cce0e8795e50fe88cc4885adf39aa',{access_type: 'offline',approval_prompt:'force'}
-  #config.omniauth :qq_connect, '101028212','9f8bd2125df7dcb04c6f6f141ed5d257' ,{access_type: 'offline',approval_prompt:'force'}
+  config.omniauth :google_oauth2,'10873509038.apps.googleusercontent.com','9X56kwg4Xu4nhlS9OixQyj2V',{access_type: 'offline',approval_prompt:'force'}
+  config.omniauth :weibo,'4007611135','466cce0e8795e50fe88cc4885adf39aa',{access_type: 'offline',approval_prompt:'force'}
+  config.omniauth :qq_connect, '101028212','9f8bd2125df7dcb04c6f6f141ed5d257' ,{access_type: 'offline',approval_prompt:'force'}
   #config.omniauth :tqq2,'100558572','d7ce92c57d7ad256da10f3c9f6d8df9c' ,{access_type: 'offline',approval_prompt:'force'}
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

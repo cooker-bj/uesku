@@ -15,18 +15,18 @@ Uesku::Application.routes.draw do
   #match 'locations/select'
 
   get "categories/index"
-  match "categories/subcategory"
+  get "categories/subcategory"
 
   
 
   get "profile/show"
 
   get "main/index"
-  match "main/category/:id"  =>"main#category" ,:as=>:main_category
-  match "main/location/:id"  =>"main#location", :as=>:main_location
+  get "main/category/:id"  =>"main#category" ,:as=>:main_category
+  get "main/location/:id"  =>"main#location", :as=>:main_location
 
   resources :locations,:only=>[:index] do 
-    match 'select', :on=>:collection
+    match 'select', :on=>:collection,:via=>[:get,:post]
     get 'set_city', :on=>:member
   end 
 
@@ -105,7 +105,7 @@ Uesku::Application.routes.draw do
     get 'undo',:on=>:member
     match 'category',:on=>:member,:via=>[:post,:get]
     match 'district',:on=>:member,:via=>[:post,:get]
-    match 'course',:on=>:collection
+    match 'course',:on=>:collection,:via=>[:post,:get]
     get 'history', :on=>:member
     post 'compare',:on=>:member
     get 'company',:on=>:collection
@@ -232,10 +232,10 @@ Uesku::Application.routes.draw do
   # just remember to delete public/index.html.
 
   authenticated :user do
-    root :to=>'users#show'
+    root :to=>'users#show',:as=>:root_user
   end
   authenticated :admin do 
-    root :to=>'admin::lessons#index'
+    root :to=>'admin/lessons#index',:as=>:root_admin
   end
   root :to => 'main#index'
   # See how all your routes lay out with "rake routes"

@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :name
+  #attr_accessible :name
   has_ancestry
   has_many :branches,:foreign_key=>:district_id
   has_many :lessons, :through=>:branches,:foreign_key=>:district_id

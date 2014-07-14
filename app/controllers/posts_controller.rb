@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
     @post.poster=current_user
     @post.group_id=params[:group_id]
     if @post.save
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(post_params)
       flash[:notice]=t(:update_message) 
       render :json=>{:success=>true}
     else
@@ -164,6 +164,12 @@ class PostsController < ApplicationController
       end
 
     end
+  end
+  
+  private
+  
+  def post_params
+    params.required(:post).permit( :posted_time, :poster_id, :title,:group_id,:content)
   end
 
  end

@@ -37,4 +37,9 @@ class Admin::BranchesController <  Admin::AdminBaseController
       end
       end
   end
+  
+  private
+  def branch_params
+    params.required(:branch).permit(:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id, :street, :website,:company_id,:company_attributes)
+  end
 end

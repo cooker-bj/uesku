@@ -84,11 +84,11 @@ Uesku::Application.routes.draw do
   
  
 
-  resources :users,:only=>[:show] do
+  resources :users,:only=>[:show,:edit] do
     get 'groups',:on=>:member
     get 'messenger',:on=>:member
     get 'profile',:on=>:member
-
+    patch 'update_password',:on=>:collection
   end
 
   resources :companies ,:except=>[:destroy] do 

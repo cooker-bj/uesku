@@ -1,6 +1,6 @@
 class Place < ActiveRecord::Base
-  attr_accessible :city_id, :description, :direction, :district_id, :opening_hours, :phone, :latitude, 
-  				  :longitude, :price, :province_id, :street, :title, :website,:pictures,:tag_list,:user_id
+  #attr_accessible :city_id, :description, :direction, :district_id, :opening_hours, :phone, :latitude, 
+  #				  :longitude, :price, :province_id, :street, :title, :website,:pictures,:tag_list,:user_id
   belongs_to :province,:class_name=>'Location',:foreign_key=>'province_id'
   belongs_to :city, :class_name=>'Location',:foreign_key=>'city_id'
   belongs_to :district,:class_name=>'Location',:foreign_key=>'district_id'

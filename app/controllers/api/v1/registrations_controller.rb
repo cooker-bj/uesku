@@ -8,7 +8,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    build_resource(params[:user])
+    build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
  
     if resource.save
       if resource.active_for_authentication?
@@ -30,7 +30,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   def update
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     logger.debug(params[:user])
-    if resource.update_with_password(params[:user])
+    if resource.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
       if is_navigational_format?
         update_needs_confirmation?(resource, prev_unconfirmed_email)
       end
@@ -43,12 +43,5 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   end
 
 
-  def account_update_params
-    params.require(:user).permit( :email, :password, :password_confirmation, :current_password)
-  end
-
-
-  def sign_up_params
-    params.require(:user).permit( :email, :password, :password_confirmation)
-  end
+  
 end

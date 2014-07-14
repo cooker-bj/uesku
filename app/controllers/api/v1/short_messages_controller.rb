@@ -19,7 +19,7 @@ class Api::V1::ShortMessagesController < ApiController
   end
 
   def create
-    @message=ShortMessage.new(params[:short_message])
+    @message=ShortMessage.new(short_message_params)
     @message.sender_id=current_user.id
     @message.save   
     respond_with @message 
@@ -57,5 +57,10 @@ class Api::V1::ShortMessagesController < ApiController
     @group=MessageGroup.find(params[:id])
     @group.remove_users([current_user.id])
     render :json=>{:success=>true}
+  end
+  
+  private
+  def short_message_params
+    params.required(:short_message).permit(:create_time, :media, :message, :message_group_id, :sender_id,:category)
   end
 end

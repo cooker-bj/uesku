@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
 	def create
 		@commentable=find_commentable
-	    @comment=@commentable.comments.build(params[:comment])
+	    @comment=@commentable.comments.build(comment_params)
 	    @comment.user_id=current_user.id
 	    if  @comment.save
 	    	render :json=>{:success=>true}
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
 	def update
 		@comment=Comment.find(params[:id])
-         if @comment.update_attributes(params[:comment])
+         if @comment.update_attributes(comment_params)
 		 	render :json=>{:success=>true}
 		 else
 		 	render :json=>{:errors=>@comment.errors,:status=>:unprocessable_entity}
@@ -51,4 +51,8 @@ class CommentsController < ApplicationController
 		end
 		nil
 	end
+  
+  def comment_params
+    params.required(:comment).permit(:comment, :comment_time, :user_id,:commentable,:commentable_type)
+  end
 end

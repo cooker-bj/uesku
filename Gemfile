@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.8'
+gem 'rails', '4.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,8 +11,9 @@ gem 'sqlite3'
 #gem 'therubyracer'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery_mobile_rails'
 gem 'rmagick'
-gem 'remotipart','~>1.2'
+gem 'remotipart'
 # Gems for search
 gem 'paper_trail','~>3.0'
 #gem 'sunspot_rails','~>1.3'
@@ -36,7 +37,7 @@ group :development,:test do
   gem 'pry-stack_explorer'
 end
 
-gem 'protected_attributes'
+#gem 'protected_attributes'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
@@ -58,7 +59,7 @@ gem 'devise-i18n'
 gem 'cancan'
 gem 'jwt','0.1.11'
 
-gem 'carrierwave'
+gem 'carrierwave','~>0.9.0'
 gem 'ancestry'
 gem 'rails_kindeditor'
 gem 'will_paginate'

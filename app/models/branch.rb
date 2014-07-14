@@ -1,6 +1,6 @@
 class Branch < ActiveRecord::Base
-  attr_accessible :city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id, 
-                  :street, :website,:company_id,:company_attributes
+  #attr_accessible :city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id, 
+  #                :street, :website,:company_id,:company_attributes
   attr_accessor :is_changed
   belongs_to :company
   has_many :lessons,:dependent=>:destroy

@@ -114,6 +114,9 @@ class TimetablesController < ApplicationController
     class_time.modify(params[:start],params)
     respond_with @timetable,:location=>timetable_path(@timetable)
   end
-
+  private
+  def timetable_params
+    params.required(:timetable).permit(:create_time, :creator_id, :description, :end_day, :lesson_id, :start_day, :title,:class_times_attributes=>[:end_time_hour,:end_time_minute, :start_time_hour,:start_time_minute,:week,:start_day,:end_day,:name, :timetable_id])
+  end
 
 end

@@ -32,14 +32,14 @@ class LessonsController <ApplicationController
   end
 
   def create
-    @course=Course.new(params[:course])
+    @course=Course.new(course_params)
     @course.save
     respond_with @course,:location=>lesson_path(@course.lessons.first)
   end
 
   def update
     @lesson=Lesson.find(params[:id])
-    @lesson.update_attributes(params[:lesson])
+    @lesson.update_attributes(lesson_params)
     respond_with @lesson,:location=>lesson_path(@lesson)
   end
 
@@ -74,4 +74,16 @@ class LessonsController <ApplicationController
     respond_with [@lesson,@course]
   end
  
+ 
+  private
+  def course_params
+    params.required(:course).permit(:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches)
+  end
+  
+  def lesson_params
+    params.required(:lesson).permit(:branch_id, :course_id,  :rank, :rank_counter,:course_score,:teacher_score,:security_score,:environment_score,
+                                    :scores_attributes,:comments_attributes=>[:_destroy,:id,:comment, :comment_time, :user_id,:commentable,:commentable_type],
+                                    :course_attributes=>[:_destroy,:id,:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range],
+                                    :branch_attributes=>[:_destroy,:id,:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id,:street, :website,:company_id])
+  end
 end

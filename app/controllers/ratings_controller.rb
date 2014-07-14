@@ -10,7 +10,7 @@ class RatingsController < ApplicationController
 
 	def create
 		@ratingable=find_ratingable
-	    @rating=@ratingable.ratings.build(params[:rating])
+	    @rating=@ratingable.ratings.build(rating_params)
 	    @rating.user_id=current_user.id
 	    if  @rating.save
 	    	render :json=>{:success=>true,:id=>@rating.id}
@@ -22,7 +22,7 @@ class RatingsController < ApplicationController
 
 	def update
 		@rating=Rating.find(params[:id])
-         if @rating.update_attributes(params[:rating])
+         if @rating.update_attributes(rating_params)
 		 	render :json=>{:success=>true}
 		 else
 		 	render :json=>{:errors=>@rating.errors,:status=>:unprocessable_entity}
@@ -38,5 +38,9 @@ private
 		end
 		nil
 	end
+  
+  def rating_params
+    params.required(:rating).permit(:ratingable_id, :ratingable_type, :user_id, :value)
+  end
 
 end

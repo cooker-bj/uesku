@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
      flash[:notice]="班级已创建" if @group.save
     respond_with @group
 
@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
 
-      flash[:notice]="班级信息已修改" if @group.update_attributes(params[:group])
+      flash[:notice]="班级信息已修改" if @group.update_attributes(group_params)
      respond_with @group
   end
 
@@ -115,5 +115,10 @@ class GroupsController < ApplicationController
     member=Member.find(params[:member])
     member.withdraw_manager
     render :partial=>'managers',:layout=>false
+  end
+  
+  private
+  def group_params
+    params.required(:group).permit(:created_time, :owner_id, :lesson_id, :logo, :title,:locked,:description,:lessons)
   end
 end

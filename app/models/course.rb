@@ -1,6 +1,6 @@
 #--*--encoding: UTF-8
 class Course < ActiveRecord::Base
-  attr_accessible :title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches
+  #attr_accessible :title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches
   belongs_to :company
   belongs_to :category
   has_many :lessons,:dependent=>:destroy

@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :comment, :comment_time, :user_id,:commentable,:commentable_type
+  #attr_accessible :comment, :comment_time, :user_id,:commentable,:commentable_type
   belongs_to :commentable,:polymorphic => true
   belongs_to :user
   has_many :replies,:dependent=>:destroy

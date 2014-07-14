@@ -6,6 +6,7 @@
     <div>积分:<%=current_user.score %></div>
   </div>
   <div><%=link_to "修改个人信息", edit_user_registration_path(current_user) %> </div>
+  <div><%=link_to "修改密码",edit_user_path(current_user)%></div>
 
 </div>
  <div id="user_main" class="float_right">

@@ -27,7 +27,7 @@ class ShortMessagesController < ApplicationController
   end
 
   def create
-    @message=ShortMessage.new(params[:short_message])
+    @message=ShortMessage.new(short_message_params)
     @message.sender_id=current_user.id
     respond_with @message do |format|
       if @message.save
@@ -91,5 +91,10 @@ class ShortMessagesController < ApplicationController
         render :json=>{:success=>true}
       end
     end
+  end
+  
+  private
+  def short_message_params
+    params.required(:short_message).permit(:create_time, :media, :message, :message_group_id, :sender_id,:category)
   end
 end

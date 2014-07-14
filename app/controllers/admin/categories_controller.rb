@@ -26,14 +26,14 @@ class Admin::CategoriesController <  Admin::AdminBaseController
   end
 
   def create
-    @category=Category.new(params[:category])
+    @category=Category.new(category_params)
     flash[:notice]="已保存" if @category.save
     respond_with [:admin,@category]
   end
 
   def update
     @category=Category.find(params[:id])
-    flash[:notice]="已更新" if  @category.update_attributes(params[:category])
+    flash[:notice]="已更新" if  @category.update_attributes(category_params)
     respond_with [:admin,@category]
   end
 
@@ -55,5 +55,10 @@ class Admin::CategoriesController <  Admin::AdminBaseController
   def course_select
     @cur=Category.find(params[:mid]).get_tree
     render :partial=>'course_select',:layout=>false,:locals=>{:cur=>@cur}
+  end
+  
+  private
+  def category_params
+    params.required(:category).permit(::name,:parent_id)
   end
 end

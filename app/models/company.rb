@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
 
-  attr_accessible :description,  :name, :tags, :website,:branches_attributes
+  #attr_accessible :description,  :name, :tags, :website,:branches_attributes
    has_many :branches,:dependent=>:destroy
    has_many :courses,:dependent=>:destroy
    has_many :lessons, :through=>:courses

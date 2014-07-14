@@ -7,7 +7,7 @@ class Admin < ActiveRecord::Base
           :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:name,:roles
+  #attr_accessible :email, :password, :password_confirmation, :remember_me,:name,:roles
    validates_presence_of :name
   ROLES={1=>'内容管理',2=>'类别管理',4=>'人员管理',8=>'社区管理'}
   # attr_accessible :title, :body

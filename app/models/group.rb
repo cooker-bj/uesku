@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :created_time, :owner_id, :lesson_id, :logo, :title,:locked,:description,:lessons
+  #attr_accessible :created_time, :owner_id, :lesson_id, :logo, :title,:locked,:description,:lessons
   has_many :group_lessons,:dependent=>:destroy
   has_many :lessons,:through=>:group_lessons
   has_many :posts,:dependent=>:destroy

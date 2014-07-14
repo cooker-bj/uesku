@@ -195,9 +195,21 @@ zh-CN:
       short: ! '%b%d日 %H:%M'
     pm: 下午
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+    
   activemodel:
     errors:
       <<: *errors
   activerecord:
+    models:
+      user: 用户
+    attributes:
+      user:
+        nickname: 呢称
+        current_password: 当前密码
+        password_confirmation: 密码确认
     errors:
+      template:
+        header:
+          one: "1个错误导致%{model}不能够保存"
+          other: "%{count}个错误导致%{model}不能够被保存"
       <<: *errors

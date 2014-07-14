@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery-ui
+//= require jquery.mobile
 //= require kindeditor
 //= require jquery_nested_form
 //= require jquery-ui-timepicker-addon

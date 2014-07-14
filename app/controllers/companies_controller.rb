@@ -63,5 +63,11 @@ class CompaniesController < ApplicationController
     @company=params[:version_id].nil? ? company_object : company_object.versions.find(params[:version_id]).reify
     render 'edit'
   end
+  
+  private
+  
+  def company_params
+    params.required(:company).permit(:description,  :name, :tags, :website,branches_attributes:[:_destroy,:id,:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id,:street, :website,:company_id])
+  end
 
 end

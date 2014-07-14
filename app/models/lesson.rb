@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
-                  :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes,
-                  :course_attributes,:branch_attributes
+  #attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
+  #                :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes,
+  #                :course_attributes,:branch_attributes
   belongs_to :course
   belongs_to :branch
   has_one :company, :through=>:course

@@ -52,20 +52,5 @@ describe User do
     end
   end
 
-  context "nickname cannot be empty"  do
-    it "should keep value if it have a nickname"  do
-      nick="my boy"
-      myuser=User.create(:nickname=>nick,:email=>'test@test.com',:password=>Devise.friendly_token[0,20])
-      p myuser.errors if myuser.id.nil?
-
-      myuser.reload.nickname.should==nick
-    end
-
-    it "should have a nickname if nickname is empty" do
-      myuser=User.create(:email=>'test@test.com',:password=>Devise.friendly_token[0,20])
-
-      myuser.reload.nickname.should_not be_nil
-
-    end
-  end
+  
 end

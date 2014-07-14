@@ -18,12 +18,12 @@ class Users::RegistrationsController  < Devise::RegistrationsController
     @user = User.find(current_user.id)
 
     successfully_updated = if needs_password?(@user, params)
-      @user.update_with_password(params[:user])
+      @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
     else
       # remove the virtual current_password attribute
       # update_without_password doesn't know how to ignore it
       params[:user].delete(:current_password)
-      @user.update_without_password(params[:user])
+      @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
 
     if successfully_updated

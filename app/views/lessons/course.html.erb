@@ -1,45 +1,5 @@
-<%= form_for @course,:url=>lessons_path do |f| %>
-   <%= f.label :title,"课程名称" %>  <br/>
-    <%= f.text_field :title %>   <br/>
-    <%= f.label :category_id,"类别" %> <br/>
-     <% @course.category=Category.roots.first if @course.category.nil?%>
-   <div id="select_category"> 
-    <%= render :partial=>"/categories/course_select",:locals=>{:cur=>@course.category.get_tree,:f=>f} %>
-  </div>
-
-    <%= f.label :price,"价格" %>  <br/>
-    <%= f.text_field :price %> <br/>
-    <%= f.label :age_range,"适合年龄" %>
-      <% age_select=Course::AGE_RANGE %>
-    <%= f.select :age_range, options_for_select(age_select.collect {|v| [v,age_select.index(v)]}) %>  <br/>
-    <%=f.label :special, '特色'%>
-    <%=f.text_field :special %>  <br/>
-    <%=f.label :free_try, "试听" %>
-    <%=f.select :free_try,[['无',false],['有',true]] %>  <br/>
-
-    <%= f.label :website %><br/>
-    <%= f.text_field :website %> <br/>
-
-
-    <%= f.hidden_field :company_id,:value=>@course.company_id %>
-    教育机构名称 <br>
-    <%= text_field_tag "company",@course.company.name %>   <br>
-
-    <%= f.label :tags,'标签' %>   <br/>
-    <%= f.text_field :tags %> <br/>
-
-    <%= f.label :description,"课程描述" %> <br/>
-    <%= f.kindeditor :description %> <br/>
-    <p><b>选择课程所在的分支/校区</b></p>
-    <fieldset>
-      <% @course.company.branches.each do |branch| %>
-       <%=f.fields_for :branches do |br|%>
-          <%=branch.name %>
-          <%=check_box_tag 'course[branches][]',branch.id, true  %>
-          <% end %>
-      <%end %>
-    </fieldset>
-
-
-
-    <%= f.submit "提交" %><% end %>
+<%= nested_form_for @course,:url=>lessons_path do |f| %>
+   <%=render :partial=> 'course_fields',:locals=>{f: f} %>
+   <%= f.hidden_field :company_id,:value=>@course.company_id %>
+   <%= f.submit "提交" %>
+<% end %>

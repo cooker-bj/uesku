@@ -69,6 +69,10 @@
         <p>价格: <%=@lesson.price %>    </p>
         <p>适合年龄: <%=@lesson.age_range %> </p>
         <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
+        <p><% @lesson.course.features.each do |fa| %>
+          <div><%=fa.title %>:<%=fa.content %></div>
+           <% end %>
+         </p>
         <p>特色：<%=@lesson.special %>  </p>
         <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
         <p> 校区：<%=@lesson.name%>    </p>

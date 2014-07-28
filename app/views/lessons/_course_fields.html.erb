@@ -20,6 +20,19 @@
    <div class='field'>
     <%=f.label :special, '特色'%>
     <%=f.text_field :special %>  
+    <div>
+    <%=f.fields_for :features do |fa| %>
+      <div class='field'>
+        <%=fa.label :title,'标题' %>
+        <%=fa.text_field :title %>
+        <%=fa.label :content,'内容' %>
+        <%=fa.text_field :content %>
+        <%=fa.link_to_remove '删除' %>
+        </div>
+    <% end %>
+    <%=f.link_to_add '增加特点',:features %>
+  </div>
+
   </div>
   <div class='field'>
     <%=f.label :free_try, "试听" %>

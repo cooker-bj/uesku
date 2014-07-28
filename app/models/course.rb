@@ -1,10 +1,12 @@
 #--*--encoding: UTF-8
 class Course < ActiveRecord::Base
-  attr_accessible :title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches
+  attr_accessible :title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches,:features_attributes
   belongs_to :company
   belongs_to :category
   has_many :lessons,:dependent=>:destroy
   has_many :branches, :through => :lessons
+  has_many :features
+  accepts_nested_attributes_for :features
   validates_presence_of :title
   has_paper_trail
   include AuditContent

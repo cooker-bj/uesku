@@ -1,0 +1,17 @@
+<%=content_tag :div, id: mobile_page_id, data: {role: 'page',dialog: true} do %>
+	<%=content_tag :div, data:{role:'header'} do %>
+		<h2>编辑</h2>
+	<% end %>
+	<%=content_tag :div, data:{role:'content'} do %>
+		<%= form_for(@comment,:remote=>true,:html=>{:id=>'edit_comment_form'}) do |f| %>
+		    <div class='validation-error'></div>
+			<div class="field">
+				<%=f.hidden_field :id%>
+				<%= f.text_area :comment,:id=>'comment_editor' %>
+		    </div>
+		    <div class="actions">
+		      <%= f.submit "修改" %>
+		    </div>
+		<% end %>
+	<% end %>
+<% end %>

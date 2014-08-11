@@ -1,0 +1,7 @@
+
+<%=form_for Reply.new,:remote=>true do |f| %>
+	<%=f.text_area :message,:cols=>32,:rows=>4 %>
+	<%=f.hidden_field :comment_id,:value=>msg.id%>
+	<%=f.hidden_field :user_id,:value=>current_user.id %>
+	<%=f.submit '确定'%>
+<% end %>

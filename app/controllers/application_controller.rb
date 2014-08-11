@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :store_location
   before_action :set_variant
-  
+ 
   
   after_action :user_activity
 
@@ -13,7 +13,22 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    session[:previous_url]||root_path
+    session[:previous_url]||root_user_path
+  end
+  
+  protected
+  def set_layout
+   
+     if request.get? && request.xhr?
+       false
+     else
+       case request.user_agent
+       when /iphone|android|windows phone|mobile/i
+         "phone"
+       else
+         File.exist?("app/views/layouts/#{controller_name}.html.erb")? controller_name : "application"
+       end
+     end
   end
   
   private
@@ -25,5 +40,10 @@ class ApplicationController < ActionController::Base
     request.variant=:phone if request.user_agent=~/iphone|Android|windows phone/i
     logger.info "request variant=!!!#{request.variant}"
   end
+  
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
+  
 
 end

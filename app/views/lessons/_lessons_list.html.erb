@@ -3,7 +3,7 @@
   <ul class='list_item'>
     <li class='float_left cell_detail'>
       <ul>
-        <li><strong><%= link_to course.title,lesson_path(course) %></strong></li>
+        <li><h3><%= link_to course.title,lesson_path(course) %></h3></li>
         <li>教育机构: <%=link_to course.company_name,company_path(course.company)%></li>
         <li>地址:<%=course.address %></li>
         <li>电话:<%=course.phone %></li>

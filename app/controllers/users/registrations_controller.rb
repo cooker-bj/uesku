@@ -1,5 +1,6 @@
 class Users::RegistrationsController  < Devise::RegistrationsController
 
+  layout :set_layout
   def new
     if session['devise.omniauth'].present?
     build_resource(session['devise.omniauth'])

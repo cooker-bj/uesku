@@ -1,0 +1,14 @@
+<%=content_tag :div, id: mobile_page_id, data: {role:'dialog'} do %>
+	<%=content_tag :div, data: {role: 'header'} do %>
+	  <h2>回复</h2>
+	<% end %>
+	<%=content_tag :div, data: {role: 'content'} do %>
+
+		<%=form_for Reply.new,:remote=>true do |f| %>
+			<%=f.text_area :message,:cols=>32,:rows=>4 %>
+			<%=f.hidden_field :comment_id %>
+			<%=f.hidden_field :user_id,:value=>current_user.id %>
+			<%=f.submit '确定'%>
+		<% end%>
+	<% end %>
+<% end %>

@@ -5,13 +5,13 @@ gem 'rails', '4.1.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-gem 'sqlite3'
+gem 'pg'
+#gem 'sqlite3'
 #gem 'execjs'
 #gem 'therubyracer'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'jquery_mobile_rails'
+#gem 'jquery_mobile_rails'
 gem 'rmagick'
 gem 'remotipart'
 # Gems for search
@@ -22,7 +22,7 @@ gem 'fullcalendar-rails'
 gem 'jquery-timepicker-addon-rails'
 
 gem 'acts-as-taggable-on'
-gem 'jquery-fileupload-rails'
+#gem 'jquery-fileupload-rails'
 
 gem 'fog','~>1.3.1'
 #gem 'activerecord-reputation-system'

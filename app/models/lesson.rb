@@ -33,7 +33,7 @@ class Lesson < ActiveRecord::Base
 
   def self.filter_with_category(cat)
     if cat.blank?
-      scoped
+      all.order("rank desc")
     else
        where("courses.category_id"=>cat).joins(:course).order("rank desc")
     end
@@ -43,7 +43,7 @@ class Lesson < ActiveRecord::Base
 
   def self.filter_with_district(dist)
     if dist.blank?
-       scoped
+       all.order("rank desc")
     else
       where("branches.district_id"=>dist).joins(:branch).order("rank desc")
     end

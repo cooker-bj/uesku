@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
-  respond_to :json, :html
+  respond_to :html
+  layout :set_layout
 
   def create
     resource = warden.authenticate!(auth_options)
@@ -15,10 +16,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
  
-  def destroy
-    current_user.authentication_token = nil
-    super
-  end
+  
  
   protected
   def verified_request?

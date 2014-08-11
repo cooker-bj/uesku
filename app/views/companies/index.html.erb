@@ -1,12 +1,7 @@
 <div class='columns_list'>
 
  <ul class='columns' data-columns='2'>
-    <% @companies.each do |company| %>
-      
-    <li>    <%=link_to company.name, company_path(company) %></li>
-     
-     
-    <% end %>
+   <%=render "list_name"%>
  </ul>  
 </div>
 <div>

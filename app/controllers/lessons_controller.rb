@@ -1,11 +1,19 @@
 class LessonsController <ApplicationController
   before_filter :authenticate_user!, :except=>[:index,:show,:category,:district]
-  respond_to :html
+  layout :set_layout
+  respond_to :html,:js
 
   def index
     @lessons=Lesson.local_lessons(get_city).filter_with_district(params[:district]).paginate(:page=>params[:page],:per_page=>20)
     @district=params[:district]|| []
-    render 'category'
+    respond_with [@lessons,@district] do |format|
+      format.html do |html|
+        html.none {render 'category'}
+        html.phone {render 'category'}
+      end
+      format.js {render 'add_items'}
+    end
+    
   end
 
   def company
@@ -82,7 +90,8 @@ class LessonsController <ApplicationController
   
   def lesson_params
     params.required(:lesson).permit(:branch_id, :course_id,  :rank, :rank_counter,:course_score,:teacher_score,:security_score,:environment_score,
-                                    :scores_attributes,:comments_attributes=>[:_destroy,:id,:comment, :comment_time, :user_id,:commentable,:commentable_type],
+                                    :scores_attributes=>[:course,:teacher,:security,:environment,:user_id,:id],
+                                    :comments_attributes=>[:_destroy,:id,:comment, :comment_time, :user_id,:commentable,:commentable_type],
                                     :course_attributes=>[:_destroy,:id,:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range],
                                     :branch_attributes=>[:_destroy,:id,:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id,:street, :website,:company_id])
   end

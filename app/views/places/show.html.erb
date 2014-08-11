@@ -63,7 +63,7 @@
 </div>
 </div>
 <div class='detail_bar'><div class='detail_head'>大众评价</div></div>
-<%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @place.id,type: @place.class.model_name.downcase.pluralize} do %><%end%>
+<%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @place.id,type: @place.class.name.downcase.pluralize} do %><%end%>
 <% unless current_user.nil? %>
   <div class="details">
     <div>

@@ -5,4 +5,9 @@ $(function(){
         });
         return false;
     })*/
+      
+      $(document.body).delegate("form[action='/users/sign_out']","submit",function(){
+        $(this).attr("data-ajax",false);
+      })
+     
 })

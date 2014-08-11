@@ -10,10 +10,10 @@
   </div>
   <div id='main_content' class="float_right">
     <div id='category_filter'>
-      <%=form_tag do %>
-        <%=submit_tag "确定" %>区域：
+      <%=form_tag  do %>
+        <%=submit_tag "确定",data:{role:'none'} %>区域：
         <% Location.find(get_city).children.order('id').each do |dist|%>
-            <%=check_box_tag 'district[]',dist.id, @district.include?(dist.id.to_s)%>  
+            <%=check_box_tag 'district[]',dist.id, @district.include?(dist.id.to_s),data:{role:'none'}%>  
             <%=dist.name%>
         <%end%>
       <%end%>

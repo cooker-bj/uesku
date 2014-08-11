@@ -1,10 +1,13 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:index,:show]
 	respond_to :html
-
+  layout :set_layout
   def index
     @companies=Company.paginate :page=>params[:page],:per_page=>40
-    respond_with @companies
+    respond_with @companies do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

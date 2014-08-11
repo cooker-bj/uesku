@@ -80,7 +80,7 @@ Uesku::Application.routes.draw do
   devise_for :admins, :controllers =>{:sessions=>'admin/sessions'}
   get 'admin/companies'=>'admin/companies#index',:as=>:admin_root
 
-  devise_for :users, :controllers => { :omniauth_callbacks=>"users/omniauth_callbacks",:registrations=>"users/registrations",:sessions=>"users/sessions" }
+  devise_for :users, :controllers => { :omniauth_callbacks=>"users/omniauth_callbacks",:registrations=>"users/registrations" }
   
  
 

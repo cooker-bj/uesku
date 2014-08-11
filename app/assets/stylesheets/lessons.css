@@ -46,7 +46,6 @@
     background:url(comment_bar.png);
     position:relative;
     overflow:hidden;
-    position:relative;
     width:100%;
     border-bottom: 1px solid grey;
 }
@@ -72,11 +71,13 @@ div.comment_content{
 
 .comment_reply{
     background: rgb(240,240,240);
-    width: 500px;
+    width: 300px;
     float:right;
 
     margin:2px;
 }
+
+
 
 .reply{
     margin:2px;
@@ -87,7 +88,7 @@ div.comment_content{
 
 .reply_content{
     margin-left:10px;
-    width: 450px;
+    width: 250px;
     float:right;
 }
 
@@ -195,5 +196,10 @@ div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizabl
 .subtitle{
     margin: 10px,auto;
 
+}
+
+.lesson_phone_map{
+  width: 320px;
+  height:240px;
 }
 

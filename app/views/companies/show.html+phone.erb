@@ -1,0 +1,80 @@
+<%=content_tag :div, id: mobile_page_id, class: 'map_page',data:{role: 'page'} do %>
+  <div data-role="header" data-position='fixed' >
+  	<h1>优异思库</h1>
+    <% if current_user.nil? %>
+		<%=link_to '登录',new_user_session_path,data: {role: "button",icon: 'user',iconpos: 'notext'}%>
+		
+    <% else %>
+              	  <%=link_to "个人设置",'#',data: {role: 'button',icon: 'user',iconpos: 'notext'} %>
+    <% end %>
+	<div>
+    	<%=get_city_name %><%= link_to '<变更>',locations_path %>
+	</div>
+  
+    <div data-role="navbar">
+      <ul >
+        <li>
+          <a href="/" class="parent"><span>首页</span></a>
+        </li><li>
+        <a href="/lessons" class="parent"><span>课程</span></a>
+      </li><li>
+        <a href="/companies" class="parent"><span>机构</span></a>
+      </li><li>
+        <a href="/groups" class="parent"><span>社区</span></a>
+      </li>
+     <li><a href="/places" class="parent"><span>携子同游</span></a></li>
+      </ul>
+    </div>
+	<div class="segmented-control ui-bar-d">
+		<fieldset data-role='controlgroup' data-type='horizontal' data-mini='true'>
+			<input name='switch' id="list-switch" type='radio' checked='true'>
+			<label for= 'list-switch'>列表</label>
+			<input name='switch' id="map-switch" type='radio'>
+			<label for= 'map-switch'>地图</label>
+		</fieldset>
+	</div>
+  </div>
+  <%=content_tag :div,data: {role: 'content'} do %>
+	<div id="list-canvas" >
+	    <h2><%= @company.name %></h2> 
+	    <p>
+		  <b>网址:</b>
+		  <%=link_to @company.website,url_with_protocol(@company.website)%>
+		</p>
+		<p>
+		  <b>标签:</b>
+		  <%= @company.tags %>
+		</p>
+		<p>
+		  <b>公司简介:</b>
+		  <%= raw(@company.description) %>
+		</p>
+	
+	  <h3>各分支校区：</h3> 
+	 
+
+	 
+	  <%@company.branches.each do |branch| %>
+	     
+		 <%=content_tag :div,class: 'branches', data: {positionx: branch.geolng, positiony: branch.geolat,title: branch.name} do %>
+            <p><b>名称:</b><%=branch.name%></p>
+            <p><b>电话:</b><%=branch.phone%></p>
+            <p><b>地址:</b><%=branch.address %></p>
+            <p><b>分支网址:</b><%=branch.website%></p>
+			
+	        <%=content_tag :ul,id: "company_#{@company.id}_#{branch.id}",data: {role: 'listview',inset:'true'} do %>
+	           <% branch.lessons.each do |lesson|%>
+	                  
+				  <li>  
+					  <%=link_to lesson.title, lesson_path(lesson) %> 
+	                  <span class="ui-li-aside"><%=lesson.rank %>分</span>
+				  </li>
+			   <% end %>
+	        <% end %>
+		 <% end%>
+	   <% end %>
+	</div>
+	<div id='map-canvas' class='ui-content' role='main' style="display none;"></div>
+	<% end%>
+	<%=render 'shares/footer'%>
+<% end %>

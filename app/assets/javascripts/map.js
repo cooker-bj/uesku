@@ -72,13 +72,14 @@ $(function() {
   function addPoint(handler, mid, location, msg) {
     var mapObj = handler.data('mapObj');
     var marker = new AMap.Marker({
+	  map: mapObj,
       id: mid,
       position: location,
       icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
       offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
       visible: true
     })
-    mapObj.addOverlays(marker);
+    //mapObj.addOverlays(marker);
     var infoWindow = new AMap.infoWindow({
       content: msg,
       offset: new AMap.Pixel(-106, -61)
@@ -88,6 +89,22 @@ $(function() {
     })
     handler.data('mapObj', mapObj);
 
+  };
+  
+  function addPointWithoutMsg(handler,mid,location,title){
+	  var mapObj=handler.data('mapObj');
+	  var marker= new AMap.Marker({
+		  map: mapObj,
+	      id: mid,
+	      position: location,
+	      icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
+	      offset: new AMap.Pixel(-7, -28), //相对于基点的偏移量
+	      visible: true
+	  });
+	  if(title){
+		  marker.setTitle(title);
+	  }
+	  handler.data('mapObj',mapObj);
   }
 
 
@@ -99,6 +116,7 @@ $(function() {
 
     }else{
     marker=new AMap.Marker({
+	  map: mapObj, //version 1.3 add this attribute
       id: mid,
       position: location,
       icon: "http://code.mapabc.com/images/lan_1.png", //复杂图标
@@ -106,7 +124,7 @@ $(function() {
       visible: true
     });
   }
-    mapObj.addOverlays(marker);
+    //mapObj.addOverlays(marker); //amap 1.3 remove addOverlays
     mapObj.setFitView([marker]);
     mapObj.setZoom(14);
     handler.data('marker', marker);
@@ -243,4 +261,70 @@ $(function() {
       });
     });
   }
+	$(document).on('pageinit','div[data-role="page"]',function(){
+	    $(".course_map").each(function(id) {
+	     var handle = initMap_without_tools($(this));
+	     var mylng = $(this).attr('data-positionx');
+	     var mylat = $(this).attr('data-positiony');
+	     if (mylng && mylat) {
+	       var location = new AMap.LngLat(mylng, mylat);
+	       addOnePoint(handle, 'mm' + id, location);
+	     }
+	   });
+	})
+	
+	/*---------------------------------------------
+	for jquery mobile using amap api
+	-----------------------------------------------*/
+	$(document).on('pagecreate','.map_page',function(){
+		var $mapSwitch =$("#map-switch"),
+			$listSwitch =$('#list-switch'),
+			$map=$("#map-canvas"),
+			$list=$("#list-canvas");
+		$mapSwitch.on('click',function(e){
+			$map.show();
+			$map.each(function(id){
+				var handle = initMap($(this));
+				$('div.branches').each(function(id){
+			   	     var mylng = $(this).attr('data-positionx');
+			   	     var mylat = $(this).attr('data-positiony');
+					 var title= $(this).attr('data-title');
+					 if(mylat && mylng){
+			  	       var location = new AMap.LngLat(mylng, mylat);
+			  	       addPointWithoutMsg(handle, 'mm' + id, location,title);
+					   
+					 }
+				});
+				handle.data('mapObj').setFitView();
+			});
+			$list.hide();
+		});
+		$listSwitch.on('click',function(e){
+			$list.show();
+			$map.hide();
+		});
+		
+		
+	});
+  $(document).on('pageinit',function(){
+    $('.pop_map').on({
+      popupbeforeposition: function(){
+        var $map=$(this).find(".lesson_phone_map");
+        $(this).css('height', '240px');
+        $(this).css('width','320px');
+        $map.each(function(id){
+          var handle=initMap($(this));
+          var mylng=$(this).attr('data-positiony');
+          var mylat=$(this).attr('data-positionx');
+          var mytitle=$(this).attr('data-title');
+          if(mylat && mylng){
+            var location= new AMap.LngLat(mylng,mylat);
+            addPointWithoutMsg(handle,'mp'+id,location,mytitle);
+          }
+          handle.data('mapObj').setFitView();
+        });
+      }
+    });
+  });
+  
 })

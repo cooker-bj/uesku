@@ -1,0 +1,30 @@
+
+
+.comment_item_phone{
+	width: 100%;
+	 overflow:hidden;
+	 
+}
+
+.user_phone{
+	background: lightgrey;
+	height: 40px;
+	margin: 1px;
+	.user_msg{
+		height: 40px;
+		line-height:40px;
+		overflow: hidden;
+		position:relative;
+		.user_avatar{
+			vertical-align:text-top;
+		};
+	};
+	
+}
+
+.comment_phone{
+	min-height: 70px;
+	.content {
+		min-height: 40px;
+	}
+}

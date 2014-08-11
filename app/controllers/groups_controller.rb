@@ -2,6 +2,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!,:except=>[:index]
   respond_to :html
+  layout :set_layout
   # GET /groups
   # GET /groups.json
   def index

@@ -1,0 +1,21 @@
+
+<%=content_tag :div,id: mobile_page_id,data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data: {role:'content'} do %>
+   
+  
+    <ul  data-role="listview" data-inset='true' data-filter='true' class='lists_phone'>
+	 <%=render 'list_name'%>
+     
+    </ul> 
+	
+    <div id="paginate_area"> 
+      <%=will_paginate @lessons, :controller=>'lessons',:action=>'category',:previous_label=>'前页',:next_label=>'下页'%>
+    </div>
+  
+  <% end %>
+  <%=render 'shares/footer'%>
+<% end %>
+
+<%=render 'shares/category_page'%>
+  

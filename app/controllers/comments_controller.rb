@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
 	before_filter :authenticate_user!, :except=>[:index]
-	respond_to :html
+	respond_to :html,:js
+   layout :set_layout
 
 	def index
 		@commentable=find_commentable
-		@comments=@commentable.comments.order('comment_time DESC').paginate(:page=>params[:page],:per_page=>20)
+		@comments=@commentable.comments.order('comment_time DESC').paginate(:page=>params[:page],:per_page=>2)
 				respond_with [@commentable,@comments],:layout=>false
 	end
 

@@ -1,0 +1,10 @@
+ <%=content_tag :div,id: 'category_list', data: {role: 'page'} do %>
+ 	<%=render "shares/header"%>
+	<%=content_tag :div,data: {role: 'content'} do %>
+	  <%=content_tag :div, data: {role: 'navbar'} do %>
+	    <%=render '/lessons/category_list'%>
+	    <%=render 'lessons/district_list'%>
+	  <% end %>
+	<% end %>
+	<%=render "shares/footer"%>
+<% end %>

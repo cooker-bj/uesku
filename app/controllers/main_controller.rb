@@ -1,12 +1,8 @@
 class MainController < ApplicationController
-  
+  respond_to :html
+  layout :set_layout
   def index
-    respond_to do |format|
-      format.html do |html|
-        html.phone
-        html
-      end
-    end
+   
   end
 
  

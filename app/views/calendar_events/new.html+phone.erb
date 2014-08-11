@@ -1,0 +1,7 @@
+<%=content_tag :div, id: mobile_page_id, data:{role: 'page',dialog: true} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data: {role: 'content'} do %>
+    <%=render 'form'%>
+  <%end%>
+  <%=render 'shares/footer'%>
+<% end %>

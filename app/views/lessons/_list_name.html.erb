@@ -1,0 +1,10 @@
+<% @lessons.each do |course| %>
+  <li >
+      <hX><%= link_to course.title,lesson_path(course) %></hX>
+ 	  <p> 
+		  教育机构: <%=course.company_name%><br/>
+  	      地址:<%=course.address %>
+	  </p>
+	  <span class='ui-li-aside'><%= course.rank %>分</span>
+  </li>
+<% end %>

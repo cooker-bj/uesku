@@ -1,0 +1,39 @@
+<%=content_tag :div, :id=>mobile_page_id,data: {role: 'page',dialog: true} do%>
+  <%=content_tag :div,data: {role: 'header'} do %>
+    <h1>注册</h1>
+	<%=link_to 'close','#',data:{role: 'button',icon: 'delete',iconpos:'notext',rel: 'back'}%>
+  <% end%>
+  <%=content_tag :div, data: {role: 'content'} do %>
+	<b>请完善您的客户资料</b>
+	<%= form_for(resource, as: resource_name,url: registration_path(resource_name),html: {multipart: true,data:{ajax: false}}) do |f| %>
+	
+
+  		<%= devise_error_messages! %>
+
+  	  	<div data-role="fieldcontainer"><%= f.label :email %><%= f.email_field :email, :autofocus => true %></div>
+  	  	<% if resource.password.nil? %>
+    		<div data-role="fieldcontainer"><%= f.label :password %><%= f.password_field :password %></div>
+			<div data-role="fieldcontainer"><%= f.label :password_confirmation %><%= f.password_field :password_confirmation %></div>
+  		<% else %>
+    		<%=f.hidden_field :password %>
+   		<% end %>
+  	   	<div data-role="fieldcontainer"> <%=f.label :real_name,'姓名'%><%=f.text_field :real_name %></div>
+  	  	<div data-role="fieldcontainer"><%=f.label :nickname,"呢称" %><%=f.text_field :nickname %>
+			<span class="notice">呢称必须是唯一的且不能为空，选定后将不能修改</span>
+		</div>
+  	  	<div data-role="fieldcontainer"><%=f.label :gender,"性别"%><%=f.select :gender,options_for_select([['男'],['女']]) %></div>
+  	  	<div data-role="fieldcontainer">
+			<%=f.label :birthday, '出生日期'%>
+			<%=f.date_field :birthday %>
+		</div>
+ 	   <div>头像:<%=image_tag  resource.avatar.url,:id=>'avatar',:height=>200,:width=>200 %> </div>
+	   <div data-role="fieldcontainer"><%=f.file_field :avatar %><%=f.hidden_field :avatar_cache %><%=f.hidden_field :remote_avatar_url %></div>
+	   <%=f.fields_for :authenticated_tokens,resource.authenticated_tokens do |token| %>
+  	 		<%=token.hidden_field :provider %> <%=token.hidden_field :uid %> <%=token.hidden_field :access_token %>
+        <% end %>
+  	  <div><%= f.submit "注册" %></div>
+	<% end %>
+
+	
+  <% end%>
+<% end %>

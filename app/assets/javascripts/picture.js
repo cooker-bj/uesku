@@ -1,5 +1,5 @@
 $(function() {
-  $('#fileupload').fileupload();
+  //$('#fileupload').fileupload();
   $('#fileupload').on('fileuploaddone', function(e, data) {
 
     $.each(data.jqXHR.responseJSON.files, function(index, value) {

@@ -26,14 +26,14 @@ class Admin::LocationsController <Admin::AdminBaseController
   end
 
   def create
-    @location=Location.new(params[:location])
+    @location=Location.new(location_params)
     flash[:notice]="已保存" if @location.save
     respond_with [:admin,@location]
   end
 
   def update
     @location=Location.find(params[:id])
-    flash[:notice]="已更新" if  @location.update_attributes(params[:location])
+    flash[:notice]="已更新" if  @location.update_attributes(location_params)
     respond_with [:admin,@location]
   end
 
@@ -52,4 +52,8 @@ class Admin::LocationsController <Admin::AdminBaseController
     respond_with [:admin,@locations],:layout=>false
   end
 
+  private
+  def location_params
+    params.required(:location).permit(:name)
+  end
 end

@@ -1,0 +1,110 @@
+
+<%=content_tag :div,id: mobile_page_id,class: 'phone_lesson_pages',data: {role:'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data: {role: 'content'} do %>
+    <h2><%=@lesson.title %></h2>
+    <div class='details'>
+      <p><b><%=@lesson.address %></b></p>
+      <div >
+        最后修改者：<%=link_to whodoit(@lesson.course.originator).try(:name),profile_user_path(whodoit(@lesson.course.originator))%>
+        <div id="lesson_score">
+             <div>
+             <h2> <%=@lesson.rank %></h2> </div>
+             <div>
+             课程效果:<%=@lesson.course_score %> </div>
+             <div>
+            教师:<%=@lesson.teacher_score %>   </div>
+            <div>
+            安全: <%=@lesson.security_score %>  </div>
+            <div>
+            环境:<%=@lesson.environment_score %> </div>
+        </div>
+        <div id="last_comment">
+          <% if @lesson.comments.empty? %>
+              <%="现在还没有人评价，来评价吧 "%>
+           <% else %>
+              <%=@lesson.comments.last_comment_user_name %>说:<%=@lesson.comments.last_comment %>
+          <% end %>
+        </div>
+      </div>
+	  </div>
+    <div class='ui-grid-c'>
+      <div class='ui-block-a'>
+        <%=link_to '相关课吧',"##{mobile_page_id}_groups",data:{role: 'button',rel:'popup'} %>
+      </div>
+      <div class='ui-block-b'>
+        <%=link_to '相关课表',"##{mobile_page_id}_class_tables",data:{role: 'button',rel:'popup'}%>
+      </div>
+      <div class='ui-block-c'>
+        <%=link_to '地图',"##{mobile_page_id}_map",data:{role: 'button',rel:'popup'}%>
+      </div>
+    </div>
+    <div >
+      <%=content_tag :div,id: "#{mobile_page_id}_groups",data:{ role: 'popup'} do %>
+        <ul data-role="listview" data-inset='true'>
+          <li data-role='list_divider'>相关课吧列表</li>
+          <% @lesson.groups.each do |group| %>
+            <li><%=link_to group.title,group_path(group)%><%='私有' if group.locked%></li>
+          <% end%>
+        </ul>
+      <% end %>
+      <%=content_tag :div,id: "#{mobile_page_id}_class_tables",data: {role: 'popup'} do %>
+        <ul data-role='listview' data-inset='true'>
+          <li data-role='list_divider'>相关课表</li>
+          <% @lesson.timetables.each do |table|%>
+            <li><%=link_to table.title,timetable_path(table)%></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%=content_tag :div, id: "#{mobile_page_id}_map",class: 'pop_map', data: {role:'popup'} do %>
+        <a href='#' data-rel="back" data-role='button' data-theme='b' data-icon='delete' data-iconpos='notext' class='ui-btn-right'>Close <a>
+        <%=content_tag :div, id:"#{mobile_page_id}_map_1",class: 'lesson_phone_map', data: { positionx: @lesson.branch.geolat, positiony: @lesson.branch.geolng,title: @lesson.title} do %><% end %>
+      <% end %>
+    </div>
+    <div class='details'>
+      <p>课程类别： <%=@lesson.course.category.name %> </p>
+      <p>价格: <%=@lesson.price %>    </p>
+      <p>适合年龄: <%=@lesson.age_range %> </p>
+      <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
+      <p>特色：<%=@lesson.special %>  </p>
+      <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
+      <p> 校区：<%=@lesson.name%>    </p>
+      <p> 电话:<%=@lesson.phone%> </p>
+      <p> 教育机构：<%=link_to @lesson.company_name,company_path(@lesson.course.company) %>  </p>
+      <p> 分支网址<%=link_to @lesson.branch.website,url_with_protocol(@lesson.branch.website),:target=>'_blank'%> </p>
+      <p>标签： <%=@lesson.tags %> </p>
+    </div>
+    <div class="detail_bar"><div class='detail_head'>课程详情</div></div>
+    <div class="details" >
+      <%=raw(@lesson.description)%>
+    </div>
+    <% unless current_user.nil? %>
+      <div id='comment'>
+        <%=nested_form_for @lesson, html:{name:'comment',data:{ajax:false}} do |table| %>
+          <%=table.fields_for :scores,@score do |f| %>
+            <div id="star_rating">
+              <div> 课程效果 <% (1..5).each do |v| %><%= f.radio_button :course,v, :class=>'star' %> <% end %></div>
+              <div>教师 <% (1..5).each do |v| %><%= f.radio_button :teacher,v, :class=>'star' %> <% end %></div>
+              <div>安全 <% (1..5).each do |v| %><%= f.radio_button :security,v, :class=>'star' %> <% end %> </div>
+              <div>环境 <% (1..5).each do |v| %><%= f.radio_button :environment,v, :class=>'star' %> <% end %></div>
+            </div>
+            <%=f.hidden_field :user_id,:value=>current_user.id  %>
+          <%end%>
+          <div>评价:</div>
+          <div >
+            <%=table.fields_for :comments,Comment.new do |comm| %>
+              <%=comm.text_area :comment,:class=>'comment_input' %>
+              <%=comm.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
+            <% end %> 
+            <%=table.submit '提交'%>
+          </div>
+        <% end %>
+        <div class='noad'></div>
+      </div>
+    <% end %>
+    <div class='detail_bar'><div class='detail_head'>课程评价</div></div>
+    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.name.downcase.pluralize} do %><%end%>
+    <%=render 'shares/footer'%>
+  <% end %>  
+<% end %>
+

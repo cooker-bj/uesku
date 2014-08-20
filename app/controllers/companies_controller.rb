@@ -1,10 +1,13 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:index,:show]
 	respond_to :html
-
+  layout :set_layout
   def index
     @companies=Company.paginate :page=>params[:page],:per_page=>40
-    respond_with @companies
+    respond_with @companies do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -62,6 +65,12 @@ class CompaniesController < ApplicationController
     company_object=Company.find(params[:id])
     @company=params[:version_id].nil? ? company_object : company_object.versions.find(params[:version_id]).reify
     render 'edit'
+  end
+  
+  private
+  
+  def company_params
+    params.required(:company).permit(:description,  :name, :tags, :website,branches_attributes:[:_destroy,:id,:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id,:street, :website,:company_id])
   end
 
 end

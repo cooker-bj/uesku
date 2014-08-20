@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
-                  :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes,
-                  :course_attributes,:branch_attributes
+  #attr_accessible :branch_id, :course_id,  :rank, :rank_counter,:course_score,
+  #                :teacher_score,:security_score,:environment_score,:scores_attributes,:comments_attributes,
+  #                :course_attributes,:branch_attributes
   belongs_to :course
   belongs_to :branch
   has_one :company, :through=>:course
@@ -33,7 +33,7 @@ class Lesson < ActiveRecord::Base
 
   def self.filter_with_category(cat)
     if cat.blank?
-      scoped
+      all.order("rank desc")
     else
        where("courses.category_id"=>cat).joins(:course).order("rank desc")
     end
@@ -43,7 +43,7 @@ class Lesson < ActiveRecord::Base
 
   def self.filter_with_district(dist)
     if dist.blank?
-       scoped
+       all.order("rank desc")
     else
       where("branches.district_id"=>dist).joins(:branch).order("rank desc")
     end

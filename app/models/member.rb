@@ -1,10 +1,10 @@
 class Member < ActiveRecord::Base
-  attr_accessible :group_id, :user_id,:status,:role
+  #attr_accessible :group_id, :user_id,:status,:role
   belongs_to :group
   belongs_to :user
-  scope :managers, where(:role=>'manager')
-  scope :approval, where(:status=>'approval')
-  scope :pending, where(:status=>'pending')
+  scope :managers,-> {where(:role=>'manager')}
+  scope :approval,->{ where(:status=>'approval')}
+  scope :pending, ->{where(:status=>'pending')}
   def set_as_manager
     self.role='manager'
     save

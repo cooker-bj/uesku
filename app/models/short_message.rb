@@ -1,5 +1,5 @@
 class ShortMessage < ActiveRecord::Base
-  attr_accessible :create_time, :media, :message, :message_group_id, :sender_id,:category
+  #attr_accessible :create_time, :media, :message, :message_group_id, :sender_id,:category
   has_many :receivers, :through=>:messengers,:class_name=>'User',:source=>:user
   has_many :messengers
   belongs_to :message_group

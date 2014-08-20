@@ -1,0 +1,141 @@
+
+<%=content_tag :div,id:mobile_page_id,data:{role:'page'} do %>
+  
+  <%=render "shares/header"%>
+
+  <%=content_tag :div,data:{role:'content'} do %>
+    <section class='ui-grid-b'>
+        <div class='ui-block-a'><a href="#my_calendar" data-role='button'>日程表</a></div>
+        <div class='ui-block-b'><a href="#friends" data-role='button'>我的朋友</a></div>
+        <div class='ui-block-c'><a href="#my_friends" data-role='button'>朋友动态</a></div>
+        <div class='ui-block-a'><a href="#groups" data-role='button'>我的课吧</a></div>
+        <div class='ui-block-b'><a href="#registered_class" data-role='button'>我的课表</a></div>
+        <div class='ui-block-c'>
+          <a href='#messenger' data-role='button'>短信
+            <% if @user.has_new_message? %>
+              <span class='tip'>新</span>
+            <% end %>
+          </a>
+        </div>
+        <div class='ui-block-a'><a href="#myfront" data-role='button'>课程查找</a></div>  
+    </section>
+    <%=render 'shares/footer'%>
+  <% end%> 
+<% end %>
+
+<%=content_tag :div, id: "myfront", data:{role: 'page'} do %>
+
+ 
+  <%=render "shares/header"%>
+
+  <%=content_tag :div,data:{role:'content'} do %>     
+    <div>    
+      <b>推荐课程</b>
+      <%=render :partial=>"/lessons/lessons_list", :locals=>{:lessons=>Recommendation.get_list('F1',get_city).collect{|rec| rec.lesson}} %>
+    </div>
+    <div>
+      <b>最佳课程</b>
+      <%=render :partial=>"/lessons/lessons_list",:locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank desc").limit(10)} %>
+  </div>
+  <div>
+    <b>最热课程</b>
+      <%=render :partial=>"/lessons/lessons_list", :locals=>{:lessons=>Lesson.local_lessons(get_city).order("rank_counter desc").limit(10)} %>
+  </div>
+  <%=render 'shares/footer'%>
+  <% end%>
+<% end %>
+<%=content_tag :div, id: "my_friends", data:{role: 'page'} do %>
+
+ 
+  <%=render "shares/header"%>
+  
+  <%=content_tag :div,data:{role:'content'} do %>      
+    
+    <%@user.friends_recent_posts.each do |post| %>
+      <div><%=image_tag post.poster.avatar_url.to_s %><%=post.poster.name %></div>
+      <div> <%=link_to post.title,group_path(post.group) %>   <%=format_time(post.posted_time) %></div>
+     <% end %>
+
+
+    <%@user.friends_recent_comments.each do |comment| %>
+      <div> 
+        <div> <%=image_tag comment.user.avatar_url.to_s %> <%=comment.user.name %></div>
+        <%=comment.comment %><%=format_time(comment.comment_time)%>
+      </div>
+    <% end %>
+    <%=render 'shares/footer'%>
+  <% end %>
+<% end %>
+
+<%=content_tag :div,id: "friends",data: {role: 'page'} do %>
+  
+  <%=render "shares/header"%>
+  
+  <%=content_tag :div,data: {role:'content'} do %>
+    <%=render :partial=>"friends",:locals=>{:user=>@user} %>
+    <%=render 'shares/footer'%>
+  <% end %>
+<% end %>
+
+<%=content_tag :div,id: "groups",data: {role: 'page'} do %>
+  
+  <%=render "shares/header"%>
+ 
+  <%=content_tag :div,data: {role:'content'} do %> 
+    
+    <div id='joined_groups'>
+      <%@user.members.each do |g| %>
+        <div> 
+          <%=image_tag(g.group.logo_url.to_s,:class=>'logo')%>
+          <%=link_to g.group.title,group_path(g.group) %>
+          <%='待批准' if g.status=='pending'%>
+        </div>
+      <% end %>
+    </div>
+    <%=render 'shares/footer'%>
+   <% end %>    
+<% end %>
+
+<%=content_tag :div,id:'registered_class',data:{role:'page'} do %>
+  
+  <%=render "shares/header"%>
+  
+  <%=content_tag :div,data: {role:'content'} do %> 
+    <ul>
+      <% @user.timetables.each do |timetable| %>
+        <li>
+          <%=timetable.lesson.title %>
+          <%=timetable.title %>
+          <%=timetable.creator.nickname %>
+          <%=link_to '详情',timetable_path(timetable) %>
+          <%=link_to '删除',withdraw_user_timetable_path(timetable),method: :delete,data: {:confirm=>'你确定要取消该课表吗？'} %>
+        </li>
+
+      <% end %>
+    </ul>
+    <%=render 'shares/footer'%>
+  <%end %>
+<% end %>
+<%=content_tag :div,id:'messenger',data:{role:'page'} do %>
+  
+  <%=render "shares/header"%>
+  
+  <%=content_tag :div,data: {role:'content'} do %>   
+    <div id="messenger">
+       <%=render :partial=>"message_groups" ,:locals=>{:message_groups=>@user.message_groups}%>
+    </div>
+    <%=render 'shares/footer'%>
+  <% end %>
+  
+ 
+
+<% end %>
+<%=content_tag :div,id:'my_calendar',data:{role:'page'} do %>
+  
+  <%=render "shares/header"%>
+
+  <%=content_tag :div,data: {role:'content'} do %> 
+    <%=content_tag :div, id: 'calendar_events' do %> <%end %>
+    <%=render 'shares/footer'%>
+  <%end %>
+<% end %>

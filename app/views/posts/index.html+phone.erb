@@ -1,0 +1,7 @@
+<ul data-role='listview' data-inset='true'>
+  <%=render 'posts_list'%>
+</ul>
+<div id="paginate_area">  <%=will_paginate @posts,:previous_label=>'上一页',:next_label=>'下一页' %> </div>
+
+
+

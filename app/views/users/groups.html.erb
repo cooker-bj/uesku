@@ -1,3 +1,11 @@
-<%@user.members.each do |g| %>
-<%=image_tag(g.group.logo_url.to_s,:class=>'logo')%><%=link_to g.group.title,group_path(g.group) %> <%='待批准' if g.status=='pending'%>
-<% end %>
+<div class='list_items'>
+  <ul >
+    <%@user.members.each do |g| %>
+    <li>
+      <%=image_tag(g.group.logo_url.to_s,:class=>'logo')%>
+      <%=link_to g.group.title,group_path(g.group) %> 
+      <%='待批准' if g.status=='pending'%>
+    </li>
+  <% end %>
+  </ul>
+</div>

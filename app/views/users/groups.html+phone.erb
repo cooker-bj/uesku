@@ -1,0 +1,16 @@
+<%=content_tag :div, id: mobile_page_id, data: { role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data: {role: 'content'} do %>
+    <ul data-role='listview' data-inset='true' class='lists_phone'>
+      <%@user.members.each do |g| %>
+        <li>
+          <%=link_to group_path(g.group) do %>
+            <%=image_tag(g.group.logo_url.to_s,:class=>'logo')%>
+            <h2><%= g.group.title %></h2>
+            <span class="ui-li-aside"><%='待批准' if g.status=='pending'%></span>
+          <% end %>
+        </li>
+      <% end %>
+  </ul>
+  <% end %>
+<% end %>

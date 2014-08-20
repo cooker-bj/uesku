@@ -1,5 +1,5 @@
 class Score < ActiveRecord::Base
-  attr_accessible :course, :environment, :lesson_id, :security, :teacher, :user_id
+  #attr_accessible :course, :environment, :lesson_id, :security, :teacher, :user_id
   belongs_to :lesson
   
   belongs_to :user

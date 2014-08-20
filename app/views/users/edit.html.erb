@@ -1,0 +1,27 @@
+
+<%=form_for @user, :url=>{:action=>"update_password"} do |f|%>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "个错误") %> 导致密码不能够被修改:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+	<div class='field'>
+		<%=f.label :password, '新密码'%><%=f.password_field :password, :autocompete=>'off'%>
+	</div>
+	<div class='field'>
+		<%=f.label :password_confirmation,'重复密码'%><%=f.password_field :password_confirmation %>
+	</div>
+	<div class='field'>
+		<%=f.label :current_password,'当前密码'%><%=f.password_field :current_password %>
+	</div>
+	<div class='action_container'>
+		<%=f.submit '修改'%>
+	</div>
+
+<% end%>

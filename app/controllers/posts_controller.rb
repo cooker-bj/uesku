@@ -2,6 +2,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
  respond_to :html
+ respond_to :js, :only=>['index']
+ layout :set_layout
   def index
     @posts = Post.group_posts_list(params[:group_id]).paginate(:page=>params[:page],:per_page=>20)
 
@@ -18,7 +20,11 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.json
-
+  def new
+    @post = Post.new(group_id: params[:group_id])
+    respond_with @post
+  end
+  
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
@@ -28,9 +34,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
     @post.poster=current_user
-    @post.group_id=params[:group_id]
+    @post.group_id||=params[:group_id]
     if @post.save
       render :json=>{:url=>post_path(@post)}
     else
@@ -45,7 +51,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(post_params)
       flash[:notice]=t(:update_message) 
       render :json=>{:success=>true}
     else
@@ -164,6 +170,12 @@ class PostsController < ApplicationController
       end
 
     end
+  end
+  
+  private
+  
+  def post_params
+    params.required(:post).permit( :posted_time, :poster_id, :title,:group_id,:content)
   end
 
  end

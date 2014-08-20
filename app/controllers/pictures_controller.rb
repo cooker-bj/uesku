@@ -13,7 +13,7 @@ class PicturesController < ApplicationController
   end
 
   def create
-     @picture = Picture.new(params[:picture])
+     @picture = Picture.new(picuture_params)
      @picture.creator_id=current_user.id
     if @picture.save
       respond_with do |format|
@@ -36,5 +36,11 @@ class PicturesController < ApplicationController
     @picture=Picture.find(params[:id])
     @picture.destroy
     respond_with @picture
+  end
+  
+  
+  private
+  def picuture_params
+    params.required(:picture).permit(:creator_id, :has_picture_id, :has_picture_type, :image)
   end
 end

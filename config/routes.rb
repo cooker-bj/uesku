@@ -15,18 +15,18 @@ Uesku::Application.routes.draw do
   #match 'locations/select'
 
   get "categories/index"
-  match "categories/subcategory"
+  get "categories/subcategory"
 
   
 
   get "profile/show"
 
   get "main/index"
-  match "main/category/:id"  =>"main#category" ,:as=>:main_category
-  match "main/location/:id"  =>"main#location", :as=>:main_location
+  get "main/category/:id"  =>"main#category" ,:as=>:main_category
+  get "main/location/:id"  =>"main#location", :as=>:main_location
 
   resources :locations,:only=>[:index] do 
-    match 'select', :on=>:collection
+    match 'select', :on=>:collection,:via=>[:get,:post]
     get 'set_city', :on=>:member
   end 
 
@@ -67,12 +67,12 @@ Uesku::Application.routes.draw do
 
  resources :groups do
     resources  :posts,:name_prefix=>"group_"
-    post "add_member",:on=>:member
+    get "add_member",:on=>:member
     get 'administration',:on=>:member
-   get 'approval_member',:on=>:member
-   get 'reject_member',:on=>:member
-   get 'set_manager',:on=>:member
-   get 'withdraw_manager',:on=>:member
+    get 'approval_member',:on=>:member
+    get 'reject_member',:on=>:member
+    get 'set_manager',:on=>:member
+    get 'withdraw_manager',:on=>:member
  end
 
 
@@ -80,15 +80,15 @@ Uesku::Application.routes.draw do
   devise_for :admins, :controllers =>{:sessions=>'admin/sessions'}
   get 'admin/companies'=>'admin/companies#index',:as=>:admin_root
 
-  devise_for :users, :controllers => { :omniauth_callbacks=>"users/omniauth_callbacks",:registrations=>"users/registrations",:sessions=>"users/sessions" }
+  devise_for :users, :controllers => { :omniauth_callbacks=>"users/omniauth_callbacks",:registrations=>"users/registrations" }
   
  
 
-  resources :users,:only=>[:show] do
+  resources :users,:only=>[:show,:edit] do
     get 'groups',:on=>:member
     get 'messenger',:on=>:member
     get 'profile',:on=>:member
-
+    patch 'update_password',:on=>:collection
   end
 
   resources :companies ,:except=>[:destroy] do 
@@ -105,7 +105,7 @@ Uesku::Application.routes.draw do
     get 'undo',:on=>:member
     match 'category',:on=>:member,:via=>[:post,:get]
     match 'district',:on=>:member,:via=>[:post,:get]
-    match 'course',:on=>:collection
+    match 'course',:on=>:collection,:via=>[:post,:get]
     get 'history', :on=>:member
     post 'compare',:on=>:member
     get 'company',:on=>:collection
@@ -232,10 +232,10 @@ Uesku::Application.routes.draw do
   # just remember to delete public/index.html.
 
   authenticated :user do
-    root :to=>'users#show'
+    root :to=>'users#show',:as=>:root_user
   end
   authenticated :admin do 
-    root :to=>'admin::lessons#index'
+    root :to=>'admin/lessons#index',:as=>:root_admin
   end
   root :to => 'main#index'
   # See how all your routes lay out with "rake routes"

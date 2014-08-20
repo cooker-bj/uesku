@@ -41,7 +41,7 @@ class PlacesController < ApplicationController
   # POST /places
   # POST /places.json
   def create
-    @place = Place.new(params[:place])
+    @place = Place.new(place_params)
     @place.user_id=current_user.id
      @place.save
     respond_with @place
@@ -52,7 +52,7 @@ class PlacesController < ApplicationController
   # PUT /places/1.json
   def update
     @place = Place.find(params[:id])
-    @place.update_attributes(params[:place])
+    @place.update_attributes(place_params)
     respond_with @place
       
   end
@@ -63,5 +63,10 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @place.destroy
     respond_with @place
+  end
+  
+  private
+  def place_params
+    params.required(:place).permit(:city_id, :description, :direction, :district_id, :opening_hours, :phone, :latitude,:longitude, :price, :province_id, :street, :title, :website,:pictures,:tag_list,:user_id)
   end
 end

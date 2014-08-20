@@ -1,0 +1,36 @@
+<%=content_tag :div,id: mobile_page_id,data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data:{role: 'content'} do %>
+  <%=render :partial=>'head',:locals=>{:group=>@group}%>
+    <div >
+      <h3>课吧信息</h3>
+      <%=render 'group_info'%>
+    </div>
+    <%=link_to '修改课吧信息',edit_group_path(@group)%> 
+    <div>
+      <h3>描述：</h3>
+      <div >
+        <div id='description'><%=@group.description %> </div>
+    </div>
+   <h3> 管理者列表</h3>
+    <div >
+      <div id='manager_list'><%=render 'managers'%></div>
+      <div id="query_member" class="form_list">
+        <b>添加管理员</b> <br/>
+        <%=form_tag query_group_member_for_management_path,:remote=>true,:id=>'query_name' do %>
+          <%= label_tag '用户名称'%>
+          <%= text_field_tag :user_name %>
+          <%=hidden_field_tag :group_id,@group.id %>
+          <%=submit_tag '搜索' %>
+        <% end %>
+        <div id="query_result"></div>
+      </div>
+    </div>
+     <h3>审请加入用户列表</h3>
+    <div >
+      <div class="form_list"><%=render 'pending_members'%> </div>
+    </div>
+   </div>
+   <%=render 'shares/footer'%>
+  <% end %>
+<% end %>

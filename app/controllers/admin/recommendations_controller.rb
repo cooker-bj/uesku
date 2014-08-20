@@ -17,14 +17,14 @@ class Admin::RecommendationsController <Admin::AdminBaseController
   end
 
   def create
-    @rec=Recommendation.new(params[:recommendation])
+    @rec=Recommendation.new(recommendation_params)
     @rec.save
     respond_with @rec, :location=>admin_lesson_recommendations_path(@rec.lesson.id)
   end
 
   def update
     @rec=Recommendation.find(params[:id])
-    @rec.update_attributes(params[:recommendation])
+    @rec.update_attributes(recommendation_params)
     respond_with @rec, :location=>admin_lesson_recommendations_path(@rec.lesson.id)
   end
 
@@ -32,5 +32,10 @@ class Admin::RecommendationsController <Admin::AdminBaseController
     @rec=Recommendation.find(params[:id])
     @rec.destroy
     respond_with @rec, :location=>admin_lesson_recommendations_path(params[:lesson_id])
+  end
+  
+  private
+  def recommendation_params
+    params.required(:recommendation).permit(:lesson_id, :recommend_date,:position,:city_id,:image,:description,:image_cache)
   end
 end

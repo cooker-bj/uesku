@@ -185,6 +185,31 @@ $(function() {
         timeOnlyTitle: '选择时间',
         timeText: '时间'
     });
-
+    /*-----------------------------------------
+    * following is for jquery mobile
+    ************************************/
+    $(document).on('pageshow',function(){
+      $.mobile.activePage.find('#calendar_events').fullCalendar('render');
+    })
+    $(document).on('pagebeforeshow',function(){
+      $.mobile.activePage.find('#calendar_events').fullCalendar( {
+        header: {
+            left: 'prev, today title',
+            center: '',
+            right: 'month,agendaWeek,agendaDay next'
+        },
+        timeFormat: 'hh:mmt',
+        handleWindowResize: true,
+        aspectRatio: 1,
+        buttonText: {
+            today: '今天',
+            day: '日',
+            week: '周',
+            month: '月'
+        },
+        events: 'calendar_events.json'
+        
+      });
+    });
 
 })

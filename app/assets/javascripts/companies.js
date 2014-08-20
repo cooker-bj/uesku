@@ -6,5 +6,6 @@ $(function(){
     $("#branches").on('ajax:success',".delete_branch",function(){
         $(this).parent().remove();
     });
+	
 
 })

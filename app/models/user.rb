@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,:trackable,:omniauthable,:omniauth_providers=>[:google_oauth2,:weibo,:qq_connect]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,
-                  :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:score
+  #attr_accessible :email, :password, :password_confirmation, :remember_me,:provider,:uid,:nickname,:real_name,:gender,:birthday,
+  #                :avatar,:avatar_cache,:remote_avatar_url,:authenticated_tokens_attributes,:location_id,:registration_date,:score
   # attr_accessible :title, :body
-  scope :online, lambda{ where('update_at <?', 10.minutes.ago)}
+  scope :online, ->{ where('update_at <?', 10.minutes.ago)}
   before_save :ensure_authentication_token
   has_many :comments
   has_many :scores
@@ -46,13 +46,15 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar,AvatarUploader
   accepts_nested_attributes_for :authenticated_tokens
-   before_create :add_random_nickname, :add_registration_date
-
-def ensure_authentication_token
-  if authentication_token.blank?
-    self.authentication_token = generate_authentication_token
-  end
-end
+  before_create  :add_registration_date
+  validates :nickname, presence: true,uniqueness: true
+  validates_confirmation_of :password
+   # this method is for token login system using
+   def ensure_authentication_token
+     if authentication_token.blank?
+       self.authentication_token = generate_authentication_token
+     end
+   end
 
 
 
@@ -69,8 +71,7 @@ end
                               provider:access_token.provider,
                               uid: access_token.uid.to_s,
                               access_token: access_token.credentials.token
-
-          )
+                              )
     end
     user
   end
@@ -230,15 +231,7 @@ end
 
 
   private
-  def add_random_nickname
-
-    candidate_nickname=nil
-       begin
-        candidate_nickname=authenticated_tokens.first.nil? ? 'user'+Random.rand(100000000).to_s : authenticated_tokens.first.provider.to_s+Random.rand(100000000).to_s
-        found=User.where(:nickname=>candidate_nickname).first
-       end while found
-       self.nickname||=candidate_nickname
-  end
+  
 
   def add_registration_date
        self.registration_date=Time.now

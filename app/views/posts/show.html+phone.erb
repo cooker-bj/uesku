@@ -1,0 +1,43 @@
+<%=content_tag :div, id: mobile_page_id, data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data: {role: 'contet'} do %>
+    <%=render :partial=>'/groups/head',:locals=>{:group=>@post.group}%>
+   
+    <ul class='post_phone'>
+      <li> 
+        <h3><%= @post.title %></h3>
+      </li>
+  	  <li class='user_phone'>
+  	  	<div class='user_msg'>
+  	   		<span class='user_avatar'>
+   	         	<%=image_tag @post.poster.avatar_url.to_s,:height=>40, :width=>40 %>
+   			</span>
+  			 <%= @post.poster.name %>
+  			 注册时间:<%=format_time(@post.poster.registration_date) %>
+  			 积分:<%=@post.poster.score%>   
+  	 	</div>
+      <li class="comment_phone">
+        <div class='content'>
+          <%=raw(@post.content)%>
+        </div>
+        <div class="time move_right"><%= format_time(@post.posted_time) %></div>
+        <div class='comment_commands move_right' >
+          <%=link_to '编辑',edit_post_path(@post) if current_user==@post.poster %>
+        </div>
+       </li>
+     </ul>
+     <%=content_tag :div,id: 'comment_list',data: {id: @post.id,type: @post.class.name.downcase.pluralize} do %> 
+     <% end %>
+      <%=render 'shares/footer'%>     
+  <%end%>
+  <%=content_tag :div,data:{role: 'footer',position: 'fixed'} do %>
+    <div data-role='navbar'>
+      <ul>
+        <li>
+          <%=link_to '跟帖',new_comment_path(:post_id=>@post)%>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+ 
+<% end %>

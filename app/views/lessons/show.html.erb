@@ -41,7 +41,7 @@
     </div>
     <div class='details'>
         <div id="show_scores_and_comment">
-          <span>
+    
             最后修改者：<%=link_to whodoit(@lesson.course.originator).try(:name),profile_user_path(whodoit(@lesson.course.originator))%>
             <div id="lesson_score">
                  <% (1..20).each do |v| %><%=radio_button_tag 'rank',v*0.25,(@lesson.rank>=v*0.25 && @lesson.rank <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %>  <% end %>
@@ -87,7 +87,7 @@
         <%=raw(@lesson.description)%>
     </div>
     <div class='detail_bar'><div class='detail_head'>课程评价</div></div>
-    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.downcase.pluralize} do %><%end%>
+    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.name.downcase.pluralize} do %><%end%>
     
     <% unless current_user.nil? %>
          <div id='comment'>

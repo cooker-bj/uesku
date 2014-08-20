@@ -1,6 +1,6 @@
 class Picture < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :creator_id, :has_picture_id, :has_picture_type, :image
+  #attr_accessible :creator_id, :has_picture_id, :has_picture_type, :image
   belongs_to :user,:foreign_key=>:creator_id
   belongs_to :has_picture, :polymorphic => true
   mount_uploader :image, ImageUploader

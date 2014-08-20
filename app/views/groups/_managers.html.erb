@@ -1,4 +1,7 @@
 
 <% @group.members.managers.each do |manager| %>
-      <ul class="lists"> <li> <%=manager.name %></li> <li> <%=link_to '降为普通成员',withdraw_manager_group_path(@group,:member=>manager),:remote=>true %></li></ul>
+  <ul class="lists">
+    <li> <%=manager.name %></li>
+    <li> <%=link_to '降为普通成员',withdraw_manager_group_path(@group,:member=>manager),:remote=>true %></li>
+  </ul>
 <% end %>

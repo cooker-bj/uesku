@@ -154,18 +154,18 @@ $(function() {
 
     //---------------------------------------------
 
-    $("div#pending_list").on('ajax:success', function(evt, data, status, xhr) {
+    $(document).on('ajax:success',"div#pending_list", function(evt, data, status, xhr) {
         $(this).html(data);
     });
-    $("div#manager_list").on("ajax:success", function(evt, data, status, xhr) {
-        $("div#manager_list").html(data);
+    $(document).on("ajax:success", "div#manager_list",function(evt, data, status, xhr) {
+        $(this).html(data);
     });
-    $("div#query_member").on("ajax:success", '#query_name', function(evt, data, status, xhr) {
-        $("div#query_result").html(data);
+    $(document).on("ajax:success", "div#query_member #query_name", function(evt, data, status, xhr) {
+        $(this).siblings("div#query_result").html(data);
 
     });
-    $("div#query_result").on("ajax:success", 'a', function(evt, data, status, xhr) {
-        $("div#manager_list").html(data);
-        $("div#query_result").html("");
+    $(document).on("ajax:success", "div#query_result", function(evt, data, status, xhr) {
+        $(this).html("");
+        $(this).parent().siblings("div#manager_list").html(data);
     })
 });

@@ -1,0 +1,36 @@
+ <% @comments.each do |msg| %>
+   
+	  <li class='user_phone'>
+	  	<div class='user_msg'>
+	   		<span class='user_avatar'>
+ 	         	<%=image_tag msg.user.avatar_url.to_s,:height=>40, :width=>40 %>
+ 			</span>
+			 <%= msg.user.name %>
+			 注册时间:<%=format_time(msg.user.registration_date) %>
+			 积分:<%=msg.user.score%>   
+	 	</div>
+	 
+     	</li>
+     	<li class="comment_phone">
+          <%=content_tag :div, id: "comment_#{msg.id}",class: "content" do %> <%=raw(msg.comment)%><% end %>
+          <div class="move_right">
+              <div class="time"><%= format_time(msg.comment_time) %></div>
+              <div class='comment_commands'>
+              	<%=content_tag :div,:id=>"edit_comment_#{msg.id}" do %>  <% end %>
+                  <% if current_user.nil? %>
+                       <%=link_to  '回复','##'%> 
+                  <% else %>
+                       <%= link_to '编辑',edit_comment_path(msg),data: {id: msg.id} if msg.user==current_user%>
+                       <%= link_to "回复","#",:remote=>true,data: {msg_id: msg.id},:class=>'reply_link' %>
+                       <%=link_to "删除", comment_path(msg),method: :delete, data: {confirm:"你确定删除你的评论吗？"},:remote=>true,:class=>'delete_comment' if msg.user==current_user %>
+                  <% end %>
+               </div>
+          </div>
+          <%=content_tag :div,class: "comment_reply",id:"reply#{msg.id}" do %>
+              <% msg.replies.each do |f| %>
+                     <%=render :partial=>'/replies/show',:locals=>{:reply=>f} %>
+              <% end  %>
+          <% end %>
+      </li>
+	
+<% end %>

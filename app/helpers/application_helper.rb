@@ -57,6 +57,13 @@ module ApplicationHelper
   def whodoit(id)
     User.find(id.to_i) unless id.nil?
   end
+  
+  def mobile_page_id(path=request.fullpath)
+    n= current_user.nil? ? path.gsub("/",'_') : current_user.id.to_s+path.gsub('/','_')
+    logger.info "!!! page id=#{n}"
+    n
+  end  
+  
 
 
 

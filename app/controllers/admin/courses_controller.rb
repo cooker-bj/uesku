@@ -25,14 +25,14 @@ class Admin::CoursesController< Admin::AdminBaseController
   end
 
    def create
-     @course=Course.new(params[:course])
+     @course=Course.new(course_params)
      flash[:notice]="已保存" if @course.save
      respond_with [:admin,@course.company,@course]
    end
 
     def update
       @course=Course.find(params[:id])
-      flash[:notice]="已更新"  if @course.update_attributes(params[:course])
+      flash[:notice]="已更新"  if @course.update_attributes(course_params)
       respond_with [:admin,@course.company,@course]
 
     end
@@ -41,6 +41,11 @@ class Admin::CoursesController< Admin::AdminBaseController
       @course=Course.find(params[:id])
       @course.destroy
       respond_with [:admin,@course.company,@course]
+    end
+    
+    private
+    def course_params
+      params.required(:course).permit(:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branche)
     end
 
 

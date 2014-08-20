@@ -15,12 +15,12 @@
         </div>
         <div class="time move_right"><%= format_time(@post.posted_time) %></div>
         <div class='comment_commands move_right' >
-          <%=link_to '编辑','#',:id=>'edit_post','data-id'=>@post.id,:remote=>true %>
+          <%=link_to '编辑','#',:id=>'edit_post','data-id'=>@post.id,:remote=>true if @post.poster==current_user %>
         </div>
        
       </li>
     </ul>
-     <%=content_tag :div,id: 'comment_list',data: {id: @post.id,type: @post.class.model_name.downcase.pluralize} do %> 
+     <%=content_tag :div,id: 'comment_list',data: {id: @post.id,type: @post.class.name.downcase.pluralize} do %> 
      <% end %>  
   </div>
     <%=render :partial=>'/comments/comment_area',:locals=>{:commentable=>@post}%>

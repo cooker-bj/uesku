@@ -1,8 +1,18 @@
 class RepliesController < ApplicationController
   before_filter :authenticate_user!
-   respond_to :html
+  respond_to :html
+  layout :set_layout
+  
+  def new
+    @reply=Reply.new
+    @reply.comment_id=params[:comment_id]
+    logger.info @reply.comment_id
+    respond_with @reply
+  end
+   
   def create
-     @reply=Reply.new(params[:reply])
+     @reply=Reply.new(reply_params)
+     @reply.user_id=current_user.id
     if @reply.save
       respond_with @reply do |format|
         format.html do
@@ -35,5 +45,10 @@ class RepliesController < ApplicationController
     @reply=Reply.find(params[:id])
     @reply.destroy
    render :json=>{:success=>true}
+  end
+  
+  private
+  def reply_params
+    params.required(:reply).permit(:comment_id, :message, :reply_time, :user_id)
   end
 end

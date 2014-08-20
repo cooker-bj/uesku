@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
 
-  attr_accessible :description,  :name, :tags, :website,:branches_attributes
+  #attr_accessible :description,  :name, :tags, :website,:branches_attributes
    has_many :branches,:dependent=>:destroy
    has_many :courses,:dependent=>:destroy
    has_many :lessons, :through=>:courses
@@ -10,7 +10,7 @@ class Company < ActiveRecord::Base
    after_create :renew_score
    after_update :renew_update_score
   include AuditContent
-   scope :published, where(:audit => true)
+   scope :published, ->{where(:audit => true)}
    validates_uniqueness_of :name
 
    

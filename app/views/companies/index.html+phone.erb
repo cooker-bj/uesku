@@ -1,0 +1,18 @@
+<%=content_tag :div, id: mobile_page_id, data: {role: 'page'} do%>
+  <%=render 'shares/header'%>
+  <%=content_tag :div,data: {role: 'content'} do %>
+  
+
+   <ul data-role="listview" class='lists_phone'>
+     <%=render "list_name"%>
+   </ul>  
+  
+  
+  <div id="will_paginate">
+	  <%=will_paginate @companies%>
+  </div>
+   <%=render 'shares/footer'%>
+  <% end %>
+ 
+ 
+<% end %>

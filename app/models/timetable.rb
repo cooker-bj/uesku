@@ -1,5 +1,5 @@
 class Timetable < ActiveRecord::Base
-  attr_accessible :create_time, :creator_id, :description, :end_day, :lesson_id, :start_day, :title,:class_times_attributes
+  #attr_accessible :create_time, :creator_id, :description, :end_day, :lesson_id, :start_day, :title,:class_times_attributes
   has_many :class_times,:dependent=>:destroy
   has_many :taken_classes,:dependent=>:destroy
   has_many :users,:through=>:taken_classes

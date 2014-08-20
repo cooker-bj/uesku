@@ -1,0 +1,9 @@
+<% @groups.each do |group| %>
+	<li> 
+    <%=link_to group_path(group) do %>
+		  <%=image_tag group.logo_url.to_s %>
+      <h3><%=group.title%></h3>
+		  <span class='ui-li-aside'><%='私有' if group.locked%></span>  
+    <% end %>
+	</li>
+<% end %>

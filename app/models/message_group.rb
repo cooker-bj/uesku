@@ -1,5 +1,5 @@
 class MessageGroup < ActiveRecord::Base
-  attr_accessible :creator_id
+  #attr_accessible :creator_id
   has_many :short_messages
   has_many :message_group_users
   has_many :users,:through=>:message_group_users

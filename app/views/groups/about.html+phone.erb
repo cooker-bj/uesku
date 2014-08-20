@@ -1,0 +1,30 @@
+<%=content_tag :div, id:"about_#{mobile_page_id}",data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div ,data:{role: 'content'} do %>
+  <div>
+    
+      <%=render :partial=>'head',:locals=>{:group=>@group}%>
+
+    <div id='group_info'>
+      <b>管理者:</b>   <br/>
+      <% @group.members.managers.each do |manager| %>
+          <%=manager.name %>    <br/>
+      <% end %>
+      <b>创建时间:</b>
+      <%= @group.created_time.to_s(:db) %>    <br/>
+      <b>相关课程:</b>
+      <% @group.lessons.each do |lesson|%>
+       <%=lesson.title %>  <br/>
+       <% end %>
+    </div>
+   
+  </div>
+
+      <div id='description'>
+        <%=@group.description %>
+        <%=link_to '加入',add_member_group_path(@group),data:{role:'button'} %>
+      </div>
+  <% end %>
+  <%=render 'shares/footer'%>
+
+<% end %>

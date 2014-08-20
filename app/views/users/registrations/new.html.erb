@@ -4,19 +4,16 @@
 
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email, :autofocus => true %></div>
+  <div><%= f.label :email %><%= f.email_field :email, :autofocus => true %></div>
   <% if resource.password.nil? %>
-  <div><%= f.label :password %>
-  <%= f.password_field :password %></div>
+    <div><%= f.label :password %><%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
+    <div><%= f.label :password_confirmation %><%= f.password_field :password_confirmation %></div>
   <% else %>
-  <%=f.hidden_field :password %>
+    <%=f.hidden_field :password %>
    <% end %>
   <div> <%=f.label :real_name,'姓名'%><%=f.text_field :real_name %></div>
-  <div><%=f.label :nickname,"呢称" %><%=f.text_field :nickname %></div>
+  <div><%=f.label :nickname,"呢称" %><%=f.text_field :nickname %><span class="notice">呢称必须是唯一的且不能为空，选定后将不能修改</span></div>
   <div><%=f.label :gender,"性别"%><%=f.select :gender,options_for_select([['男'],['女']]) %></div>
   <div><%=f.label :birthday, '出生日期'%><%=f.date_select :birthday,:start_year=>1940,:end_year=>Date.current.year-13,:use_two_digit_numbers=>true %></div>
  <div>头像:<%=image_tag  resource.avatar.url,:id=>'avatar',:height=>200,:width=>200 %> </div>

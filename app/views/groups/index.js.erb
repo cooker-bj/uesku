@@ -1,0 +1,7 @@
+$("ul[data-role='listview'].lists_phone").append('<%=j render 'list_group' %>').listview('refresh');
+<% if @groups.next_page %>
+	$('.pagination').replaceWith('<%= j will_paginate @groups %>');
+<% else %>
+	$(document).off('scroll');
+	$('.pagination').remove();
+<% end %>

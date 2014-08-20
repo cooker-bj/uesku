@@ -1,7 +1,8 @@
 #encoding: UTF-8
 class GroupsController < ApplicationController
   before_filter :authenticate_user!,:except=>[:index]
-  respond_to :html
+  respond_to :html,:js
+  layout :set_layout
   # GET /groups
   # GET /groups.json
   def index
@@ -35,7 +36,7 @@ class GroupsController < ApplicationController
   def new
 
     @group = Group.new
-    @group.lessons<<Lesson.find(params[:lesson_id])
+    @group.lessons<<Lesson.find(params[:lesson_id]) unless params[:lesson_id].blank?
     @group.owner_id=current_user.id
     respond_with @group
   end
@@ -49,7 +50,8 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
+    @group.owner_id=current_user.id
      flash[:notice]="班级已创建" if @group.save
     respond_with @group
 
@@ -61,7 +63,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
 
-      flash[:notice]="班级信息已修改" if @group.update_attributes(params[:group])
+      flash[:notice]="班级信息已修改" if @group.update_attributes(group_params)
      respond_with @group
   end
 
@@ -115,5 +117,10 @@ class GroupsController < ApplicationController
     member=Member.find(params[:member])
     member.withdraw_manager
     render :partial=>'managers',:layout=>false
+  end
+  
+  private
+  def group_params
+    params.required(:group).permit(:created_time, :owner_id, :lesson_id, :logo, :title,:locked,:description,:group_lessons_attributes=>[:_destroy,:id,:lesson_id])
   end
 end

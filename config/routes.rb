@@ -67,12 +67,12 @@ Uesku::Application.routes.draw do
 
  resources :groups do
     resources  :posts,:name_prefix=>"group_"
-    post "add_member",:on=>:member
+    get "add_member",:on=>:member
     get 'administration',:on=>:member
-   get 'approval_member',:on=>:member
-   get 'reject_member',:on=>:member
-   get 'set_manager',:on=>:member
-   get 'withdraw_manager',:on=>:member
+    get 'approval_member',:on=>:member
+    get 'reject_member',:on=>:member
+    get 'set_manager',:on=>:member
+    get 'withdraw_manager',:on=>:member
  end
 
 

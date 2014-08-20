@@ -10,23 +10,23 @@ class Group < ActiveRecord::Base
   validates_presence_of :title,:description
   before_create :add_created_time
   after_create :owner_is_manager
-
-  def lessons=(brs)
-    brs.each do  |br|
-      lesson=Lesson.find(br)
-      self.lessons<<lesson unless self.lessons.index(lesson)
-    end
-    self.lessons.each do |lesson|
-      self.lessons.delete(lesson) unless brs.index(lesson.id.to_s)
-    end
-  end
+  accepts_nested_attributes_for :group_lessons,:allow_destroy=>true
+  #def lessons=(brs)
+   # brs.each do  |br|
+   #   lesson=Lesson.find(br)
+      #self.lessons<<lesson unless self.lessons.index(lesson)
+      #end
+    #self.lessons.each do |lesson|
+     # self.lessons.delete(lesson) unless brs.index(lesson.id.to_s)
+    #end
+    #end
 
   def add_member(user)
    if self.locked
-     self.members.create(:user_id=>user.id)
+     self.members.create(:user_id=>user.id) if self.members.where(:user_id=>user.id).blank?
      false
    else
-     self.members.create(:user_id=>user.id,:status=>'approval')
+     self.members.create(:user_id=>user.id,:status=>'approval') if self.members.where(:user_id=>user.id).blank?
      true
    end
   end

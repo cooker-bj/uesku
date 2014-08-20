@@ -2,10 +2,13 @@
 <div class='columns_list'>
 	<ul class='columns',data-columns='2'>
 		<% @groups.each do |group| %>
-			<li>
-				<%=image_tag group.logo_url.to_s %>
+			<li class='line_with_thumb'>
+        <span class='avatar_thumb'>
+				<%=image_tag group.logo_url.to_s,:height=>80,:width=>80 %>
+      </span>
 				<%=link_to group.title,group_path(group)%>
-				<%='封闭' if group.locked%>
+				
+      </span>
 			</li>
 		<% end %>
 	</ul>
@@ -14,4 +17,6 @@
 <div id="paginate_area">
 	<%=will_paginate @groups,:prev_label=>'上一页',:next_label=>'下一页'%>
 </div>
-
+<div>
+  <%=link_to '创建课吧',new_group_path unless current_user.nil?%>
+</div>

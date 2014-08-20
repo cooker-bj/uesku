@@ -10,7 +10,7 @@ class Company < ActiveRecord::Base
    after_create :renew_score
    after_update :renew_update_score
   include AuditContent
-   scope :published, where(:audit => true)
+   scope :published, ->{where(:audit => true)}
    validates_uniqueness_of :name
 
    

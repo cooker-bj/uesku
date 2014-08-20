@@ -32,7 +32,7 @@ $(function() {
         $form.find('textarea').val("");
         var addpoint = "#reply" + $cid;
         $(addpoint).append(xhr.responseText);
-		$('#reply_new').popup('close');
+		    if($('#reply_new').popup!==undefined) $('#reply_new').popup('close');
     }).on("ajax:complete", 'div.ui-dialog-content.ui-widget-content form#new_reply', function(evt, status, xhr) {
         var $cid = $(this).find("#reply_comment_id").val();
         var addpoint = "#reply" + $cid;

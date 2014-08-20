@@ -1,21 +1,16 @@
 <%=content_tag :div, id: mobile_page_id, data: {role: 'page'} do %>	
   <%=render 'shares/header'%>
   <%=content_tag :div, data: {role: 'content'} do %>
-		<ul data-role='listview' >
-      <li data-role='list-divider'>课吧</li>
-			<% @groups.each do |group| %>
-				<li>
-					<%=image_tag group.logo_url.to_s %>
-					<%=link_to group.title,group_path(group)%>
-					<%='私有' if group.locked%>
-				</li>
-			<% end %>
+		<ul data-role='listview',data-inset='true' class='lists_phone'>
+      <li data-role='list-divider'>课吧列表</li>
+		  <%=render 'list_group'%>
 		</ul>
 	
 
 	<div id="paginate_area">
 		<%=will_paginate @groups,:prev_label=>'上一页',:next_label=>'下一页'%>
 	</div>
+   <%=render 'shares/footer'%>
   <% end%>
-  <% render 'shares/footer'%>
+ 
 <% end %>

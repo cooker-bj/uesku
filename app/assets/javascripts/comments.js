@@ -12,22 +12,28 @@ $(function() {
 	
 	
 
-    loadComment();
-	$(document).on('pagebeforeshow','.phone_lesson_pages',function(){
-		var  myurl = ("/" + $("#comment_list").attr('data-type') + "/" + $("#comment_list").attr('data-id') + "/comments");
-		 $("#comment_list").load(myurl, function(e) {
-			//$('#reply_new').popup();
-			$('#comment_list').trigger('create');
-		    $("#comment_list").on('click', '.comment_commands a.reply_link', function(e) {
-		        e.preventDefault();
-		        var id = $(this).attr('data-msg-id');
-				$('#reply_new input#reply_comment_id').val(id);
-				$('#reply_new').popup("open",{"transition": "pop"});
-			});
-		});
-		
-	})
+  loadComment();
+	$(document).on('pagebeforeshow','div[data-role="page"]',function(){
+    if($.mobile.activePage.find("#comment_list").length>0){
+  		var  myurl = ("/" + $.mobile.activePage.find("#comment_list").attr('data-type') + "/" + $.mobile.activePage.find("#comment_list").attr('data-id') + "/comments");
+  		 $("#comment_list").load(myurl, function(e) {
+  			//$('#reply_new').popup();
+  			$('#comment_list').trigger('create');
+  		    $("#comment_list").on('click', '.comment_commands a.reply_link', function(e) {
+  		        e.preventDefault();
+  		        var id = $(this).attr('data-msg-id');
+  				$('#reply_new input#reply_comment_id').val(id);
+  				$('#reply_new').popup("open",{"transition": "pop"});
+  			});
+  		});
+		}
+	});
     // 添加评论
+    $(document).on('ajax:success','div[data-role="page"] #new_comment',function(evt,data,status,xhr){
+      if(data.success){
+        $.mobile.back();
+      }
+    })
     $('#new_comment').on('ajax:success', function(evt, data, status, xhr) {
         if (data.success) {
             loadComment();

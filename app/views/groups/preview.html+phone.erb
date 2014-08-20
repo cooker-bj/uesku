@@ -1,0 +1,19 @@
+<%=content_tag :div,id: mobile_page_id, data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div,data:{role: 'content'} do %>
+    <%=render :partial=>'head',:locals=>{:group=>@group}%>
+    <div id='group_info'>
+      <%=render 'group_info'%>
+      <b>管理者:</b>  
+      <% @group.members.managers.each do |manager| %>
+        <div>  <%=manager.name %> </div>  
+      <% end %>
+    </div>
+    <div id='description'>
+      <%=@group.description %>
+      <%=button_to '加入',add_member_group_path(@group) %>
+    </div>
+    <%=content_tag :div,id: 'posts_list',data:{:"group-id"=>@group.id} do %><% end %>
+    <%=render 'shares/footer'%>
+  <% end %>
+<% end %>

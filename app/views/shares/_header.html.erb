@@ -1,10 +1,12 @@
   <div data-role="header" data-position='fixed' >
   	<h1>优异思库</h1>
+    <%=link_to '回退',:back, data: {role: "button",icon:'carat-l',iconpos: 'notext'}%>
     <% if current_user.nil? %>
+    
 		<%=link_to '登录',new_user_session_path,data: {role: "button",icon: 'user',iconpos: 'notext'}%>
 		
     <% else %>
-  		<%=link_to "退出",destroy_user_session_path,method: :delete,id: 'logout',data: {role: "button",icon: 'action'}  %>
+  	 
       <%=link_to "个人设置",'#user_config',data: {role: 'button',icon: 'gear',iconpos: 'notext',rel:'popup',transition: 'slidedown'} %>
     <% end %>
 	<div>
@@ -27,6 +29,11 @@
     </div>
     <div id='user_config' data-role='popup'>
       <ul data-role='listview' data-inset='true'>
+        <% unless current_user.nil?%>
+          <li>
+            <%=link_to "退出",destroy_user_session_path,method: :delete,id: 'logout',data: {role: "button",icon: 'action'}  %>
+          </li>
+        <% end %>
         <li data-role="list_divider">个人管理</li>
         <li><%=link_to "修改个人信息", edit_user_registration_path(current_user) unless current_user.nil? %> </li>
         <li><%=link_to "修改密码",edit_user_path(current_user) unless current_user.nil?%></li>

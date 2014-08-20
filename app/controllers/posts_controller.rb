@@ -2,6 +2,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
  respond_to :html
+ respond_to :js, :only=>['index']
+ layout :set_layout
   def index
     @posts = Post.group_posts_list(params[:group_id]).paginate(:page=>params[:page],:per_page=>20)
 
@@ -18,7 +20,11 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.json
-
+  def new
+    @post = Post.new(group_id: params[:group_id])
+    respond_with @post
+  end
+  
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
@@ -30,7 +36,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.poster=current_user
-    @post.group_id=params[:group_id]
+    @post.group_id||=params[:group_id]
     if @post.save
       render :json=>{:url=>post_path(@post)}
     else

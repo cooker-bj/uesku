@@ -10,17 +10,18 @@
       </ul>
     </div>
   <% end %>
+  <%=f.hidden_field :group_id %>
 
   <div class="field">
-    <%= f.label :title,'标题' %><br />
+    <%= f.label :title,'标题' %>
     <%= f.text_field :title %>
   </div>
   
   <div class="field">
    
-    <%= f.text_area :content,:id=>'comment_editor' %>
+    <%= f.text_area :content,:id=>'post_editor',:minWidth=>300 %>
   </div>
   <div class="actions">
-    <%= f.submit '更新' %>
+    <%= f.submit '提交' %>
   </div>
 <% end %>

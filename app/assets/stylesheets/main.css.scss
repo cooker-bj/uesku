@@ -81,9 +81,10 @@
 }
 
 #login_area {
-	left:870px;
+	float:right;
+  margin-right: 16px;
 	top:5px;
-	position: absolute;
+	
 }
 
 #right_bar {
@@ -458,7 +459,7 @@ ul.columns {
 
 .columns li {
     list-style-type:none;
-    width: 150px;
+    width: 400px;
     margin: 10px;
     font-size: 14px;
     
@@ -562,4 +563,23 @@ ul.columns {
     margin: 5px;
     padding: 5px;
 
+}
+
+.avatar_thumb{
+  width: 80px;
+  height: 80px;
+  vertical-align:text-top;
+}
+.line_with_thumb{
+  height: 80px;
+  line-height: 80px;
+  position:relative;
+  overflow: hidden;
+}
+.footer{
+  width: 100%;
+  min-height: 60px;
+  background-color:rgb(236,236,236);
+  overflow:hidden;
+  text-align:center;
 }

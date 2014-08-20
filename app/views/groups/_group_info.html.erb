@@ -1,15 +1,14 @@
 <ul>
-  <li><div>创建人:<%=@group.owner.name %>  </div></li>
+  <li>创建人:<%=@group.owner.name %></li>
   <li>创建时间:<%= @group.created_time.strftime("%Y年%m月%d日") %></li>
 </ul>
 <ul>
-  <li><b>相关课程:</b></li><li><ul>
-
-
-    <% @group.lessons.each do |g| %>
-          <li>    <%=link_to g.title, lesson_path(g) %>  </li>
-    <% end %>
-
-</ul></li>
-
+  <li><b>相关课程:</b></li>
+  <li>
+    <ul>
+      <% @group.lessons.each do |g| %>
+        <li><%=link_to g.title, lesson_path(g) %>  </li>
+      <% end %>
+    </ul>
+  </li>
 </ul>

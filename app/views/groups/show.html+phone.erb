@@ -1,0 +1,28 @@
+<%=content_tag :div, id: mobile_page_id, data:{role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data:{role: 'content'} do %>
+    <%=render :partial=>'head',:locals=>{:group=>@group}%>
+    <div data-role='collapsible' >
+      <h3>课吧信息</h3>
+      <div id='group_info'>
+       <%=render 'group_info'%>
+        <ul>
+          <li><b>管理者:</b> </li>
+          <li><ul>
+              <% @group.members.managers.each do |manager| %>
+                   <li> <div>   <%=manager.name %>  </div></li>
+              <% end %>
+          </ul></li>
+        </ul>
+      </div>
+      <%= link_to '管理', administration_group_path(@group) if @group.owner==current_user%>
+    </div>
+    <div class="phone_bar">
+      <h3>最新话题</h3>
+      <%=link_to '写帖子',new_post_path(:group_id=>@group.id),data:{role:'button',inline:true,icon: 'edit',ajax: false }%>
+    </div>
+    <%=content_tag :div,id: "posts_list", data:{group_id: @group.id} do %><% end %>
+    <%=render 'shares/footer'%>
+  <% end %> 
+<% end %>
+

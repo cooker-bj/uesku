@@ -46,7 +46,7 @@
 <div class='detail_bar'>
       <div class='detail_head'>课表评价</div>
 </div>
-<%= content_tag :div,id: 'comment_list',data: {id: @timetable.id,type: @timetable.class.model_name.downcase.pluralize} do%> <% end %>
+<%= content_tag :div,id: 'comment_list',data: {id: @timetable.id,type: @timetable.class.name.downcase.pluralize} do%> <% end %>
 <fieldset>
   <%=render :partial=>'/comments/comment_area',:locals=>{:commentable=>@timetable} %>
 </fieldset>

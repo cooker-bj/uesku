@@ -24,7 +24,41 @@
 
 .comment_phone{
 	min-height: 70px;
+  overflow: hidden;
 	.content {
 		min-height: 40px;
 	}
+}
+
+.phone_bar{
+  background: none repeat scroll 0 0 rgb(246,246,246);
+  border: 1px solid #dfdfdf;
+  height: 62px;
+  border-radius: 5px;
+  h3 {
+    font-size: 20px;
+    width: 150px;
+    height: 62px;
+    line-height: 62px;
+    display: inline;
+    margin-left: 20px;
+  }
+  .ui-btn{
+    float: right;
+    margin-right:20px;
+    
+  }
+}
+
+.popup_form{
+  padding: 10px 20px;
+  .comment_area{
+    width: auto;
+  }
+}
+
+.post_phone{
+  list-style-type:none;
+  margin: 0px 10px;
+  padding: 0px;
 }

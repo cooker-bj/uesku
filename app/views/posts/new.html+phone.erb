@@ -1,0 +1,8 @@
+<%=content_tag :div, id: mobile_page_id, data:{role: 'page', dialog: 'true'} do %>
+  <%=content_tag :div, data:{role: 'header'} do %>
+    <h2>新建帖子</h2>
+  <% end %>
+  <%=content_tag :div, data: {role: 'content'} do %>
+    <%=render 'form'%>
+  <% end %>
+<% end %>

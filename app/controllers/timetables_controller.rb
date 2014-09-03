@@ -4,6 +4,7 @@ class TimetablesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html
   layout :set_layout
+  
   def index
     @lesson=Lesson.find(params[:lesson_id])
     @timetables = @lesson.timetables.all
@@ -117,7 +118,7 @@ class TimetablesController < ApplicationController
   end
   private
   def timetable_params
-    params.required(:timetable).permit(:create_time, :creator_id, :description, :end_day, :lesson_id, :start_day, :title,:description,:class_times_attributes=>[:end_time_hour,:end_time_minute, :start_time_hour,:start_time_minute,:week,:start_day,:end_day,:name, :timetable_id,:_destroy])
+    params.required(:timetable).permit(:id,:create_time, :creator_id, :description, :end_day, :lesson_id, :start_day, :title,:description,:class_times_attributes=>[:id,:end_time_hour,:end_time_minute, :start_time_hour,:start_time_minute,:week,:start_day,:end_day,:name, :timetable_id,:_destroy])
   end
 
 end

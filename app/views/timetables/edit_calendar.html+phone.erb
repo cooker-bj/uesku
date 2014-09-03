@@ -1,0 +1,17 @@
+<%=content_tag :div, id: mobile_page_id, data: {role: 'page',dialog: true} do %>
+  <%=content_tag :div, data: {role: 'header'} do %>
+    <h1>变更或中止</h1>
+  <% end %>
+  <%=content_tag :div, data: {role: 'content'} do %>
+  
+    <%=form_tag 'update_class_time',data:{ajax:false} do %>
+      <%=label_tag '选择上课时间:'%>
+      <%=select_tag :class_time_id,options_for_select(@timetable.class_times.events.each_with_index.collect{|x,i| ["#{x[:title]} #{x[:start]}",i]})%>
+      <%=content_tag :div,id: 'events',data: {events: @timetable.class_times.events} do %>
+        <%=hidden_field_tag :id,@timetable.id%>
+      <% end %>
+      <%=link_to '中止','#',:id=>'remove_event',data: {role: 'button'} %>
+      <%=link_to '变更时间','#',:id=>'change_event_time',data: {role: 'button'}%>
+    <%end%>
+  <% end%>
+<% end %>

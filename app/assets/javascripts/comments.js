@@ -14,12 +14,13 @@ $(function() {
 
   loadComment();
 	$(document).on('pagebeforeshow','div[data-role="page"]',function(){
-    if($.mobile.activePage.find("#comment_list").length>0){
-  		var  myurl = ("/" + $.mobile.activePage.find("#comment_list").attr('data-type') + "/" + $.mobile.activePage.find("#comment_list").attr('data-id') + "/comments");
-  		 $("#comment_list").load(myurl, function(e) {
+    var comment_point=$.mobile.activePage.find("#comment_list");
+    if(comment_point.length>0){
+  		var  myurl = ("/" + comment_point.attr('data-type') + "/" + comment_point.attr('data-id') + "/comments");
+  		 comment_point.load(myurl, function(e) {
   			//$('#reply_new').popup();
-  			$('#comment_list').trigger('create');
-  		    $("#comment_list").on('click', '.comment_commands a.reply_link', function(e) {
+  			comment_point.trigger('create');
+  		    comment_point.on('click', '.comment_commands a.reply_link', function(e) {
   		        e.preventDefault();
   		        var id = $(this).attr('data-msg-id');
   				$('#reply_new input#reply_comment_id').val(id);

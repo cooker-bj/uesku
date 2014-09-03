@@ -42,7 +42,7 @@
     <div >
       <%=content_tag :div,id: "#{mobile_page_id}_groups",data:{ role: 'popup'} do %>
         <ul data-role="listview" data-inset='true'>
-          <li data-role='list_divider'>相关课吧列表</li>
+          <li data-role='list_divider'>课吧</li>
           <% @lesson.groups.each do |group| %>
             <li><%=link_to group.title,group_path(group)%><%='私有' if group.locked%></li>
           <% end%>
@@ -50,10 +50,11 @@
       <% end %>
       <%=content_tag :div,id: "#{mobile_page_id}_class_tables",data: {role: 'popup'} do %>
         <ul data-role='listview' data-inset='true'>
-          <li data-role='list_divider'>相关课表</li>
+          <li data-role='list_divider'>课表</li>
           <% @lesson.timetables.each do |table|%>
             <li><%=link_to table.title,timetable_path(table)%></li>
           <% end %>
+          <li><%=link_to '新建课表',new_timetable_path(:lesson_id=>@lesson.id)%>
         </ul>
       <% end %>
       <%=content_tag :div, id: "#{mobile_page_id}_map",class: 'pop_map', data: {role:'popup'} do %>

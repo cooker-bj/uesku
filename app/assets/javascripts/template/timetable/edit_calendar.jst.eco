@@ -1,0 +1,28 @@
+<% formatOption= (num)-> if num<10 then "0#{num}" else num %>
+<%="#{@event.title} #{@event.start}" %>
+<input type='hidden' name='event_id' value="<%=@event.id%>">
+<input type='hidden' name='start' value="<%=@event.start%>">
+<label>变更为:</label>
+<input type='text' id='start_day' name='start_day' class='date_picker'>从
+<select id='start_time_hour' name='start_time_hour' data-role='none'>
+  <% for num in [0...24]: %>
+    <option value=<%=num %>><%=formatOption(num) %></option>
+  <% end %>
+</select>:
+<select id='start_time_minute' name='start_time_minute' data-role='none'>
+  <% for num in [0...60]:%>
+    <option value="<%=num%>"><%=formatOption(num)%></option>
+  <% end %>
+</select>
+到
+<select id='end_time_hour' name='end_time_hour' data-role='none'>
+  <% for num in [0...24]: %>
+    <option value=<%=num %>><%=formatOption(num) %></option>
+  <% end %>
+</select>:
+<select id='end_time_minute' name='end_time_minute' data-role='none'>
+  <% for num in [0...60]:%>
+    <option value="<%=num%>"><%=formatOption(num)%></option>
+  <% end %>
+</select>
+<input type='submit' value='修改'>

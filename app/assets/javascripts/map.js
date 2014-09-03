@@ -206,14 +206,16 @@ $(function() {
 
   $("form").on('nested:fieldAdded', function(e) {
     var point = e.field.find('.mymap');
-    var location = e.field.find('.positionx');
-    var id_pattern = /[a-z|_]+_(\d+)_geolng$/i
-    var newId = location.attr('id').match(id_pattern).pop();
+    if(point.length>0){
+      var location = e.field.find('.positionx');
+      var id_pattern = /[a-z|_]+_(\d+)_geolng$/i
+      var newId = location.attr('id').match(id_pattern).pop();
 
-    point.attr('id', "mmap" + newId)
-    var handler = initMap(point);
-    handler = clickPoint(handler, e.field.find('.positionx'), e.field.find('.positiony'));
-    getGeocode(e.field, handler,'mypoint');
+      point.attr('id', "mmap" + newId)
+      var handler = initMap(point);
+      handler = clickPoint(handler, e.field.find('.positionx'), e.field.find('.positiony'));
+      getGeocode(e.field, handler,'mypoint');
+    }
   });
 
 

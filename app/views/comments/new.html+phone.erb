@@ -1,6 +1,6 @@
 <%=content_tag :div, id: mobile_page_id, data: {role: 'page',dialog: true} do %>
 	<%=content_tag :div, data:{role:'header'} do %>
-		<h2>回帖</h2>
+		<h2>评论</h2>
 	<% end %>
 	<%=content_tag :div, data:{role:'content'} do %>
 		<%= form_for(@comment,:remote=>true) do |f| %>

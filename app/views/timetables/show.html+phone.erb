@@ -1,0 +1,54 @@
+<%=content_tag :div, id: mobile_page_id, data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div,data: {role: 'content'} do %>
+
+    <h1><%= @timetable.title %></h1>
+    <div >
+      <div>
+          <h2>课表介绍:</h2>
+          <div>
+              <%= @timetable.description %>
+          </div>
+      </div>
+      <div>
+      
+        <table width="400" border="1" id='class_table'>
+          <tr>
+            <th>课名</th><th>开始日期</th><th>结束日期</th><th>每周</th><th>上课时间</th><th>结束时间</th>
+          </tr>
+          <% @timetable.class_times.each do |event| %>
+           <tr>
+             <td><%=event.name%></td>
+             <td><%=event.start_day%></td>
+             <td><%=event.end_day%></td>
+             <td><%=WEEK[event.week]%></td>
+             <td><%="#{event.start_time_hour}:#{event.start_time_minute}"%></td>
+             <td><%="#{event.end_time_hour}:#{event.end_time_minute}"%></td>
+           </tr>
+          <% end %>
+        </table>
+      </div>
+      <div>
+          <b>创建人:</b><%=@timetable.creator.nickname %><br/>
+          <b>创建时间:</b><%= format_time(@timetable.create_time) %>
+      </div>
+    </div>
+    <div class='detail_bar'>
+      <div class='detail_head'>课表评价</div>
+    </div>
+    <%= content_tag :div,id: 'comment_list',class:'details',data: {id: @timetable.id,type: @timetable.class.name.downcase.pluralize} do%>
+    <% end %>
+    <%=render 'shares/footer'%>
+  <% end %>
+  <%=content_tag :div,data:{role: 'footer',position: 'fixed'} do %>
+    <div data-role='navbar'>
+      <ul>
+        <li> <%= link_to '注册使用',register_user_timetable_path(@timetable) %></li>
+        <li> <%= link_to '评论', new_comment_path(:timetable_id=>@timetable.id) %></li>
+        <li><%= link_to '修改', edit_timetable_path(@timetable)%></li>
+        <li><%= link_to '中止和变更时间', edit_calendar_timetable_path(@timetable) %></li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+  

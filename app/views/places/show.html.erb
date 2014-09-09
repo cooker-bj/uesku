@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
 <% content_for :author do %>
-<div id="user_bar" >
-  <h1>作者 </h1>
-  <div><%=image_tag @place.user.avatar_url.to_s,:width=>150,:height=>150 %>  </div>
-  <div>
-    <%=link_to @place.user.name,profile_user_path(@place.user) %>
+  <div id="user_bar" >
+    <h1>作者 </h1>
+    <div><%=image_tag @place.user.avatar_url.to_s,:width=>150,:height=>150 %>  </div>
+    <div>
+      <%=link_to @place.user.name,profile_user_path(@place.user) %>
+    </div>
+    <div>
+      <div>注册时间:<%=format_time(@place.user.registration_date) %></div>
+      <div>积分:<%=@place.user.score %></div>
+    </div>
   </div>
-  <div>
-    <div>注册时间:<%=format_time(@place.user.registration_date) %></div>
-    <div>积分:<%=@place.user.score %></div>
-  </div>
-  
-
-</div>
 <% end %>
 <div class='toolbar'><%= link_to '修改', edit_place_path(@place) if @place.user==current_user%></div>
 <div id='lesson_title'> <%= @place.title %></div>

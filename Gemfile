@@ -64,7 +64,8 @@ gem 'carrierwave','~>0.9.0'
 gem 'ancestry'
 gem 'rails_kindeditor'
 gem 'will_paginate'
-
+gem 'sunspot_rails'
+gem 'sunspot_solr' # for development
 gem 'omniauth-google-oauth2'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-qq-connect'

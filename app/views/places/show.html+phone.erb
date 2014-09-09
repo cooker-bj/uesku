@@ -1,0 +1,77 @@
+<%=content_tag :div, id: mobile_page_id,data: {role: 'page'} do %>
+  <%=render 'shares/header'%>
+  <%=content_tag :div, data:{role: 'content'} do %>
+    <h2> <%= @place.title %></h2>
+    <div class='details'>  
+      <div>
+        推荐指数：<%=@place.rank %>,共有<%=@place.rank_count %>人推荐
+      </div>
+      <div>
+        标签：<%=raw @place.tag_list.map {|tag| link_to tag, places_path(:tag=>tag)}.join(',') %>
+      </div>
+      <div>
+        地址：<%=@place.address %>
+      </div>
+      <div>
+       电话： <%=@place.phone %>
+      </div>
+      <div>
+        Website: <%= link_to @place.website,url_with_protocol(@place.website),:target=>'_blank' %> 
+      </div>
+      <div>
+        价格：<%= @place.price %>
+      </div>
+      <div>
+       开放时间:<%=@place.opening_hours %>
+      </div>
+    </div>
+    <div >简介及推荐理由</div>
+    <div class='details' >
+      <%=raw @place.description %>
+    </div>
+    <div >位置交通</div>
+    <div class='details'>
+      <%=content_tag 'div', :id=>'lesson_map',:data=>{:positiony=>@place.latitude,:positionx=>@place.longitude} do %>
+      <% end %>
+      <div >
+        <%=@place.direction %>
+      </div>
+    </div>
+    <div id='phoneScrollable'>
+      <% @place.pictures.each do |p| %>
+        <%=image_tag p.image_url.to_s,height: 150 %>
+      <% end %>
+    </div>
+    <div>评价：</div>
+    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @place.id,type: @place.class.name.downcase.pluralize} do %>
+    <%end%>
+    <%=render 'shares/footer'%>
+    <div id='myrating' data-role='popup'>
+      <div>
+        <b>推荐指数：</b>
+        <%=content_tag 'div',:id=>"start_rating", :data=>{:url=>place_ratings_path(@place),:id=>@rating.try(:id)} do %>
+          <% (1..5).each do |v| %>
+            <%= radio_button_tag 'rank',v,@rating.try(:value)==v, :class=>'auto-submit-star' %> 
+          <% end %>
+        <% end %>
+        <div>
+           1星为千万不要去，5星为非常值得去，请做出您的推荐
+        </div>
+    </div>
+  
+    
+  
+  <% end %>
+  <%=content_tag :div, data:{role:'footer',position:'fixed'} do %>
+    <div data-role='navbar'>
+      <ul>
+        <li>
+          <a href='#myrating' data-rel='popup'> 评分</a>
+        </li>
+        <li>
+          <%=link_to '评论',new_comment_path(:place_id=>@place)%>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

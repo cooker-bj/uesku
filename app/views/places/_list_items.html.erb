@@ -1,0 +1,12 @@
+<% @places.each do |place| %>
+  <li>
+    <%=link_to place_path(place) do %>
+      <h3><%=place.title%></h3>
+      <p>
+        <%=place.address%><br/>
+        标签：<%=place.tag_list%>
+      </p>
+      <span class="ui-li-aside">推荐指数：<%=place.rank%></span>
+    <% end %>
+  </li>
+<% end %>

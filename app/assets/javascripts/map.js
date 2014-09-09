@@ -17,7 +17,7 @@ $(function() {
     var attached = handler.attr('id');
     var mapObj = new AMap.Map(attached, opt);
     mapObj.plugin(["AMap.ToolBar", "AMap.OverView", "AMap.Scale"], function() {
-      toolbar = new AMap.ToolBar();
+      var toolbar = new AMap.ToolBar();
       toolbar.autoPosition = false; //加载工具条
       mapObj.addControl(toolbar);
       overview = new AMap.OverView(); //加载鹰眼
@@ -37,7 +37,7 @@ $(function() {
       //scrollWheel: true //鼠标滚轮缩放地图
     }, options || {});
     var attached = handler.attr('id');
-    mapObj = new AMap.Map(attached, opt);
+    var mapObj = new AMap.Map(attached, opt);
 
     handler.data('mapObj', mapObj);
     return handler;

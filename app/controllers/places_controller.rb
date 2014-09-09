@@ -1,16 +1,21 @@
 class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
+   layout :set_layout
   respond_to :html
   before_filter :authenticate_user!, :except=>[:index,:show]
+  
   def index
     if params[:tag]
-      @places=Place.tagged_with(params[:tag])
+      @places=Place.tagged_with(params[:tag]).paginate(:page=>params[:page],per_page: 20)
     else
-      @places = Place.all
+      @places = Place.paginate(:page=>params[:page],per_page: 20)
     end
 
-    respond_with  @places 
+    respond_with  @places do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /places/1

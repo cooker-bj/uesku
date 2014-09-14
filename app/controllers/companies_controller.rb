@@ -28,14 +28,14 @@ class CompaniesController < ApplicationController
   end
 
   def create
-  	@company=Company.new(params[:company])
+  	@company=Company.new(company_params)
   	@company.save
   	respond_with @company
   end
 
   def update
   	@company=Company.find(params[:id])
-  	@company.update_attributes(params[:company])
+  	@company.update_attributes(company_params)
   	respond_with @company
   end
 

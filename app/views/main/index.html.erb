@@ -26,7 +26,7 @@
         <th width="41" scope="col">评分</th>
 
       </tr><% i=1 %>
-      <% Lesson.local_lessons(get_city).order("rank desc").limit(10).each do |course| %>
+      <% Lesson.local_lessons(get_city).order("rank desc").includes(course: [:company]).limit(10).each do |course| %>
           <tr>
             <td><%= i %></td>
             <td><%= link_to display_string(course.title,23),lesson_path(course) %></td>

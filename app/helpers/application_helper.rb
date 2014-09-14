@@ -64,6 +64,39 @@ module ApplicationHelper
     n
   end  
   
+  def filter_tags(filters)
+    msg="".html_safe
+    filters.each do |key, value|
+      msg<<case key
+        when 'district' then 
+          value.inject(''.html_safe) do |f,id|
+             f<< content_tag(:span,class: 'filter_box',data:{id:id,style: 'district'}) do 
+              "区域:".html_safe+Location.find(id).name+"<b class='del_icon'></b>".html_safe
+            end
+          end
+        when 'category' then
+          value.inject(''.html_safe) do |f,id|
+            f<< content_tag(:span,class: 'filter_box',data:{id:id,style: 'category'}) do
+              "类别:".html_safe+Category.find(id).name+"<i class='del_icon'></i>".html_safe
+            end
+          end
+        when 'rank_range' then
+          content_tag :span,class: 'filter_box',data:{id:value,style: 'rank_range'} do
+           "评分:".html_safe+t(Lesson::RANK_RANGE.key(value.to_i))+"<b class='del_icon'></b>".html_safe
+          end
+        when 'age_range' then  
+          content_tag :span,class: 'filter_box',data:{id:value,style: 'rank_range'} do
+            "年龄:".html_safe+Course::AGE_RANGE[value.to_i]+"<b class='del_icon'></b>".html_safe
+          end
+        when 'free_try' then
+          content_tag :span,class: 'filter_box',data:{id: 'true',style: 'free_try'} do
+            "试用:有<b class='del_icon'></b>".html_safe
+          end
+      end
+    end
+    msg 
+  end
+  
 
 
 

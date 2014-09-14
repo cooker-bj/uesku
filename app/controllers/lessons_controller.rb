@@ -4,13 +4,10 @@ class LessonsController <ApplicationController
   respond_to :html,:js
 
   def index
-    @lessons=Lesson.local_lessons(get_city).filter_with_district(params[:district]).paginate(:page=>params[:page],:per_page=>20)
-    @district=params[:district]|| []
-    respond_with [@lessons,@district] do |format|
-      format.html do |html|
-        html.none {render 'category'}
-        html.phone {render 'category'}
-      end
+    @lessons=Lesson.local_lessons(get_city).filter(params[:filters]).includes(:course,:branch).paginate(:page=>params[:page],:per_page=>20)
+    @filters=params[:filters]|| {}
+    respond_with [@lessons,@filters] do |format|
+      format.html 
       format.js {render 'add_items'}
     end
     
@@ -84,6 +81,8 @@ class LessonsController <ApplicationController
  
  
   private
+  
+  
   def course_params
     params.required(:course).permit(:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range,:branches)
   end
@@ -95,4 +94,6 @@ class LessonsController <ApplicationController
                                     :course_attributes=>[:_destroy,:id,:title, :category_id, :company_id, :description, :price, :tags, :website,:free_try,:special,:age_range],
                                     :branch_attributes=>[:_destroy,:id,:city_id, :district_id, :geolat, :geolng, :name, :phone, :province_id,:street, :website,:company_id])
   end
+  
+ 
 end

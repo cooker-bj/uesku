@@ -203,3 +203,58 @@ div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizabl
   height:240px;
 }
 
+.filter_title{
+  float:left;
+  width: 10%;
+  position: relative;
+}
+
+.filter_items{
+  float:left;
+  width:88%;
+  position: relative;
+}
+.filter_item{
+  margin: 1px;
+  display: inline-block;
+}
+
+.filter_item:hover{
+  cursor: pointer;
+};
+
+.filter_row{
+  overflow:hidden;
+  margin: 3px 0px;
+}
+
+#filters{
+  margin: 5px 5px;
+  overflow: hidden;
+  border: 1px solid rgb(223,223,223);
+  border-radius: 5px;
+  padding: 0px 5px;
+}
+.filter_box{
+  border: 1px solid black;
+  margin: 2px;
+  padding: 2px;
+  
+}
+
+.filter_box:hover{
+  cursor: pointer;
+  color: red;
+}
+#filter_tags{
+  overflow:hidden;
+  margin: 2px;
+  height: 20px;
+  line-height: 20px;
+}
+.del_icon{
+  background: url('cross.png');
+  width: 8px;
+  height: 8px;
+  display:inline-block;
+}

@@ -1,28 +1,14 @@
-<div id='bar'></div> 
-<div id='main_page'>
-  <div id='adv_category'>
-    <%=image_tag "/assets/image02.jpg"%>
-  </div>
-  <div class="float_left">
-    <div id='side_menu'>
-        <%=render "category_list" %>
-    </div>
-  </div>
-  <div id='main_content' class="float_right">
-    <div id='category_filter'>
-      <%=form_tag  do %>
-        <%=submit_tag "确定",data:{role:'none'} %>区域：
-        <% Location.find(get_city).children.order('id').each do |dist|%>
-            <%=check_box_tag 'district[]',dist.id, @district.include?(dist.id.to_s),data:{role:'none'}%>  
-            <%=dist.name%>
-        <%end%>
-      <%end%>
-    </div>
-    <div><%=render :partial=>"lessons_list",:locals=>{:lessons=>@lessons} %>  </div>
-    <div><%=link_to '新建课程',company_lessons_path   %></div>
-    <div id="paginate_area"> 
-      <%=will_paginate @lessons, :controller=>'lessons',:action=>'category',:previous_label=>'前页',:next_label=>'下页'%>
-    </div>
-  </div>
-
+<div id='category_filter'>
+  <%=form_tag  do %>
+    <%=submit_tag "确定",data:{role:'none'} %>区域：
+    <% Location.find(get_city).children.order('id').each do |dist|%>
+        <%=check_box_tag 'district[]',dist.id, @district.include?(dist.id.to_s),data:{role:'none'}%>  
+        <%=dist.name%>
+    <%end%>
+  <%end%>
+</div>
+<div id='lessions_list'><%=render :partial=>"lessons_list",:locals=>{:lessons=>@lessons} %>  </div>
+<div><%=link_to '新建课程',company_lessons_path   %></div>
+<div id="paginate_area"> 
+  <%=will_paginate @lessons, :controller=>'lessons',:action=>'category',:params=>{district: @district},:previous_label=>'前页',:next_label=>'下页'%>
 </div>

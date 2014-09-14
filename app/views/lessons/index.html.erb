@@ -1,0 +1,70 @@
+<div id='filter_tags'>
+  <%=filter_tags @filters %>
+</div>
+<div id='filters'>
+  
+  <div class='filter_row'>
+    <div class='filter_title'> 
+     区域：
+    </div>
+    <div class='filter_items'>
+      <% Location.find(get_city).children.order('id').each do |dist|%>
+        <%=content_tag :span,class: 'filter_item',data:{id: dist.id,style: 'district' } do %><%=dist.name%><% end %>
+      <%end%>
+    </div>
+  </div>
+  
+  <% Category.roots.order('id').each do |category|%>
+    <div class='filter_row'>
+      <div class='filter_title'> 
+        <%=category.name %>:
+      </div>
+      <div class='filter_items'>
+        <% category.children.order("id").each do |item|%>
+          <%=content_tag :span,class: 'filter_item',data:{id:item.id,style:'category'} do %>
+            <%=item.name%>
+          <% end %>
+        <%end %>
+      </div>
+    </div>
+  <%end%>
+  
+  <div class='filter_row'>
+    <div class='filter_title'>
+      评分：
+    </div>
+    <div class='filter_items'>
+      <% Lesson::RANK_RANGE.each do |key,value| %>
+        <%=content_tag :span, class: 'filter_item', data: {id: value,style: 'rank_range'} do %>
+          <%=t(key)%>
+        <% end%>
+      <% end%>
+    </div>
+  </div>
+  <div class='filter_row'>
+    <div class='filter_title'>
+      适合年龄:
+    </div>
+    <div class='filter_items'>
+      <% Course::AGE_RANGE.each_with_index do |value, index|%>
+        <%=content_tag :span,class: 'filter_item', data: {id: index,style: 'age_range'} do %>
+          <%=value%>
+        <% end%>
+      <% end %>
+    </div>
+  </div>
+  <div class='filter_row'>
+    <div class='filter_title'>
+      试听：
+    </div>
+    <div class='filter_items'>
+      <%=content_tag :span, class: 'filter_item',data: {id: 'true',style: 'free_try'} do %>
+        有免费试听
+      <% end %>
+    </div>
+  </div> 
+</div>
+<div><%=render :partial=>"lessons_list",:locals=>{:lessons=>@lessons} %>  </div>
+<div><%=link_to '新建课程',company_lessons_path  %></div>
+<div id="paginate_area"> 
+  <%= will_paginate @lessons,:controller=>'lessons',:action=>'index',:params=>{:filters=>@filters},:previous_label=>'前页',:next_label=>'下页'%>       </div>

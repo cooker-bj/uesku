@@ -1,116 +1,96 @@
-<div id='bar'></div>
-<div id='main_page'>
-  <div id='adv_category'><%=image_tag "/assets/image02.jpg"%></div>
-  <div class="float_left">
-    <div id='side_menu'>
-      <%=render "category_list" %>
+<%=content_for :sidebar do %>  
+  <div id="related_classes">
+    <h1> 相关课吧列表</h1>
+    <ul>
+         <%@lesson.groups.each do |g| %>
+          <li><%=link_to g.title, group_path(g) %></li>
+        <% end %>
+    </ul>
+    <%=link_to '创建课吧',new_group_path(:lesson_id=>@lesson.id) %>
+  </div>
+  <div id="related_timetables">
+    <h1>相关课表 </h1>
+    <ul>
+      <%@lesson.timetables.each do |table|%>
+      <li><%=link_to table.title,timetable_path(table)%></li>
+       <% end %>
+    </ul>
+    <%=link_to '新建课表',new_lesson_timetable_path(@lesson)%>
+  </div> 
+<% end %>
+
+<div >
+课程详情&nbsp;<%=link_to '编辑', edit_lesson_path(@lesson) %> &nbsp; <%=link_to '历史',history_lesson_path(@lesson)%>
+</div>
+<div id="lesson_title"><%=@lesson.title %> </div>
+<div class='details'><b><%=@lesson.address %></b></div>
+<div id="lesson_left">
+  <%=content_tag :div, id: 'lesson_map', data: {positionx: @lesson.geolng,positiony: @lesson.geolat} do %>
+  <% end %>
+</div>
+<div class='details'>
+  <div id="show_scores_and_comment">
+    最后修改者：<%=link_to whodoit(@lesson.course.originator).try(:name),profile_user_path(whodoit(@lesson.course.originator))%>
+    <div id="lesson_score">
+      <% (1..20).each do |v| %><%=radio_button_tag 'rank',v*0.25,(@lesson.rank>=v*0.25 && @lesson.rank <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %>  <% end %>
+      总分: <%=@lesson.rank %> <br/>
+      <% (1..20).each do |v| %><%=radio_button_tag 'course',v*0.25,(@lesson.course_score>=v*0.25 && @lesson.course_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+      课程效果:<%=@lesson.course_score %> <br/>
+      <% (1..20).each do |v| %><%=radio_button_tag 'teacher',v*0.25,(@lesson.teacher_score>=v*0.25 && @lesson.teacher_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+      教师:<%=@lesson.teacher_score %>   <br/>
+      <% (1..20).each do |v| %><%=radio_button_tag 'security',v*0.25,(@lesson.security_score>=v*0.25 && @lesson.security_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+      安全: <%=@lesson.security_score %>  <br/>
+      <% (1..20).each do |v| %><%=radio_button_tag 'environment',v*0.25,(@lesson.environment_score>=v*0.25 && @lesson.environment_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
+      环境:<%=@lesson.environment_score %> <br/>
     </div>
-    <div id='tools_menu'>
-      <div id="related_classes">
-        <h1> 相关课吧列表</h1>
-        <ul>
-             <%@lesson.groups.each do |g| %>
-              <li><%=link_to g.title, group_path(g) %></li>
-            <% end %>
-        </ul>
-        <%=link_to '创建课吧',new_group_path(:lesson_id=>@lesson.id) %>
-      </div>
-      <div id="related_timetables">
-        <h1>相关课表 </h1>
-        <ul>
-          <%@lesson.timetables.each do |table|%>
-          <li><%=link_to table.title,timetable_path(table)%></li>
-           <% end %>
-        </ul>
-        <%=link_to '新建课表',new_lesson_timetable_path(@lesson)%>
-
-
-      </div>
+    <div id="last_comment">
+      <% if @lesson.comments.empty? %>
+          <%="现在还没有人评价，来评价吧 "%>
+       <% else %>
+          <%=@lesson.comments.last_comment_user_name %>说:<%=@lesson.comments.last_comment %>
+      <% end %>
     </div>
   </div>
-  <div id='main_content' class="float_right">
-    <div >
-  课程详情&nbsp;<%=link_to '编辑', edit_lesson_path(@lesson) %> &nbsp; <%=link_to '历史',history_lesson_path(@lesson)%>
+  <p>课程类别： <%=@lesson.course.category.name %> </p>
+  <p>价格: <%=@lesson.price %>    </p>
+  <p>适合年龄: <%=@lesson.age_range %> </p>
+  <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
+  <p>特色：<%=@lesson.special %>  </p>
+  <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
+  <p> 校区：<%=@lesson.name%>    </p>
+  <p> 电话:<%=@lesson.phone%> </p>
+  <p> 教育机构：<%=link_to @lesson.company_name,company_path(@lesson.course.company) %>  </p>
+  <p> 分支网址<%=link_to @lesson.branch.website,url_with_protocol(@lesson.branch.website),:target=>'_blank'%> </p>
+  <p>标签： <%=@lesson.tags %> </p>
 </div>
-    <div id="lesson_title"><%=@lesson.title %> </div>
-    <div class='details'><b><%=@lesson.address %></b></div>
-    <div id="lesson_left">
-        <div id= 'lesson_map'   data-positionx=<%=@lesson.geolng %> data-positiony= <%=@lesson.geolat %> ></div>
+<div class="detail_bar"><div class='detail_head'>课程详情</div></div>
+<div class="details" >
+  <%=raw(@lesson.description)%>
+</div>
+<div class='detail_bar'><div class='detail_head'>课程评价</div></div>
+<%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.name.downcase.pluralize} do %><%end%>
 
-
-    </div>
-    <div class='details'>
-        <div id="show_scores_and_comment">
-    
-            最后修改者：<%=link_to whodoit(@lesson.course.originator).try(:name),profile_user_path(whodoit(@lesson.course.originator))%>
-            <div id="lesson_score">
-                 <% (1..20).each do |v| %><%=radio_button_tag 'rank',v*0.25,(@lesson.rank>=v*0.25 && @lesson.rank <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %>  <% end %>
-                总分: <%=@lesson.rank %> <br/>
-                 <% (1..20).each do |v| %><%=radio_button_tag 'course',v*0.25,(@lesson.course_score>=v*0.25 && @lesson.course_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
-                 课程效果:<%=@lesson.course_score %> <br/>
-                 <% (1..20).each do |v| %><%=radio_button_tag 'teacher',v*0.25,(@lesson.teacher_score>=v*0.25 && @lesson.teacher_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
-                教师:<%=@lesson.teacher_score %>   <br/>
-                <% (1..20).each do |v| %><%=radio_button_tag 'security',v*0.25,(@lesson.security_score>=v*0.25 && @lesson.security_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
-                安全: <%=@lesson.security_score %>  <br/>
-                <% (1..20).each do |v| %><%=radio_button_tag 'environment',v*0.25,(@lesson.environment_score>=v*0.25 && @lesson.environment_score <(v+1)*0.25),:class=>'star {split:4}',:disabled=>true %><% end %>
-                环境:<%=@lesson.environment_score %> <br/>
-            </div>
-            <div id="last_comment">
-              <% if @lesson.comments.empty? %>
-                  <%="现在还没有人评价，来评价吧 "%>
-               <% else %>
-                  <%=@lesson.comments.last_comment_user_name %>说:<%=@lesson.comments.last_comment %>
-              <% end %>
-            </div>
+<% unless current_user.nil? %>
+  <div id='comment'>
+    <%=nested_form_for @lesson, html:{name:'comment'} do |table| %>
+      <%=table.fields_for :scores,@score do |f| %>
+        <div id="star_rating">
+            <div> 课程效果 <% (1..5).each do |v| %><%= f.radio_button :course,v, :class=>'star' %> <% end %></div>
+            <div>教师 <% (1..5).each do |v| %><%= f.radio_button :teacher,v, :class=>'star' %> <% end %></div>
+            <div>安全 <% (1..5).each do |v| %><%= f.radio_button :security,v, :class=>'star' %> <% end %> </div>
+            <div>环境 <% (1..5).each do |v| %><%= f.radio_button :environment,v, :class=>'star' %> <% end %>  </div>
         </div>
-
-
-        <p>课程类别： <%=@lesson.course.category.name %> </p>
-        <p>价格: <%=@lesson.price %>    </p>
-        <p>适合年龄: <%=@lesson.age_range %> </p>
-        <p>试听:<%=@lesson.free_try? ? '有': '无'%> </p>
-        <p>特色：<%=@lesson.special %>  </p>
-        <p>网址：<%=link_to @lesson.course.website,url_with_protocol(@lesson.course.website),:target=>'_blank' %> </p>
-        <p> 校区：<%=@lesson.name%>    </p>
-        <p> 电话:<%=@lesson.phone%> </p>
-        <p> 教育机构：<%=link_to @lesson.company_name,company_path(@lesson.course.company) %>  </p>
-        <p> 分支网址<%=link_to @lesson.branch.website,url_with_protocol(@lesson.branch.website),:target=>'_blank'%> </p>
-        <p>标签： <%=@lesson.tags %> </p>
-    </div>
-    <div class="detail_bar"><div class='detail_head'>课程详情</div></div>
-    <div class="details" >
-
-        <%=raw(@lesson.description)%>
-    </div>
-    <div class='detail_bar'><div class='detail_head'>课程评价</div></div>
-    <%=content_tag :div, id: 'comment_list',class: 'details', data: {id: @lesson.id,type: @lesson.class.model_name.name.downcase.pluralize} do %><%end%>
-    
-    <% unless current_user.nil? %>
-         <div id='comment'>
-           <%=nested_form_for @lesson, html:{name:'comment'} do |table| %>
-            <%=table.fields_for :scores,@score do |f| %>
-               <div id="star_rating">
-                    <div> 课程效果 <% (1..5).each do |v| %><%= f.radio_button :course,v, :class=>'star' %> <% end %></div>
-                    <div>教师 <% (1..5).each do |v| %><%= f.radio_button :teacher,v, :class=>'star' %> <% end %></div>
-                    <div>安全 <% (1..5).each do |v| %><%= f.radio_button :security,v, :class=>'star' %> <% end %> </div>
-                    <div>环境 <% (1..5).each do |v| %><%= f.radio_button :environment,v, :class=>'star' %> <% end %>  </div>
-               </div>
-               
-                <%=f.hidden_field :user_id,:value=>current_user.id  %>
-            <%end%>
-                <div id="comment_label" >评价:</div>
-                <div id="input_comment" class=float_right>
-                    <%=table.fields_for :comments,Comment.new do |comm| %>
-                       <%=comm.text_area :comment,:class=>'comment_input' %>
-                       <%=comm.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
-                    <% end %> 
-                     <%=table.submit '提交'%>
-                </div>
-           <% end %>
-           <div class='noad'></div>
-         </div>
+        <%=f.hidden_field :user_id,:value=>current_user.id  %>
+      <%end%>
+      <div id="comment_label" >评价:</div>
+      <div id="input_comment" class=float_right>
+        <%=table.fields_for :comments,Comment.new do |comm| %>
+          <%=comm.text_area :comment,:class=>'comment_input' %>
+          <%=comm.hidden_field :user_id,:value=>current_user.id unless current_user.nil? %>
+        <% end %> 
+        <%=table.submit '提交'%>
+      </div>
     <% end %>
-
-  </div>
-</div>
-
+    <div class='noad'></div>
+     </div>
+<% end %>

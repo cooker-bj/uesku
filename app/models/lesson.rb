@@ -18,10 +18,40 @@ class Lesson < ActiveRecord::Base
   #include(AuditContent)
   #scope :published, where('lessons.audit=? ',true)
   #has_paper_trail
-
+  RANK_RANGE={:wonderful=>4,:good=>3,:normal=>2,:unlimit=>0}
 
   def self.local_lessons(city_id)
   self.where("branches.city_id"=>city_id).joins(:branch)
+  end
+  
+  def self.filter(filters)
+    conditions=''
+    args={}
+    if filters.blank?
+      all.order('rank DESC')
+    else
+      filters.each do |key,value|
+        case key
+          when 'category' then 
+            conditions<<'courses.category_id in (:category) and '
+            args.merge! :category=>value
+          when 'district' then 
+            conditions<<'branches.district_id in (:district) and '
+            args.merge! :district=>value
+          when 'rank'     then 
+            conditions <<'lessons.rank >=:rank and '
+            args.merge! :rank=>value.to_i
+          when 'age_range' then 
+            conditions<<'courses.age_range= :age_range and '
+            args.merge! :age_range=>value
+          when 'free_try'  then 
+            conditions <<'courses.free_try = :free_try and '
+            args.merge! :free_try=>value
+        end
+      end
+      self.joins(:course,:branch).where(conditions.chomp(' and '),args).order('rank desc') unless conditions.blank?
+    end
+    
   end
 
 
